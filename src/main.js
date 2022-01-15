@@ -13,7 +13,7 @@ Vue.use(ElementUI);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
+  router,//挂载
   components: { App },
   template: '<App/>',
   render: h=>h(App) //由Element教程引入
