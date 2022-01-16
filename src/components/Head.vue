@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="card">
     <div class="box">
       <strong id="head-name">王柯的个人博客网站</strong>
        >
@@ -9,7 +9,7 @@
 
       <div id="search-field">搜索：<input></input></div>
     </div>
-    <div class="line">content</div>
+<!--    <div class="line">content</div>-->
   </div>
 </template>
 
@@ -20,6 +20,13 @@ name: "Head"
 </script>
 
 <style scoped>
+
+  .card{
+    padding: 10px;
+    border-bottom: groove 2px;
+
+    //border-bottom: 2px;
+  }
   #head-name{
   }
   #search-field{
@@ -35,7 +42,7 @@ name: "Head"
 
   .line{
     margin: 20px 20px 20px 20px;
-    line-height: 1.2px;
+    line-height: 1px;
     border-left: 40em solid #2c3e50;
     border-right: 40em solid #2c3e50;
     text-align: center;

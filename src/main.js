@@ -6,9 +6,12 @@ import router from './router'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import * as showdown from 'showdown'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
+// 配置showdown
+Vue.prototype.converter = new showdown.Converter()
 
 /* eslint-disable no-new */
 new Vue({
