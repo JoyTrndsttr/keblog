@@ -7,6 +7,12 @@ import router from './router'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
+import axios from 'axios'
+import VueAxios from "vue-axios";
+axios.defaults.baseURL = ""
+axios.defaults.withCredentials = true
+Vue.use(VueAxios,axios);
+
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import * as showdown from 'showdown'
