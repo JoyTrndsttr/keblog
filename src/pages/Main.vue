@@ -81,9 +81,25 @@
           "- 使用小且可缓存的favicon.ico")
       }
     },
+    created() {
+      this.getContent()
+    },
     mounted() {
       const html = "<h1>aaaa</h1>"
       document.getElementById('main')[0].innerHTML = html
+    },
+    methods : {
+      getContent(){
+        let _this = this
+        this.axios.get("post/child?path='asd'")
+          .then((response)=>{
+            console.log(response.data)
+            _this.htmlContent = this.converter.makeHtml(response.data)
+          })
+          .catch((error)=>{
+            console.log(error)
+          })
+      }
     }
   }
 </script>

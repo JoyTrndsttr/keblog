@@ -13,7 +13,8 @@ public class PostService {
   FileReadUtil fileReadUtil = new FileReadUtil();
 
   public String getPostContentByPath(String path) throws IOException {
-    path = "src/main/resources/static/posts/准备.md";
-    return fileReadUtil.readFile(path);
+    path = "/Users/wangke/WebstormProjects/keblog/keblog-back/src/main/resources/static/posts/准备.md";
+    String result = fileReadUtil.readFile(path);
+    return result;
   }
 }

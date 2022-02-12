@@ -9,7 +9,7 @@ Vue.use(Vuex)
 
 import axios from 'axios'
 import VueAxios from "vue-axios";
-axios.defaults.baseURL = ""
+axios.defaults.baseURL = "/api"
 axios.defaults.withCredentials = true
 Vue.use(VueAxios,axios);
 

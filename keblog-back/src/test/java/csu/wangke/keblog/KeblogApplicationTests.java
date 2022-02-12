@@ -2,6 +2,7 @@ package csu.wangke.keblog;
 
 import csu.wangke.keblog.domain.PostFile;
 import csu.wangke.keblog.service.PostService;
+import csu.wangke.keblog.utils.FileReadUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -38,6 +39,10 @@ class KeblogApplicationTests {
   void testRead() throws IOException{
     PostService postService = new PostService();
     System.out.println(postService.getPostContentByPath(""));;
+//    FileReadUtil fileReadUtil = new FileReadUtil();
+//    String result = fileReadUtil.readFile("src/main/resources/static/posts/准备.md");
+//    System.out.println(result);
   }
+
 
 }
