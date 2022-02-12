@@ -35,6 +35,7 @@ name: "Head"
   }
 
   .box{
+    //position: sticky;
     display: flex;
     margin-left: 5%;
     font-size: 1.2em;
