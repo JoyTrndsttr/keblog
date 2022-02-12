@@ -17,10 +17,10 @@ public class PostController {
 //  @Autowired
 //  PostService postService = new PostService();
 
-  @GetMapping("/child")
+  @GetMapping("/content")
   public String getContent(String path) throws IOException {
     PostService postService = new PostService();
-    String result = postService.getPostContentByPath("");
+    String result = postService.getPostContentByPath(path);
     return result;
   }
 }

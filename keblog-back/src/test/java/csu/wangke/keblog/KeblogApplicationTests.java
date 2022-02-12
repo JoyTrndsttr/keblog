@@ -20,25 +20,28 @@ class KeblogApplicationTests {
 
   @Test
   void testFiles() throws IOException {
-    File file = new File("src/main/resources/static/posts/准备.md");
+//    File file = new File("src/main/resources/static/posts/准备.md");
+//
+//    FileInputStream fis = new FileInputStream(file);
+//    byte[] buffer = new byte[10];
+//    StringBuilder sb = new StringBuilder();
+//    while (fis.read(buffer) != -1) {
+//      sb.append(new String(buffer));
+//      buffer = new byte[10];
+//    }
+//    fis.close();
+//    PostFile postFile = new PostFile("src/main/resources/static/posts/准备.md");
+//    postFile.content = sb.toString();
+//    System.out.println(postFile.content);
+    PostFile postFile = new PostFile("/Users/wangke/WebstormProjects/keblog/keblog-back/src/main/resources/static/posts/八股");
 
-    FileInputStream fis = new FileInputStream(file);
-    byte[] buffer = new byte[10];
-    StringBuilder sb = new StringBuilder();
-    while (fis.read(buffer) != -1) {
-      sb.append(new String(buffer));
-      buffer = new byte[10];
-    }
-    fis.close();
-    PostFile postFile = new PostFile();
-    postFile.content = sb.toString();
-    System.out.println(postFile.content);
   }
 
   @Test
   void testRead() throws IOException{
     PostService postService = new PostService();
-    System.out.println(postService.getPostContentByPath(""));;
+    postService.getPostContentByPath("/Users/wangke/WebstormProjects/keblog/keblog-back/src/main/resources/static/posts/八股");
+
 //    FileReadUtil fileReadUtil = new FileReadUtil();
 //    String result = fileReadUtil.readFile("src/main/resources/static/posts/准备.md");
 //    System.out.println(result);

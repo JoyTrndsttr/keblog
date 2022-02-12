@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header><Head></Head></el-header>
-    <div style="border:1px solid blue" @click="increment()">{{ count }}</div>
+<!--    <div style="border:1px solid blue" @click="increment()">{{ count }}</div>-->
     <el-container>
       <el-main><Main></Main></el-main>
       <el-aside width="20%"><category></category></el-aside>

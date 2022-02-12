@@ -32,9 +32,6 @@ public class FileReadUtil {
     String result=lines.get(0);
     for(int i=1;i<lines.size();i++) result=result + '\n'+lines.get(i);
 
-
-    PostFile postFile = new PostFile();
-    postFile.content = result;
-    return postFile.content;
+    return result;
   }
 }
