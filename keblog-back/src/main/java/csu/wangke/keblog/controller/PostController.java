@@ -16,11 +16,18 @@ import java.io.IOException;
 public class PostController {
 //  @Autowired
 //  PostService postService = new PostService();
+  String PATH = "/Users/wangke/WebstormProjects/keblog/keblog-back/src/main/resources/static/posts";
 
   @GetMapping("/content")
   public String getContent(String path) throws IOException {
     PostService postService = new PostService();
     String result = postService.getPostContentByPath(path);
     return result;
+  }
+
+  @GetMapping("/init")
+  public String init() throws IOException{
+    System.out.println("init");
+    return getContent(PATH);
   }
 }

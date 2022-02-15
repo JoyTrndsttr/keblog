@@ -1,8 +1,9 @@
 <template>
   <div>
 <!--    <div id="main">ddd</div>-->
-    <h1>性能优化</h1>
-    <div id="blog" v-html="htmlContent"></div>
+    <h1>{{ Title }}</h1>
+    <div id="blog" v-html="htmlContent">{{htmlContent}}}</div>
+    <div v-for="post in content" v-on:click="getContent(post.path)">{{post.name}}</div>
 <!--    <div>separated</div>-->
 <!--    <div>{{mdContent}}</div>-->
 
@@ -17,23 +18,42 @@
     data(){
       return {
         mdContent : "he",
-        htmlContent : ""
+        htmlContent : "",
+        content : {},
+        Title : "博客"
       }
     },
     created() {
-      this.getContent()
-    },
-    mounted() {
-      const html = "<h1>aaaa</h1>"
-      document.getElementById('main')[0].innerHTML = html
-    },
-    methods : {
-      getContent(){
-        let _this = this
-        this.axios.get("post/content?path='/Users/wangke/WebstormProjects/keblog/keblog-back/src/main/resources/static/posts/八股'")
+      // this.getContent()
+      let _this = this
+      _this.$nextTick(()=>{
+        _this.axios.get("post/init")
           .then((response)=>{
             console.log(response.data)
-            _this.htmlContent = this.converter.makeHtml(response.data.content)
+            _this.content = response.data.content
+          })
+          .catch((error)=>{
+            console.log(error)
+          })
+      })
+    },
+    mounted() {
+      // const html = "<h1>aaaa</h1>"
+      // document.getElementById('main')[0].innerHTML = html
+    },
+    methods : {
+      getContent(path){
+        let _this = this
+        this.axios.get("post/content?path="+path)
+          .then((response)=>{
+            if(response.data.status===0){
+              console.log(response.data)
+              _this.htmlContent = this.converter.makeHtml(response.data.content)
+            }
+            else{
+              console.log(response.data)
+              _this.content = response.data.content
+            }
           })
           .catch((error)=>{
             console.log(error)

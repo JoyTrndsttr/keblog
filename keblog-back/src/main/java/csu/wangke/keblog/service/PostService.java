@@ -17,7 +17,7 @@ public class PostService {
 
   public String getPostContentByPath(String path) throws IOException {
 
-    path = "/Users/wangke/WebstormProjects/keblog/keblog-back/src/main/resources/static/posts/准备.md";
+//    path = "/Users/wangke/WebstormProjects/keblog/keblog-back/src/main/resources/static/posts/八股/JS重新总结.md";
     //首先判断Post为单个文章还是文件夹
     System.out.println(path);
     PostFile postFile = new PostFile(path);
