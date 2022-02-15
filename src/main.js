@@ -25,11 +25,15 @@ Vue.prototype.converter = new showdown.Converter()
 // Create a new store instance.
 const store = new Vuex.Store({
   state: {
-    count: 0
+    count: 0,
+    navigation : ["博客"]
   },
   mutations: {
     increment (state) {
       state.count++
+    },
+    postSelected(state,name){
+      state.navigation.push(name)
     }
   }
 })

@@ -3,7 +3,7 @@
 <!--    <div id="main">ddd</div>-->
     <h1>{{ Title }}</h1>
     <div id="blog" v-html="htmlContent">{{htmlContent}}}</div>
-    <div v-for="post in content" v-on:click="getContent(post.path)">{{post.name}}</div>
+    <div v-for="post in content" v-on:click="getContent(post)">{{post.name}}</div>
 <!--    <div>separated</div>-->
 <!--    <div>{{mdContent}}</div>-->
 
@@ -42,7 +42,7 @@
       // document.getElementById('main')[0].innerHTML = html
     },
     methods : {
-      getContent(path){
+      getContent({path:path,name:name}){
         let _this = this
         this.axios.get("post/content?path="+path)
           .then((response)=>{
@@ -54,6 +54,8 @@
               console.log(response.data)
               _this.content = response.data.content
             }
+            _this.$store.commit("postSelected",name)
+            console.log(_this.$store.state.navigation)
           })
           .catch((error)=>{
             console.log(error)

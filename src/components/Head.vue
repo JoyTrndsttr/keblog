@@ -4,8 +4,9 @@
       <strong id="head-name">王柯的个人博客网站</strong>
        >
       <span id="head-home"><a href="/">首页</a></span>
-       >
-      <span id="head-blog"><a href="/">博客</a></span>
+<!--       >-->
+<!--      <span id="head-blog"><a href="/">博客</a></span>-->
+      <span v-for="name in navigation">>{{name}}</span>
 
       <div id="search-field">搜索：<input></input></div>
     </div>
@@ -15,7 +16,12 @@
 
 <script>
 export default {
-name: "Head"
+  name: "Head",
+  computed : {
+    navigation(){
+      return this.$store.state.navigation
+    }
+  }
 }
 </script>
 
