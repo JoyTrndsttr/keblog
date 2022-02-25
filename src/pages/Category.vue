@@ -1,6 +1,7 @@
 <template>
   <div class="card">
     <h3 id="head3">分类</h3>
+    <div v-on:click="getStatisticCharts">统计</div>
     <div v-for="category in Category"><a href="">{{category}}</a></div>
   </div>
 </template>
@@ -11,6 +12,11 @@ export default {
   data() {
     return {
       Category : ["计算机网络","前端","Mac技巧",'学习经验']
+    }
+  },
+  methods:{
+    getStatisticCharts(){
+      this.$store.commit("getCharts")
     }
   }
 }

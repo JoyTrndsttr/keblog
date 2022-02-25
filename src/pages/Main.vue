@@ -2,6 +2,7 @@
   <div>
 <!--    <div id="main">ddd</div>-->
     <h1>{{ Title }}</h1>
+
     <div id="blog" v-html="htmlContent">{{htmlContent}}}</div>
     <div v-for="post in content" v-on:click="getContent(post)">{{post.name}}</div>
 <!--    <div>separated</div>-->
@@ -41,6 +42,21 @@
       // const html = "<h1>aaaa</h1>"
       // document.getElementById('main')[0].innerHTML = html
     },
+    computed: {
+      listenContent(){
+        return this.$store.state.content
+      }
+    },
+    watch   : {
+      listenContent:function (content){
+         if(content===0){
+           // this.getContent()
+         }
+         else if(content===1){
+           this.showCharts()
+         }
+      }
+    },
     methods : {
       getContent({path:path,name:name}){
         let _this = this
@@ -60,6 +76,9 @@
           .catch((error)=>{
             console.log(error)
           })
+      },
+      showCharts(){
+        console.log("showCharts")
       }
     }
   }

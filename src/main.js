@@ -29,7 +29,8 @@ Vue.prototype.converter = new showdown.Converter()
 const store = new Vuex.Store({
   state: {
     count: 0,
-    navigation : ["博客"]
+    navigation : ["博客"],
+    content : 0 ,//0为查看文章，1为查看图表
   },
   mutations: {
     increment (state) {
@@ -37,6 +38,10 @@ const store = new Vuex.Store({
     },
     postSelected(state,name){
       state.navigation.push(name)
+    },
+    getCharts(state){
+      state.navigation.push("数据统计")
+      state.content = 1
     }
   }
 })
