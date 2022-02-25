@@ -13,6 +13,9 @@ axios.defaults.baseURL = "/api"
 axios.defaults.withCredentials = true
 Vue.use(VueAxios,axios);
 
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import * as showdown from 'showdown'
