@@ -2,9 +2,9 @@
   <div>
 <!--    <div id="main">ddd</div>-->
     <h1>{{ Title }}</h1>
-    <div id="echarts"></div>
-    <div id="blog" v-html="htmlContent">{{htmlContent}}}</div>
-    <div v-for="post in content" v-on:click="getContent(post)">{{post.name}}</div>
+    <div id="echarts" v-show="show.charts"></div>
+    <div id="blog" v-html="htmlContent" v-show="show.content">{{htmlContent}}}</div>
+    <div v-for="post in content" v-on:click="getContent(post)" v-show="show.list">{{post.name}}</div>
 <!--    <div>separated</div>-->
 <!--    <div>{{mdContent}}</div>-->
 
@@ -22,7 +22,13 @@
         mdContent : "he",
         htmlContent : "",
         content : {},
-        Title : "博客"
+        Title : "博客",
+        charts : [],
+        show : {
+          "charts" : false,
+          "content": false,
+          "list"   : false
+        }
       }
     },
     created() {
@@ -33,6 +39,7 @@
           .then((response)=>{
             console.log(response.data)
             _this.content = response.data.content
+            _this.show = {charts:false,content:false,list:true}
           })
           .catch((error)=>{
             console.log(error)
@@ -64,12 +71,16 @@
         this.axios.get("post/content?path="+path)
           .then((response)=>{
             if(response.data.status===0){
+              //说明是文章
               console.log(response.data)
               _this.htmlContent = this.converter.makeHtml(response.data.content)
+              _this.show = {charts:false,content:true,list:false}
             }
             else{
+              //说明是文件夹
               console.log(response.data)
               _this.content = response.data.content
+              _this.show = {charts:false,content:false,list:true}
             }
             _this.$store.commit("postSelected",name)
             console.log(_this.$store.state.navigation)
@@ -78,8 +89,15 @@
             console.log(error)
           })
       },
-      showCharts(){
+      async showCharts(){
         console.log("showCharts")
+        var _this = this
+        //获取数据
+        await this.axios.get("post/charts")
+          .then(response=>{
+            console.log(response.data.content)
+            _this.charts = response.data.content
+          })
         var chart = echarts.init(document.getElementById('echarts'),null,{width:600,height:400})
         window.onresize = function (){chart.resize()}//监听图标容器的大小并改变图标大小
         //随便取一份数据
@@ -91,19 +109,16 @@
             // 默认把第一个维度映射到 X 轴上，后面维度映射到 Y 轴上。
             // 如果不指定 dimensions，也可以通过指定 series.encode
             // 完成映射，参见后文。
-            dimensions: ['product', '2015', '2016', '2017'],
-            source: [
-              { product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7 },
-              { product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1 },
-              { product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5 },
-              { product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1 }
-            ]
+            dimensions: ['name', 'size'],
+            source: _this.charts
           },
           xAxis: { type: 'category' },
           yAxis: {},
-          series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+          series: [{ type: 'bar' }]
         };
         chart.setOption(option)
+        _this.Title = "数据统计"
+        _this.show = {charts:true,content:false,list:false}
       }
     }
   }
