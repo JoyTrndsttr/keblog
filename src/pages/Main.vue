@@ -53,6 +53,9 @@
     computed: {
       listenContent(){
         return this.$store.state.content
+      },
+      listenUrl(){
+        return this.$store.state.postInfo
       }
     },
     watch   : {
@@ -63,6 +66,9 @@
          else if(content===1){
            this.showCharts()
          }
+      },
+      listenUrl:function (postInfo){
+        this.getContent({path:postInfo.url, name:postInfo.name})
       }
     },
     methods : {
@@ -82,7 +88,7 @@
               _this.content = response.data.content
               _this.show = {charts:false,content:false,list:true}
             }
-            _this.$store.commit("postSelected",name)
+            _this.$store.commit("postSelected", {"name":name,"url":path})
             console.log(_this.$store.state.navigation)
           })
           .catch((error)=>{

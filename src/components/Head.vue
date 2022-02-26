@@ -6,7 +6,7 @@
       <span id="head-home"><a href="/">首页</a></span>
 <!--       >-->
 <!--      <span id="head-blog"><a href="/">博客</a></span>-->
-      <span v-for="name in navigation">>{{name}}</span>
+      <span v-for="postInfo in navigation" v-on:click="getContent(postInfo)">>{{postInfo.name}}</span>
 
       <div id="search-field">搜索：<input></input></div>
     </div>
@@ -20,6 +20,12 @@ export default {
   computed : {
     navigation(){
       return this.$store.state.navigation
+    }
+  },
+  methods : {
+    getContent(postInfo){
+      this.$store.commit("backNavigation",postInfo.name)
+      this.$store.state.postInfo = postInfo
     }
   }
 }

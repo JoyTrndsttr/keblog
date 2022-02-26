@@ -29,19 +29,30 @@ Vue.prototype.converter = new showdown.Converter()
 const store = new Vuex.Store({
   state: {
     count: 0,
-    navigation : ["博客"],
+    navigation : [],
     content : 0 ,//0为查看文章，1为查看图表
+    postInfo : {} //postInfo改变代表内容改变
   },
   mutations: {
     increment (state) {
       state.count++
     },
-    postSelected(state,name){
-      state.navigation.push(name)
+    postSelected(state,postInfo){
+      state.navigation.push(postInfo)
     },
     getCharts(state){
-      state.navigation.push("数据统计")
+      state.navigation = []
+      state.navigation.push({"name":"数据统计","url":null})
       state.content = 1
+    },
+    backNavigation(state,name){
+      if(state.navigation.length>0){
+        let index = state.navigation.length-1;
+        for(let i=state.navigation.length-1;i>=0;i--){
+          if(state.navigation[i].name===name) index=i
+        }
+        state.navigation.splice(index)
+      }
     }
   }
 })
