@@ -30,4 +30,10 @@ public class PostController {
     System.out.println("init");
     return getContent(PATH);
   }
+
+  @GetMapping("/charts")
+  public String getChartsContent() throws IOException {
+    PostService postService = new PostService();
+    return postService.getChartsContent();
+  }
 }

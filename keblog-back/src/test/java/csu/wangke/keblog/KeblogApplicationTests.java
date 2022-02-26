@@ -47,5 +47,11 @@ class KeblogApplicationTests {
 //    System.out.println(result);
   }
 
+  @Test
+  void testGetChartContent() throws IOException {
+    PostService postService = new PostService();
+    System.out.println(postService.getChartsContent());
+  }
+
 
 }

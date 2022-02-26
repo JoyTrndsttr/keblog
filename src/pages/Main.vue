@@ -2,7 +2,7 @@
   <div>
 <!--    <div id="main">ddd</div>-->
     <h1>{{ Title }}</h1>
-    <div id="echarts" style="width: 600px;height: 400px"></div>
+    <div id="echarts"></div>
     <div id="blog" v-html="htmlContent">{{htmlContent}}}</div>
     <div v-for="post in content" v-on:click="getContent(post)">{{post.name}}</div>
 <!--    <div>separated</div>-->
@@ -114,4 +114,18 @@
   margin-left: 20%;
   text-align: left;
 }
+
+#echarts{
+  width: 600px;
+  height: 400px;
+  //border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  margin:auto;
+}
+
+#echarts::after{
+  left:40px;
+}
+
 </style>
