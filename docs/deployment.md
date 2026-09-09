@@ -1,54 +1,49 @@
-# VPS 部署
+# Git 仓库部署（lab-vps）
 
-使用 Python 3.10+、Node.js 22.13+、Caddy 和 systemd。以下示例沿用原部署的服务名与路径，避免影响已有运行数据。
+网站：https://38-76-161-31.sslip.io 。Caddy 转发到 `127.0.0.1:8080`。
 
-## 首次部署
+## 当前布局
 
-1. 在 VPS 准备服务账户 `wangke-site`，将仓库克隆到 `/opt/wangke-site/current`。代码由部署用户维护，服务账户只需要读取权限。
-2. 运行 `node scripts/build.mjs`。
-3. 创建 `/var/lib/wangke-site`，将其所有者设为 `wangke-site:wangke-site`。如迁移已有数据，先备份再合并，不能覆盖线上新数据。
-4. 创建 `/etc/wangke-site.env`，权限设为 `600`，使用以下内容并填入独立生成的 Token：
+- `/opt/keblog`：GitHub `JoyTrndsttr/keblog` 的 Git checkout。
+- `keblog.service`：从 checkout 的 `dist/` 提供页面与 Python API。
+- `/etc/keblog.env`：服务器私有环境变量与原有 Token，不进入 Git。
+- `/var/lib/wangke-site`：保留的线上数据目录，API 新内容不被 git pull 覆盖。
+- `/opt/keblog-migration-backup-*`：迁移前代码、数据和服务配置备份。
 
-```dotenv
-SITE_HOST=127.0.0.1
-SITE_PORT=8080
-SITE_DATA_DIR=/var/lib/wangke-site
-SITE_PUBLIC_URL=https://example.com
-SITE_API_TOKEN=replace-with-a-generated-secret
-```
+旧 `wangke-site.service` 已停用；旧手工上传 release 目录移入迁移备份，不再用于日常部署。服务账户沿用 `wangke-site`，以保持数据权限兼容。
 
-5. 将 `deploy/wangke-site.service` 安装到 `/etc/systemd/system/`，执行 `sudo systemctl daemon-reload` 和 `sudo systemctl enable --now wangke-site`。
-6. 修改 `deploy/Caddyfile` 的 `example.com` 为真实域名，配置 DNS 后合并到 VPS 的 Caddy 配置中。保留其他网站配置，并确保日志目录可写；验证 Caddy 配置后 reload。
-7. 检查 `curl -f http://127.0.0.1:8080/api/v1/bootstrap`，以及公网首页和 `/api/openapi.json`。
+## 更新
 
-已有 VPS 应先用 `systemctl cat wangke-site` 检查实际配置。可以继续使用原域名；务必在 `SITE_PUBLIC_URL` 中填写同一地址。
-
-## 后续更新
-
-Mac 上提交并推送代码后，在 VPS checkout 中执行：
+本地开发、测试并由维护者明确提交和推送后：
 
 ```bash
-cd /opt/wangke-site/current
-git status --short
-git pull --ff-only
-python3 -m unittest discover -s tests -v
-node scripts/build.mjs
-sudo systemctl restart wangke-site
-sudo systemctl status wangke-site --no-pager
-curl -f http://127.0.0.1:8080/api/v1/bootstrap
+ssh lab-vps
+sudo bash /opt/keblog/deploy/update.sh
 ```
 
-工作区存在本地改动时先处理；拉取或验证失败时停止后续步骤。首次将旧的手工上传目录接入 Git 时，将其备份后建立干净 checkout，不在旧目录强制覆盖。
+脚本要求工作区干净，使用 `git pull --ff-only`，运行测试与 Python 静态构建，再更新 systemd 配置并重启 `keblog`，最后检查 API。
 
-## 数据和备份
+首次迁移时部署脚本和文档作为尚未提交的本地改动同步到了 VPS。维护者提交并推送同样改动后，先备份 VPS 的这些文件，再将 checkout 对齐对应提交，之后才使用更新脚本；不要直接覆盖不明本地改动。
 
-- `documents/`：Paper Pool、任务提示词等文档。
-- `daily-learning/`：阅读笔记，单篇为 `<slug>/README.md`，索引和计划为 `README.md` 与 `PLAN.md`。
-- `files/`：上传附件。
-- `backups/`：API 覆盖文件前的备份。
+## 构建
 
-默认均位于 `/var/lib/wangke-site`。额外路径可用 `SITE_LEARNING_DIR`、`SITE_TASK_PROMPT_FILE` 指定，同时相应调整 systemd 的 `ReadWritePaths`。定期独立备份数据目录和环境配置；Git 只管理代码。回滚代码不会回滚内容数据。
+```bash
+python3 scripts/build.py
+python3 -m unittest discover -s tests -v
+```
 
-## 仓库内容与线上数据
+VPS 仅需 Python 3.10+、Git、curl、Caddy 和 systemd。`node scripts/build.mjs` 仍可用于 Mac 开发，输出相同静态文件，不需要在 VPS 安装 Node。
 
-`content/` 中的文档和阅读笔记纳入 Git。首次部署可将其复制到 `/var/lib/wangke-site/` 并调整所有者；已有服务需先比较并合并，避免覆盖 API 写入的新内容。生产环境仍默认读取外部数据目录，git pull 不会自动同步线上数据。
+## 内容同步
+
+Git 中的 `content/` 是可发布内容，线上 API 使用 `/var/lib/wangke-site`。首次迁移只补充缺失文件，保留已存在的线上文档。之后需要发布内容时，比较并合并这两个目录，再重启或刷新；不要以 git pull 覆盖 API 产生的新数据。Token、上传附件和 API 备份不进入代码仓库。
+
+## 检查与恢复
+
+```bash
+sudo systemctl status keblog --no-pager
+sudo journalctl -u keblog -n 50 --no-pager
+curl -f https://38-76-161-31.sslip.io/api/v1/bootstrap
+```
+
+更新失败时先查看日志。代码可切回上一已验证提交，重新构建并重启；操作前保存本地改动。数据应独立备份，代码回滚不回滚数据。迁移备份中的旧服务和 release 可用于首次切换故障恢复。

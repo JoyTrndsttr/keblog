@@ -1,0 +1,21 @@
+[Unit]
+Description=keblog website and document API
+After=network.target
+
+[Service]
+Type=simple
+User=wangke-site
+Group=wangke-site
+EnvironmentFile=/etc/keblog.env
+WorkingDirectory=/opt/keblog
+ExecStart=/usr/bin/python3 /opt/keblog/server/server.py
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/wangke-site
+
+[Install]
+WantedBy=multi-user.target

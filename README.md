@@ -6,7 +6,7 @@
 
 ## 本地开发
 
-需要 Python 3.10+；构建需要 Node.js 22.13+（`.nvmrc` 指定 22 系列）。
+需要 Python 3.10+；可用 Python 构建；如使用 Node 构建则需要 Node.js 22.13+（`.nvmrc` 指定 22 系列）。
 
 ```bash
 git clone https://github.com/JoyTrndsttr/keblog.git
@@ -22,7 +22,7 @@ python3 server/server.py --dev
 访问 http://127.0.0.1:8080 。编辑 `src-static/` 后刷新页面即可。开发模式默认将数据放在纳入 Git 的 `content/`，写入 API 需要自行设置 `SITE_API_TOKEN`；留空时禁止写入。
 
 ```bash
-node scripts/build.mjs
+python3 scripts/build.py
 python3 -m unittest discover -s tests -v
 # 使用构建产物启动（先按上文导入环境变量）
 python3 server/server.py
