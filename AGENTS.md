@@ -8,3 +8,5 @@
 - Preserve existing API routes and VPS data paths unless migration is part of the task.
 - Update API/deployment docs when changing configuration or behavior.
 - Do not deploy to a live server unless the user requests deployment.
+
+- Do not commit or push unless the user explicitly requests it; provide a proposed commit message instead.

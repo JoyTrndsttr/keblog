@@ -69,9 +69,13 @@ function markdownToHtml(markdown) {
       continue;
     }
     if (inTable) { html.push('</tbody></table></div>'); inTable = false; }
-    if (line.startsWith('### ')) { closeBlocks(); html.push(`<h3>${inline(line.slice(4))}</h3>`); }
-    else if (line.startsWith('## ')) { closeBlocks(); html.push(`<h2>${inline(line.slice(3))}</h2>`); }
-    else if (line.startsWith('# ')) { closeBlocks(); html.push(`<h1>${inline(line.slice(2))}</h1>`); }
+    const heading = /^(#{1,6})(?:\s+(.*?)|$)$/.exec(line);
+    if (heading) {
+      closeBlocks();
+      const level = heading[1].length;
+      const title = (heading[2] || '').replace(/(?:^|\s+)#+\s*$/, '');
+      html.push(`<h${level}>${inline(title)}</h${level}>`);
+    }
     else if (line.startsWith('> ')) { closeBlocks(); html.push(`<blockquote>${inline(line.slice(2))}</blockquote>`); }
     else if (/^- /.test(line)) {
       if (listType !== 'ul') { closeBlocks(); html.push('<ul>'); listType = 'ul'; }
