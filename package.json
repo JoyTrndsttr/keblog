@@ -1,0 +1,16 @@
+{
+  "name": "keblog",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "python3 server/server.py --dev",
+    "build": "node scripts/build.mjs",
+    "test": "python3 -m unittest discover -s tests -v",
+    "start": "python3 server/server.py"
+  },
+  "description": "Personal website and paper reading archive with a dependency-free Python API"
+}

@@ -1,0 +1,25 @@
+# Dependencies and builds
+node_modules/
+dist/
+coverage/
+.pnpm-store/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Runtime data, local configuration and credentials
+runtime-data/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.log
+
+# Editor and OS files
+.DS_Store
+._*
+.idea/
+.vscode/
