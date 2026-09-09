@@ -1,6 +1,6 @@
 # Git 仓库部署（lab-vps）
 
-网站：https://38-76-161-31.sslip.io 。Caddy 转发到 `127.0.0.1:8080`。
+网站：https://keblog.lol 。Caddy 转发到 `127.0.0.1:8080`。
 
 ## 当前布局
 
@@ -43,7 +43,11 @@ Git 中的 `content/` 是可发布内容，线上 API 使用 `/var/lib/wangke-si
 ```bash
 sudo systemctl status keblog --no-pager
 sudo journalctl -u keblog -n 50 --no-pager
-curl -f https://38-76-161-31.sslip.io/api/v1/bootstrap
+curl -f https://keblog.lol/api/v1/bootstrap
 ```
 
 更新失败时先查看日志。代码可切回上一已验证提交，重新构建并重启；操作前保存本地改动。数据应独立备份，代码回滚不回滚数据。迁移备份中的旧服务和 release 可用于首次切换故障恢复。
+
+## HTTPS
+
+Caddy 为 `keblog.lol` 自动申请并续期证书，HTTP 自动跳转 HTTPS。旧域名 `38-76-161-31.sslip.io` 保留可用。`SITE_PUBLIC_URL=https://keblog.lol`。`www.keblog.lol` 尚未配置 DNS，不在当前站点配置中。

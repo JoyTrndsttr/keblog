@@ -1,4 +1,4 @@
-example.com {
+keblog.lol, 38-76-161-31.sslip.io {
     encode zstd gzip
     reverse_proxy 127.0.0.1:8080
 
