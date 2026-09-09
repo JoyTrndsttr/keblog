@@ -19,7 +19,7 @@ set +a
 python3 server/server.py --dev
 ```
 
-访问 http://127.0.0.1:8080 。编辑 `src-static/` 后刷新页面即可。开发模式默认将数据放在被 Git 忽略的 `runtime-data/`，写入 API 需要自行设置 `SITE_API_TOKEN`；留空时禁止写入。
+访问 http://127.0.0.1:8080 。编辑 `src-static/` 后刷新页面即可。开发模式默认将数据放在纳入 Git 的 `content/`，写入 API 需要自行设置 `SITE_API_TOKEN`；留空时禁止写入。
 
 ```bash
 node scripts/build.mjs
@@ -39,11 +39,11 @@ scripts/        静态构建脚本
 tests/          后端单元测试
 deploy/         Caddy 与 systemd 配置示例
 docs/          部署及迁移说明
-runtime-data/  本地数据（不提交）
+content/       论文池、阅读笔记与计划（提交到 Git）
 dist/          构建产物（不提交）
 ```
 
-阅读计划和笔记属于运行数据，不需要在源码仓库维护 `Daily Plan` 或 `Daily Learning` 目录。网站的阅读功能继续保留，数据由 API 和外部数据目录管理。
+阅读计划和笔记保存在 `content/daily-learning/`，论文池在 `content/documents/`，随 Git 一起同步。API 写入后需自行提交；备份和私人上传文件仍被忽略。VPS 默认使用外部数据目录，Git 推送不会自动覆盖线上数据。
 
 ## Git 与部署
 

@@ -48,3 +48,7 @@ curl -f http://127.0.0.1:8080/api/v1/bootstrap
 - `backups/`：API 覆盖文件前的备份。
 
 默认均位于 `/var/lib/wangke-site`。额外路径可用 `SITE_LEARNING_DIR`、`SITE_TASK_PROMPT_FILE` 指定，同时相应调整 systemd 的 `ReadWritePaths`。定期独立备份数据目录和环境配置；Git 只管理代码。回滚代码不会回滚内容数据。
+
+## 仓库内容与线上数据
+
+`content/` 中的文档和阅读笔记纳入 Git。首次部署可将其复制到 `/var/lib/wangke-site/` 并调整所有者；已有服务需先比较并合并，避免覆盖 API 写入的新内容。生产环境仍默认读取外部数据目录，git pull 不会自动同步线上数据。

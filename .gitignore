@@ -10,7 +10,8 @@ __pycache__/
 .venv/
 
 # Runtime data, local configuration and credentials
-runtime-data/
+content/backups/
+content/files/
 .env
 .env.*
 !.env.example

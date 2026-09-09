@@ -447,7 +447,7 @@ def main() -> None:
     root = Path(os.environ.get('SITE_STATIC_DIR', Path(__file__).resolve().parents[1] / ('src-static' if args.dev else 'dist'))).resolve()
     # Resolve data paths before changing into the static document root.
     project = Path(__file__).resolve().parents[1]
-    default_data = project / 'runtime-data' if args.dev else Path('/var/lib/wangke-site')
+    default_data = project / 'content' if args.dev else Path('/var/lib/wangke-site')
     os.environ['SITE_DATA_DIR'] = str(Path(os.environ.get('SITE_DATA_DIR', default_data)).resolve())
     for name in ('SITE_LEARNING_DIR', 'SITE_TASK_PROMPT_FILE'):
         if os.environ.get(name):
