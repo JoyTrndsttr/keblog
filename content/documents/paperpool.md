@@ -1,5 +1,11 @@
 # Paper Pool
 
+## 2026-09-10 已精读补录
+
+| 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
+|---|---|---|---|---|---|---|---|
+| 2026-09-10 | Causal Software Engineering: A Vision and Roadmap | Roberto Pietrantuono; Luca Giamattei; Stefano Russo; Julien Siebert; Neil Walkinshaw | FSE 2026 Ideas, Visions and Reflections | [10.1145/3803437.3805585](https://doi.org/10.1145/3803437.3805585); [arXiv:2605.02454](https://arxiv.org/abs/2605.02454) | 因果软件工程、干预、反事实、因果可观测性、可信评测 | 把软件工程中的代码、配置、测试、部署和修复统一视为干预，提出 Causal Design Spec、Intervention Log、Living Causal Model 与四条路线；其价值是给 Causality for Code Review 提供方法论总框架，而非已经验证的因果效果。 | 已精读 |
+
 ## 2026-09-08 已精读补录
 
 | 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
@@ -72,7 +78,6 @@
 
 | 首次发现 | 论文 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 与 Causality for Code Review 的相关度 | 入池理由 | 状态 |
 |---|---|---|---|---|---|---|---|---|
-| 2026-08-24 | EntailLLM: Verifying LLM-Generated Vulnerability Discovery Paths with Domain Knowledge via Logic Programming | Kaustuv Mukherji; Jaikrishna Manojkumar Patil; Colton Payne; Paulo Shakarian; Dana Warmsley; Nigel Stepp; Evelyn Kim | arXiv 预印本 / 2026 | [arXiv:2608.01763](https://arxiv.org/abs/2608.01763) | 漏洞路径、调用图、领域知识、逻辑蕴涵、LLM验证 | 中 | 主要价值是将LLM提出的调用图路径视为待验证假设，并用独立领域知识进行形式化蕴涵检查；可启发代码审查意见真实性和路径证据的Outcome定义。 | 计划精读：2026-08-28（顺延） |
 
 ### 2026-08-13 已精读补充
 
