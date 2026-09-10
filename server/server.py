@@ -26,6 +26,7 @@ ALLOWED_DOCUMENT_SUFFIXES = {'.md', '.txt'}
 ALLOWED_FILE_SUFFIXES = {'.md', '.txt', '.pdf', '.csv', '.json', '.bib', '.png', '.jpg', '.jpeg', '.webp'}
 PUBLIC_DOCUMENTS = {'paperpool.md', 'daily-brief.md', 'daily-task-prompt.md'}
 LEARNING_SLUG = re.compile(r'^\d{6}-[A-Za-z][A-Za-z0-9]*-[A-Za-z0-9][A-Za-z0-9-]{0,95}$')
+RESEARCH_DOCUMENT = ('研究记录.md', '研究记录')
 
 
 def safe_name(raw: str, suffixes: set[str]) -> str:
@@ -128,6 +129,10 @@ class SiteHandler(SimpleHTTPRequestHandler):
     @property
     def task_prompt_path(self) -> Path:
         return Path(os.environ.get('SITE_TASK_PROMPT_FILE', self.data_dir / 'documents' / 'daily-task-prompt.md')).resolve()
+
+    @property
+    def research_documents_dir(self) -> Path:
+        return Path(os.environ.get('RESEARCH_DOCUMENTS_DIR', self.data_dir / 'research-source' / 'documents')).resolve()
 
     def end_headers(self) -> None:
         self.send_header('X-Content-Type-Options', 'nosniff')
@@ -286,6 +291,20 @@ class SiteHandler(SimpleHTTPRequestHandler):
         route = urlparse(self.path).path
         if route == '/api/health':
             self.send_json(HTTPStatus.OK, {'status': 'ok', 'service': 'wangke-cloud-paper-pool', 'version': '2.0'})
+            return
+        if route == '/api/research/document':
+            path = self.research_documents_dir / RESEARCH_DOCUMENT[0]
+            if not path.is_file():
+                self.send_json(HTTPStatus.NOT_FOUND, {'error': 'research document unavailable'})
+                return
+            raw = path.read_bytes()
+            etag = hashlib.sha256(raw).hexdigest()
+            self.send_json(HTTPStatus.OK, {
+                'title': RESEARCH_DOCUMENT[1],
+                'content': raw.decode('utf-8'),
+                'modified': datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).isoformat(),
+                'etag': etag,
+            }, {'ETag': f'"{etag}"'})
             return
         if route == '/api/documents':
             documents = []

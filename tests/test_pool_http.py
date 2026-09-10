@@ -18,6 +18,10 @@ class HTTPTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.tmp=tempfile.TemporaryDirectory()
+        research = Path(cls.tmp.name) / 'research-source' / 'documents'
+        research.mkdir(parents=True)
+        for filename in ('README.md', 'writings.md', '研究记录.md', 'dialog1.md'):
+            (research / filename).write_text(f'# {filename}\n')
         cls.env=patch.dict(os.environ,{'SITE_API_TOKEN':'local-test-token','SITE_DATA_DIR':cls.tmp.name})
         cls.env.start()
         class QuietHandler(SiteHandler):
@@ -58,3 +62,12 @@ class HTTPTests(unittest.TestCase):
         self.assertEqual(self.request('DELETE','/api/v2/papers/'+p['id'])[0],200)
         self.assertEqual(self.request('GET','/api/v2/papers?limit=0')[0],400)
         self.assertEqual(self.request('GET','/api/openapi.json')[1]['info']['version'],'2.0.0')
+
+    def test_only_research_log_is_public(self):
+        status, document = self.request('GET', '/api/research/document')[:2]
+        self.assertEqual(status, 200)
+        self.assertEqual(document['title'], '研究记录')
+        self.assertTrue(document['content'].startswith('# 研究记录'))
+        self.assertEqual(self.request('GET', '/api/research/documents')[0], 404)
+        self.assertEqual(self.request('GET', '/api/research/documents/writings')[0], 404)
+        self.assertEqual(self.request('GET', '/api/research/documents/dialog1')[0], 404)

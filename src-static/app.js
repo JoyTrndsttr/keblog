@@ -127,6 +127,24 @@ async function loadPaperPool() {
 document.querySelector('#refresh-button')?.addEventListener('click', loadPaperPool);
 if (document.querySelector('#paperpool-content') || document.querySelector('#read-count')) loadPaperPool();
 
+async function loadResearchDocument() {
+  const content = document.querySelector('#research-document');
+  if (!content) return;
+  content.innerHTML = '<p class="loading">正在加载研究记录…</p>';
+  try {
+    const response = await fetch('/api/research/document', { cache: 'no-store' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = await response.json();
+    content.innerHTML = markdownToHtml(payload.content);
+    const updated = document.querySelector('#research-updated');
+    if (updated) updated.textContent = `UPDATED ${payload.modified.slice(0, 10)}`;
+  } catch (error) {
+    content.innerHTML = '<p class="error">研究记录暂时无法读取，请稍后重试。</p>';
+  }
+}
+
+if (document.querySelector('#research-document')) loadResearchDocument();
+
 let learningEntries = [];
 async function fetchLearning(slug) {
   const response = await fetch(`/api/daily-learning/${encodeURIComponent(slug)}`, { cache: 'no-store' });

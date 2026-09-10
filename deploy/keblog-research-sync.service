@@ -1,0 +1,8 @@
+[Unit]
+Description=Synchronize private causal-review research documents
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/keblog/deploy/sync-research.sh

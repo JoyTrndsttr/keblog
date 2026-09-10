@@ -3,6 +3,12 @@
 Base URL: `https://keblog.lol`. Importable OpenAPI: `/api/openapi.json`.
 SQLite (`SITE_DATA_DIR/paperpool.sqlite3`) is authoritative. Clients work with papers and readings, never edit the Paper Pool Markdown table. Existing website URLs remain readable through generated compatibility views.
 
+## Research documents
+
+- `GET /api/research/document` returns `documents/研究记录.md` as Markdown content and metadata.
+
+This endpoint reads a VPS-local checkout of the private `causal-review` repository. It never accepts a filename or path from the caller, so `README.md`, `writings.md`, chat history and other repository files are not publicly addressable.
+
 ## Daily workflow: two or three requests
 
 1. `GET /api/v2/context`: task instructions and schedule metadata, counts, at most ten candidates and five recent readings. Full notes and the entire pool are not returned.

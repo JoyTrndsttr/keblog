@@ -8,6 +8,7 @@
 - `keblog.service`：从 checkout 的 `dist/` 提供页面与 Python API。
 - `/etc/keblog.env`：服务器私有环境变量与原有 Token，不进入 Git。
 - `/var/lib/wangke-site`：线上数据目录；`paperpool.sqlite3` 是论文、精读和任务配置的事实源。
+- `/var/lib/wangke-site/research-source`：私有 `causal-review` 仓库的稀疏只读副本，仅同步 `documents/`。
 - `/opt/keblog-migration-backup-*`：迁移前代码、数据和服务配置备份。
 
 旧 `wangke-site.service` 已停用；旧手工上传 release 目录移入迁移备份，不再用于日常部署。服务账户沿用 `wangke-site`，以保持数据权限兼容。
@@ -56,3 +57,17 @@ curl -f https://keblog.lol/api/openapi.json
 ## HTTPS
 
 Caddy 为 `keblog.lol` 自动申请并续期证书，HTTP 自动跳转 HTTPS。旧域名 `38-76-161-31.sslip.io` 保留可用。`SITE_PUBLIC_URL=https://keblog.lol`。`www.keblog.lol` 尚未配置 DNS，不在当前站点配置中。
+
+## Research 文档同步
+
+VPS 的 `/root/.ssh/causal_review_deploy` 是 GitHub 仓库级只读 Deploy Key，权限为 `600`。SSH 别名 `github-causal-review` 强制使用该身份和严格主机校验；GitHub 主机键来自其官方公布的 Ed25519 主机键。
+
+`keblog-research-sync.timer` 每 5 分钟运行 `deploy/sync-research.sh`，以 `git pull --ff-only` 更新稀疏 checkout。手工检查：
+
+```bash
+sudo systemctl start keblog-research-sync.service
+sudo systemctl status keblog-research-sync.service --no-pager
+sudo systemctl list-timers keblog-research-sync.timer --no-pager
+```
+
+应用从同步副本读取文档，但只通过固定的 `/api/research/document` 公开 `研究记录.md`。接口不接受文件名或路径，`README.md`、`writings.md`、`dialog*.md` 和其他文件均不提供公网路由。撤销访问时，在 GitHub 仓库 Deploy keys 中删除 `lab-vps keblog research sync`，再删除 VPS 私钥并停用 timer。

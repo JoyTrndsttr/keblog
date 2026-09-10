@@ -4,10 +4,13 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'server'))
-from server import append_paper_entry, atomic_write, learning_metadata, safe_learning_slug, safe_name
+from server import RESEARCH_DOCUMENT, append_paper_entry, atomic_write, learning_metadata, safe_learning_slug, safe_name
 
 
 class ServerTests(unittest.TestCase):
+    def test_only_research_log_is_public(self):
+        self.assertEqual(RESEARCH_DOCUMENT, ('研究记录.md', '研究记录'))
+
     def test_safe_name_rejects_traversal(self):
         with self.assertRaises(ValueError):
             safe_name('../paperpool.md', {'.md'})
