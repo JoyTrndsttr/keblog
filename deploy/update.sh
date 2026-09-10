@@ -14,7 +14,7 @@ install -m 644 deploy/keblog.service /etc/systemd/system/keblog.service
 systemctl daemon-reload
 systemctl restart keblog
 for attempt in {1..10}; do
-  if curl --noproxy '*' -fsS http://127.0.0.1:8080/api/v1/bootstrap >/dev/null; then
+  if curl --noproxy '*' -fsS http://127.0.0.1:8080/api/health >/dev/null; then
     echo "Deployed $(git rev-parse --short HEAD); previous revision: $previous"
     exit 0
   fi

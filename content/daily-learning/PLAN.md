@@ -2,8 +2,8 @@
 
 > 生效版本：2026-09-09  
 > 执行时间：每天 08:30（Asia/Shanghai）  
-> 云端状态：`https://keblog.lol/api/v2/context`
-> 来源：从 `dialog.md` 的历次调整中提取；此后以云端版本为唯一事实源。
+> 内容仓库：`JoyTrndsttr/keblog` 的 `master` 分支
+> 来源：从 `dialog.md` 的历次调整中提取；此后以 GitHub 当前版本为唯一事实源。
 
 ## 目标
 
@@ -52,22 +52,24 @@
 
 ```text
 候选论文
-  ↓ 读取公网 /api/v2/context
+  ↓ 读取 GitHub Paper Pool 与精读索引
 身份核验（DOI > arXiv ID > 规范化标题）
   ↓ 完整阅读论文原文
 生成 Markdown 精读
   ↓
-写入 YYMMDD-FirstAuthor-ShortName/README.md
-  ↓ POST /api/v2/readings（使用 Idempotency-Key）
-从候选区移除同一论文
+创建 YYMMDD-FirstAuthor-ShortName/README.md
+  ↓ 同步更新 Paper Pool 与精读索引
+commit 并 push 到 master
+  ↓ GitHub Webhook
+VPS pull、build、restart
 ```
 
 - “已收藏”不等于“已精读”。
 - 已精读论文永久排除，除非用户明确要求重读。
 - 新闻与雷达论文按 7 天去重。
-- 每次执行都重新读取云端状态，保留已有记录并避免并发覆盖。
+- 每次执行都重新读取 GitHub 中的论文池与精读索引，保留已有记录并避免并发覆盖。
 - 不得依赖 Zotero、本地 Paper Pool、自动化 memory、电脑路径或本地附件完成状态查询与去重。
-- 写入凭据只配置在 ChatGPT Action/连接器秘密中，不能出现在公开提示词或页面里。
+- 只通过已授权的 GitHub 连接器写入；任何凭据都不能出现在公开提示词或页面里。
 - 若只能获得摘要，必须标记“基于摘要的导读”，不得猜测实验数字，也不得登记为完整精读。
 
 ## 每篇精读的最低要求
@@ -86,7 +88,7 @@
 
 每篇完整精读使用目录 `YYMMDD-FirstAuthor-ShortName`，正文统一为 `README.md`。
 
-网站公开读取这些 Markdown；创建或替换文档的请求必须携带 Bearer Token，使用 ETag 避免并发覆盖，并在改写前保留备份。
+网站直接读取这些 Markdown；计划任务同时维护论文池、索引和正文，经 GitHub commit/push 后由 Webhook 自动部署。
 
 ## 今日任务状态
 

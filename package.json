@@ -7,10 +7,10 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "python3 server/server.py --dev",
+    "dev": "python3 server/content_server.py --dev",
     "build": "node scripts/build.mjs",
     "test": "python3 -m unittest discover -s tests -v",
-    "start": "python3 server/server.py"
+    "start": "python3 server/content_server.py"
   },
-  "description": "Personal website and paper reading archive with a dependency-free Python API"
+  "description": "Git-backed personal website and paper reading archive"
 }

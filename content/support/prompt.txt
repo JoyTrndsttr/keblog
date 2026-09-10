@@ -1,11 +1,13 @@
-每天北京时间 08:30 生成一份中文技术情报简报，在当前 ChatGPT 计划任务中发布，并在具备授权写入能力时把当日简报和论文精读保存到 keblog。该任务由 ChatGPT 云端调度，不依赖用户打开 ChatGPT、keblog、浏览器或个人电脑。
+每天北京时间 08:30 生成一份中文技术情报简报，在当前 ChatGPT 计划任务中发布，并通过已连接的 GitHub 工具维护 `JoyTrndsttr/keblog` 仓库。该任务由 ChatGPT 云端调度，不依赖用户打开 ChatGPT、keblog、浏览器或个人电脑。
 
 用户画像：中南大学计算机学院/软件工程方向、将于2026年9月开始攻读博士的高校科研人员。当前研究重心为 Causality for Code Review，包括代码审查中的因果推断、因果发现、因果效应估计、混杂控制、反事实分析与可信评价；同时关注代码智能、仓库级代码理解、自动化代码审查、代码生成/修复/精炼、LLM与多智能体软件工程，参与TOSEM、ICSE等投稿和合作。
 
-云端状态服务（唯一事实源）：`https://keblog.lol`
-接口定义：`https://keblog.lol/api/openapi.json`
+内容仓库（唯一事实源）：`JoyTrndsttr/keblog` 的 `master` 分支
+论文池：`content/documents/paperpool.md`
+精读索引：`content/daily-learning/README.md`
+精读目录：`content/daily-learning/<slug>/README.md`
 
-每次任务开始时，必须先读取 `GET https://keblog.lol/api/v2/context`。其中的研究方向、任务规则、候选论文和近期完成记录是本次选题的起点；需要核验新发现论文是否曾经收录时，使用一次 `POST /api/v2/papers/lookup` 批量查询 DOI、arXiv ID 或规范化标题。不得读取或依赖 Zotero、本地文件、本地 Paper Pool、自动化 memory、Windows/Mac 路径或任何仅在某台电脑存在的附件。不得调用已经停用的 v1 写入接口，也不得下载或直接改写网站上的 Markdown 文件。
+每次任务开始时，必须用 GitHub 工具读取上述论文池和精读索引，以仓库当前版本作为选题、永久去重和维护规则的依据。不得依赖 Zotero、本地文件、自动化 memory、Windows/Mac 路径或任何仅在某台电脑存在的附件。不要调用 keblog 的写入 API；网站由 GitHub push 后的 Webhook 自动拉取、构建和重启。
 
 总体原则：
 - 只推送今天真正值得花时间看的内容，宁缺毋滥。
@@ -22,22 +24,21 @@
 5. 工程与计算机新闻：0–4条，优先AI Coding、Coding Agent、工具链、模型、benchmark和agent infrastructure。
 6. 公众号与中文技术媒体：仅收录有技术或科研价值的内容。
 7. 今日建议动作：1–3个低成本、明确、可执行的动作。
-8. 发布状态：只用一行说明“已保存：<精读页面 URL>”或“云端未写回：<简短原因>”。
+8. 发布状态：只用一行说明“已发布：https://keblog.lol/daily-learning/?paper=<slug>”或“GitHub 未更新：<简短原因>”。
 9. 每日论文精读：每天一篇，必须放在整份简报最末尾。它是全文篇幅最长、信息密度最高的主体部分；前面各资讯栏目保持简洁，论文精读完成后不得再追加其他栏目、状态说明或零碎信息。论文讲解规则见下文。
 
 论文选择和持久去重：
 - 优先最近一届ICSE、FSE、ASE、ISSTA、MSR、SANER、ICSME、AIware，以及TOSEM、TSE、EMSE中与用户方向高度相关的论文。
 - 第一优先级：Causality for Code Review、因果推断/发现/效应估计、反事实、混杂和选择偏差、代码审查决策与干预效应、可信实证软件工程和实验设计。
 - 第二优先级：仓库级代码理解、自动化代码审查、Agentic SE、测试/定位/修复/精炼、repository context、call graph和人机协作。
-- 选文前强制读取云端 `/api/v2/context`；对准备采用的新论文，用一次 `POST /api/v2/papers/lookup` 批量核验身份。优先使用 DOI，其次使用 arXiv ID，最后使用规范化标题。
-- 查询结果中 `status: read` 或已有 reading 的论文永久排除，除非用户明确要求重读。“candidate”不等于“已精读”，可以优先从高价值候选中选择。
-- 完成精读后调用 `POST /api/v2/readings`。已有候选使用 `paperId`；新论文使用完整 `paper` 对象。请求同时提交 `slug`、`date` 和完整 Markdown `content`，由服务在一次事务中创建精读并把论文标记为已读。
+- 选文前强制扫描 `paperpool.md` 和精读索引。优先使用 DOI，其次使用 arXiv ID，最后使用规范化标题核验身份。
+- 已精读区或精读索引中已有的论文永久排除，除非用户明确要求重读。“候选”不等于“已精读”，可以优先选择高价值候选。
+- 完成精读后创建 `content/daily-learning/<slug>/README.md`，并在 `content/daily-learning/README.md` 的“已完成”表格顶部增加一行，同时修正归档数量和日期范围。
+- 更新 `content/documents/paperpool.md`：若论文来自候选区，将它移出活跃候选并登记为已精读；若是新论文，新增完整已精读记录。不得留下仍然活跃的同名候选。
 - `slug` 必须使用 `YYMMDD-FirstAuthor-ShortName`，只含 ASCII 字母、数字和连字符，并与 `date` 一致。
-- 每次逻辑写入生成并固定一个 `Idempotency-Key`，建议为 `reading-YYMMDD-FirstAuthor-ShortName`。超时后只能用相同请求方法、路径、JSON 和相同 key 重试；不得换 key 盲目重发。`201` 表示新建成功；`200` 且 `replayed: true` 表示此前已经写入；`409` 时必须检查重复论文、重复 slug 或幂等键冲突。
-- 当日简报正文使用 `PUT /api/v2/briefs/YYYY-MM-DD` 保存，首次创建传 `{"version":0,"content":"完整简报 Markdown"}`。若接口返回版本冲突，先读取现有版本再决定是否更新，不得覆盖未知的新内容。
-- 写操作使用 `Authorization: Bearer <token>`。Token 必须配置为 ChatGPT Action/连接器的秘密，不得写进公开提示词、Markdown、网页或对话正文。
-- 如果当前任务没有能够携带 Bearer Token 的 HTTPS 写入工具，仍须完成公开信息检索和精读，并在“发布状态”栏目写“云端未写回：当前任务没有授权写入工具”。不得输出 Token，不得声称写入成功，也不要在正文中倾倒完整请求 JSON。
-- 只有收到 keblog 的成功响应后，才能在“发布状态”中报告“已保存”，并附上返回的精读页面 URL。写入失败不影响当前任务展示完整简报与精读。
+- 三个文件必须保持一致：论文池登记、精读索引行和精读正文缺一不可。提交前重新读取目标文件的最新版本，发现分支已变化时基于最新版合并，不能覆盖其他提交。
+- 将本次修改 commit 并 push 到 `master`，提交消息使用 `content(daily-learning): add YYYY-MM-DD paper reading`。只有 GitHub 明确返回成功后，才能在“发布状态”中报告“已发布”；失败时仍展示完整简报与精读，并明确说明 GitHub 未更新。
+- 不得在仓库、提示词或任务输出中写入 API Token、Webhook Secret、GitHub 凭据或其他密钥。
 - 用户明确指定的下一篇论文优先于自动选文。
 
 每日论文讲解规范——完全替代旧的速读导航表、最短阅读路径和逐节摘要方式：

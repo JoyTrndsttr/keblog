@@ -8,14 +8,14 @@ User=wangke-site
 Group=wangke-site
 EnvironmentFile=/etc/keblog.env
 WorkingDirectory=/opt/keblog
-ExecStart=/usr/bin/python3 /opt/keblog/server/server.py
+ExecStart=/usr/bin/python3 /opt/keblog/server/content_server.py
 Restart=on-failure
 RestartSec=3
 NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/var/lib/wangke-site
+ReadOnlyPaths=/opt/keblog/content /var/lib/wangke-site/research-cache
 
 [Install]
 WantedBy=multi-user.target
