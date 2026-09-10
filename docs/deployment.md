@@ -13,6 +13,8 @@
 - `/var/lib/wangke-site/research-source`：私有 `causal-review` 仓库的稀疏只读副本。
 - `/var/lib/wangke-site/research-cache/research-record.md`：Research 页面的稳定缓存。
 
+`keblog.service` 通过 `RESEARCH_DOCUMENT_FILE` 明确读取上述缓存，避免内容服务切换后回退到 checkout 内不存在的研究文档。
+
 旧 SQLite 文件可以作为历史备份保留，但服务不再读取或写入它。
 
 ## 自动更新

@@ -7,6 +7,7 @@ Type=simple
 User=wangke-site
 Group=wangke-site
 EnvironmentFile=/etc/keblog.env
+Environment=RESEARCH_DOCUMENT_FILE=/var/lib/wangke-site/research-cache/research-record.md
 WorkingDirectory=/opt/keblog
 ExecStart=/usr/bin/python3 /opt/keblog/server/content_server.py
 Restart=on-failure
