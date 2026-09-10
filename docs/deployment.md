@@ -9,6 +9,7 @@
 - `/etc/keblog.env`：服务器私有环境变量与原有 Token，不进入 Git。
 - `/var/lib/wangke-site`：线上数据目录；`paperpool.sqlite3` 是论文、精读和任务配置的事实源。
 - `/var/lib/wangke-site/research-source`：私有 `causal-review` 仓库的稀疏只读副本，仅同步 `documents/`。
+- `/var/lib/wangke-site/research-cache/research-record.md`：Research 页面使用的稳定本地缓存。
 - `/opt/keblog-migration-backup-*`：迁移前代码、数据和服务配置备份。
 
 旧 `wangke-site.service` 已停用；旧手工上传 release 目录移入迁移备份，不再用于日常部署。服务账户沿用 `wangke-site`，以保持数据权限兼容。
@@ -62,7 +63,7 @@ Caddy 为 `keblog.lol` 自动申请并续期证书，HTTP 自动跳转 HTTPS。�
 
 VPS 的 `/root/.ssh/causal_review_deploy` 是 GitHub 仓库级只读 Deploy Key，权限为 `600`。SSH 别名 `github-causal-review` 强制使用该身份和严格主机校验；GitHub 主机键来自其官方公布的 Ed25519 主机键。
 
-`keblog-research-sync.timer` 每 5 分钟运行 `deploy/sync-research.sh`，以 `git pull --ff-only` 更新稀疏 checkout。手工检查：
+`keblog-research-sync.timer` 每 5 分钟运行 `deploy/sync-research.sh`，以 `git pull --ff-only` 更新稀疏 checkout，再原子替换本地缓存。同步失败不会删除或截断现有缓存，页面继续展示上次成功版本。手工检查：
 
 ```bash
 sudo systemctl start keblog-research-sync.service

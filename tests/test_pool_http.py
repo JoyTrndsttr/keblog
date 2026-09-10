@@ -18,10 +18,9 @@ class HTTPTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.tmp=tempfile.TemporaryDirectory()
-        research = Path(cls.tmp.name) / 'research-source' / 'documents'
+        research = Path(cls.tmp.name) / 'research-cache'
         research.mkdir(parents=True)
-        for filename in ('README.md', 'writings.md', '研究记录.md', 'dialog1.md'):
-            (research / filename).write_text(f'# {filename}\n')
+        (research / 'research-record.md').write_text('# 研究记录\n')
         cls.env=patch.dict(os.environ,{'SITE_API_TOKEN':'local-test-token','SITE_DATA_DIR':cls.tmp.name})
         cls.env.start()
         class QuietHandler(SiteHandler):

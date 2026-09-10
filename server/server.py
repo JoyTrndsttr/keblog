@@ -131,8 +131,8 @@ class SiteHandler(SimpleHTTPRequestHandler):
         return Path(os.environ.get('SITE_TASK_PROMPT_FILE', self.data_dir / 'documents' / 'daily-task-prompt.md')).resolve()
 
     @property
-    def research_documents_dir(self) -> Path:
-        return Path(os.environ.get('RESEARCH_DOCUMENTS_DIR', self.data_dir / 'research-source' / 'documents')).resolve()
+    def research_document_path(self) -> Path:
+        return Path(os.environ.get('RESEARCH_DOCUMENT_FILE', self.data_dir / 'research-cache' / 'research-record.md')).resolve()
 
     def end_headers(self) -> None:
         self.send_header('X-Content-Type-Options', 'nosniff')
@@ -293,7 +293,7 @@ class SiteHandler(SimpleHTTPRequestHandler):
             self.send_json(HTTPStatus.OK, {'status': 'ok', 'service': 'wangke-cloud-paper-pool', 'version': '2.0'})
             return
         if route == '/api/research/document':
-            path = self.research_documents_dir / RESEARCH_DOCUMENT[0]
+            path = self.research_document_path
             if not path.is_file():
                 self.send_json(HTTPStatus.NOT_FOUND, {'error': 'research document unavailable'})
                 return

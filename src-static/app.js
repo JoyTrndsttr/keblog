@@ -136,6 +136,12 @@ async function loadResearchDocument() {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const payload = await response.json();
     content.innerHTML = markdownToHtml(payload.content);
+    const headings = [...content.querySelectorAll('h2, h3, h4')];
+    const toc = document.querySelector('#research-toc');
+    headings.forEach((heading, index) => { heading.id = `research-section-${index + 1}`; });
+    if (toc) {
+      toc.innerHTML = headings.map((heading) => `<a class="toc-${heading.tagName.toLowerCase()}" href="#${heading.id}">${escapeHtml(heading.textContent)}</a>`).join('');
+    }
     const updated = document.querySelector('#research-updated');
     if (updated) updated.textContent = `UPDATED ${payload.modified.slice(0, 10)}`;
   } catch (error) {

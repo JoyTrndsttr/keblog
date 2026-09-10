@@ -2,7 +2,7 @@
 
 个人网站与论文阅读归档项目。前端使用原生 HTML、CSS、JavaScript，后端使用 Python 标准库，支持个人主页、研究方向、论文列表、博客、Paper Pool 和阅读笔记。
 
-Research 页面从私有 `JoyTrndsttr/causal-review` 仓库同步并只公开 `documents/研究记录.md`。VPS 使用仓库级只读 Deploy Key，其他仓库文件均不提供网页或 API 入口。
+Research 页面从私有 `JoyTrndsttr/causal-review` 仓库同步 `documents/研究记录.md` 到 VPS 本地缓存后展示。VPS 使用仓库级只读 Deploy Key；GitHub 暂时不可用时继续展示上一次成功同步的版本，其他仓库文件均不提供网页或 API 入口。
 
 项目仍在持续开发中。当前前端入口为 `src-static/`，构建只是将静态文件复制到 `dist/`，没有第三方运行依赖，也不需要安装 Next.js、React 或 node_modules。
 
