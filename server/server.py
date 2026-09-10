@@ -16,7 +16,9 @@ from datetime import datetime, timezone
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from urllib.parse import unquote, urlparse, parse_qs
+from pool import Pool, APIError
+from pool_schema import schema
 
 MAX_DOCUMENT_BYTES = 2 * 1024 * 1024
 MAX_FILE_BYTES = 20 * 1024 * 1024
@@ -109,7 +111,7 @@ def append_paper_entry(markdown: str, entry: dict) -> str:
 
 
 class SiteHandler(SimpleHTTPRequestHandler):
-    server_version = 'WangKeSite/1.1'
+    server_version = 'Keblog/2.0'
 
     @property
     def data_dir(self) -> Path:
@@ -134,8 +136,8 @@ class SiteHandler(SimpleHTTPRequestHandler):
         self.send_header('Permissions-Policy', 'camera=(), microphone=(), geolocation=()')
         self.send_header('Content-Security-Policy', "default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'")
         self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Headers', 'Authorization, Content-Type, If-Match')
-        self.send_header('Access-Control-Allow-Methods', 'GET, PUT, POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Authorization, Content-Type, If-Match, Idempotency-Key')
+        self.send_header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE, OPTIONS')
         super().end_headers()
 
     def do_OPTIONS(self) -> None:
@@ -208,72 +210,82 @@ class SiteHandler(SimpleHTTPRequestHandler):
     def read_text(path: Path, fallback: str = '') -> str:
         return path.read_text('utf-8') if path.exists() else fallback
 
+    def handle_structured(self):
+        route = unquote(urlparse(self.path).path)
+        method = self.command
+        pool = self.server.pool
+        if route == '/api/openapi.json' and method == 'GET':
+            self.send_json(200, schema(os.environ.get('SITE_PUBLIC_URL', 'http://127.0.0.1:8080')))
+            return True
+        if route.startswith('/api/v2/'):
+            if (method != 'GET' or route.startswith('/api/v2/briefs/')) and not self.require_auth():
+                return True
+            try:
+                body = json.loads(self.read_body(MAX_DOCUMENT_BYTES)) if method not in ['GET','DELETE'] else {}
+                query = {k:v[-1] for k,v in parse_qs(urlparse(self.path).query).items()}
+                status, result = pool.dispatch(method,route,query,body,self.headers.get('Idempotency-Key') if method!='GET' else None)
+                if method == 'GET' and route.endswith('/markdown'):
+                    raw = result['content'].encode('utf-8')
+                    self.send_response(200)
+                    self.send_header('Content-Type','text/markdown; charset=utf-8')
+                    self.send_header('Content-Disposition',f'attachment; filename="{result["slug"]}.md"')
+                    self.send_header('Content-Length',str(len(raw)))
+                    self.end_headers()
+                    self.wfile.write(raw)
+                else:
+                    self.send_json(status,result)
+            except APIError as exc:
+                self.send_json(exc.status,exc.payload)
+            except (ValueError,UnicodeDecodeError) as exc:
+                self.send_json(400,{'error':str(exc)})
+            return True
+        pool_routes = ['/api/documents/paperpool.md','/api/v1/paper-pool','/api/v1/bootstrap','/api/v1/completions','/api/paperpool/entries','/api/v1/paper-pool/entries','/api/v1/prompt','/api/documents/daily-task-prompt.md']
+        if route not in pool_routes and not route.startswith('/api/daily-learning'):
+            return False
+        if method != 'GET':
+            if self.require_auth():
+                self.send_json(410,{'error':'Use structured v2 API; legacy Markdown writes are disabled','schema':'/api/openapi.json'})
+            return True
+        with pool.connect() as db:
+            config = json.loads(db.execute("SELECT body FROM settings WHERE key='task-config'").fetchone()[0])
+            if route == '/api/v1/bootstrap':
+                self.send_json(200,pool.context(db))
+                return True
+            if route == '/api/daily-learning':
+                self.send_json(200,{'entries':[pool.metadata(db,r) for r in pool.reading_list(db)]})
+                return True
+            if route in ['/api/documents/paperpool.md','/api/v1/paper-pool']:
+                content=pool.markdown(db)
+            elif route in ['/api/v1/prompt','/api/documents/daily-task-prompt.md']:
+                content=config['instructions']
+            elif route.endswith('/plan'):
+                content=config['plan']
+            elif route.endswith('/index'):
+                content=pool.index(db)
+            else:
+                row=db.execute('SELECT body FROM readings WHERE slug=?',(route.rsplit('/',1)[-1],)).fetchone()
+                if not row:
+                    self.send_json(404,{'error':'reading not found'})
+                    return True
+                r=json.loads(row[0]);content=r['content']
+            etag=hashlib.sha256(content.encode()).hexdigest()
+            self.send_json(200,{'content':content,'etag':etag,'modified':datetime.now(timezone.utc).isoformat()}, {'ETag':f'"{etag}"'})
+        return True
+
+    def do_PATCH(self):
+        if not self.handle_structured():
+            self.send_json(404,{'error':'endpoint not found'})
+
+    def do_DELETE(self):
+        if not self.handle_structured():
+            self.send_json(404,{'error':'endpoint not found'})
+
     def do_GET(self) -> None:
+        if self.handle_structured():
+            return
         route = urlparse(self.path).path
         if route == '/api/health':
-            self.send_json(HTTPStatus.OK, {'status': 'ok', 'service': 'wangke-cloud-paper-pool', 'version': '1.1'})
-            return
-        if route == '/api/v1/bootstrap':
-            documents = self.data_dir / 'documents'
-            self.send_json(HTTPStatus.OK, {
-                'service': 'Wang Ke Cloud Paper Pool',
-                'version': '1.1',
-                'sourceOfTruth': 'cloud',
-                'generatedAt': datetime.now(timezone.utc).isoformat(),
-                'dailyPlan': self.read_text(self.learning_dir / 'PLAN.md'),
-                'paperPool': self.read_text(documents / 'paperpool.md', '# Paper Pool\n'),
-                'taskPrompt': self.read_text(self.task_prompt_path),
-                'completed': self.learning_entries(),
-                'writeContract': {
-                    'completePaper': 'POST /api/v1/completions',
-                    'replacePool': 'PUT /api/documents/paperpool.md',
-                    'authentication': 'Bearer token configured as a private Action secret',
-                },
-            })
-            return
-        if route == '/api/v1/paper-pool':
-            path = self.data_dir / 'documents' / 'paperpool.md'
-            raw = self.read_text(path, '# Paper Pool\n').encode('utf-8')
-            etag = hashlib.sha256(raw).hexdigest()
-            self.send_json(HTTPStatus.OK, {'content': raw.decode('utf-8'), 'etag': etag}, {'ETag': f'"{etag}"'})
-            return
-        if route == '/api/v1/prompt':
-            path = self.task_prompt_path
-            raw = self.read_text(path).encode('utf-8')
-            etag = hashlib.sha256(raw).hexdigest()
-            self.send_json(HTTPStatus.OK, {'content': raw.decode('utf-8'), 'etag': etag}, {'ETag': f'"{etag}"'})
-            return
-        if route == '/api/openapi.json':
-            self.send_json(HTTPStatus.OK, {
-                'openapi': '3.1.0',
-                'info': {'title': 'Wang Ke Cloud Paper Pool', 'version': '1.1.0'},
-                'servers': [{'url': os.environ.get('SITE_PUBLIC_URL', 'http://127.0.0.1:8080').rstrip('/')}],
-                'paths': {
-                    '/api/v1/bootstrap': {'get': {'operationId': 'getDailyLearningContext', 'summary': 'Read the cloud-only task prompt, paper pool, plan, and completed notes', 'responses': {'200': {'description': 'Current cloud context'}}}},
-                    '/api/daily-learning/{slug}': {'get': {'operationId': 'getLearningNote', 'summary': 'Read one completed Markdown learning note', 'parameters': [{'name': 'slug', 'in': 'path', 'required': True, 'schema': {'type': 'string'}}], 'responses': {'200': {'description': 'Learning note'}}}},
-                    '/api/v1/completions': {'post': {'operationId': 'saveCompletedReading', 'summary': 'Atomically register a completed Markdown reading note and update the paper pool', 'security': [{'bearerAuth': []}], 'requestBody': {'required': True, 'content': {'application/json': {'schema': {'$ref': '#/components/schemas/Completion'}}}}, 'responses': {'201': {'description': 'Saved'}, '400': {'description': 'Invalid input'}, '409': {'description': 'Duplicate'}}}},
-                },
-                'components': {
-                    'securitySchemes': {'bearerAuth': {'type': 'http', 'scheme': 'bearer'}},
-                    'schemas': {'Completion': {
-                        'type': 'object',
-                        'required': ['slug', 'content', 'date', 'title', 'authors', 'venue', 'link', 'topics', 'value'],
-                        'properties': {
-                            'slug': {'type': 'string', 'pattern': '^\\d{6}-[A-Za-z][A-Za-z0-9]*-[A-Za-z0-9][A-Za-z0-9-]{0,95}$'},
-                            'content': {'type': 'string', 'description': 'Complete Markdown learning note'},
-                            'date': {'type': 'string', 'format': 'date'},
-                            'title': {'type': 'string'},
-                            'authors': {'type': 'string'},
-                            'venue': {'type': 'string'},
-                            'link': {'type': 'string'},
-                            'topics': {'type': 'string'},
-                            'value': {'type': 'string'},
-                            'status': {'type': 'string', 'default': '已精读'},
-                        },
-                        'additionalProperties': False,
-                    }},
-                },
-            })
+            self.send_json(HTTPStatus.OK, {'status': 'ok', 'service': 'wangke-cloud-paper-pool', 'version': '2.0'})
             return
         if route == '/api/documents':
             documents = []
@@ -282,31 +294,6 @@ class SiteHandler(SimpleHTTPRequestHandler):
                 if path.exists():
                     documents.append({'name': name, 'size': path.stat().st_size, 'modified': datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).isoformat()})
             self.send_json(HTTPStatus.OK, {'documents': documents})
-            return
-        if route == '/api/daily-learning':
-            self.send_json(HTTPStatus.OK, {'entries': self.learning_entries()})
-            return
-        if route.startswith('/api/daily-learning/'):
-            try:
-                path = self.learning_path(route[len('/api/daily-learning/'):])
-            except ValueError as exc:
-                self.send_json(HTTPStatus.BAD_REQUEST, {'error': str(exc)})
-                return
-            if not path.exists():
-                self.send_json(HTTPStatus.NOT_FOUND, {'error': 'learning note not found'})
-                return
-            raw = path.read_bytes()
-            etag = hashlib.sha256(raw).hexdigest()
-            self.send_json(
-                HTTPStatus.OK,
-                {
-                    'slug': ('index' if path == self.learning_dir / 'README.md' else 'plan' if path == self.learning_dir / 'PLAN.md' else path.parent.name),
-                    'content': raw.decode('utf-8'),
-                    'modified': datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).isoformat(),
-                    'etag': etag,
-                },
-                {'ETag': f'"{etag}"'},
-            )
             return
         if route.startswith('/api/documents/'):
             try:
@@ -346,6 +333,8 @@ class SiteHandler(SimpleHTTPRequestHandler):
         super().do_GET()
 
     def do_PUT(self) -> None:
+        if self.handle_structured():
+            return
         if not self.require_auth():
             return
         route = urlparse(self.path).path
@@ -388,56 +377,8 @@ class SiteHandler(SimpleHTTPRequestHandler):
             self.send_json(HTTPStatus.BAD_REQUEST, {'error': str(exc)})
 
     def do_POST(self) -> None:
-        if not self.require_auth():
-            return
-        route = urlparse(self.path).path
-        if route == '/api/v1/completions':
-            try:
-                payload = json.loads(self.read_body(MAX_DOCUMENT_BYTES))
-                if not isinstance(payload, dict):
-                    raise ValueError('request body must be a JSON object')
-                slug = safe_learning_slug(str(payload.get('slug', '')))
-                content = payload.get('content')
-                if not isinstance(content, str) or not content.strip():
-                    raise ValueError('content must be a non-empty Markdown string')
-                content_bytes = content.encode('utf-8')
-                if len(content_bytes) > MAX_DOCUMENT_BYTES:
-                    raise ValueError('learning note is too large')
-                note_path = self.learning_dir / slug / 'README.md'
-                if note_path.exists():
-                    raise FileExistsError('learning note slug already exists')
-                pool_path = self.data_dir / 'documents' / 'paperpool.md'
-                current_pool = self.read_text(pool_path, '# Paper Pool\n')
-                updated_pool = append_paper_entry(current_pool, payload)
-                atomic_write(note_path, content_bytes, self.data_dir / 'backups' / slug)
-                atomic_write(pool_path, updated_pool.encode('utf-8'), self.data_dir / 'backups' / 'paperpool')
-                self.send_json(HTTPStatus.CREATED, {
-                    'ok': True,
-                    'slug': slug,
-                    'note': f'/api/daily-learning/{slug}',
-                    'etag': hashlib.sha256(content_bytes).hexdigest(),
-                })
-            except FileExistsError as exc:
-                self.send_json(HTTPStatus.CONFLICT, {'error': str(exc)})
-            except (ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:
-                self.send_json(HTTPStatus.BAD_REQUEST, {'error': str(exc)})
-            return
-        if route not in {'/api/paperpool/entries', '/api/v1/paper-pool/entries'}:
-            self.send_json(HTTPStatus.NOT_FOUND, {'error': 'endpoint not found'})
-            return
-        try:
-            entry = json.loads(self.read_body(MAX_DOCUMENT_BYTES))
-            if not isinstance(entry, dict):
-                raise ValueError('request body must be a JSON object')
-            path = self.data_dir / 'documents' / 'paperpool.md'
-            current = path.read_text('utf-8') if path.exists() else '# Paper Pool\n'
-            updated = append_paper_entry(current, entry)
-            atomic_write(path, updated.encode('utf-8'), self.data_dir / 'backups')
-            self.send_json(HTTPStatus.CREATED, {'ok': True, 'name': path.name, 'etag': hashlib.sha256(updated.encode()).hexdigest()})
-        except FileExistsError as exc:
-            self.send_json(HTTPStatus.CONFLICT, {'error': str(exc)})
-        except (ValueError, json.JSONDecodeError) as exc:
-            self.send_json(HTTPStatus.BAD_REQUEST, {'error': str(exc)})
+        if not self.handle_structured():
+            self.send_json(404, {'error': 'endpoint not found'})
 
 
 def main() -> None:
@@ -456,7 +397,9 @@ def main() -> None:
     host = os.environ.get('SITE_HOST', '127.0.0.1')
     port = int(os.environ.get('SITE_PORT', '8080'))
     print(f'Serving {root} on http://{host}:{port}', flush=True)
-    ThreadingHTTPServer((host, port), SiteHandler).serve_forever()
+    server = ThreadingHTTPServer((host, port), SiteHandler)
+    server.pool = Pool(os.environ['SITE_DATA_DIR'], os.environ.get('SITE_LEARNING_DIR'))
+    server.serve_forever()
 
 
 if __name__ == '__main__':

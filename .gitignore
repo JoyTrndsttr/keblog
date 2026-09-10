@@ -12,6 +12,7 @@ __pycache__/
 # Runtime data, local configuration and credentials
 content/backups/
 content/files/
+content/paperpool.sqlite3*
 .env
 .env.*
 !.env.example

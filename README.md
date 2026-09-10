@@ -19,7 +19,7 @@ set +a
 python3 server/server.py --dev
 ```
 
-访问 http://127.0.0.1:8080 。编辑 `src-static/` 后刷新页面即可。开发模式默认将数据放在纳入 Git 的 `content/`，写入 API 需要自行设置 `SITE_API_TOKEN`；留空时禁止写入。
+访问 http://127.0.0.1:8080 。编辑 `src-static/` 后刷新页面即可。开发模式以 `content/` 中的旧 Markdown 为首次迁移来源，并在其中生成被 Git 忽略的 `paperpool.sqlite3`。写入 API 需要自行设置 `SITE_API_TOKEN`；留空时禁止写入。
 
 ```bash
 python3 scripts/build.py
@@ -39,11 +39,11 @@ scripts/        静态构建脚本
 tests/          后端单元测试
 deploy/         Caddy 与 systemd 配置示例
 docs/          部署及迁移说明
-content/       论文池、阅读笔记与计划（提交到 Git）
+content/        初始论文池、阅读笔记与计划
 dist/          构建产物（不提交）
 ```
 
-阅读计划和笔记保存在 `content/daily-learning/`，论文池在 `content/documents/`，随 Git 一起同步。API 写入后需自行提交；备份和私人上传文件仍被忽略。VPS 默认使用外部数据目录，Git 推送不会自动覆盖线上数据。
+首次启动会把 `content/` 中的论文池、阅读笔记、计划和提示词迁移到 SQLite。之后数据库是唯一事实源，网站展示的 Markdown 由数据库生成，客户端无需修改表格或索引文件。VPS 数据位于 `/var/lib/wangke-site`，Git 更新不会覆盖线上数据库。
 
 ## Git 与部署
 
@@ -52,6 +52,7 @@ dist/          构建产物（不提交）
 - [VPS 部署与更新](docs/deployment.md)
 - [旧目录迁移说明](docs/migration.md)
 - [API 文档](API.md)
+- [ChatGPT 每日任务接口说明](docs/chatgpt-task.md)
 - [贡献说明](CONTRIBUTING.md)
 
 ## 许可

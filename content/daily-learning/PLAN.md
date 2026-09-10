@@ -2,7 +2,7 @@
 
 > 生效版本：2026-09-09  
 > 执行时间：每天 08:30（Asia/Shanghai）  
-> 云端状态：`https://38-76-161-31.sslip.io/api/v1/bootstrap`  
+> 云端状态：`https://keblog.lol/api/v2/context`
 > 来源：从 `dialog.md` 的历次调整中提取；此后以云端版本为唯一事实源。
 
 ## 目标
@@ -52,13 +52,13 @@
 
 ```text
 候选论文
-  ↓ 读取公网 /api/v1/bootstrap
+  ↓ 读取公网 /api/v2/context
 身份核验（DOI > arXiv ID > 规范化标题）
   ↓ 完整阅读论文原文
 生成 Markdown 精读
   ↓
 写入 YYMMDD-FirstAuthor-ShortName/README.md
-  ↓ POST /api/v1/completions
+  ↓ POST /api/v2/readings（使用 Idempotency-Key）
 从候选区移除同一论文
 ```
 

@@ -7,7 +7,7 @@
 - `/opt/keblog`：GitHub `JoyTrndsttr/keblog` 的 Git checkout。
 - `keblog.service`：从 checkout 的 `dist/` 提供页面与 Python API。
 - `/etc/keblog.env`：服务器私有环境变量与原有 Token，不进入 Git。
-- `/var/lib/wangke-site`：保留的线上数据目录，API 新内容不被 git pull 覆盖。
+- `/var/lib/wangke-site`：线上数据目录；`paperpool.sqlite3` 是论文、精读和任务配置的事实源。
 - `/opt/keblog-migration-backup-*`：迁移前代码、数据和服务配置备份。
 
 旧 `wangke-site.service` 已停用；旧手工上传 release 目录移入迁移备份，不再用于日常部署。服务账户沿用 `wangke-site`，以保持数据权限兼容。
@@ -34,16 +34,21 @@ python3 -m unittest discover -s tests -v
 
 VPS 仅需 Python 3.10+、Git、curl、Caddy 和 systemd。`node scripts/build.mjs` 仍可用于 Mac 开发，输出相同静态文件，不需要在 VPS 安装 Node。
 
-## 内容同步
+## 数据与迁移
 
-Git 中的 `content/` 是可发布内容，线上 API 使用 `/var/lib/wangke-site`。首次迁移只补充缺失文件，保留已存在的线上文档。之后需要发布内容时，比较并合并这两个目录，再重启或刷新；不要以 git pull 覆盖 API 产生的新数据。Token、上传附件和 API 备份不进入代码仓库。
+首次运行 v2 API 时，服务把 `/var/lib/wangke-site/documents/paperpool.md`、`daily-learning/`、计划和提示词一次性迁移到 `/var/lib/wangke-site/paperpool.sqlite3`。迁移标记阻止重复导入，旧 Markdown 留作历史副本。
+
+上线后通过 `/api/v2/` 维护论文、精读和简报。不要再把 Git 中的 `content/` 覆盖到线上，也不要直接编辑旧 Paper Pool 表格。Token、SQLite 数据库、上传附件和 API 备份不进入代码仓库。
+
+备份 SQLite 时，优先停止 `keblog` 后复制数据库，或使用 SQLite backup API；不要在写入过程中只复制单个 WAL 模式文件。API v2 首次迁移前的完整备份位于 `/opt/keblog-api-v2-backup-*`。
 
 ## 检查与恢复
 
 ```bash
 sudo systemctl status keblog --no-pager
 sudo journalctl -u keblog -n 50 --no-pager
-curl -f https://keblog.lol/api/v1/bootstrap
+curl -f https://keblog.lol/api/v2/context
+curl -f https://keblog.lol/api/openapi.json
 ```
 
 更新失败时先查看日志。代码可切回上一已验证提交，重新构建并重启；操作前保存本地改动。数据应独立备份，代码回滚不回滚数据。迁移备份中的旧服务和 release 可用于首次切换故障恢复。
