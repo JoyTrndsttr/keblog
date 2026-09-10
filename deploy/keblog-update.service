@@ -1,0 +1,10 @@
+[Unit]
+Description=Update keblog from GitHub
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/keblog
+ExecStart=/bin/bash /opt/keblog/deploy/update.sh

@@ -1,6 +1,13 @@
 keblog.lol, 38-76-161-31.sslip.io {
     encode zstd gzip
-    reverse_proxy 127.0.0.1:8080
+
+    handle /github-webhook {
+        reverse_proxy 127.0.0.1:8090
+    }
+
+    handle {
+        reverse_proxy 127.0.0.1:8080
+    }
 
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains"

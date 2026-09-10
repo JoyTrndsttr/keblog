@@ -1,0 +1,19 @@
+[Unit]
+Description=Keblog GitHub webhook receiver
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+EnvironmentFile=/etc/keblog-webhook.env
+ExecStart=/usr/bin/python3 /opt/keblog-webhook/webhook.py
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+
+[Install]
+WantedBy=multi-user.target

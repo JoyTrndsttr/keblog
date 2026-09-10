@@ -27,6 +27,20 @@ sudo bash /opt/keblog/deploy/update.sh
 
 首次迁移时部署脚本和文档作为尚未提交的本地改动同步到了 VPS。维护者提交并推送同样改动后，先备份 VPS 的这些文件，再将 checkout 对齐对应提交，之后才使用更新脚本；不要直接覆盖不明本地改动。
 
+## GitHub Webhook 自动部署
+
+GitHub 向 `POST https://keblog.lol/github-webhook` 发送 `master` 分支的 push 事件。独立的 `keblog-webhook.service` 在 `127.0.0.1:8090` 验证 `X-Hub-Signature-256`、仓库名和分支，然后异步启动 `keblog-update.service`。Webhook 不接收文章正文，也不修改 SQLite；更新仍由 `deploy/update.sh` 完成。
+
+Secret 只保存在权限为 `600` 的 `/etc/keblog-webhook.env`。GitHub Webhook 配置使用相同 Secret、`application/json`、仅 Push events，并保持 SSL verification 启用。检查服务与部署日志：
+
+```bash
+sudo systemctl status keblog-webhook --no-pager
+sudo journalctl -u keblog-webhook -n 50 --no-pager
+sudo journalctl -u keblog-update -n 100 --no-pager
+```
+
+未签名的公网 POST 应返回 `401`。GitHub 的签名 ping 应返回 `200 pong`，目标分支 push 应返回 `202 deployment queued`。论文与精读状态仍以 SQLite `/api/v2/` 为事实源；Webhook 不恢复旧 Markdown 写入流程。
+
 ## 构建
 
 ```bash
