@@ -84,7 +84,7 @@
 
 ## 归档约定
 
-每篇完整精读使用目录 `YYMMDD-FirstAuthor-ShortName`，正文统一为 `README.md`。例如 `260909-KeWang-ReCoReBench/README.md`。
+每篇完整精读使用目录 `YYMMDD-FirstAuthor-ShortName`，正文统一为 `README.md`。
 
 网站公开读取这些 Markdown；创建或替换文档的请求必须携带 Bearer Token，使用 ETag 避免并发覆盖，并在改写前保留备份。
 
@@ -93,4 +93,3 @@
 | 时间 | 任务 | 状态 | 产物 |
 |---|---|---|---|
 | 08:30 | 技术情报简报 | 规则已同步 | 本计划定义栏目和去重流程 |
-| 今日 | ReCoRe-Bench 精读 | 已完成 | [260909-KeWang-ReCoReBench](./260909-KeWang-ReCoReBench/README.md) |

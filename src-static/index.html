@@ -9,7 +9,7 @@
   <header class="site-header">
     <a class="brand" href="/"><span class="brand-mark">WK</span><span><b>王柯</b><small>RESEARCH NOTES</small></span></a>
     <button class="nav-toggle" aria-label="展开导航" aria-expanded="false">菜单</button>
-    <nav aria-label="主导航"><a data-nav="home" href="/">首页</a><a data-nav="research" href="/research/">研究</a><a data-nav="publications" href="/publications/">论文</a><a data-nav="blog" href="/blog/">博客</a><a data-nav="daily-learning" href="/daily-learning/">每日学习</a><a data-nav="paperpool" href="/paperpool/">Paper Pool</a></nav>
+    <nav aria-label="主导航"><a data-nav="home" href="/">首页</a><a data-nav="research" href="/research/">研究</a><a data-nav="publications" href="/publications/">论文</a><a data-nav="daily-learning" href="/daily-learning/">每日学习</a><a data-nav="paperpool" href="/paperpool/">Paper Pool</a></nav>
   </header>
 
   <main>
@@ -18,43 +18,38 @@
       <h1>Causality<br><em>for</em> Code Review.</h1>
       <div class="lead-bottom">
         <p>研究代码审查中的因果推断、反事实分析与可信评价，并探索仓库级上下文如何让自动化审查真正理解软件。</p>
-        <div class="lead-actions"><a class="button primary" href="/research/">研究议程</a><a class="text-link" href="/publications/">查看论文 <span>↗</span></a></div>
+        <div class="lead-actions"><a class="button primary" href="/research/">查看当前研究</a><a class="text-link" href="/publications/recore-bench/">代表论文 <span>↗</span></a></div>
       </div>
       <div class="signal-line" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
     </section>
 
     <section class="home-section featured" aria-labelledby="featured-title">
-      <div class="section-index"><span>01</span><p>FEATURED WORK</p></div>
+      <div class="section-index"><span>01</span><p>CURRENT RESEARCH</p></div>
       <div class="section-content">
-        <header class="split-heading"><div><p class="eyebrow">代表性研究成果</p><h2 id="featured-title">当代码修改离开当前文件，模型还能可靠地完成精炼吗？</h2></div><p>我们把评测从孤立代码片段推进到真实仓库：识别必须依赖跨文件知识的任务，检查模型是否找到了正确的标识符定义，并验证仓库上下文的实际贡献。</p></header>
+        <header class="split-heading"><div><p class="eyebrow">正在进行的工作</p><h2 id="featured-title">Causal Review：追踪问题、证据与方法的持续研究记录。</h2></div><p>研究页同步私有研究仓库中的《研究记录》，集中展示当前问题、实验判断和方法演化。它是这项工作的公开只读窗口。</p></header>
         <article class="feature-paper">
           <div class="paper-visual" aria-hidden="true"><div class="repo-window"><span>repository/</span><b>src/reviewer.py</b><i></i><span>models/context.py</span><i></i><span>tests/test_refine.py</span></div><div class="context-arrow">→</div><div class="metric-chip">ReDIs<br><b>Match</b></div></div>
-          <div class="paper-copy"><div class="meta-row"><span>TOSEM 2026</span><span>FIRST AUTHOR</span></div><h3>Code Refinement with Repository Context: How Far are We?</h3><p>ReCoRe-Bench 收录 1,000 个来自 328 个 Python、Java 与 JavaScript 仓库的高质量实例；RepoRefiner 以完整文件、标识符定义和上下文摘要支持代码精炼。</p><div class="paper-actions"><a class="button light" href="https://doi.org/10.1145/3820059" target="_blank" rel="noreferrer">阅读论文 ↗</a><a class="text-link inverse" href="/publications/">成果详情</a></div></div>
+          <div class="paper-copy"><div class="meta-row"><span>CAUSAL REVIEW</span><span>LIVE RESEARCH LOG</span></div><h3>代码审查中的因果推断与可信评价</h3><p>从相关性走向干预效应，持续梳理研究问题、识别假设、实验设计与证据边界；页面内容由研究仓库定期同步。</p><div class="paper-actions"><a class="button light" href="/research/">打开研究记录 →</a></div></div>
         </article>
       </div>
     </section>
 
     <section class="home-section" aria-labelledby="agenda-title">
-      <div class="section-index"><span>02</span><p>RESEARCH AGENDA</p></div>
+      <div class="section-index"><span>02</span><p>FEATURED PUBLICATION</p></div>
       <div class="section-content">
-        <header class="split-heading"><div><p class="eyebrow">当前研究</p><h2 id="agenda-title">四个相互咬合的问题</h2></div><a class="text-link" href="/research/">完整研究议程 <span>→</span></a></header>
-        <div class="agenda-list">
-          <a href="/research/#identification"><span>01</span><h3>从关联到干预效应</h3><p>混杂控制 · DAG · 识别</p><b>↗</b></a>
-          <a href="/research/#counterfactual"><span>02</span><h3>反事实代码审查</h3><p>Treatment · Outcome · HTE</p><b>↗</b></a>
-          <a href="/research/#repository"><span>03</span><h3>仓库级代码理解</h3><p>Call Graph · Retrieval · Context</p><b>↗</b></a>
-          <a href="/research/#evaluation"><span>04</span><h3>可信评价与证据边界</h3><p>Bias · Validity · Real Workflow</p><b>↗</b></a>
-        </div>
+        <header class="split-heading"><div><p class="eyebrow">代表论文</p><h2 id="agenda-title">Code Refinement with Repository Context: How Far are We?</h2></div><p>ReCoRe-Bench 收录 1,000 个来自 328 个真实仓库的实例。详细介绍从问题、方法、结果与证据边界四个层面解释这项工作。</p></header>
+        <div class="agenda-list"><a href="/publications/recore-bench/"><span>01</span><h3>阅读 ReCoRe-Bench 详细介绍</h3><p>Benchmark · Repository Context · Code Refinement</p><b>→</b></a><a href="/publications/"><span>02</span><h3>论文与引用信息</h3><p>ACM TOSEM · 2026 · DOI 10.1145/3820059</p><b>→</b></a></div>
       </div>
     </section>
 
     <section class="home-section notes-section" aria-labelledby="notes-title">
-      <div class="section-index"><span>03</span><p>LATEST NOTES</p></div>
+      <div class="section-index"><span>03</span><p>READING WORKFLOW</p></div>
       <div class="section-content">
-        <header class="split-heading"><div><p class="eyebrow">最近写作</p><h2 id="notes-title">阅读不是收藏，是留下判断</h2></div><a class="text-link" href="/blog/">全部文章 <span>→</span></a></header>
+        <header class="split-heading"><div><p class="eyebrow">论文阅读</p><h2 id="notes-title">从候选论文，到每日精读与结构化积累。</h2></div><a class="text-link" href="/daily-learning/">查看每日学习 <span>→</span></a></header>
         <div class="post-grid">
-          <a class="post-card accent" href="/blog/#explaining-explanations"><time>2026.09.08</time><span>代码审查 · 研究札记</span><h3>解释有七种，但“有解释”真的会让审查更有效吗？</h3><p>从解释分类走向随机干预设计：哪些 Outcome 才能支撑因果结论。</p><b>阅读全文 →</b></a>
-          <a class="post-card" href="/blog/#useful-review"><time>2026.09.07</time><span>因果推断 · 证据审查</span><h3>一条代码审查评论“有用”，究竟由谁定义？</h3><p>采纳、承认和评论类别被组合成指标后，构念效度会发生什么。</p><b>阅读全文 →</b></a>
-          <a class="post-card" href="/blog/#mcr-bench"><time>2026.09.03</time><span>Benchmark · 多轮审查</span><h3>模型越审越差，真的是长程记忆不够吗？</h3><p>轮次、任务构成、样本量与难度同时变化时，应该怎样解释退化。</p><b>阅读全文 →</b></a>
+          <a class="post-card accent" href="/daily-learning/"><span>DAILY LEARNING</span><h3>每日论文精读</h3><p>保留研究问题、方法设计、关键结果与批判性判断，形成可以继续使用的阅读记录。</p><b>进入精读 →</b></a>
+          <a class="post-card" href="/paperpool/"><span>PAPER POOL</span><h3>结构化论文池</h3><p>以 DOI 去重，记录候选、阅读状态和版本，为后续精读提供稳定入口。</p><b>浏览论文池 →</b></a>
+          <a class="post-card" href="/publications/"><span>PUBLICATIONS</span><h3>本人成果</h3><p>独立于每日精读，展示正式发表论文、详细介绍与可直接使用的引用信息。</p><b>查看成果 →</b></a>
         </div>
       </div>
     </section>

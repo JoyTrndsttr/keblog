@@ -15,7 +15,6 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
-| 2026-09-09 | [260909-KeWang-ReCoReBench](./260909-KeWang-ReCoReBench/README.md) | Code Refinement with Repository Context: How Far are We? | Ke Wang | ACM TOSEM, 2026 | 已精读 |
 | 2026-09-08 | [260908-RatnadiraWidyasari-ExplainingExplanations](./260908-RatnadiraWidyasari-ExplainingExplanations/README.md) | Explaining Explanations: An Empirical Study of Explanations in Code Reviews | Ratnadira Widyasari | ACM TOSEM 34(6), Article 177, 2025 | 已精读 |
 | 2026-09-07 | [260907-AsifTurzo-UsefulCodeReview](./260907-AsifTurzo-UsefulCodeReview/README.md) | What Makes a Code Review Useful to OpenDev Developers? An Empirical Investigation | Asif Kamal Turzo | Empirical Software Engineering 29(1):6, 2024 / FSE 2024 Journal First | 已精读 |
 | 2026-09-04 | [260904-ZixiaoZhao-SeRe](./260904-ZixiaoZhao-SeRe/README.md) | SeRe: A Security-Related Code Review Dataset Aligned with Real-World Review Activities | Zixiao Zhao | ICSE 2026 | 已精读 |

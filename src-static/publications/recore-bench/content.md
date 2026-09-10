@@ -1,11 +1,11 @@
 # ReCoRe-Bench：仓库上下文究竟能把代码精炼推进多远？
 
-> 精读日期：2026-09-09  
 > 论文：*Code Refinement with Repository Context: How Far are We?*  
 > 作者：Ke Wang, Peng Lan, Jiakun Liu, Shengbing Ren, Lingfeng Bao, Junxiao Han, David Lo, Zhifang Liao  
 > Venue：ACM Transactions on Software Engineering and Methodology, 2026  
 > DOI：[10.1145/3820059](https://doi.org/10.1145/3820059)  
-> 代码与数据：[JoyTrndsttr/RepoRefiner](https://github.com/JoyTrndsttr/RepoRefiner)
+> 代码与数据：[JoyTrndsttr/RepoRefiner](https://github.com/JoyTrndsttr/RepoRefiner)  
+> 页面说明：本文从问题、方法、实验结果与证据边界四个层面介绍这项工作。
 
 ## 一张地图：这篇论文到底做了什么
 

@@ -151,6 +151,24 @@ async function loadResearchDocument() {
 
 if (document.querySelector('#research-document')) loadResearchDocument();
 
+async function loadPublicationDetail() {
+  const content = document.querySelector('#publication-detail');
+  if (!content) return;
+  try {
+    const response = await fetch('./content.md', { cache: 'no-store' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    content.innerHTML = markdownToHtml(await response.text());
+    const headings = [...content.querySelectorAll('h2, h3, h4')];
+    headings.forEach((heading, index) => { heading.id = `publication-section-${index + 1}`; });
+    const toc = document.querySelector('#publication-toc');
+    if (toc) toc.innerHTML = headings.map((heading) => `<a class="toc-${heading.tagName.toLowerCase()}" href="#${heading.id}">${escapeHtml(heading.textContent)}</a>`).join('');
+  } catch (error) {
+    content.innerHTML = '<p class="error">论文介绍暂时无法读取，请稍后重试。</p>';
+  }
+}
+
+if (document.querySelector('#publication-detail')) loadPublicationDetail();
+
 let learningEntries = [];
 async function fetchLearning(slug) {
   const response = await fetch(`/api/daily-learning/${encodeURIComponent(slug)}`, { cache: 'no-store' });
