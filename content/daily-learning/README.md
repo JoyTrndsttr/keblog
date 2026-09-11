@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**22 次精读**，覆盖 **2026-08-03—2026-09-11**。
+> 已归档：**23 次精读**，覆盖 **2026-08-03—2026-09-11**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -19,6 +19,7 @@
 | 2026-09-10 | [260910-RobertoPietrantuono-CausalSoftwareEngineering](./260910-RobertoPietrantuono-CausalSoftwareEngineering/README.md) | Causal Software Engineering: A Vision and Roadmap | Roberto Pietrantuono | FSE 2026 Ideas, Visions and Reflections | 已精读 |
 | 2026-09-08 | [260908-RatnadiraWidyasari-ExplainingExplanations](./260908-RatnadiraWidyasari-ExplainingExplanations/README.md) | Explaining Explanations: An Empirical Study of Explanations in Code Reviews | Ratnadira Widyasari | ACM TOSEM 34(6), Article 177, 2025 | 已精读 |
 | 2026-09-07 | [260907-AsifTurzo-UsefulCodeReview](./260907-AsifTurzo-UsefulCodeReview/README.md) | What Makes a Code Review Useful to OpenDev Developers? An Empirical Investigation | Asif Kamal Turzo | Empirical Software Engineering 29(1):6, 2024 / FSE 2024 Journal First | 已精读 |
+| 2026-09-06 | [260906-SupritiVijay-AntaresVLocBench](./260906-SupritiVijay-AntaresVLocBench/README.md) | Antares: Foundation Models for Agentic Vulnerability Localization | Supriti Vijay | Cisco Foundation AI Technical Report, 2026 | 已精读 |
 | 2026-09-04 | [260904-ZixiaoZhao-SeRe](./260904-ZixiaoZhao-SeRe/README.md) | SeRe: A Security-Related Code Review Dataset Aligned with Real-World Review Activities | Zixiao Zhao | ICSE 2026 | 已精读 |
 | 2026-09-03 | [260903-DewuZheng-MCRBench](./260903-DewuZheng-MCRBench/README.md) | From Static to Dynamic: Benchmarking Real-World Code Review with MCR-Bench | Dewu Zheng | ISSTA 2026 / Proceedings of the ACM on Software Engineering 3 | 已精读 |
 | 2026-09-02 | [260902-DongWang-CodeReviewBenchmarking](./260902-DongWang-CodeReviewBenchmarking/README.md) | Can We Benchmark Code Review Studies? A Systematic Mapping Study of Methodology, Dataset, and Metric | Dong Wang | Journal of Systems and Software 180, 2021 | 已精读 |
