@@ -24,6 +24,12 @@
 |---|---|---|---|---|---|---|---|
 | 2026-09-07 | What Makes a Code Review Useful to OpenDev Developers? An Empirical Investigation | Asif Kamal Turzo; Amiangshu Bosu | Empirical Software Engineering 29(1):6 / 2024；FSE 2024 Journal First | [10.1007/s10664-023-10411-x](https://doi.org/10.1007/s10664-023-10411-x); [arXiv:2302.11686](https://arxiv.org/abs/2302.11686) | 代码审查有用性、混合方法、调查、回归、Outcome构念 | 把“作者是否采纳/承认”与评论类别评分组合成有用性指标，并发现若干上下文关联；它最重要的价值是暴露了代码审查Outcome构造、后处理变量与观察性回归被误读为因果效应的风险。 | 已精读 |
 
+## 2026-09-06 已精读补录
+
+| 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
+|---|---|---|---|---|---|---|---|
+| 2026-09-06 | Antares: Foundation Models for Agentic Vulnerability Localization | Supriti Vijay; Aman Priyanshu; Didier Chapoteau; Arthur Goldblatt; Jianliang He; Kimia Majd; Fraser Burch; Baturay Saglam; Takahiro Matsumoto; Zhuoran Yang; Amin Karbasi | Cisco Foundation AI Technical Report / 2026 | [VLoc Bench Technical Report](https://cisco-foundation-ai.github.io/vulnerability-localization-benchmark/technical-report.pdf) | 漏洞定位、Agent、仓库级搜索、VLoc Bench、任务难度、signal dilution | VLoc Bench 将漏洞定位建模为固定工具预算下的仓库探索任务；结果显示 repository structure、size 与多文件证据比 CVSS severity 更能解释难度，并将大仓库失败归因于 signal dilution。对 Causality for Code Review 的关键启发是把 relevant-evidence density、search strategy 与 repository structure 建模为机制和异质效应变量，而不是只证明 call graph 有用。 | 已精读 |
+
 ## 2026-09-04 已精读补录
 
 | 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
