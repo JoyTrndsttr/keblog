@@ -192,6 +192,14 @@ function decorateLearningDocument() {
   document.querySelector('.learning-toc').hidden = headings.length < 2;
 }
 
+function scrollToLearningHash(hash = location.hash, behavior = 'auto') {
+  if (!hash.startsWith('#')) return false;
+  const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+  if (!target) return false;
+  target.scrollIntoView({ behavior, block: 'start' });
+  return true;
+}
+
 function updateReadingProgress() {
   const bar = document.querySelector('#reading-progress-bar');
   if (!bar) return;
@@ -215,9 +223,11 @@ async function openLearning(slug, push = true) {
     if (entry?.doi) { doi.href = `https://doi.org/${entry.doi}`; doi.hidden = false; } else { doi.hidden = true; }
     content.innerHTML = markdownToHtml(payload.content);
     decorateLearningDocument();
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    updateReadingProgress();
     if (push) history.pushState({ paper: slug }, '', `/daily-learning/?paper=${encodeURIComponent(slug)}`);
+    const targetHash = push ? '' : location.hash;
+    if (!targetHash) window.scrollTo({ top: 0, behavior: 'instant' });
+    else requestAnimationFrame(() => requestAnimationFrame(() => scrollToLearningHash(targetHash)));
+    updateReadingProgress();
   } catch (error) {
     content.innerHTML = '<p class="error">这篇精读笔记暂时无法读取，请稍后重试。</p>';
   }
@@ -252,6 +262,13 @@ async function loadDailyLearning() {
 document.querySelector('.learning-shell')?.addEventListener('click', (event) => {
   const link = event.target.closest('a');
   if (!link) return;
+  const hash = link.getAttribute('href');
+  if (hash?.startsWith('#')) {
+    event.preventDefault();
+    history.pushState(history.state, '', hash);
+    scrollToLearningHash(hash, 'smooth');
+    return;
+  }
   const directSlug = link.dataset.learningSlug;
   const markdownMatch = link.getAttribute('href')?.match(/^\.\/([^/]+)\/README\.md$/);
   const planMatch = link.getAttribute('href') === './PLAN.md';
