@@ -1,5 +1,11 @@
 # Paper Pool
 
+## 2026-09-11 已精读补录
+
+| 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
+|---|---|---|---|---|---|---|---|
+| 2026-09-11 | On the Effectiveness of Context Compression for Repository-Level Tasks: An Empirical Investigation | Jia Feng; Zhanyue Qin; Cuiyun Gao; Ruiqi Wang; Chaozheng Wang; Yingwei Ma; Xiaoyuan Xie | arXiv cs.SE / 2026 | [arXiv:2604.13725](https://arxiv.org/abs/2604.13725) | 仓库级上下文、上下文压缩、噪声、代码生成、异质效应 | 系统比较 Text-to-Text、Text-to-Vector 与 Text-to-Image 压缩，发现部分 T2V 设置超过 Full Context，而部分文本压缩甚至低于 No Context；它为“额外仓库上下文可能主动伤害模型”提供重要现象证据，但尚未单独识别 denoising 的因果机制。 | 已精读 |
+
 ## 2026-09-10 已精读补录
 
 | 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
