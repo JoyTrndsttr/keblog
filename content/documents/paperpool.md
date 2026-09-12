@@ -1,5 +1,11 @@
 # Paper Pool
 
+## 2026-09-12 已精读补录
+
+| 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
+|---|---|---|---|---|---|---|---|
+| 2026-09-12 | What Does an Agentic Software Engineering Benchmark Measure? Profiling Task Demands and Agent Behaviour Beyond What Category Labels Reveal | Radin Shayanfar; Keheliya Gallaba; Ahmed E. Hassan | arXiv / 2026 | [arXiv:2609.01271](https://arxiv.org/abs/2609.01271); [Code](https://github.com/radinshayanfar/task_snc) | Agentic SE benchmark、任务需求、SNC、Agent行为、构念效度、异质效应 | 用 Spread–Novelty–Centrality 刻画 5 个 benchmark 的 2,487 个任务，并分析 14,922 条 Agent trajectory，表明 nominal category 远不足以代表真实 task demand；对 Causality for Code Review 的关键启发是把结构需求作为 effect modifier、trajectory 作为 mediator，而不是把 task difficulty 当成单一标量。 | 已精读 |
+
 ## 2026-09-11 已精读补录
 
 | 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
