@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**24 次精读**，覆盖 **2026-08-03—2026-09-12**。
+> 已归档：**25 次精读**，覆盖 **2026-08-03—2026-09-13**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-09-13 | [260913-TingxuHan-SWESkillsBench](./260913-TingxuHan-SWESkillsBench/README.md) | SWE-Skills-Bench: Do Agent Skills Actually Help in Real-World Software Engineering? | Tingxu Han | arXiv, 2026 | 已精读 |
 | 2026-09-12 | [260912-RadinShayanfar-AgenticBenchmarkMeasure](./260912-RadinShayanfar-AgenticBenchmarkMeasure/README.md) | What Does an Agentic Software Engineering Benchmark Measure? Profiling Task Demands and Agent Behaviour Beyond What Category Labels Reveal | Radin Shayanfar | arXiv, 2026 | 已精读 |
 | 2026-09-11 | [260911-JiaFeng-ContextCompression](./260911-JiaFeng-ContextCompression/README.md) | On the Effectiveness of Context Compression for Repository-Level Tasks: An Empirical Investigation | Jia Feng | arXiv cs.SE, 2026 | 已精读 |
 | 2026-09-10 | [260910-RobertoPietrantuono-CausalSoftwareEngineering](./260910-RobertoPietrantuono-CausalSoftwareEngineering/README.md) | Causal Software Engineering: A Vision and Roadmap | Roberto Pietrantuono | FSE 2026 Ideas, Visions and Reflections | 已精读 |
