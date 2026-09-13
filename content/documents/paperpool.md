@@ -1,5 +1,11 @@
 # Paper Pool
 
+## 2026-09-13 已精读补录
+
+| 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
+|---|---|---|---|---|---|---|---|
+| 2026-09-13 | SWE-Skills-Bench: Do Agent Skills Actually Help in Real-World Software Engineering? | Tingxu Han; Yi Zhang; Wei Song; Chunrong Fang; Zhenyu Chen; Youcheng Sun; Lijie Hu | arXiv / 2026 | [arXiv:2603.15401](https://arxiv.org/abs/2603.15401) | Agent Skill、Context Treatment、配对实验、上下文干扰、异质效应 | 49 个 SWE Skill 在约 565 个真实任务上的 With/Without-Skill 配对实验显示平均 Pass Rate 仅提升约 1.2%，39/49 个 Skill 无提升且平均 Token 成本增加约 10.5%，部分不兼容 Skill 还会让性能下降；对 Causality for Code Review 的关键启发是把 context 的 marginal utility、compatibility 和 heterogeneous treatment effect 作为正式研究对象。 | 已精读 |
+
 ## 2026-09-12 已精读补录
 
 | 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
