@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-09-14 | [260914-HaolinJin-ReliableCodeReviewers](./260914-HaolinJin-ReliableCodeReviewers/README.md) | Are LLMs Reliable Code Reviewers? Systematic Overcorrection in Requirement Conformance Judgement | Haolin Jin | arXiv, 2026 | 已精读 |
 | 2026-09-13 | [260913-TingxuHan-SWESkillsBench](./260913-TingxuHan-SWESkillsBench/README.md) | SWE-Skills-Bench: Do Agent Skills Actually Help in Real-World Software Engineering? | Tingxu Han | arXiv, 2026 | 已精读 |
 | 2026-09-12 | [260912-RadinShayanfar-AgenticBenchmarkMeasure](./260912-RadinShayanfar-AgenticBenchmarkMeasure/README.md) | What Does an Agentic Software Engineering Benchmark Measure? Profiling Task Demands and Agent Behaviour Beyond What Category Labels Reveal | Radin Shayanfar | arXiv, 2026 | 已精读 |
 | 2026-09-11 | [260911-JiaFeng-ContextCompression](./260911-JiaFeng-ContextCompression/README.md) | On the Effectiveness of Context Compression for Repository-Level Tasks: An Empirical Investigation | Jia Feng | arXiv cs.SE, 2026 | 已精读 |
