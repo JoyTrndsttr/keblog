@@ -1,5 +1,11 @@
 # Paper Pool
 
+## 2026-09-14 已精读补录
+
+| 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
+|---|---|---|---|---|---|---|---|
+| 2026-09-14 | Are LLMs Reliable Code Reviewers? Systematic Overcorrection in Requirement Conformance Judgement | Haolin Jin; Huaming Chen | arXiv / 2026 | [arXiv:2603.00539](https://arxiv.org/abs/2603.00539); [Code](https://github.com/HollinJ3177/Are-LLMs-Reliable-Code-Reviewers-Systematic-Overcorrection-in-Requirement-Conformance-Judgement) | LLM代码审查、Requirement Conformance、Prompt Framing、False Rejection、可执行验证 | 系统操纵 Judge / Explain / Fix 三类审查指令，发现更强的解释与修复要求会显著提高对正确代码的误拒绝率；Fix-guided execution 可降低 overcorrection。对 Causality for Code Review 的关键启发是把 Prompt 作为正式 Treatment，并检验 Context × Prompt 的交互及 Evidence Grounding 机制。 | 已精读 |
+
 ## 2026-09-13 已精读补录
 
 | 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
