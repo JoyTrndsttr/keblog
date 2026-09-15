@@ -1,5 +1,11 @@
 # Paper Pool
 
+## 2026-09-15 已精读补录
+
+| 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
+|---|---|---|---|---|---|---|---|
+| 2026-09-15 | AI-Assisted Code Review as a Scaffold for Code Quality and Self-Regulated Learning: An Experience Report | Eduardo Oliveira; Michael Fu; Patanamon Thongtanunam; Sonsoles López-Pernas; Mohammed Saqr | ICSE-SEET 2026 | [10.1145/3786580.3786956](https://doi.org/10.1145/3786580.3786956); [arXiv:2604.23251](https://arxiv.org/abs/2604.23251) | AI代码审查、真实PR工作流、行为轨迹、Self-Regulated Learning、Outcome构念 | 两个真实capstone cohort中，成功AI review后约三分之一PR出现后续commit；最值得借鉴的是trace-based Action Rate，但该指标只能证明反馈后的活动关联，不能证明评论被采纳或质量提升。对Causality for Code Review的启发是建模 Context→Comment/Evidence→Developer Action→Quality 的机制链，并处理AI调用的自选择。 | 已精读 |
+
 ## 2026-09-14 已精读补录
 
 | 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
