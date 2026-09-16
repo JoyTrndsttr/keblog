@@ -1,6 +1,6 @@
 # keblog 只读内容接口
 
-Base URL：`https://keblog.lol`。
+Base URL：`https://38-76-161-31.sslip.io`。
 
 GitHub 仓库中的 `content/` 是 Paper Pool、每日计划和论文精读的唯一事实源。HTTP 服务只负责把当前 checkout 中的 Markdown 提供给网站，不接受内容写入，也不使用 SQLite。
 
