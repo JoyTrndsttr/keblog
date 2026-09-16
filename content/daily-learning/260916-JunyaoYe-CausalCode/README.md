@@ -4,7 +4,8 @@
 > **Venue**：Proceedings of the ACM on Software Engineering, Vol. 2, FSE 2025, Article FSE117  
 > **DOI**：[10.1145/3729387](https://doi.org/10.1145/3729387)  
 > **代码**：[CGCL-codes/CausalCode](https://github.com/CGCL-codes/CausalCode)  
-> **荣誉**：ACM SIGSOFT Distinguished Paper Award
+> **荣誉**：ACM SIGSOFT Distinguished Paper Award  
+> **阅读依据**：完整论文原文（24 页；用户提供 PDF）  
 
 ## 论文地图
 
