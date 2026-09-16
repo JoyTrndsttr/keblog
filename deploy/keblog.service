@@ -8,6 +8,7 @@ User=wangke-site
 Group=wangke-site
 EnvironmentFile=/etc/keblog.env
 Environment=RESEARCH_DOCUMENT_FILE=/var/lib/wangke-site/research-cache/research-record.md
+Environment=RESEARCH_WORKBENCH_DIR=/var/lib/wangke-site/research-cache/workbench
 WorkingDirectory=/opt/keblog
 ExecStart=/usr/bin/python3 /opt/keblog/server/content_server.py
 Restart=on-failure

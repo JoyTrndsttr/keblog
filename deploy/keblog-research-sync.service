@@ -5,4 +5,4 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/opt/keblog/deploy/sync-research.sh
+ExecStart=/bin/bash /opt/keblog/deploy/sync-research.sh

@@ -12,6 +12,7 @@
 - `/etc/keblog-webhook.env`：GitHub Webhook Secret，权限 `600`，不进入 Git。
 - `/var/lib/wangke-site/research-source`：私有 `causal-review` 仓库的稀疏只读副本。
 - `/var/lib/wangke-site/research-cache/research-record.md`：Research 页面的稳定缓存。
+- `/var/lib/wangke-site/research-cache/workbench/`：安全解压并原子替换的当前实验工作台。
 
 `keblog.service` 通过 `RESEARCH_DOCUMENT_FILE` 明确读取上述缓存，避免内容服务切换后回退到 checkout 内不存在的研究文档。
 
@@ -46,7 +47,7 @@ curl -f https://38-76-161-31.sslip.io/api/documents/paperpool.md
 
 ## Research 文档同步
 
-`keblog-research-sync.timer` 每 5 分钟使用仓库级只读 Deploy Key 更新私有 `causal-review` 的稀疏 checkout，再原子替换缓存。失败时保留上一次成功内容。应用只公开固定的 `/api/research/document`，不接受文件名或路径。
+`keblog-research-sync.timer` 每 5 分钟使用仓库级只读 Deploy Key 更新私有 `causal-review` 的 `documents` 与 `workbench` 稀疏 checkout，再原子替换研究记录缓存。仅当 `workbench/workbench-latest.tar.gz` 的 SHA-256 变化时，脚本才校验归档路径与类型、安全解压并原子替换工作台。失败时保留上一次成功内容。应用公开固定的 `/api/research/document` 和只读的 `/research/workbench/` 静态目录。
 
 ```bash
 sudo systemctl start keblog-research-sync.service

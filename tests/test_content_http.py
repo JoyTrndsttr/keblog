@@ -29,6 +29,9 @@ class ContentHTTPTests(unittest.TestCase):
         (content / "daily-learning" / "PLAN.md").write_text("# Plan\n")
         (content / "daily-learning" / "260910-Test-Paper" / "README.md").write_text("# Reading\n\n> 论文：*Test Paper*  \n")
         (content / "support" / "prompt.txt").write_text("task prompt")
+        workbench = content / "research" / "workbench"; workbench.mkdir(parents=True)
+        (workbench / "index.html").write_text("<h1>Workbench</h1>")
+        (workbench / "style.css").write_text("body { color: black; }")
         cls.server = ThreadingHTTPServer(("127.0.0.1", 0), partial(QuietHandler, directory=static))
         cls.server.content_dir = content
         cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True); cls.thread.start()
@@ -44,6 +47,20 @@ class ContentHTTPTests(unittest.TestCase):
                 return response.status, json.loads(response.read())
         except urllib.error.HTTPError as error:
             return error.code, json.loads(error.read())
+
+    def raw_request(self, path):
+        try:
+            with urllib.request.urlopen(self.base + path) as response:
+                return response.status, response.headers.get_content_type(), response.read()
+        except urllib.error.HTTPError as error:
+            return error.code, error.headers.get_content_type(), error.read()
+
+    def test_workbench_static_route(self):
+        status, content_type, body = self.raw_request("/research/workbench/")
+        self.assertEqual((status, content_type), (200, "text/html"))
+        self.assertIn(b"Workbench", body)
+        self.assertEqual(self.raw_request("/research/workbench/style.css")[:2], (200, "text/css"))
+        self.assertEqual(self.raw_request("/research/workbench/%2e%2e/index.html")[0], 404)
 
     def test_git_content_routes(self):
         self.assertEqual(self.request("/api/health")[1]["source"], "git")

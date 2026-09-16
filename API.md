@@ -17,6 +17,7 @@ GitHub 仓库中的 `content/` 是 Paper Pool、每日计划和论文精读的�
 | GET | `/api/v1/prompt` | `content/support/prompt.txt` |
 | GET | `/api/v1/bootstrap` | 兼容读取：论文池、计划、提示词和精读列表 |
 | GET | `/api/research/document` | VPS 私有研究仓库缓存中的《研究记录.md》 |
+| GET | `/research/workbench/` | VPS 私有研究仓库中当前 workbench 压缩包解压后的静态页面 |
 
 所有 `POST`、`PUT`、`PATCH` 和 `DELETE` 请求返回 `405 Method Not Allowed`。`/api/v2/*` 已移除。
 

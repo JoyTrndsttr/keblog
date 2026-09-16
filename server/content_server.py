@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import mimetypes
 import os
 import re
 from datetime import datetime, timezone
@@ -55,6 +56,34 @@ class SiteHandler(SimpleHTTPRequestHandler):
         default = self.content_dir / "research" / RESEARCH_DOCUMENT[0]
         return Path(os.environ.get("RESEARCH_DOCUMENT_FILE", default)).resolve()
 
+    @property
+    def research_workbench_dir(self) -> Path:
+        default = self.content_dir / "research" / "workbench"
+        return Path(os.environ.get("RESEARCH_WORKBENCH_DIR", default)).resolve()
+
+    def send_workbench_file(self, route: str) -> None:
+        relative = route.removeprefix("/research/workbench/")
+        root = self.research_workbench_dir
+        candidate = (root / relative).resolve()
+        try:
+            candidate.relative_to(root)
+        except ValueError:
+            self.send_error(HTTPStatus.NOT_FOUND)
+            return
+        if candidate.is_dir():
+            candidate /= "index.html"
+        if not candidate.is_file():
+            self.send_error(HTTPStatus.NOT_FOUND)
+            return
+        body = candidate.read_bytes()
+        content_type = mimetypes.guess_type(candidate.name)[0] or "application/octet-stream"
+        self.send_response(HTTPStatus.OK)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Cache-Control", "no-cache")
+        self.end_headers()
+        self.wfile.write(body)
+
     def end_headers(self) -> None:
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("X-Frame-Options", "DENY")
@@ -104,6 +133,13 @@ class SiteHandler(SimpleHTTPRequestHandler):
 
     def do_GET(self) -> None:
         route = unquote(urlparse(self.path).path)
+        if route == "/research/workbench":
+            self.send_response(HTTPStatus.PERMANENT_REDIRECT)
+            self.send_header("Location", "/research/workbench/")
+            self.send_header("Content-Length", "0")
+            self.end_headers(); return
+        if route.startswith("/research/workbench/"):
+            self.send_workbench_file(route); return
         if route == "/api/health":
             self.send_json(200, {"status": "ok", "service": "keblog", "version": "3.0", "source": "git"}); return
         if route == "/api/research/document":
