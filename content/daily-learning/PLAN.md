@@ -3,6 +3,7 @@
 > 生效版本：2026-09-09  
 > 执行时间：每天 08:30（Asia/Shanghai）  
 > 内容仓库：`JoyTrndsttr/keblog` 的 `master` 分支
+> 发布地址：`https://38-76-161-31.sslip.io`
 > 来源：从 `dialog.md` 的历次调整中提取；此后以 GitHub 当前版本为唯一事实源。
 
 ## 目标
