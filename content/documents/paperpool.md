@@ -1,5 +1,11 @@
 # Paper Pool
 
+## 2026-09-16 已精读补录
+
+| 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
+|---|---|---|---|---|---|---|---|
+| 2026-09-16 | A Causal Learning Framework for Enhancing Robustness of Source Code Models | Junyao Ye; Zhen Li; Xi Tang; Deqing Zou; Shouhuai Xu; Weizhong Qiang; Hai Jin | FSE 2025 / PACMSE 2, Article FSE117 | [10.1145/3729387](https://doi.org/10.1145/3729387); [Code](https://github.com/CGCL-codes/CausalCode) | 因果学习、代码模型鲁棒性、语义保持干预、伪相关、表示不变性 | CausalCode 通过梯度引导的语义保持 intervention 与 paired representation regularization 显著降低所测攻击族的 ASR；最值得借鉴的是 ground-truth-preserving intervention 设计，但其 RQ2 更直接证明 intervention invariance，而非已识别真正程序因果语义。 | 已精读 |
+
 ## 2026-09-15 已精读补录
 
 | 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
