@@ -1,4 +1,4 @@
-keblog.lol, 38-76-161-31.sslip.io {
+38-76-161-31.sslip.io {
     encode zstd gzip
 
     handle /github-webhook {
