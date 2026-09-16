@@ -15,7 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
-| 2026-09-16 | [260916-JunyaoYe-CausalCode](./260916-JunyaoYe-CausalCode/README.md) | A Causal Learning Framework for Enhancing Robustness of Source Code Models | Junyao Ye | FSE 2025 / PACMSE 2 | 已精读 |
+| 2026-09-16 | [260916-JunyaoYe-CausalCode](./260916-JunyaoYe-CausalCode/README.md) | A Causal Learning Framework for Enhancing Robustness of Source Code Models | Junyao Ye | FSE 2025 / PACMSE 2 | 已精读（原文 PDF） |
 | 2026-09-15 | [260915-EduardoOliveira-AIAssistedCodeReview](./260915-EduardoOliveira-AIAssistedCodeReview/README.md) | AI-Assisted Code Review as a Scaffold for Code Quality and Self-Regulated Learning: An Experience Report | Eduardo Oliveira | ICSE-SEET 2026 | 已精读 |
 | 2026-09-14 | [260914-HaolinJin-ReliableCodeReviewers](./260914-HaolinJin-ReliableCodeReviewers/README.md) | Are LLMs Reliable Code Reviewers? Systematic Overcorrection in Requirement Conformance Judgement | Haolin Jin | arXiv, 2026 | 已精读 |
 | 2026-09-13 | [260913-TingxuHan-SWESkillsBench](./260913-TingxuHan-SWESkillsBench/README.md) | SWE-Skills-Bench: Do Agent Skills Actually Help in Real-World Software Engineering? | Tingxu Han | arXiv, 2026 | 已精读 |
