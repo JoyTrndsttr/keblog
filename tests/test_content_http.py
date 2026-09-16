@@ -55,6 +55,10 @@ class ContentHTTPTests(unittest.TestCase):
         except urllib.error.HTTPError as error:
             return error.code, error.headers.get_content_type(), error.read()
 
+    def test_html_is_not_cached(self):
+        with urllib.request.urlopen(self.base + "/") as response:
+            self.assertEqual(response.headers["Cache-Control"], "no-store")
+
     def test_workbench_static_route(self):
         status, content_type, body = self.raw_request("/research/workbench/")
         self.assertEqual((status, content_type), (200, "text/html"))

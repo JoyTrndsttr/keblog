@@ -48,6 +48,17 @@ function markdownToHtml(markdown) {
       continue;
     }
     if (inCode) { html.push(`${escapeHtml(raw)}\n`); continue; }
+    if (line === '\\[' || line === '$$') {
+      closeBlocks();
+      const closing = line === '$$' ? '$$' : '\\]';
+      const formula = [];
+      while (index + 1 < lines.length && lines[index + 1].trim() !== closing) {
+        formula.push(lines[++index]);
+      }
+      if (index + 1 < lines.length) index += 1;
+      html.push(`<div class="math-block" data-tex="${escapeHtml(formula.join('\n'))}"></div>`);
+      continue;
+    }
     if (!line) { closeBlocks(); continue; }
     if (/^---+$/.test(line)) { closeBlocks(); html.push('<hr>'); continue; }
     if (/^\|.+\|$/.test(line)) {
@@ -93,6 +104,24 @@ function markdownToHtml(markdown) {
   return html.join('');
 }
 
+function renderMathematics(element) {
+  if (!element || !window.katex || !window.renderMathInElement) return;
+  element.querySelectorAll('.math-block').forEach((block) => {
+    window.katex.render(block.dataset.tex, block, { displayMode: true, throwOnError: false, trust: false });
+  });
+  window.renderMathInElement(element, {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '\\[', right: '\\]', display: true },
+      { left: '\\(', right: '\\)', display: false },
+      { left: '$', right: '$', display: false },
+    ],
+    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+    throwOnError: false,
+    trust: false,
+  });
+}
+
 function updateStats(markdown, modified) {
   const read = (markdown.match(/\|\s*已精读(?:（[^）]+）)?\s*\|/g) || []).length;
   const candidateBlock = markdown.split('## 候选论文')[1]?.split('\n## ')[0] || '';
@@ -115,7 +144,7 @@ async function loadPaperPool() {
   try {
     const payload = await fetchPaperPool();
     updateStats(payload.content, payload.modified);
-    if (content) content.innerHTML = markdownToHtml(payload.content);
+    if (content) { content.innerHTML = markdownToHtml(payload.content); renderMathematics(content); }
   } catch (error) {
     if (content) content.innerHTML = '<p class="error">论文池暂时无法读取。请稍后刷新，或检查服务状态。</p>';
     document.querySelectorAll('#updated-at').forEach((node) => { node.textContent = '暂不可用'; });
@@ -125,7 +154,13 @@ async function loadPaperPool() {
 }
 
 document.querySelector('#refresh-button')?.addEventListener('click', loadPaperPool);
-if (document.querySelector('#paperpool-content') || document.querySelector('#read-count')) loadPaperPool();
+if (document.querySelector('#paperpool-content')) loadPaperPool();
+if (document.querySelector('#home-learning-count')) {
+  fetch('/api/daily-learning', { cache: 'no-store' })
+    .then((response) => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); })
+    .then((payload) => { document.querySelector('#home-learning-count').innerHTML = `${payload.entries.length}<span>篇</span>`; })
+    .catch(() => { document.querySelector('#home-learning-count').innerHTML = '—<span>篇</span>'; });
+}
 
 async function loadResearchDocument() {
   const content = document.querySelector('#research-document');
@@ -136,6 +171,7 @@ async function loadResearchDocument() {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const payload = await response.json();
     content.innerHTML = markdownToHtml(payload.content);
+    renderMathematics(content);
     const headings = [...content.querySelectorAll('h2, h3, h4')];
     const toc = document.querySelector('#research-toc');
     headings.forEach((heading, index) => { heading.id = `research-section-${index + 1}`; });
@@ -158,6 +194,7 @@ async function loadPublicationDetail() {
     const response = await fetch('./content.md', { cache: 'no-store' });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     content.innerHTML = markdownToHtml(await response.text());
+    renderMathematics(content);
     const headings = [...content.querySelectorAll('h2, h3, h4')];
     headings.forEach((heading, index) => { heading.id = `publication-section-${index + 1}`; });
     const toc = document.querySelector('#publication-toc');
@@ -214,14 +251,15 @@ async function openLearning(slug, push = true) {
   content.innerHTML = '<p class="loading">正在载入精读笔记…</p>';
   selectLearningLink(slug);
   try {
-    const payload = await fetchLearning(slug);
+    const payload = slug === 'pool' ? await fetchPaperPool() : await fetchLearning(slug);
     const entry = learningEntries.find((item) => item.slug === slug);
-    const systemTitle = slug === 'plan' ? '每日任务执行规则' : '阅读计划与完成记录';
+    const systemTitle = slug === 'plan' ? '每日任务执行规则' : slug === 'pool' ? '候选论文与已读记录' : '阅读计划与完成记录';
     document.querySelector('#learning-title').textContent = entry?.title || systemTitle;
-    document.querySelector('#learning-date').textContent = entry ? `${entry.date} · ${entry.author}` : slug === 'plan' ? '08:30 · ASIA/SHANGHAI' : 'DAILY LEARNING INDEX';
+    document.querySelector('#learning-date').textContent = entry ? `${entry.date} · ${entry.author}` : slug === 'plan' ? '08:30 · ASIA/SHANGHAI' : slug === 'pool' ? 'PAPER POOL' : 'DAILY LEARNING INDEX';
     const doi = document.querySelector('#learning-doi');
     if (entry?.doi) { doi.href = `https://doi.org/${entry.doi}`; doi.hidden = false; } else { doi.hidden = true; }
     content.innerHTML = markdownToHtml(payload.content);
+    renderMathematics(content);
     decorateLearningDocument();
     if (push) history.pushState({ paper: slug }, '', `/daily-learning/?paper=${encodeURIComponent(slug)}`);
     const targetHash = push ? '' : location.hash;
@@ -229,7 +267,7 @@ async function openLearning(slug, push = true) {
     else requestAnimationFrame(() => requestAnimationFrame(() => scrollToLearningHash(targetHash)));
     updateReadingProgress();
   } catch (error) {
-    content.innerHTML = '<p class="error">这篇精读笔记暂时无法读取，请稍后重试。</p>';
+    content.innerHTML = '<p class="error">内容暂时无法读取，请稍后重试。</p>';
   }
 }
 
@@ -249,7 +287,7 @@ async function loadDailyLearning() {
         <span>${escapeHtml(entry.title)}</span>
       </a>`).join('') || '<p class="loading">还没有完成的精读。</p>';
     const selected = new URLSearchParams(location.search).get('paper');
-    const initial = ['index', 'plan'].includes(selected) || learningEntries.some((entry) => entry.slug === selected)
+    const initial = ['index', 'plan', 'pool'].includes(selected) || learningEntries.some((entry) => entry.slug === selected)
       ? selected
       : (learningEntries[0]?.slug || 'index');
     openLearning(initial, false);

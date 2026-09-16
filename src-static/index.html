@@ -2,61 +2,31 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="王柯的个人学术博客：代码审查中的因果推断、仓库级代码理解与智能软件工程。"><meta name="theme-color" content="#15112d">
-  <title>王柯｜研究与写作</title><link rel="stylesheet" href="/styles.css"><script defer src="/app.js"></script>
+  <meta name="description" content="王柯的研究与论文：代码审查、仓库级上下文与智能软件工程。"><meta name="theme-color" content="#15112d">
+  <title>王柯｜研究与论文</title><link rel="stylesheet" href="/styles.css?v=20260916-home4"><script defer src="/app.js?v=20260916-home4"></script>
 </head>
 <body data-page="home">
   <header class="site-header">
     <a class="brand" href="/"><span class="brand-mark">WK</span><span><b>王柯</b><small>RESEARCH NOTES</small></span></a>
     <button class="nav-toggle" aria-label="展开导航" aria-expanded="false">菜单</button>
-    <nav aria-label="主导航"><a data-nav="home" href="/">首页</a><a data-nav="research" href="/research/">研究</a><a data-nav="publications" href="/publications/">论文</a><a data-nav="daily-learning" href="/daily-learning/">每日学习</a><a data-nav="paperpool" href="/paperpool/">Paper Pool</a></nav>
+    <nav aria-label="主导航"><a data-nav="home" href="/">首页</a><a data-nav="research" href="/research/">研究</a><a data-nav="publications" href="/publications/">论文</a><a data-nav="daily-learning" href="/daily-learning/?v=20260916-sidebar4">每日学习</a></nav>
   </header>
-
   <main>
-    <section class="home-lead">
-      <div class="lead-kicker"><span>中南大学 · 计算机学院</span><span>PhD Researcher</span></div>
-      <h1>Causality<br><em>for</em> Code Review.</h1>
-      <div class="lead-bottom">
-        <p>研究代码审查中的因果推断、反事实分析与可信评价，并探索仓库级上下文如何让自动化审查真正理解软件。</p>
-        <div class="lead-actions"><a class="button primary" href="/research/">查看当前研究</a><a class="text-link" href="/publications/recore-bench/">代表论文 <span>↗</span></a></div>
+    <section class="home-stage" aria-labelledby="home-title">
+      <div class="home-stage-intro">
+        <div class="home-stage-title"><p class="eyebrow">CODE REVIEW / CONTEXT / CAUSALITY</p><h1 id="home-title">Beyond<br><em>the Diff.</em></h1></div>
+        <div class="home-stage-summary"><p class="home-stage-caption">从代码变更，到可靠判断。</p><p>仓库上下文揭示变更的来处；因果视角检验结论的依据。关注代码评审与代码优化中，自动化方法真正理解了什么。</p><a class="text-link" href="/research/">探索当前研究 <span>↗</span></a></div>
       </div>
-      <div class="signal-line" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-    </section>
-
-    <section class="home-section featured" aria-labelledby="featured-title">
-      <div class="section-index"><span>01</span><p>CURRENT RESEARCH</p></div>
-      <div class="section-content">
-        <header class="split-heading"><div><p class="eyebrow">正在进行的工作</p><h2 id="featured-title">Causal Review：追踪问题、证据与方法的持续研究记录。</h2></div><p>研究页同步私有研究仓库中的《研究记录》，集中展示当前问题、实验判断和方法演化。它是这项工作的公开只读窗口。</p></header>
-        <article class="feature-paper">
-          <div class="paper-visual" aria-hidden="true"><div class="repo-window"><span>repository/</span><b>src/reviewer.py</b><i></i><span>models/context.py</span><i></i><span>tests/test_refine.py</span></div><div class="context-arrow">→</div><div class="metric-chip">ReDIs<br><b>Match</b></div></div>
-          <div class="paper-copy"><div class="meta-row"><span>CAUSAL REVIEW</span><span>LIVE RESEARCH LOG</span></div><h3>代码审查中的因果推断与可信评价</h3><p>从相关性走向干预效应，持续梳理研究问题、识别假设、实验设计与证据边界；页面内容由研究仓库定期同步。</p><div class="paper-actions"><a class="button light" href="/research/">打开研究记录 →</a></div></div>
-        </article>
+      <div class="home-stats" aria-label="研究与阅读统计">
+        <a href="/research/"><span class="home-stat-label">CURRENT WORK</span><strong>1<span>项</span></strong><span>正在进行的工作</span><b aria-hidden="true">↗</b></a>
+        <a href="/publications/"><span class="home-stat-label">PUBLICATION</span><strong>1<span>篇</span></strong><span>已发表论文</span><b aria-hidden="true">↗</b></a>
+        <a href="/daily-learning/?v=20260916-sidebar4"><span class="home-stat-label">READING NOTES</span><strong id="home-learning-count">—<span>篇</span></strong><span>每日学习</span><b aria-hidden="true">↗</b></a>
       </div>
-    </section>
-
-    <section class="home-section" aria-labelledby="agenda-title">
-      <div class="section-index"><span>02</span><p>FEATURED PUBLICATION</p></div>
-      <div class="section-content">
-        <header class="split-heading"><div><p class="eyebrow">代表论文</p><h2 id="agenda-title">Code Refinement with Repository Context: How Far are We?</h2></div><p>ReCoRe-Bench 收录 1,000 个来自 328 个真实仓库的实例。详细介绍从问题、方法、结果与证据边界四个层面解释这项工作。</p></header>
-        <div class="agenda-list"><a href="/publications/recore-bench/"><span>01</span><h3>阅读 ReCoRe-Bench 详细介绍</h3><p>Benchmark · Repository Context · Code Refinement</p><b>→</b></a><a href="/publications/"><span>02</span><h3>论文与引用信息</h3><p>ACM TOSEM · 2026 · DOI 10.1145/3820059</p><b>→</b></a></div>
+      <div class="home-stage-content" aria-label="探索内容">
+        <a class="home-topic home-topic-primary" href="/research/"><span class="home-topic-label">01 / CURRENT RESEARCH</span><h2>让代码评审的结论有据可循。</h2><p>以因果推断和可信评价审视自动化评审：什么上下文影响判断，哪些解释能够被证据支持？</p><b>研究记录与实验工作台 <span>↗</span></b></a>
+        <a class="home-topic" href="/publications/recore-bench/"><span class="home-topic-label">02 / PUBLICATION · ACM TOSEM</span><h2>仓库上下文如何改变代码优化？</h2><p>ReCoRe-Bench 基于 1,000 个真实实例，研究仓库级知识对代码优化的作用。</p><b>阅读论文介绍 <span>↗</span></b></a>
+        <a class="home-topic" href="/daily-learning/?v=20260916-sidebar4"><span class="home-topic-label">03 / READING NOTES</span><h2>持续阅读，持续提问。</h2><p>从研究问题、实验设计到证据边界，汇集智能软件工程相关论文的精读记录。</p><b>浏览每日学习 <span>↗</span></b></a>
       </div>
-    </section>
-
-    <section class="home-section notes-section" aria-labelledby="notes-title">
-      <div class="section-index"><span>03</span><p>READING WORKFLOW</p></div>
-      <div class="section-content">
-        <header class="split-heading"><div><p class="eyebrow">论文阅读</p><h2 id="notes-title">从候选论文，到每日精读与结构化积累。</h2></div><a class="text-link" href="/daily-learning/">查看每日学习 <span>→</span></a></header>
-        <div class="post-grid">
-          <a class="post-card accent" href="/daily-learning/"><span>DAILY LEARNING</span><h3>每日论文精读</h3><p>保留研究问题、方法设计、关键结果与批判性判断，形成可以继续使用的阅读记录。</p><b>进入精读 →</b></a>
-          <a class="post-card" href="/paperpool/"><span>PAPER POOL</span><h3>结构化论文池</h3><p>以 DOI 去重，记录候选、阅读状态和版本，为后续精读提供稳定入口。</p><b>浏览论文池 →</b></a>
-          <a class="post-card" href="/publications/"><span>PUBLICATIONS</span><h3>本人成果</h3><p>独立于每日精读，展示正式发表论文、详细介绍与可直接使用的引用信息。</p><b>查看成果 →</b></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-section pool-strip">
-      <div class="section-index"><span>04</span><p>LIVE PAPER POOL</p></div>
-      <div class="section-content pool-overview"><div><p class="eyebrow">GitHub 内容归档</p><h2><b id="read-count">—</b> 篇精读，持续增长。</h2><p>Paper Pool 与每日精读由计划任务在 GitHub 中共同维护，优先以 DOI 去重，每次提交都保留完整历史。</p></div><div class="pool-cta"><div><small>最近同步</small><strong id="updated-at">正在读取</strong></div><a class="button primary" href="/paperpool/">进入论文池</a></div></div>
     </section>
   </main>
   <footer class="site-footer"><div><b>王柯</b><p>Causality · Code Review · Software Intelligence</p></div><div><span>中南大学计算机学院</span><span>郁松 / 廖志芳</span></div><p>© 2026 Ke Wang</p></footer>

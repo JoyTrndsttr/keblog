@@ -93,6 +93,9 @@ class SiteHandler(SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
     def end_headers(self) -> None:
+        route = urlparse(self.path).path
+        if route.endswith("/") or route.endswith(".html"):
+            self.send_header("Cache-Control", "no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("X-Frame-Options", "DENY")
         self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
