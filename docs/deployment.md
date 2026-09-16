@@ -1,6 +1,6 @@
 # GitHub Webhook 部署（lab-vps）
 
-网站：`https://keblog.lol`。Caddy 将普通流量转发到 `127.0.0.1:8080`，将 `/github-webhook` 转发到仅监听回环地址的 `127.0.0.1:8090`。
+网站：`https://38-76-161-31.sslip.io`。Caddy 将普通流量转发到 `127.0.0.1:8080`，将 `/github-webhook` 转发到仅监听回环地址的 `127.0.0.1:8090`。
 
 ## 当前布局
 
@@ -19,7 +19,7 @@
 
 ## 自动更新
 
-GitHub 向 `POST https://keblog.lol/github-webhook` 发送 push 事件。接收器验证 `X-Hub-Signature-256`、`JoyTrndsttr/keblog` 和 `refs/heads/master` 后，异步启动 `keblog-update.service`。更新脚本要求 checkout 干净，然后执行：
+GitHub 向 `POST https://38-76-161-31.sslip.io/github-webhook` 发送 push 事件。接收器验证 `X-Hub-Signature-256`、`JoyTrndsttr/keblog` 和 `refs/heads/master` 后，异步启动 `keblog-update.service`。更新脚本要求 checkout 干净，然后执行：
 
 ```text
 git pull --ff-only
@@ -38,8 +38,8 @@ sudo systemctl start keblog-update.service
 sudo systemctl status keblog keblog-webhook --no-pager
 sudo journalctl -u keblog-update -n 100 --no-pager
 sudo journalctl -u keblog-webhook -n 50 --no-pager
-curl -f https://keblog.lol/api/health
-curl -f https://keblog.lol/api/documents/paperpool.md
+curl -f https://38-76-161-31.sslip.io/api/health
+curl -f https://38-76-161-31.sslip.io/api/documents/paperpool.md
 ```
 
 未签名的 Webhook POST 应返回 `401`，GitHub ping 应返回 `200 pong`，目标分支 push 应返回 `202 deployment queued`。
