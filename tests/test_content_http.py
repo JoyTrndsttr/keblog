@@ -59,6 +59,9 @@ class ContentHTTPTests(unittest.TestCase):
         status, content_type, body = self.raw_request("/research/workbench/")
         self.assertEqual((status, content_type), (200, "text/html"))
         self.assertIn(b"Workbench", body)
+        self.assertIn(b'class="keblog-return"', body)
+        self.assertIn(b'href="/research/"', body)
+        self.assertNotIn("keblog-return", (Path(self.temp.name) / "content" / "research" / "workbench" / "index.html").read_text())
         self.assertEqual(self.raw_request("/research/workbench/style.css")[:2], (200, "text/css"))
         self.assertEqual(self.raw_request("/research/workbench/%2e%2e/index.html")[0], 404)
 

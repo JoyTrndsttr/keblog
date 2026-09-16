@@ -77,6 +77,14 @@ class SiteHandler(SimpleHTTPRequestHandler):
             return
         body = candidate.read_bytes()
         content_type = mimetypes.guess_type(candidate.name)[0] or "application/octet-stream"
+        if content_type == "text/html":
+            page = body.decode("utf-8")
+            shell = ('<link rel="stylesheet" href="/workbench-shell.css?v=20260916">'
+                     '<a class="keblog-return" href="/research/" aria-label="返回研究页">'
+                     '<span aria-hidden="true">←</span><b>返回研究</b></a>')
+            marker = page.lower().rfind("</body>")
+            page = page[:marker] + shell + page[marker:] if marker >= 0 else page + shell
+            body = page.encode("utf-8")
         self.send_response(HTTPStatus.OK)
         self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(body)))
