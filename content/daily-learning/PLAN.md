@@ -1,9 +1,10 @@
 # 每日学习执行计划
 
-> 生效版本：2026-09-09  
+> 生效版本：2026-09-17  
 > 执行时间：每天 08:30（Asia/Shanghai）  
 > 内容仓库：`JoyTrndsttr/keblog` 的 `master` 分支
 > 发布地址：`https://38-76-161-31.sslip.io`
+> Paper Pool 页面：`https://38-76-161-31.sslip.io/daily-learning/?paper=pool`
 > 来源：从 `dialog.md` 的历次调整中提取；此后以 GitHub 当前版本为唯一事实源。
 
 ## 目标
@@ -53,7 +54,7 @@
 
 ```text
 候选论文
-  ↓ 读取 GitHub Paper Pool 与精读索引
+  ↓ 直接读取 GitHub Paper Pool 与精读索引
 身份核验（DOI > arXiv ID > 规范化标题）
   ↓ 完整阅读论文原文
 生成 Markdown 精读
@@ -65,13 +66,14 @@ commit 并 push 到 master
 VPS pull、build、restart
 ```
 
+- Paper Pool 的唯一事实源是 GitHub `content/documents/paperpool.md`；计划任务直接读取和维护该文件，不依赖网站页面读取。网站入口 `?paper=pool` 仅用于人工浏览。
 - “已收藏”不等于“已精读”。
 - 已精读论文永久排除，除非用户明确要求重读。
 - 新闻与雷达论文按 7 天去重。
 - 每次执行都重新读取 GitHub 中的论文池与精读索引，保留已有记录并避免并发覆盖。
 - 不得依赖 Zotero、本地 Paper Pool、自动化 memory、电脑路径或本地附件完成状态查询与去重。
 - 只通过已授权的 GitHub 连接器写入；任何凭据都不能出现在公开提示词或页面里。
-- 若只能获得摘要，必须标记“基于摘要的导读”，不得猜测实验数字，也不得登记为完整精读。
+- 若无法获得可完整阅读的论文原文，不开始生成摘要或“基于摘要的导读”，直接询问用户提供 PDF；未获得原文前不得登记为完整精读或写入永久去重记录。
 
 ## 每篇精读的最低要求
 
