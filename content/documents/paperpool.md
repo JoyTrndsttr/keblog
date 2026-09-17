@@ -1,5 +1,11 @@
 # Paper Pool
 
+## 2026-09-17 已精读补录
+
+| 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
+|---|---|---|---|---|---|---|---|
+| 2026-09-17 | RepoMirage: Probing Repository Context Reasoning in Code Agents with Perturbations | Hanyu Li; Yichi Zhang; Speed Zhu; Hang Su; Jun Zhu; Yinpeng Dong | arXiv / 2026 | [arXiv:2605.26177](https://arxiv.org/abs/2605.26177) | Repository Context、Coding Agent、语义保持扰动、探索漂移、构念效度 | 通过保持 issue/功能/测试不变、只改变仓库证据暴露方式的 perturbation，RepoMirage 发现 8 个模型平均 resolved rate 从 66.80% 降到 49.78%，同时访问更多文件并出现 exploration drift；对 Causality for Code Review 的关键启发是用 ground-truth-preserving context intervention 与 trajectory mediator 分析 repository context 何时、为何伤害审查。 | 已精读 |
+
 ## 2026-09-16 已精读补录
 
 | 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
