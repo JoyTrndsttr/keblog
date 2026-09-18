@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**29 次精读**，覆盖 **2026-08-03—2026-09-17**。
+> 已归档：**30 次精读**，覆盖 **2026-08-03—2026-09-18**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-09-18 | [260918-ThibaudGloaguen-AgentsMD](./260918-ThibaudGloaguen-AgentsMD/README.md) | Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents? | Thibaud Gloaguen | MemAgents @ ICLR 2026 / arXiv 2026 | 已精读（完整 arXiv v2 原文） |
 | 2026-09-17 | [260917-HanyuLi-RepoMirage](./260917-HanyuLi-RepoMirage/README.md) | RepoMirage: Probing Repository Context Reasoning in Code Agents with Perturbations | Hanyu Li | arXiv, 2026 | 已精读（完整 arXiv 原文） |
 | 2026-09-16 | [260916-JunyaoYe-CausalCode](./260916-JunyaoYe-CausalCode/README.md) | A Causal Learning Framework for Enhancing Robustness of Source Code Models | Junyao Ye | FSE 2025 / PACMSE 2 | 已精读（原文 PDF） |
 | 2026-09-15 | [260915-EduardoOliveira-AIAssistedCodeReview](./260915-EduardoOliveira-AIAssistedCodeReview/README.md) | AI-Assisted Code Review as a Scaffold for Code Quality and Self-Regulated Learning: An Experience Report | Eduardo Oliveira | ICSE-SEET 2026 | 已精读 |
