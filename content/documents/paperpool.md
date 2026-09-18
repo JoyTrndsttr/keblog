@@ -1,5 +1,11 @@
 # Paper Pool
 
+## 2026-09-18 已精读补录
+
+| 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
+|---|---|---|---|---|---|---|---|
+| 2026-09-18 | Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents? | Thibaud Gloaguen; Niels Mündler; Mark Müller; Veselin Raychev; Martin Vechev | MemAgents @ ICLR 2026 / arXiv 2026 | [arXiv:2602.11988](https://arxiv.org/abs/2602.11988) | Coding Agent、Repository Context、AGENTS.md、CTXbench、行为轨迹、成本 | 在 SWE-bench Lite 与新建 CTXbench 上操纵 None/LLM-generated/developer context file，发现 context file 不显著提高成功率，却稳定增加探索步骤与 20%+ 推理成本；对 Causality for Code Review 的关键启发是把 Context 作为 Treatment、trajectory 作为 Mediator，并区分“模型会遵循上下文”与“上下文真正改善 Outcome”。 | 已精读 |
+
 ## 2026-09-17 已精读补录
 
 | 精读日期 | 标题 | 作者 | Venue / 年份 | DOI / 原文 | 主题 | 一句话价值 | 状态 |
