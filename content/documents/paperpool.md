@@ -11,6 +11,8 @@
 
 ### 2026-09-18
 
+- **RepoReasoner: Evaluating Repository-Level Code Reasoning Ability of Long-Context Language Models** — Yanlin Wang; Suiquan Wang; Yanli Wang; Bowen Zhang; Daya Guo; Jiachi Chen; Zibin Zheng；FSE 2026 / Proc. ACM Softw. Eng. 3, FSE124；[DOI:10.1145/3808131](https://doi.org/10.1145/3808131); [arXiv:2607.25996](https://arxiv.org/abs/2607.25996); [Code](https://github.com/DeepSoftwareAnalytics/RepoReasoner)；主题：Repository-Level Reasoning、Long Context、Call Chain、Context Noise、Oracle Context；价值：用动态执行 trace 构造 Oracle context 与 call-chain ground truth，并比较 10k/30k retrieval context，显示完美相关文件并不能消除跨文件推理失败，更多 context 对不同模型还呈正负异质效应；对当前研究最关键的是把“relevant evidence 是否到场”和“模型能否利用 evidence”分开，并把 signal/noise、dependency depth 改造成可控 context intervention。
+
 - **Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?** — Thibaud Gloaguen; Niels Mündler; Mark Müller; Veselin Raychev; Martin Vechev；MemAgents @ ICLR 2026 / arXiv 2026；[arXiv:2602.11988](https://arxiv.org/abs/2602.11988)；主题：Coding Agent、Repository Context、AGENTS.md、CTXbench、行为轨迹、成本；价值：在 SWE-bench Lite 与新建 CTXbench 上操纵 None/LLM-generated/developer context file，发现 context file 不显著提高成功率，却稳定增加探索步骤与 20%+ 推理成本；对 Causality for Code Review 的关键启发是把 Context 作为 Treatment、trajectory 作为 Mediator，并区分“模型会遵循上下文”与“上下文真正改善 Outcome”。
 
 ### 2026-09-17
