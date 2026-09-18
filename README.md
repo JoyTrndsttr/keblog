@@ -2,6 +2,8 @@
 
 个人网站与论文阅读归档项目。前端使用原生 HTML、CSS、JavaScript，后端使用 Python 标准库，支持个人主页、研究方向、论文列表、Paper Pool 和阅读笔记。
 
+在线访问：https://38-76-161-31.sslip.io/
+
 Research 页面从私有 `JoyTrndsttr/causal-review` 仓库同步 `documents/研究记录.md` 到 VPS 本地缓存后展示。VPS 使用仓库级只读 Deploy Key；GitHub 暂时不可用时继续展示上一次成功同步的版本，其他仓库文件均不提供网页或 API 入口。
 
 项目仍在持续开发中。当前前端入口为 `src-static/`，构建只是将静态文件复制到 `dist/`，没有第三方运行依赖，也不需要安装 Next.js、React 或 node_modules。
@@ -59,4 +61,4 @@ GitHub 仓库是公开内容的唯一事实源。计划任务同时维护 `conte
 
 ## 许可
 
-当前重建版本暂未指定开源许可证；公开代码不等同于授予开源使用许可。发布正式版本前由维护者确定许可证，并核对复用代码和素材的授权。
+本项目采用 [MIT License](LICENSE) 开源。
