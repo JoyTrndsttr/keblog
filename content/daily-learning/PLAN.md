@@ -1,6 +1,6 @@
 # 每日学习执行计划
 
-> 生效版本：2026-09-18  
+> 生效版本：2026-09-18（Paper Pool 结构与原子提交规则更新）  
 > 执行时间：每天 08:30（Asia/Shanghai）  
 > 内容仓库：`JoyTrndsttr/keblog` 的 `master` 分支
 > 发布地址：`https://38-76-161-31.sslip.io`
@@ -68,7 +68,10 @@
 
 优先最近一届 ICSE、FSE、ASE、ISSTA、MSR、SANER、ICSME、AIware，以及 TOSEM、TSE、EMSE 中的相关论文。用户明确指定的下一篇论文始终优先于自动选择。
 
-## 去重与状态迁移
+## Paper Pool Markdown 结构
+
+`content/documents/paperpool.md` 使用纯 Markdown 层级，不再使用大表格。固定结构：`# Paper Pool` → 顶部精简维护约定 → `## 已精读论文` / `## 待精读论文`。已精读论文按 `### YYYY-MM-DD` 分组，每篇论文一个无序列表项；同一天允许多个列表项，支持未来每日精读多篇。每项只保留真正用于去重和选题的信息：标题、作者、Venue/年份、DOI/arXiv/原文、主题和一句话价值；不保留可由所在分区推断的“状态”等冗余字段。
+
 
 ```text
 候选论文
@@ -108,7 +111,10 @@ VPS pull、build、restart
 - 严格区分论文明确报告的事实、基于证据的推断和论文没有验证的内容。
 - 结尾分别说明作者证明了什么、没有证明什么、真正应该记住什么，以及有依据的后续研究机会。
 
-## 归档约定
+## GitHub 单次原子提交
+
+每日精读完成后，正文 `content/daily-learning/<slug>/README.md`、精读索引 `content/daily-learning/README.md` 和 `content/documents/paperpool.md` 应通过 GitHub Git Data API 组成**一个原子 commit**，不要分别调用 Contents API 产生三个 commit。流程：重新读取最新 master/目标文件 → 为三份新内容创建 blobs → 基于最新 tree 创建包含三处修改的新 tree → 创建一个 commit（parent=最新 master）→ 最后一次性推进 master ref。提交消息固定为 `content(daily-learning): add YYYY-MM-DD paper reading`。只有 Git Data 写能力不可用或原子提交明确失败时，才退回逐文件更新，并说明降级原因。
+
 
 每篇完整精读使用目录 `YYMMDD-FirstAuthor-ShortName`，正文统一为 `README.md`。
 
