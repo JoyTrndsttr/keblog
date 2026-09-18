@@ -4,6 +4,15 @@
 
 ### 2026-09-18
 
+- **PhantomCall: Evading ML Malware Detectors via Function Call Graph Perturbation**
+  - 简称：[PhantomCall](https://38-76-161-31.sslip.io/daily-learning/?paper=260918-MdAjwadAkil-PhantomCall)
+  - Tags：`2026` `arXiv/Preprint` `软件安全` `恶意软件检测` `对抗机器学习` `Function Call Graph` `图结构扰动` `语义保持干预` `黑盒攻击` `因果实验设计`
+  - 作者：Md Ajwad Akil; Adrian Shuai Li; Imtiaz Karim; Arun Iyengar; Ashish Kundu; Elisa Bertino
+  - Venue / 年份：arXiv cs.CR / 2026
+  - DOI / 原文：[arXiv:2609.00705](https://arxiv.org/abs/2609.00705)
+  - 主题：Function Call Graph、Adversarial Malware、Semantics-Preserving Perturbation、Graph Topology、Black-box Search
+  - 一句话价值：通过在真实可执行 Windows PE 中注入 dummy functions，显式操纵 FCG 的节点、边、注入量与拓扑，同时用 sandbox 验证行为保持；对当前研究最关键的启发是把 call-graph intervention 拆成 dose × topology × location，并将 treatment fidelity、semantic fidelity 与 matched budget 分开验证。
+
 - **RepoReasoner: Evaluating Repository-Level Code Reasoning Ability of Long-Context Language Models**
   - 简称：[RepoReasoner](https://38-76-161-31.sslip.io/daily-learning/?paper=260918-YanlinWang-RepoReasoner)
   - Tags：`2026` `FSE` `仓库级推理` `上下文工程` `长上下文` `调用链` `动态执行` `代码理解` `LLM评测` `Benchmark`
