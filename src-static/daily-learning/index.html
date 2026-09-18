@@ -4,7 +4,7 @@
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="王柯的每日论文精读：从方法、实验与证据边界理解智能软件工程研究。">
   <meta name="theme-color" content="#15112d">
-  <title>每日学习｜王柯</title><link rel="stylesheet" href="/styles.css?v=20260916-math1"><link rel="stylesheet" href="/vendor/katex/katex.min.css?v=0.18.7"><script defer src="/vendor/katex/katex.min.js?v=0.18.7"></script><script defer src="/vendor/katex/contrib/auto-render.min.js?v=0.18.7"></script><script defer src="/app.js?v=20260916-math1"></script>
+  <title>每日学习｜王柯</title><link rel="stylesheet" href="/styles.css?v=20260918-shortcuts1"><link rel="stylesheet" href="/vendor/katex/katex.min.css?v=0.18.7"><script defer src="/vendor/katex/katex.min.js?v=0.18.7"></script><script defer src="/vendor/katex/contrib/auto-render.min.js?v=0.18.7"></script><script defer src="/app.js?v=20260918-shortcuts1"></script>
 </head>
 <body data-page="daily-learning">
   <header class="site-header">
@@ -20,8 +20,26 @@
         <a class="learning-index-link" href="/daily-learning/?paper=plan" data-learning-slug="plan"><span>08:30 · DAILY</span><b>每日任务执行规则</b></a>
         <a class="learning-index-link" href="/daily-learning/?paper=pool" data-learning-slug="pool"><span>论文池</span><b>候选论文与已读记录</b></a>
       </nav>
-      <div class="learning-list-head"><span>精读档案</span><b id="learning-count">—</b></div>
-      <nav id="learning-list" class="learning-list" aria-label="精读论文列表"><p class="loading">正在读取论文档案…</p></nav>
+      <div class="learning-list-head"><span>最近精读</span><b id="learning-count">—</b></div>
+      <nav id="learning-list" class="learning-list" aria-label="最近三篇精读"><p class="loading">正在读取论文档案…</p></nav>
+      <section class="learning-shortcuts-section" aria-labelledby="learning-shortcuts-title">
+        <div class="learning-shortcuts-head"><h3 id="learning-shortcuts-title">简称</h3><button id="learning-show-all" type="button">··· 全部文章</button></div>
+        <nav id="learning-shortcuts" class="learning-shortcuts" aria-label="最近三十篇精读的简称"></nav>
+      </section>
+    </aside>
+    <aside class="learning-finder-panel" aria-label="论文查询">
+      <section class="learning-finder" aria-labelledby="learning-finder-title">
+        <div class="learning-finder-title"><h2 id="learning-finder-title">快速查找</h2><span>FIND A PAPER</span></div>
+        <div class="learning-search-wrap">
+          <label class="visually-hidden" for="learning-search">搜索简称、标题或标签</label>
+          <input id="learning-search" type="search" placeholder="搜索简称、标题或标签" autocomplete="off" aria-controls="learning-search-results">
+          <span class="learning-search-icon" aria-hidden="true">⌕</span>
+          <div id="learning-search-results" class="learning-search-results" hidden></div>
+        </div>
+        <div class="learning-tags-head"><h3>标签筛选</h3><button id="learning-clear-tag" type="button" disabled>取消筛选</button></div>
+        <p class="learning-tags-hint">可多选，结果需同时包含所选标签</p>
+        <div id="learning-tags" class="learning-tags" aria-label="按标签筛选"></div>
+      </section>
     </aside>
     <article class="learning-reader">
       <div class="reading-progress" aria-hidden="true"><i id="reading-progress-bar"></i></div>
@@ -37,6 +55,12 @@
         <aside class="learning-toc" aria-label="本文目录"><p>本文目录</p><nav id="learning-toc"></nav></aside>
       </div>
     </article>
+    <dialog id="learning-all-dialog" class="learning-dialog" aria-labelledby="learning-all-title">
+      <div class="learning-dialog-head"><div><p class="eyebrow">ALL READINGS</p><h2 id="learning-all-title">全部精读</h2></div><button id="learning-close-all" type="button" aria-label="关闭全部精读">×</button></div>
+      <label class="visually-hidden" for="learning-dialog-search">搜索全部精读</label><input id="learning-dialog-search" type="search" placeholder="搜索简称、标题或标签" autocomplete="off">
+      <p id="learning-dialog-count" class="learning-dialog-count"></p>
+      <nav id="learning-dialog-list" class="learning-dialog-list" aria-label="全部精读简称"></nav>
+    </dialog>
   </main>
   <footer class="site-footer"><div><b>王柯</b><p>Causality · Code Review · Software Intelligence</p></div><div><span>中南大学计算机学院</span><span>郁松 / 廖志芳</span></div><p>© 2026 Ke Wang</p></footer>
 </body>

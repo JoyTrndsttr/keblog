@@ -32,11 +32,18 @@ function markdownToHtml(markdown) {
   const lines = markdown.replace(/\r/g, '').split('\n');
   const html = [];
   let inTable = false;
-  let listType = '';
+  const listStack = [];
   let inCode = false;
+  const closeList = () => {
+    while (listStack.length) {
+      const { type, liOpen } = listStack.pop();
+      if (liOpen) html.push('</li>');
+      html.push(`</${type}>`);
+    }
+  };
   const closeBlocks = () => {
     if (inTable) { html.push('</tbody></table></div>'); inTable = false; }
-    if (listType) { html.push(`</${listType}>`); listType = ''; }
+    closeList();
   };
   for (let index = 0; index < lines.length; index += 1) {
     const raw = lines[index];
@@ -59,7 +66,11 @@ function markdownToHtml(markdown) {
       html.push(`<div class="math-block" data-tex="${escapeHtml(formula.join('\n'))}"></div>`);
       continue;
     }
-    if (!line) { closeBlocks(); continue; }
+    if (!line) {
+      const next = lines.slice(index + 1).find((item) => item.trim());
+      if (!listStack.length || !next || !/^\s*(?:- |\d+\.\s)/.test(next)) closeBlocks();
+      continue;
+    }
     if (/^---+$/.test(line)) { closeBlocks(); html.push('<hr>'); continue; }
     if (/^\|.+\|$/.test(line)) {
       const cells = line.slice(1, -1).split('|').map((cell) => cell.trim());
@@ -88,12 +99,27 @@ function markdownToHtml(markdown) {
       html.push(`<h${level}>${inline(title)}</h${level}>`);
     }
     else if (line.startsWith('> ')) { closeBlocks(); html.push(`<blockquote>${inline(line.slice(2))}</blockquote>`); }
-    else if (/^- /.test(line)) {
-      if (listType !== 'ul') { closeBlocks(); html.push('<ul>'); listType = 'ul'; }
-      html.push(`<li>${inline(line.slice(2))}</li>`);
-    } else if (/^\d+\.\s/.test(line)) {
-      if (listType !== 'ol') { closeBlocks(); html.push('<ol>'); listType = 'ol'; }
-      html.push(`<li>${inline(line.replace(/^\d+\.\s/, ''))}</li>`);
+    else if (/^(?:- |\d+\.\s)/.test(line)) {
+      const type = line.startsWith('- ') ? 'ul' : 'ol';
+      const indent = raw.match(/^\s*/)[0].length;
+      while (listStack.length && indent < listStack.at(-1).indent) {
+        const previous = listStack.pop();
+        if (previous.liOpen) html.push('</li>');
+        html.push(`</${previous.type}>`);
+      }
+      if (listStack.length && indent === listStack.at(-1).indent && listStack.at(-1).type !== type) {
+        const previous = listStack.pop();
+        if (previous.liOpen) html.push('</li>');
+        html.push(`</${previous.type}>`);
+      }
+      if (!listStack.length || indent > listStack.at(-1).indent) {
+        html.push(`<${type}>`);
+        listStack.push({ type, indent, liOpen: false });
+      }
+      const current = listStack.at(-1);
+      if (current.liOpen) html.push('</li>');
+      html.push(`<li>${inline(line.replace(/^(?:- |\d+\.\s)/, ''))}`);
+      current.liOpen = true;
     } else {
       closeBlocks();
       html.push(`<p>${inline(line.replace(/ {2}$/, ''))}</p>`);
@@ -134,7 +160,9 @@ function updateStats(markdown, modified) {
 async function fetchPaperPool() {
   const response = await fetch('/api/documents/paperpool.md', { cache: 'no-store' });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  return response.json();
+  const payload = await response.json();
+  payload.content = payload.content.replace(/^> \*\*维护约定\*\*\n(?:>[^\n]*\n)*/m, '');
+  return payload;
 }
 
 async function loadPaperPool() {
@@ -207,6 +235,129 @@ async function loadPublicationDetail() {
 if (document.querySelector('#publication-detail')) loadPublicationDetail();
 
 let learningEntries = [];
+const learningTags = new Set();
+let learningSearchOpen = false;
+
+function parsePaperPoolIndex(markdown) {
+  const details = new Map();
+  let current = null;
+  for (const line of markdown.split('\n')) {
+    const short = line.match(/^\s+- 简称：\[([^\]]+)\]\([^)]*[?&]paper=([^&#)]+)[^)]*\)/);
+    if (short) {
+      current = decodeURIComponent(short[2]);
+      details.set(current, { displayName: short[1], tags: [] });
+      continue;
+    }
+    const tags = line.match(/^\s+- Tags：(.+)$/);
+    if (tags && current) {
+      details.get(current).tags = [...tags[1].matchAll(/`([^`]+)`/g)].map((match) => match[1]);
+      current = null;
+    }
+  }
+  return details;
+}
+
+function normalized(value) {
+  return String(value).normalize('NFKC').toLocaleLowerCase().trim();
+}
+
+function fuzzyScore(value, query) {
+  const text = normalized(value);
+  const wanted = normalized(query);
+  if (!wanted) return 0;
+  const position = text.indexOf(wanted);
+  if (position >= 0) return 100 - Math.min(position, 50);
+  let cursor = 0;
+  let gaps = 0;
+  for (const letter of wanted) {
+    const found = text.indexOf(letter, cursor);
+    if (found < 0) return -1;
+    gaps += found - cursor;
+    cursor = found + 1;
+  }
+  return 30 - Math.min(gaps, 25);
+}
+
+function findLearningEntries(query = '', tags = learningTags) {
+  const terms = normalized(query).split(/\s+/).filter(Boolean);
+  return learningEntries
+    .filter((entry) => [...tags].every((tag) => entry.tags.includes(tag)))
+    .map((entry) => {
+      let score = 0;
+      for (const term of terms) {
+        const weighted = (value, bonus = 0) => {
+          const match = fuzzyScore(value, term);
+          return match < 0 ? -1 : match + bonus;
+        };
+        const best = Math.max(
+          weighted(entry.displayName, 20),
+          weighted(entry.shortName, 10),
+          weighted(entry.title),
+          weighted(entry.author),
+          ...entry.tags.map((item) => weighted(item)),
+        );
+        if (best < 0) return null;
+        score += best;
+      }
+      return { entry, score };
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.score - a.score || b.entry.date.localeCompare(a.entry.date))
+    .map((item) => item.entry);
+}
+
+function learningResultLink(entry, compact = false) {
+  return `<a href="/daily-learning/?paper=${encodeURIComponent(entry.slug)}" data-learning-slug="${entry.slug}">
+    <span><b>${escapeHtml(entry.displayName)}</b>${compact ? '' : `<small>${escapeHtml(entry.title)}</small>`}</span>
+    <time>${escapeHtml(entry.date)}</time>
+  </a>`;
+}
+
+function renderLearningSearch() {
+  const panel = document.querySelector('#learning-search-results');
+  const input = document.querySelector('#learning-search');
+  if (!panel || !input) return;
+  panel.hidden = !learningSearchOpen && !learningTags.size && !input.value.trim();
+  if (panel.hidden) return;
+  const matches = findLearningEntries(input.value);
+  panel.innerHTML = `<div class="learning-result-caption">${learningTags.size ? `已选 ${learningTags.size} 个标签` : input.value.trim() ? '搜索结果' : '快速建议'}<span>${matches.length} 篇</span></div>`
+    + (matches.slice(0, 5).map((entry) => learningResultLink(entry)).join('') || '<p class="learning-empty">没有匹配的论文</p>')
+    + (matches.length > 5 ? `<button class="learning-more-results" type="button">查看全部 ${matches.length} 篇 →</button>` : '');
+}
+
+function renderLearningDialog() {
+  const input = document.querySelector('#learning-dialog-search');
+  const list = document.querySelector('#learning-dialog-list');
+  if (!input || !list) return;
+  const matches = findLearningEntries(input.value);
+  document.querySelector('#learning-dialog-count').textContent = `${matches.length} / ${learningEntries.length} 篇`;
+  list.innerHTML = matches.map((entry) => learningResultLink(entry)).join('') || '<p class="learning-empty">没有匹配的论文</p>';
+}
+
+function showAllLearning() {
+  const dialog = document.querySelector('#learning-all-dialog');
+  document.querySelector('#learning-dialog-search').value = document.querySelector('#learning-search').value;
+  renderLearningDialog();
+  if (!dialog.open) dialog.showModal();
+}
+
+function renderLearningNavigation() {
+  document.querySelector('#learning-count').textContent = String(learningEntries.length);
+  const list = document.querySelector('#learning-list');
+  list.innerHTML = learningEntries.slice(0, 3).map((entry) => `
+    <a href="/daily-learning/?paper=${encodeURIComponent(entry.slug)}" data-learning-slug="${entry.slug}">
+      <time>${escapeHtml(entry.date.slice(5).replace('-', '.'))}</time><b>${escapeHtml(entry.displayName)}</b>
+    </a>`).join('') || '<p class="loading">还没有完成的精读。</p>';
+  const shortcuts = learningEntries.slice(0, 30);
+  const shortcutList = document.querySelector('#learning-shortcuts');
+  shortcutList.style.setProperty('--shortcut-rows', String(Math.min(10, shortcuts.length)));
+  shortcutList.innerHTML = shortcuts.map((entry) => `<a href="/daily-learning/?paper=${encodeURIComponent(entry.slug)}" data-learning-slug="${escapeHtml(entry.slug)}" title="${escapeHtml(entry.displayName)}"><b>${escapeHtml(entry.displayName)}</b></a>`).join('');
+  const counts = new Map();
+  learningEntries.forEach((entry) => entry.tags.forEach((tag) => counts.set(tag, (counts.get(tag) || 0) + 1)));
+  const tags = [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'zh-CN'));
+  document.querySelector('#learning-tags').innerHTML = tags.map(([tag, count]) => `<button type="button" data-learning-tag="${escapeHtml(tag)}" aria-pressed="false">${escapeHtml(tag)}<span>${count}</span></button>`).join('') || '<p class="learning-empty">标签暂时不可用</p>';
+}
+
 async function fetchLearning(slug) {
   const response = await fetch(`/api/daily-learning/${encodeURIComponent(slug)}`, { cache: 'no-store' });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -275,17 +426,18 @@ async function loadDailyLearning() {
   const list = document.querySelector('#learning-list');
   if (!list) return;
   try {
-    const response = await fetch('/api/daily-learning', { cache: 'no-store' });
+    const [response, pool] = await Promise.all([
+      fetch('/api/daily-learning', { cache: 'no-store' }),
+      fetchPaperPool().catch(() => null),
+    ]);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const payload = await response.json();
-    learningEntries = payload.entries;
-    document.querySelector('#learning-count').textContent = String(learningEntries.length);
-    list.innerHTML = learningEntries.map((entry) => `
-      <a href="/daily-learning/?paper=${encodeURIComponent(entry.slug)}" data-learning-slug="${entry.slug}">
-        <time>${entry.date.replaceAll('-', '.')}</time>
-        <b>${escapeHtml(entry.shortName)}</b>
-        <span>${escapeHtml(entry.title)}</span>
-      </a>`).join('') || '<p class="loading">还没有完成的精读。</p>';
+    const details = parsePaperPoolIndex(pool?.content || '');
+    learningEntries = (await response.json()).entries.map((entry) => ({
+      ...entry,
+      displayName: details.get(entry.slug)?.displayName || entry.shortName,
+      tags: details.get(entry.slug)?.tags || [],
+    }));
+    renderLearningNavigation();
     const selected = new URLSearchParams(location.search).get('paper');
     const initial = ['index', 'plan', 'pool'].includes(selected) || learningEntries.some((entry) => entry.slug === selected)
       ? selected
@@ -296,6 +448,40 @@ async function loadDailyLearning() {
     document.querySelector('#learning-content').innerHTML = '<p class="error">每日学习服务暂时不可用。</p>';
   }
 }
+
+const learningSearch = document.querySelector('#learning-search');
+learningSearch?.addEventListener('focus', () => { learningSearchOpen = true; renderLearningSearch(); });
+learningSearch?.addEventListener('input', renderLearningSearch);
+document.querySelector('#learning-search-results')?.addEventListener('click', (event) => {
+  if (event.target.closest('.learning-more-results')) showAllLearning();
+});
+document.querySelector('#learning-show-all')?.addEventListener('click', showAllLearning);
+document.querySelector('#learning-close-all')?.addEventListener('click', () => document.querySelector('#learning-all-dialog').close());
+document.querySelector('#learning-dialog-search')?.addEventListener('input', renderLearningDialog);
+document.querySelector('#learning-tags')?.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-learning-tag]');
+  if (!button) return;
+  const tag = button.dataset.learningTag;
+  if (learningTags.has(tag)) learningTags.delete(tag);
+  else learningTags.add(tag);
+  document.querySelectorAll('[data-learning-tag]').forEach((node) => node.setAttribute('aria-pressed', String(learningTags.has(node.dataset.learningTag))));
+  document.querySelector('#learning-clear-tag').disabled = !learningTags.size;
+  renderLearningSearch();
+  renderLearningDialog();
+});
+document.querySelector('#learning-clear-tag')?.addEventListener('click', () => {
+  learningTags.clear();
+  document.querySelectorAll('[data-learning-tag]').forEach((node) => node.setAttribute('aria-pressed', 'false'));
+  document.querySelector('#learning-clear-tag').disabled = true;
+  renderLearningSearch();
+  renderLearningDialog();
+});
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.learning-search-wrap') && !event.target.closest('#learning-tags')) {
+    learningSearchOpen = false;
+    renderLearningSearch();
+  }
+});
 
 document.querySelector('.learning-shell')?.addEventListener('click', (event) => {
   const link = event.target.closest('a');
@@ -313,6 +499,11 @@ document.querySelector('.learning-shell')?.addEventListener('click', (event) => 
   const slug = directSlug || markdownMatch?.[1] || (planMatch ? 'plan' : '');
   if (!slug) return;
   event.preventDefault();
+  const dialog = document.querySelector('#learning-all-dialog');
+  if (dialog?.open) dialog.close();
+  learningSearchOpen = false;
+  document.querySelector('#learning-search').value = '';
+  renderLearningSearch();
   openLearning(slug);
 });
 window.addEventListener('popstate', () => {
