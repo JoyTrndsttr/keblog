@@ -14,7 +14,7 @@
 
 - **RepoReasoner: Evaluating Repository-Level Code Reasoning Ability of Long-Context Language Models**
   - 简称：[RepoReasoner](https://38-76-161-31.sslip.io/daily-learning/?paper=260918-YanlinWang-RepoReasoner)
-  - Tags：`2026` `待补充`
+  - Tags：`2026` `FSE` `仓库级推理` `上下文工程` `长上下文` `调用链` `动态执行` `代码理解` `LLM评测` `Benchmark`
   - 作者：Yanlin Wang; Suiquan Wang; Yanli Wang; Bowen Zhang; Daya Guo; Jiachi Chen; Zibin Zheng
   - Venue / 年份：FSE 2026 / Proc. ACM Softw. Eng. 3, FSE124
   - DOI / 原文：[DOI:10.1145/3808131](https://doi.org/10.1145/3808131); [arXiv:2607.25996](https://arxiv.org/abs/2607.25996); [Code](https://github.com/DeepSoftwareAnalytics/RepoReasoner)
