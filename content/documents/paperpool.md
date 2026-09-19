@@ -4,6 +4,15 @@
 
 ### 2026-09-19
 
+- **Hierarchical Context Pruning: Optimizing Real-World Code Completion with Repository-Level Pretrained Code LLMs**
+  - 简称：[HCP-Coder](https://38-76-161-31.sslip.io/daily-learning/?paper=260919-LeiZhang-HCPCoder)
+  - Tags：`2025` `AAAI` `仓库级代码补全` `上下文工程` `上下文裁剪` `Repository Dependency` `长上下文` `Code LLM` `Cross-file Context` `Context Representation`
+  - 作者：Lei Zhang; Yunshui Li; Jiaming Li; Xiaobo Xia; Jiaxi Yang; Run Luo; Minzheng Wang; Longze Chen; Junhao Liu; Qiang Qu; Min Yang
+  - Venue / 年份：AAAI 2025
+  - DOI / 原文：[DOI:10.1609/aaai.v39i24.34782](https://doi.org/10.1609/aaai.v39i24.34782); [arXiv:2406.18294](https://arxiv.org/abs/2406.18294); [Code](https://github.com/Hambaobao/HCP-Coder)
+  - 主题：Hierarchical Context Pruning、Repository Dependency、Cross-file Context、Code Completion、Context Representation
+  - 一句话价值：将 repository context 拆成依赖结构与节点内部表示粒度，在保留文件拓扑关系的同时大量裁掉依赖文件的具体实现，把约 50k token 的 full-repository prompt 压到约 8k；对当前研究最关键的启发是把 node selection 与 node representation 分成独立 treatment，检验 relevance × representation fidelity 的交互。
+
 - **RepoGraph: Enhancing AI Software Engineering with Repository-level Code Graph**
   - 简称：[RepoGraph](https://38-76-161-31.sslip.io/daily-learning/?paper=260919-SiruOuyang-RepoGraph)
   - Tags：`2025` `ICLR` `仓库级代码图` `上下文工程` `Coding Agent` `SWE-bench` `图检索` `上下文噪声` `Context Depth` `代码定位`
@@ -350,4 +359,5 @@
   - 一句话价值：利用开发者社区知识构造更接近人类开发者的代码推理过程。
 
 ## 待精读论文
-- **Hierarchical Context Pruning: Optimizing Real-World Code Completion with Repository-Level Pretrained Code LLMs**
+
+- 暂无已指定待精读论文
