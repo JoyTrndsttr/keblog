@@ -30,7 +30,7 @@ class ContentHTTPTests(unittest.TestCase):
         (content / "daily-learning" / "260910-Test-Paper" / "README.md").write_text("# Reading\n\n> 论文：*Test Paper*  \n")
         (content / "support" / "prompt.txt").write_text("task prompt")
         workbench = content / "research" / "workbench"; workbench.mkdir(parents=True)
-        (workbench / "index.html").write_text("<h1>Workbench</h1>")
+        (workbench / "index.html").write_text("<style>h1 { color: purple; }</style><h1>Workbench</h1><script>document.body.dataset.ready = 'yes'</script>")
         (workbench / "style.css").write_text("body { color: black; }")
         cls.server = ThreadingHTTPServer(("127.0.0.1", 0), partial(QuietHandler, directory=static))
         cls.server.content_dir = content
@@ -60,14 +60,25 @@ class ContentHTTPTests(unittest.TestCase):
             self.assertEqual(response.headers["Cache-Control"], "no-store")
 
     def test_workbench_static_route(self):
-        status, content_type, body = self.raw_request("/research/workbench/")
+        with urllib.request.urlopen(self.base + "/research/workbench/") as response:
+            status = response.status
+            content_type = response.headers.get_content_type()
+            policy = response.headers["Content-Security-Policy"]
+            body = response.read()
         self.assertEqual((status, content_type), (200, "text/html"))
         self.assertIn(b"Workbench", body)
+        self.assertIn("style-src 'self' 'unsafe-inline'", policy)
+        self.assertIn("script-src 'self' 'unsafe-inline'", policy)
         self.assertIn(b'class="keblog-return"', body)
         self.assertIn(b'href="/research/"', body)
         self.assertNotIn("keblog-return", (Path(self.temp.name) / "content" / "research" / "workbench" / "index.html").read_text())
         self.assertEqual(self.raw_request("/research/workbench/style.css")[:2], (200, "text/css"))
         self.assertEqual(self.raw_request("/research/workbench/%2e%2e/index.html")[0], 404)
+
+    def test_inline_code_stays_blocked_outside_workbench(self):
+        with urllib.request.urlopen(self.base + "/") as response:
+            policy = response.headers["Content-Security-Policy"]
+        self.assertNotIn("'unsafe-inline'", policy)
 
     def test_git_content_routes(self):
         self.assertEqual(self.request("/api/health")[1]["source"], "git")
