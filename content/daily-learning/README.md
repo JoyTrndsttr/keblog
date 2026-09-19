@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**32 次精读**，覆盖 **2026-08-03—2026-09-18**。
+> 已归档：**33 次精读**，覆盖 **2026-08-03—2026-09-18**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-09-19 | [260919-SiruOuyang-RepoGraph](./260919-SiruOuyang-RepoGraph/README.md) | RepoGraph: Enhancing AI Software Engineering with Repository-level Code Graph | Siru Ouyang | ICLR 2025 | 已精读（完整 ICLR 原文） |
 | 2026-09-18 | [260918-MdAjwadAkil-PhantomCall](./260918-MdAjwadAkil-PhantomCall/README.md) | PhantomCall: Evading ML Malware Detectors via Function Call Graph Perturbation | Md Ajwad Akil | arXiv cs.CR, 2026 | 已精读（完整 PDF 原文） |
 | 2026-09-18 | [260918-YanlinWang-RepoReasoner](./260918-YanlinWang-RepoReasoner/README.md) | RepoReasoner: Evaluating Repository-Level Code Reasoning Ability of Long-Context Language Models | Yanlin Wang | FSE 2026 / Proc. ACM Softw. Eng. 3 | 已精读（完整公开原文） |
 | 2026-09-18 | [260918-ThibaudGloaguen-AgentsMD](./260918-ThibaudGloaguen-AgentsMD/README.md) | Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents? | Thibaud Gloaguen | MemAgents @ ICLR 2026 / arXiv 2026 | 已精读（完整 arXiv v2 原文） |
@@ -52,7 +53,7 @@
 
 | 计划日期 | 论文 | 来源 | 优先级 | 选择原因 |
 |---|---|---|---|---|
-| — | 暂无已排期论文 | GitHub Paper Pool | — | 每日任务读取仓库当前版本后选择并登记。 |
+| — | Hierarchical Context Pruning: Optimizing Real-World Code Completion with Repository-Level Pretrained Code LLMs | GitHub Paper Pool | 用户指定 | 2026-09-18 指定的两篇候选之一；RepoGraph 已于 2026-09-19 精读，HCP-Coder 保留为下一篇。 |
 
 ## 维护规则
 
