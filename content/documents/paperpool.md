@@ -2,6 +2,17 @@
 
 ## 已精读论文
 
+### 2026-09-19
+
+- **RepoGraph: Enhancing AI Software Engineering with Repository-level Code Graph**
+  - 简称：[RepoGraph](https://38-76-161-31.sslip.io/daily-learning/?paper=260919-SiruOuyang-RepoGraph)
+  - Tags：`2025` `ICLR` `仓库级代码图` `上下文工程` `Coding Agent` `SWE-bench` `图检索` `上下文噪声` `Context Depth` `代码定位`
+  - 作者：Siru Ouyang; Wenhao Yu; Kaixin Ma; Zilin Xiao; Zhihan Zhang; Mengzhao Jia; Jiawei Han; Hongming Zhang; Dong Yu
+  - Venue / 年份：ICLR 2025
+  - DOI / 原文：[ICLR Paper](https://proceedings.iclr.cc/paper_files/paper/2025/hash/4a4a3c197deac042461c677219efd36c-Abstract-Conference.html); [arXiv:2410.14684](https://arxiv.org/abs/2410.14684); [Code](https://github.com/ozyyshr/RepoGraph)
+  - 主题：Repository Graph、Graph Retrieval、Repository Context、Coding Agent、Context Expansion
+  - 一句话价值：用行级 definition/reference 图为 SWE-bench 系统提供 k-hop ego-graph 上下文；最关键的消融显示 1-hop flatten resolve rate 为 29.67%，2-hop flatten 扩张到约 10.5k token 后反降至 26.00%，而 summary 可部分恢复，直接暴露 graph depth、token dilution 与 representation 之间尚未识别的机制。
+
 ### 2026-09-18
 
 - **PhantomCall: Evading ML Malware Detectors via Function Call Graph Perturbation**
@@ -217,7 +228,6 @@
   - DOI / 原文：[10.1109/ICPC66645.2025.00068](https://doi.org/10.1109/ICPC66645.2025.00068)
   - 主题：代码审查、代码理解、认知模型、审查策略、质性研究
   - 一句话价值：真实观察显示专家审查并非简单线性读diff，而是先建立上下文，再按复杂度机会式组合线性阅读、难度优先、分块、测试与讨论；该模型适合提出机制假设，但不能直接证明哪种策略提高审查质量。
-
 ### 2026-08-29
 
 - **The Effect of Complexity and Provenance on Code Review Decisions: Evidence from a Controlled Experiment**
@@ -340,3 +350,4 @@
   - 一句话价值：利用开发者社区知识构造更接近人类开发者的代码推理过程。
 
 ## 待精读论文
+- **Hierarchical Context Pruning: Optimizing Real-World Code Completion with Repository-Level Pretrained Code LLMs**
