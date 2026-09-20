@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-09-20
+
+- **Context Pruning for Coding Agents via Multi-Rubric Latent Reasoning**
+  - 简称：[LaMR](https://38-76-161-31.sslip.io/daily-learning/?paper=260920-JingjingWang-LaMR)
+  - Tags：`2026` `arXiv/Preprint` `Coding Agent` `上下文工程` `Context Pruning` `Repository Context` `Semantic Evidence` `Dependency Support` `CRF` `Mixture-of-Experts`
+  - 作者：Jingjing Wang; Xiwen Chen; Wenhui Zhu; Huayu Li; Zhengxiao He; Feiyang Cai; Ana S. Carreon-Rascon; Xuanzhao Dong; Feng Luo
+  - Venue / 年份：arXiv / 2026
+  - DOI / 原文：[arXiv:2605.15315](https://arxiv.org/abs/2605.15315)
+  - 主题：Context Pruning、Coding Agent、Semantic Evidence、Dependency Support、Repository Context
+  - 一句话价值：把代码上下文相关性拆成 semantic evidence 与 dependency support，并用独立 CRF + query-adaptive MoE 建模；对当前研究最关键的启发是 context utility 具有条件性，可将 node selection、representation fidelity 与 evidence-support composition 拆成独立 treatment。
+
 ### 2026-09-19
 
 - **Hierarchical Context Pruning: Optimizing Real-World Code Completion with Repository-Level Pretrained Code LLMs**

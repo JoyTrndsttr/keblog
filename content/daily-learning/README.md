@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**34 次精读**，覆盖 **2026-08-03—2026-09-19**。
+> 已归档：**35 次精读**，覆盖 **2026-08-03—2026-09-20**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-09-20 | [260920-JingjingWang-LaMR](./260920-JingjingWang-LaMR/README.md) | Context Pruning for Coding Agents via Multi-Rubric Latent Reasoning | Jingjing Wang | arXiv, 2026 | 已精读（完整公开原文） |
 | 2026-09-19 | [260919-LeiZhang-HCPCoder](./260919-LeiZhang-HCPCoder/README.md) | Hierarchical Context Pruning: Optimizing Real-World Code Completion with Repository-Level Pretrained Code LLMs | Lei Zhang | AAAI 2025 | 已精读（完整 AAAI 原文） |
 | 2026-09-19 | [260919-SiruOuyang-RepoGraph](./260919-SiruOuyang-RepoGraph/README.md) | RepoGraph: Enhancing AI Software Engineering with Repository-level Code Graph | Siru Ouyang | ICLR 2025 | 已精读（完整 ICLR 原文） |
 | 2026-09-18 | [260918-MdAjwadAkil-PhantomCall](./260918-MdAjwadAkil-PhantomCall/README.md) | PhantomCall: Evading ML Malware Detectors via Function Call Graph Perturbation | Md Ajwad Akil | arXiv cs.CR, 2026 | 已精读（完整 PDF 原文） |
