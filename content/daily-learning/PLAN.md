@@ -1,6 +1,6 @@
 # 每日学习执行计划
 
-> 生效版本：2026-09-18（Paper Pool 结构与原子提交规则更新）  
+> 生效版本：2026-09-20（Paper Pool 分月与 short 去重索引更新）  
 > 执行时间：每天 08:30（Asia/Shanghai）  
 > 内容仓库：`JoyTrndsttr/keblog` 的 `master` 分支
 > 发布地址：`https://38-76-161-31.sslip.io`
@@ -70,31 +70,23 @@
 
 ## Paper Pool Markdown 结构
 
-`content/documents/paperpool.md` 使用纯 Markdown 层级，不再使用大表格。固定结构：`# Paper Pool` → 顶部精简维护约定 → `## 已精读论文` / `## 待精读论文`。已精读论文按 `### YYYY-MM-DD` 分组；每篇论文以标题作为一级无序列表项，内部字段拆成缩进的二级无序列表，禁止压成同一行。同一天允许多篇。固定字段顺序为：`简称（链接）` → `Tags` → `作者` → `Venue / 年份` → `DOI / 原文` → `主题` → `一句话价值`。简称优先使用论文/方法/benchmark 明确名称；简称必须链接到本站对应精读页 `https://38-76-161-31.sslip.io/daily-learning/?paper=<slug>`。Tags 至少包含三类：①年份（如 2026、2025）；②Venue/出版状态（如 ICSE、FSE、TOSEM、EMSE、arXiv/Preprint）；③研究领域（如代码评审、漏洞检测、上下文工程、多智能体系统、因果推断）；并可根据精读正文继续添加任务、方法、数据/评测、机制等有依据的标签。每篇通常 5–10 个 Tag，宁可多而准确，不机械堆砌。
+Paper Pool 改为“轻量入口 + 永久去重索引 + 月度详细记录”：
 
-
-```text
-候选论文
-  ↓ 直接读取 GitHub Paper Pool 与精读索引
-身份核验（DOI > arXiv ID > 规范化标题）
-  ↓ 完整阅读论文原文
-生成 Markdown 精读
-  ↓
-创建 YYMMDD-FirstAuthor-ShortName/README.md
-  ↓ 同步更新 Paper Pool 与精读索引
-commit 并 push 到 master
-  ↓ GitHub Webhook
-VPS pull、build、restart
-```
-
-- Paper Pool 的唯一事实源是 GitHub `content/documents/paperpool.md`；计划任务直接读取和维护该文件，不依赖网站页面读取。网站入口 `?paper=pool` 仅用于人工浏览。
-- “已收藏”不等于“已精读”。
-- 已精读论文永久排除，除非用户明确要求重读。
-- 新闻与雷达论文按 7 天去重。
-- 每次执行都重新读取 GitHub 中的论文池与精读索引，保留已有记录并避免并发覆盖。
+- `content/documents/paperpool.md`：轻量入口与维护说明，不再保存全部论文详情。
+- `content/documents/paperpool_short.md`：只保存所有**已精读论文标题**，作为永久去重的首选事实源。
+- `content/documents/paperpool_YYYYMM.md`：按月份保存完整精读条目；日常只读取**当前月份**文件，例如 2026-09 读取 `paperpool_202609.md`。
+- 跨月时新建新的 `paperpool_YYYYMM.md`；历史月份无需日常读取。
+- 当前月份的待精读候选也维护在当前月份文件的 `## 待精读论文` 中。
+- 完整条目仍按 `### YYYY-MM-DD` 分组，每篇论文一个无序列表项，字段保持：简称（链接）→ Tags → 作者 → Venue/年份 → DOI/arXiv/原文 → 主题 → 一句话价值。
+- 每完成一篇精读，必须同时：①向 `paperpool_short.md` 追加标题；②向当前月份文件追加完整条目；③更新 Daily Learning 索引。
+- 去重顺序：先用 `paperpool_short.md` 做规范化标题快速去重；存在标题变体/疑似同文时，再读取相关月度文件核对 DOI/arXiv ID。
+- 每次执行仍需重新读取 GitHub 当前版本，保留已有记录并避免并发覆盖。
 - 不得依赖 Zotero、本地 Paper Pool、自动化 memory、电脑路径或本地附件完成状态查询与去重。
-- 只通过已授权的 GitHub 连接器写入；任何凭据都不能出现在公开提示词或页面里。
-- 若无法获得可完整阅读的论文原文，不开始生成摘要或“基于摘要的导读”，直接询问用户提供 PDF；未获得原文前不得登记为完整精读或写入永久去重记录。
+- 若无法获得完整可读论文原文，不登记完整精读或永久去重。
+
+## GitHub 单次原子提交
+
+每日精读完成后，正文 `content/daily-learning/<slug>/README.md`、精读索引 `content/daily-learning/README.md`、`paperpool_short.md` 和当前月份 `paperpool_YYYYMM.md` 应组成**一个原子 commit**。通常不需要修改轻量入口 `paperpool.md`。流程仍为：重新读取最新 master/目标文件 → 创建 blobs → 基于最新 tree 创建同时包含全部修改的新 tree → 创建一个 commit → 最后一次性推进 master ref。提交消息固定为 `content(daily-learning): add YYYY-MM-DD paper reading`。
 
 ## 每篇精读的最低要求
 
