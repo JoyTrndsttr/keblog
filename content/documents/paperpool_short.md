@@ -18,17 +18,21 @@
 - Does Developer Familiarity Hasten Bug Resolution? A Causal Inference Perspective
 - DREA: Decoupled Reasoning and Exploration Agents for Repository-Level Vulnerability Detection
 - EntailLLM: Verifying LLM-Generated Vulnerability Discovery Paths with Domain Knowledge via Logic Programming
+- Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?
 - Explaining Explanations: An Empirical Study of Explanations in Code Reviews
 - From Static to Dynamic: Benchmarking Real-World Code Review with MCR-Bench
 - Hierarchical Context Pruning: Optimizing Real-World Code Completion with Repository-Level Pretrained Code LLMs
 - Mitigating Omitted Variable Bias in Empirical Software Engineering
+- On the Effectiveness of Context Compression for Repository-Level Tasks: An Empirical Investigation
 - OpenCodeReview: Determinism over Non-Determinism for Cost-Effective Agent-Based Code Review
 - PhantomCall: Evading ML Malware Detectors via Function Call Graph Perturbation
 - Quality Gatekeepers: Investigating the Effects of Code Review Bots on Pull Request Activities
+- RepoGraph: Enhancing AI Software Engineering with Repository-level Code Graph
 - RepoMirage: Probing Repository Context Reasoning in Code Agents with Perturbations
+- RepoReasoner: Evaluating Repository-Level Code Reasoning Ability of Long-Context Language Models
 - RovoDev Code Reviewer: A Large-Scale Online Evaluation of LLM-based Code Review Automation at Atlassian
 - SeRe: A Security-Related Code Review Dataset Aligned with Real-World Review Activities
-- SWE-Skills-Bench: Do Agent Skills Actually Help in Real-World Software Engineering?
+- The Effect of Complexity and Provenance on Code Review Decisions: Evidence from a Controlled Experiment
 - Think Like Human Developers: Harnessing Community Knowledge for Structured Code Reasoning
 - What Does an Agentic Software Engineering Benchmark Measure? Profiling Task Demands and Agent Behaviour Beyond What Category Labels Reveal
 - What Makes a Code Review Useful to OpenDev Developers? An Empirical Investigation
