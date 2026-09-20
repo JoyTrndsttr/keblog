@@ -25,6 +25,7 @@ class ContentHTTPTests(unittest.TestCase):
         static = root / "static"; static.mkdir(); (static / "index.html").write_text("home")
         content = root / "content"; (content / "documents").mkdir(parents=True); (content / "daily-learning" / "260910-Test-Paper").mkdir(parents=True); (content / "support").mkdir()
         (content / "documents" / "paperpool.md").write_text("# Paper Pool\n")
+        (content / "documents" / "paperpool_202609.md").write_text("# Paper Pool · 2026-09\n\n## 已精读论文\n")
         (content / "daily-learning" / "README.md").write_text("# Index\n")
         (content / "daily-learning" / "PLAN.md").write_text("# Plan\n")
         (content / "daily-learning" / "260910-Test-Paper" / "README.md").write_text("# Reading\n\n> 论文：*Test Paper*  \n")
@@ -83,6 +84,8 @@ class ContentHTTPTests(unittest.TestCase):
     def test_git_content_routes(self):
         self.assertEqual(self.request("/api/health")[1]["source"], "git")
         self.assertIn("Paper Pool", self.request("/api/documents/paperpool.md")[1]["content"])
+        self.assertIn("2026-09", self.request("/api/documents/paperpool_202609.md")[1]["content"])
+        self.assertEqual(self.request("/api/documents/other.md")[0], 404)
         entries = self.request("/api/daily-learning")[1]["entries"]
         self.assertEqual([entry["slug"] for entry in entries], ["260910-Test-Paper"])
         self.assertIn("Test Paper", self.request("/api/daily-learning/260910-Test-Paper")[1]["content"])

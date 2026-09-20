@@ -163,6 +163,11 @@ class SiteHandler(SimpleHTTPRequestHandler):
             self.send_markdown_json(self.research_document_path, RESEARCH_DOCUMENT[1]); return
         if route in {"/api/documents/paperpool.md", "/api/v1/paper-pool"}:
             self.send_markdown_json(self.content_dir / "documents" / "paperpool.md"); return
+        if route.startswith("/api/documents/paperpool_"):
+            name = route.removeprefix("/api/documents/")
+            if not re.fullmatch(r"paperpool_(?:\d{6}|short)\.md", name):
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "document not found"}); return
+            self.send_markdown_json(self.content_dir / "documents" / name); return
         if route in {"/api/v1/prompt", "/api/documents/daily-task-prompt.md"}:
             self.send_markdown_json(self.content_dir / "support" / "prompt.txt", "daily-task-prompt.md"); return
         if route == "/api/daily-learning":

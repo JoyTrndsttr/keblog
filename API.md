@@ -10,6 +10,8 @@ GitHub 仓库中的 `content/` 是 Paper Pool、每日计划和论文精读的�
 |---|---|---|
 | GET | `/api/health` | 服务状态与内容来源 |
 | GET | `/api/documents/paperpool.md` | `content/documents/paperpool.md` |
+| GET | `/api/documents/paperpool_YYYYMM.md` | 指定月份的 Paper Pool 详细记录 |
+| GET | `/api/documents/paperpool_short.md` | Paper Pool 永久去重标题索引 |
 | GET | `/api/daily-learning` | 扫描精读目录生成的元数据列表 |
 | GET | `/api/daily-learning/{slug}` | 指定精读的 Markdown |
 | GET | `/api/daily-learning/index` | `content/daily-learning/README.md` |

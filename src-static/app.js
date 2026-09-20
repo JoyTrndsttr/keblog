@@ -148,6 +148,70 @@ function renderMathematics(element) {
   });
 }
 
+function renderPaperPoolMonths(content) {
+  if (!content) return;
+  const children = [...content.children];
+  const datedHeadings = children.filter((node) => node.tagName === 'H3' && /^\d{4}-\d{2}-\d{2}$/.test(node.textContent.trim()));
+  if (!datedHeadings.length) return;
+  const firstDateIndex = children.indexOf(datedHeadings[0]);
+  const prefix = children.slice(0, firstDateIndex);
+  const months = new Map();
+  const tail = [];
+  let current = null;
+  let inTail = false;
+  for (const node of children.slice(firstDateIndex)) {
+    const dateHeading = node.tagName === 'H3' && /^\d{4}-\d{2}-\d{2}$/.test(node.textContent.trim());
+    if (dateHeading) {
+      const month = node.textContent.trim().slice(0, 7);
+      current = months.get(month) || { month, nodes: [], count: 0 };
+      months.set(month, current);
+      current.count += 1;
+      inTail = false;
+    }
+    if (node.tagName === 'H2' && /待精读/.test(node.textContent)) inTail = true;
+    if (inTail) {
+      inTail = true;
+      tail.push(node);
+    } else if (current) {
+      current.nodes.push(node);
+    }
+  }
+  if (!months.size) return;
+  const monthNav = document.createElement('nav');
+  monthNav.className = 'paperpool-month-nav';
+  monthNav.setAttribute('aria-label', '按月份查看论文池');
+  const monthSections = document.createElement('div');
+  monthSections.className = 'paperpool-month-sections';
+  const monthLabel = (month) => `${month.slice(0, 4)}年${month.slice(5)}月`;
+  const monthEntries = [...months.values()].sort((a, b) => b.month.localeCompare(a.month));
+  monthEntries.forEach((item, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.dataset.paperpoolMonth = item.month;
+    button.setAttribute('aria-pressed', String(index === 0));
+    button.innerHTML = `<b>${monthLabel(item.month)}</b><span>${item.count} 个日期</span>`;
+    monthNav.append(button);
+
+    const section = document.createElement('section');
+    section.className = 'paperpool-month';
+    section.dataset.paperpoolMonth = item.month;
+    section.hidden = index !== 0;
+    const heading = document.createElement('h3');
+    heading.className = 'paperpool-month-title';
+    heading.innerHTML = `<span>${monthLabel(item.month)}</span><small>${item.count} 个精读日期</small>`;
+    section.append(heading, ...item.nodes);
+    monthSections.append(section);
+  });
+  monthNav.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-paperpool-month]');
+    if (!button) return;
+    const selected = button.dataset.paperpoolMonth;
+    monthNav.querySelectorAll('[data-paperpool-month]').forEach((node) => node.setAttribute('aria-pressed', String(node === button)));
+    monthSections.querySelectorAll('[data-paperpool-month]').forEach((node) => { node.hidden = node.dataset.paperpoolMonth !== selected; });
+  });
+  content.replaceChildren(...prefix, monthNav, monthSections, ...tail);
+}
+
 function updateStats(markdown, modified) {
   const read = (markdown.match(/\|\s*已精读(?:（[^）]+）)?\s*\|/g) || []).length;
   const candidateBlock = markdown.split('## 候选论文')[1]?.split('\n## ')[0] || '';
@@ -162,6 +226,15 @@ async function fetchPaperPool() {
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const payload = await response.json();
   payload.content = payload.content.replace(/^> \*\*维护约定\*\*\n(?:>[^\n]*\n)*/m, '');
+  const monthlyFiles = [...payload.content.matchAll(/`(paperpool_\d{6}\.md)`/g)].map((match) => match[1]);
+  if (monthlyFiles.length) {
+    const documents = await Promise.all(monthlyFiles.map(async (name) => {
+      const monthlyResponse = await fetch(`/api/documents/${encodeURIComponent(name)}`, { cache: 'no-store' });
+      if (!monthlyResponse.ok) throw new Error(`HTTP ${monthlyResponse.status}`);
+      return monthlyResponse.json();
+    }));
+    payload.content = documents.map((document) => document.content.split('\n## 已精读论文', 2)[1] || document.content).join('\n\n');
+  }
   return payload;
 }
 
@@ -411,6 +484,7 @@ async function openLearning(slug, push = true) {
     if (entry?.doi) { doi.href = `https://doi.org/${entry.doi}`; doi.hidden = false; } else { doi.hidden = true; }
     content.innerHTML = markdownToHtml(payload.content);
     renderMathematics(content);
+    if (slug === 'pool') renderPaperPoolMonths(content);
     decorateLearningDocument();
     if (push) history.pushState({ paper: slug }, '', `/daily-learning/?paper=${encodeURIComponent(slug)}`);
     const targetHash = push ? '' : location.hash;
