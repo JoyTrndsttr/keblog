@@ -37,3 +37,4 @@
 - What Does an Agentic Software Engineering Benchmark Measure? Profiling Task Demands and Agent Behaviour Beyond What Category Labels Reveal
 - What Makes a Code Review Useful to OpenDev Developers? An Empirical Investigation
 - Context Pruning for Coding Agents via Multi-Rubric Latent Reasoning
+- Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection

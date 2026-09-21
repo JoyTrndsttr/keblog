@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-09-21
+
+- **Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection**
+  - 简称：[CPRVul](https://38-76-161-31.sslip.io/daily-learning/?paper=260921-YikunLi-CPRVul)
+  - Tags：`2026` `arXiv/Preprint` `漏洞检测` `Inter-Procedural Analysis` `Repository Context` `Context Selection` `Structured Reasoning` `Code Property Graph` `Context Utilization`
+  - 作者：Yikun Li; Ting Zhang; Jieke Shi; Chengran Yang; Junda He; Xin Zhou; Jinfeng Jiang; Huihui Huang; Wen Bin Leow; Yide Yin; Eng Lieh Ouh; Lwin Khin Shar; David Lo
+  - Venue / 年份：arXiv / 2026
+  - DOI / 原文：[arXiv:2602.06751](https://arxiv.org/abs/2602.06751)
+  - 主题：Inter-Procedural Vulnerability Detection、Repository Context、Security Profiling、Context Selection、Structured Reasoning
+  - 一句话价值：raw caller/callee/global context 甚至经过 profiling 与 selection 后直接交给传统分类器仍可能降性能，而 structured reasoning 带来主要增益；对当前研究最关键的启发是把 context availability 与 evidence utilization 拆开，并测试 Context Treatment × Reasoning Treatment 的交互。
+
 ### 2026-09-20
 
 - **Context Pruning for Coding Agents via Multi-Rubric Latent Reasoning**
@@ -177,8 +188,7 @@
 
 - **Antares: Foundation Models for Agentic Vulnerability Localization**
   - 简称：[Antares / VLoc Bench](https://38-76-161-31.sslip.io/daily-learning/?paper=260906-SupritiVijay-AntaresVLocBench)
-  - Tags：`2026` `Technical Report` `漏洞定位` `Coding Agent` `仓库级搜索` `上下文工程` `VLoc Bench` `任务难度` `Signal Dilution` `Benchmark`
-  - 作者：Supriti Vijay; Aman Priyanshu; Didier Chapoteau; Arthur Goldblatt; Jianliang He; Kimia Majd; Fraser Burch; Baturay Saglam; Takahiro Matsumoto; Zhuoran Yang; Amin Karbasi
+  - Tags：`2026` `Technical Report` `漏洞定位` `Coding Agent` `仓库级搜索` `上下文工程` `VLoc Bench` `任务难度` `Signal Dilution` `Benchmark`  - 作者：Supriti Vijay; Aman Priyanshu; Didier Chapoteau; Arthur Goldblatt; Jianliang He; Kimia Majd; Fraser Burch; Baturay Saglam; Takahiro Matsumoto; Zhuoran Yang; Amin Karbasi
   - Venue / 年份：Cisco Foundation AI Technical Report / 2026
   - DOI / 原文：[VLoc Bench Technical Report](https://cisco-foundation-ai.github.io/vulnerability-localization-benchmark/technical-report.pdf)
   - 主题：漏洞定位、Agent、仓库级搜索、VLoc Bench、任务难度、signal dilution
