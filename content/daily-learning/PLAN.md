@@ -1,6 +1,6 @@
 # 每日学习执行计划
 
-> 生效版本：2026-09-22（明确整文件重写是正常写入，不得因覆盖顾虑跳过发布）  
+> 生效版本：2026-09-22（新增“顶层研究设计优先”精读组织规则）  
 > 执行时间：每天 08:30（Asia/Shanghai）  
 > 内容仓库：`JoyTrndsttr/keblog` 的 `master` 分支
 > 发布地址：`https://38-76-161-31.sslip.io`
@@ -93,6 +93,8 @@ Paper Pool 改为“轻量入口 + 永久去重索引 + 月度详细记录”：
 > **Figure 展示规则（2026-09-18 更新）**：不再把 Figure 截图、图片上传或图片嵌入作为每日精读要求。模型仍需阅读原文图表并据此理解论文，但默认只在文字中解释关键结果；只有用户明确要求某张图时再单独展示。图片资产不再作为“已发布”的必要条件。
 
 
+- **顶层研究设计优先**：在展开任何 Dataset、Task、Module、Metric、RQ 或表格前，必须先讲清论文的整体证据链：**Research Gap → Research Object → Operationalization → Method / Experiment → Evidence → Claim**。后续每个组件都要解释“为什么会出现、它在整条链里解决哪个问题、与前后部分如何衔接”。不得把四类 Task、若干 Module、Metric 或 RQ 平铺成相互独立的知识点。
+- 对 benchmark / empirical paper，尤其要先说明：作者把哪个现实问题抽象成什么可测对象，再解释 dataset/task/metric 为什么是该抽象的 operationalization；对 method paper，则先说明核心 design choice 如何从 gap 推导出来，再展开模块细节。
 - 用 1–3 句话建立论文地图，并解释“过去 → 问题 → 解法”。
 - **缩写首次出现规则**：面向用户当前研究领域之外、或不应默认用户熟悉的专业缩写，第一次出现时必须写成“全称（缩写）”，并用一句短解释说明它在本文中的作用；后文再使用缩写。即使论文原文直接使用缩写，精读笔记也不得在首次出现时只写缩写。例如：No Operation（NOP，无操作指令）、Function Call Graph（FCG，函数调用图）。本领域常识性且已在当篇前文定义过的缩写无需重复展开。
 - 讲清 3–5 个必要概念、研究动机和 Research Gap 的证据等级。
