@@ -39,3 +39,4 @@
 - Context Pruning for Coding Agents via Multi-Rubric Latent Reasoning
 - Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection
 - Agent Retrieval Bench: Evaluating Repository Context Retrieval for Coding Agents
+- The First Drop of Ink: Nonlinear Impact of Distracting Information in Long-Context Reasoning

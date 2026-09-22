@@ -6,6 +6,15 @@
 
 ### 2026-09-22
 
+- **The First Drop of Ink: Nonlinear Impact of Distracting Information in Long-Context Reasoning**
+  - 简称：[First Drop of Ink](https://38-76-161-31.sslip.io/daily-learning/?paper=260922-MuhanGao-FirstDropInk)
+  - Tags：`2026` `ICML` `Long Context` `RAG` `Hard Distractor` `Attention Mechanism` `Context Interference` `因果实验设计` `Plausible Noise`
+  - 作者：Muhan Gao; Zih-Ching Chen; Kuan-Hao Huang
+  - Venue / 年份：ICML 2026
+  - DOI / 原文：[arXiv:2605.10828](https://arxiv.org/abs/2605.10828)
+  - 主题：Long-Context Reasoning、Hard Distractor、Attention Competition、Controlled Context Intervention
+  - 一句话价值：在固定 gold evidence 与总 context length 下，以 random/easy distractors 替换为 BM25 高相关但不含答案的 hard distractors，发现伤害高度前置且非线性；retrieval-head logit 分析显示 hard token 的 softmax competition 可远强于 easy token。对当前研究最关键的启发是将 plausible repository noise 设计成 gold-fixed、budget-matched 的 dose-response intervention，并重点检验“第一个少量 plausible distractor”与 mechanism→attribution 位移。
+
 - **Agent Retrieval Bench: Evaluating Repository Context Retrieval for Coding Agents**
   - 简称：[ARB](https://38-76-161-31.sslip.io/daily-learning/?paper=260922-BowenQin-AgentRetrievalBench)
   - Tags：`2026` `arXiv/Preprint` `Coding Agent` `Repository Context` `Context Retrieval` `上下文工程` `代码定位` `Agent Trajectory` `Evidence Acquisition` `Benchmark`
@@ -157,8 +166,7 @@
   - 作者：Jia Feng; Zhanyue Qin; Cuiyun Gao; Ruiqi Wang; Chaozheng Wang; Yingwei Ma; Xiaoyuan Xie
   - Venue / 年份：arXiv cs.SE / 2026
   - DOI / 原文：[arXiv:2604.13725](https://arxiv.org/abs/2604.13725)
-  - 主题：仓库级上下文、上下文压缩、噪声、代码生成、异质效应
-  - 一句话价值：系统比较 Text-to-Text、Text-to-Vector 与 Text-to-Image 压缩，发现部分 T2V 设置超过 Full Context，而部分文本压缩甚至低于 No Context；它为“额外仓库上下文可能主动伤害模型”提供重要现象证据，但尚未单独识别 denoising 的因果机制。
+  - 主题：仓库级上下文、上下文压缩、噪声、代码生成、异质效应  - 一句话价值：系统比较 Text-to-Text、Text-to-Vector 与 Text-to-Image 压缩，发现部分 T2V 设置超过 Full Context，而部分文本压缩甚至低于 No Context；它为“额外仓库上下文可能主动伤害模型”提供重要现象证据，但尚未单独识别 denoising 的因果机制。
 
 ### 2026-09-10
 
