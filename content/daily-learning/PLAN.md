@@ -1,6 +1,6 @@
 # 每日学习执行计划
 
-> 生效版本：2026-09-21（允许完整重写当月 Paper Pool，GitHub 写入优先）  
+> 生效版本：2026-09-22（明确整文件重写是正常写入，不得因覆盖顾虑跳过发布）  
 > 执行时间：每天 08:30（Asia/Shanghai）  
 > 内容仓库：`JoyTrndsttr/keblog` 的 `master` 分支
 > 发布地址：`https://38-76-161-31.sslip.io`
@@ -80,13 +80,13 @@ Paper Pool 改为“轻量入口 + 永久去重索引 + 月度详细记录”：
 - 完整条目仍按 `### YYYY-MM-DD` 分组，每篇论文一个无序列表项，字段保持：简称（链接）→ Tags → 作者 → Venue/年份 → DOI/arXiv/原文 → 主题 → 一句话价值。
 - 每完成一篇精读，必须同时：①向 `paperpool_short.md` 追加标题；②向当前月份文件追加完整条目；③更新 Daily Learning 索引。
 - 去重顺序：先用 `paperpool_short.md` 做规范化标题快速去重；存在标题变体/疑似同文时，再读取相关月度文件核对 DOI/arXiv ID。
-- 每次执行仍需重新读取 GitHub 当前版本，保留已有记录并避免并发覆盖。若当月 `paperpool_YYYYMM.md` 较长或增量编辑不便，**直接完整重写该文件**，不要因为文件较长而放弃发布；没有人为设定的 token 长度硬限制，优先完成 GitHub 写入。
+- 每次执行仍需重新读取 GitHub 当前版本，先取得最新完整内容，再在内存中插入/更新当日记录，然后把**完整的新文件内容覆盖写回同一路径**。这是正常的 Git 文件更新，不是危险操作；Git commit 会保留旧版本。若返回内容被截断就分段读取并拼接完整，随后直接重写。**不得再以“可能覆盖既有月度记录”“文件较长”“增量编辑不方便”为理由跳过 GitHub 发布。**
 - 不得依赖 Zotero、本地 Paper Pool、自动化 memory、电脑路径或本地附件完成状态查询与去重。
 - 若无法获得完整可读论文原文，不登记完整精读或永久去重。
 
 ## GitHub 单次原子提交
 
-每日精读完成后，正文 `content/daily-learning/<slug>/README.md`、精读索引 `content/daily-learning/README.md`、`paperpool_short.md` 和当前月份 `paperpool_YYYYMM.md` 应组成**一个原子 commit**。当月 Paper Pool 较长时允许并优先完整重写后作为 blob 提交，不得仅因文件长度或响应截断而跳过 GitHub 发布。通常不需要修改轻量入口 `paperpool.md`。流程仍为：重新读取最新 master/目标文件 → 创建 blobs → 基于最新 tree 创建同时包含全部修改的新 tree → 创建一个 commit → 最后一次性推进 master ref。提交消息固定为 `content(daily-learning): add YYYY-MM-DD paper reading`。
+每日精读完成后，正文 `content/daily-learning/<slug>/README.md`、精读索引 `content/daily-learning/README.md`、`paperpool_short.md` 和当前月份 `paperpool_YYYYMM.md` 应组成**一个原子 commit**。月度 Paper Pool 的标准写法就是：读取最新完整文件 → 插入当日条目 → 用新的完整内容创建 blob 覆盖同一路径。Git commit 本身保留旧版本，因此无需担心“覆盖历史”。通常不需要修改轻量入口 `paperpool.md`。流程：重新读取最新 master/目标文件 → 创建 4 个 blobs → 基于最新 master tree 创建包含 4 处修改的新 tree → 创建一个 commit → 一次性推进 master ref。提交消息固定为 `content(daily-learning): add YYYY-MM-DD paper reading`。只有 GitHub API/权限明确报错时才能报告未更新；文本较长、需要整文件重写、返回截断但可分段读取，都不属于失败理由。临时网络/API断连时至少重试一次，并在重试前重新读取 master head。
 
 ## 每篇精读的最低要求
 
@@ -103,10 +103,6 @@ Paper Pool 改为“轻量入口 + 永久去重索引 + 月度详细记录”：
 - 检查混杂、选择与测量偏差、任务难度、数据泄漏、预算公平、构念效度、外部有效性和异质效应。
 - 严格区分论文明确报告的事实、基于证据的推断和论文没有验证的内容。
 - 结尾分别说明作者证明了什么、没有证明什么、真正应该记住什么，以及有依据的后续研究机会。
-
-## GitHub 单次原子提交
-
-每日精读完成后，正文 `content/daily-learning/<slug>/README.md`、精读索引 `content/daily-learning/README.md` 和 `content/documents/paperpool.md` 应通过 GitHub Git Data API 组成**一个原子 commit**，不要分别调用 Contents API 产生三个 commit。流程：重新读取最新 master/目标文件 → 为三份新内容创建 blobs → 基于最新 tree 创建包含三处修改的新 tree → 创建一个 commit（parent=最新 master）→ 最后一次性推进 master ref。提交消息固定为 `content(daily-learning): add YYYY-MM-DD paper reading`。只有 Git Data 写能力不可用或原子提交明确失败时，才退回逐文件更新，并说明降级原因。
 
 
 每篇完整精读使用目录 `YYMMDD-FirstAuthor-ShortName`，正文统一为 `README.md`。
