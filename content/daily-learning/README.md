@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**36 次精读**，覆盖 **2026-08-03—2026-09-21**。
+> 已归档：**37 次精读**，覆盖 **2026-08-03—2026-09-22**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-09-22 | [260922-BowenQin-AgentRetrievalBench](./260922-BowenQin-AgentRetrievalBench/README.md) | Agent Retrieval Bench: Evaluating Repository Context Retrieval for Coding Agents | Bowen Qin | arXiv, 2026 | 已精读（完整公开原文） |
 | 2026-09-21 | [260921-YikunLi-CPRVul](./260921-YikunLi-CPRVul/README.md) | Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection | Yikun Li | arXiv, 2026 | 已精读（完整公开原文） |
 | 2026-09-20 | [260920-JingjingWang-LaMR](./260920-JingjingWang-LaMR/README.md) | Context Pruning for Coding Agents via Multi-Rubric Latent Reasoning | Jingjing Wang | arXiv, 2026 | 已精读（完整公开原文） |
 | 2026-09-19 | [260919-LeiZhang-HCPCoder](./260919-LeiZhang-HCPCoder/README.md) | Hierarchical Context Pruning: Optimizing Real-World Code Completion with Repository-Level Pretrained Code LLMs | Lei Zhang | AAAI 2025 | 已精读（完整 AAAI 原文） |

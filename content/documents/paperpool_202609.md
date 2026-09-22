@@ -4,6 +4,16 @@
 
 ## 已精读论文
 
+### 2026-09-22
+
+- **Agent Retrieval Bench: Evaluating Repository Context Retrieval for Coding Agents**
+  - 简称：[ARB](https://38-76-161-31.sslip.io/daily-learning/?paper=260922-BowenQin-AgentRetrievalBench)
+  - Tags：`2026` `arXiv/Preprint` `Coding Agent` `Repository Context` `Context Retrieval` `上下文工程` `代码定位` `Agent Trajectory` `Evidence Acquisition` `Benchmark`
+  - 作者：Bowen Qin; Yi Xie
+  - Venue / 年份：arXiv / 2026
+  - DOI / 原文：[arXiv:2607.24882](https://arxiv.org/abs/2607.24882)
+  - 主题：Repository Context Retrieval、Coding Agent、Context Acquisition、Trajectory、Evidence Localization
+  - 一句话价值：把 repository context acquisition 从最终 patch outcome 中独立出来评测，并通过 fixed-agent seed intervention 显示 initial context 会改变 evidence hit、后续探索成本与最终定位；对当前研究最关键的启发是把 Context Treatment → Evidence Acquisition → Exploration → Utilization → File Reporting 建成机制链。
 ### 2026-09-21
 
 - **Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection**
@@ -137,8 +147,7 @@
   - 作者：Radin Shayanfar; Keheliya Gallaba; Ahmed E. Hassan
   - Venue / 年份：arXiv / 2026
   - DOI / 原文：[arXiv:2609.01271](https://arxiv.org/abs/2609.01271); [Code](https://github.com/radinshayanfar/task_snc)
-  - 主题：Agentic SE benchmark、任务需求、SNC、Agent行为、构念效度、异质效应
-  - 一句话价值：用 Spread–Novelty–Centrality 刻画 5 个 benchmark 的 2,487 个任务，并分析 14,922 条 Agent trajectory，表明 nominal category 远不足以代表真实 task demand；对 Causality for Code Review 的关键启发是把结构需求作为 effect modifier、trajectory 作为 mediator，而不是把 task difficulty 当成单一标量。
+  - 主题：Agentic SE benchmark、任务需求、SNC、Agent行为、构念效度、异质效应  - 一句话价值：用 Spread–Novelty–Centrality 刻画 5 个 benchmark 的 2,487 个任务，并分析 14,922 条 Agent trajectory，表明 nominal category 远不足以代表真实 task demand；对 Causality for Code Review 的关键启发是把结构需求作为 effect modifier、trajectory 作为 mediator，而不是把 task difficulty 当成单一标量。
 
 ### 2026-09-11
 

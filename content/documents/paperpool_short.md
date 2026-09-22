@@ -38,3 +38,4 @@
 - What Makes a Code Review Useful to OpenDev Developers? An Empirical Investigation
 - Context Pruning for Coding Agents via Multi-Rubric Latent Reasoning
 - Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection
+- Agent Retrieval Bench: Evaluating Repository Context Retrieval for Coding Agents
