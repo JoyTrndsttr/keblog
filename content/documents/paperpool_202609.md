@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-09-23
+
+- **When Retrieval Hurts Code Completion: A Diagnostic Study of Stale Repository Context**
+  - 简称：[Stale Repository Context](https://38-76-161-31.sslip.io/daily-learning/?paper=260923-HaojunWeng-StaleRepositoryContext)
+  - Tags：`2026` `arXiv/Preprint` `代码补全` `Repository Context` `RAG` `Stale Context` `Plausible Noise` `Context Interference` `仓库级代码理解` `因果实验设计`
+  - 作者：Haojun Weng; Qianqian Yang; Hao Fu; Haobin Pan; Xinwei Lv
+  - Venue / 年份：arXiv / 2026（作者注明投稿至 Information and Software Technology）
+  - DOI / 原文：[arXiv:2605.14478](https://arxiv.org/abs/2605.14478)
+  - 主题：Repository-Level Code Completion、Stale Retrieval、Plausible Distractor、Context Interference、Treatment-Aligned Error
+  - 一句话价值：在固定 repository-level completion task 下，仅将检索到的 helper 从当前版本替换为父提交中的真实旧版本，就能诱导模型高频复现已经失效的旧 signature；相比 no-retrieval 的“不会做”，stale plausible context 会把错误定向到一个曾经正确但当前失效的 repository state。对当前研究最关键的启发是设计 counterfactual-valid / historically-valid distractor，并在固定 sufficient evidence 后检验 plausible-but-non-decisive context 是否仍会造成 residual interference 与 attribution redirect。
+
 ### 2026-09-22
 
 - **The First Drop of Ink: Nonlinear Impact of Distracting Information in Long-Context Reasoning**
