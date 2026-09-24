@@ -41,3 +41,4 @@
 - Agent Retrieval Bench: Evaluating Repository Context Retrieval for Coding Agents
 - The First Drop of Ink: Nonlinear Impact of Distracting Information in Long-Context Reasoning
 - When Retrieval Hurts Code Completion: A Diagnostic Study of Stale Repository Context
+- RepoAtlas: Guiding Coding Agents via Evolving Multimodal Repository Views

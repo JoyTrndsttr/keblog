@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-09-24
+
+- **RepoAtlas: Guiding Coding Agents via Evolving Multimodal Repository Views**
+  - 简称：[RepoAtlas](https://38-76-161-31.sslip.io/daily-learning/?paper=260924-YunxiangZhang-RepoAtlas)
+  - Tags：`2026` `arXiv/Preprint` `Coding Agent` `Repository Context` `Code Graph` `Multimodal` `Context Budget` `Dynamic Context` `SWE-bench` `上下文工程`
+  - 作者：Yunxiang Zhang; Haiquan Wang; Jiawei Guo; Hanyang Xia; Yan Chen; Tong Chen; Zhang Zhiwei; Junchen Ye
+  - Venue / 年份：arXiv / 2026
+  - DOI / 原文：[arXiv:2609.16936](https://arxiv.org/abs/2609.16936)
+  - 主题：Repository View Maintenance、Budgeted Graph Selection、Multimodal Projection、State-Aware Refresh、Coding Agent
+  - 一句话价值：把 repository context 从一次性检索结果改写为随 agent trajectory 演化的受预算约束 view；最关键的消融显示去掉 15-node budget 会让 resolve 从 63.1% 降至 59.8%，每轮刷新更降至 51.0%。对当前研究最直接的启发是用正确 snapshot 中真实的 fixed-k-hop / relevance-selected neighbors 构造 plausible-but-non-decisive treatment，并把 provider 的 selection、representation、refresh 分开。
+
 ### 2026-09-23
 
 - **When Retrieval Hurts Code Completion: A Diagnostic Study of Stale Repository Context**
