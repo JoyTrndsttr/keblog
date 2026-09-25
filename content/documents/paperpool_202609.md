@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-09-25
+
+- **ContextBench: A Benchmark for Context Retrieval in Coding Agents**
+  - 简称：[ContextBench](https://38-76-161-31.sslip.io/daily-learning/?paper=260925-HanLi-ContextBench)
+  - Tags：`2026` `arXiv/Preprint` `Coding Agent` `Repository Context` `Context Retrieval` `Evidence Acquisition` `Evidence Utilization` `Benchmark` `上下文工程` `代码定位`
+  - 作者：Han Li et al.
+  - Venue / 年份：arXiv / 2026
+  - DOI / 原文：[arXiv:2602.05892](https://arxiv.org/abs/2602.05892)
+  - 主题：Repository Context Retrieval、Gold Context、Evidence Acquisition、Usage Drop、Coding Agent Evaluation
+  - 一句话价值：把 coding agent 的 repository context 从最终 patch outcome 中独立出来评测，在 file/block/line 三个粒度构建 compact-and-verified gold context，并区分 agent 曾经检索到的 evidence 与最终声明使用的 evidence。对当前研究最关键的启发是把 Context Exposure → Evidence Acquisition → Evidence Retention → Attribution → Final Outcome 建成机制链，并避免把所有 non-GT context 直接视作无用噪声。
+
 ### 2026-09-24
 
 - **RepoAtlas: Guiding Coding Agents via Evolving Multimodal Repository Views**
@@ -117,7 +128,6 @@
   - 一句话价值：在 SWE-bench Lite 与新建 CTXbench 上操纵 None/LLM-generated/developer context file，发现 context file 不显著提高成功率，却稳定增加探索步骤与 20%+ 推理成本；对 Causality for Code Review 的关键启发是把 Context 作为 Treatment、trajectory 作为 Mediator，并区分“模型会遵循上下文”与“上下文真正改善 Outcome”。
 
 ### 2026-09-17
-
 - **RepoMirage: Probing Repository Context Reasoning in Code Agents with Perturbations**
   - 简称：[RepoMirage](https://38-76-161-31.sslip.io/daily-learning/?paper=260917-HanyuLi-RepoMirage)
   - Tags：`2026` `arXiv/Preprint` `上下文工程` `Coding Agent` `仓库级推理` `语义保持扰动` `反事实干预` `探索漂移` `SWE-bench` `Agent行为`
@@ -237,8 +247,7 @@
 
 - **SeRe: A Security-Related Code Review Dataset Aligned with Real-World Review Activities**
   - 简称：[SeRe](https://38-76-161-31.sslip.io/daily-learning/?paper=260904-ZixiaoZhao-SeRe)
-  - Tags：`2026` `ICSE` `代码评审` `安全代码评审` `软件安全` `数据集` `主动学习` `选择偏差` `Benchmark`
-  - 作者：Zixiao Zhao; Yanjie Jiang; Hui Liu; Kui Liu; Lu Zhang
+  - Tags：`2026` `ICSE` `代码评审` `安全代码评审` `软件安全` `数据集` `主动学习` `选择偏差` `Benchmark`  - 作者：Zixiao Zhao; Yanjie Jiang; Hui Liu; Kui Liu; Lu Zhang
   - Venue / 年份：ICSE 2026
   - DOI / 原文：[10.1145/3744916.3764557](https://doi.org/10.1145/3744916.3764557); [Replication Package](https://github.com/caagc/Sere)
   - 主题：安全代码审查、主动学习、数据集构建、LLM评测、选择偏差
