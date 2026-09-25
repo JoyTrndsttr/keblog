@@ -15,7 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
-| 2026-09-25 | [260925-HanLi-ContextBench](./260925-HanLi-ContextBench/README.md) | ContextBench: A Benchmark for Context Retrieval in Coding Agents | Han Li | arXiv / 2026 | 已精读（完整 arXiv 原文） |
+| 2026-09-25 | [260925-HanLi-ContextBench](./260925-HanLi-ContextBench/README.md) | ContextBench: A Benchmark for Context Retrieval in Coding Agents | Han Li | arXiv / 2026 | 已精读（完整原文；按教学式完整精读协议重写） |
 | 2026-09-24 | [260924-YunxiangZhang-RepoAtlas](./260924-YunxiangZhang-RepoAtlas/README.md) | RepoAtlas: Guiding Coding Agents via Evolving Multimodal Repository Views | Yunxiang Zhang | arXiv / 2026 | 已精读（完整 arXiv v1 HTML 原文） |
 | 2026-09-23 | [260923-HaojunWeng-StaleRepositoryContext](./260923-HaojunWeng-StaleRepositoryContext/README.md) | When Retrieval Hurts Code Completion: A Diagnostic Study of Stale Repository Context | Haojun Weng | arXiv / 2026 | 已精读（完整 arXiv v1 原文） |
 | 2026-09-22 | [260922-MuhanGao-FirstDropInk](./260922-MuhanGao-FirstDropInk/README.md) | The First Drop of Ink: Nonlinear Impact of Distracting Information in Long-Context Reasoning | Muhan Gao | ICML 2026 | 已精读（完整 arXiv v2 原文） |

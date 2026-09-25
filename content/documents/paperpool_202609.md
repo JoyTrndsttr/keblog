@@ -13,7 +13,7 @@
   - Venue / 年份：arXiv / 2026
   - DOI / 原文：[arXiv:2602.05892](https://arxiv.org/abs/2602.05892)
   - 主题：Repository Context Retrieval、Gold Context、Evidence Acquisition、Usage Drop、Coding Agent Evaluation
-  - 一句话价值：把 coding agent 的 repository context 从最终 patch outcome 中独立出来评测，在 file/block/line 三个粒度构建 compact-and-verified gold context，并区分 agent 曾经检索到的 evidence 与最终声明使用的 evidence。对当前研究最关键的启发是把 Context Exposure → Evidence Acquisition → Evidence Retention → Attribution → Final Outcome 建成机制链，并避免把所有 non-GT context 直接视作无用噪声。
+  - 一句话价值：从四个 repository-level benchmark 的 4,497 个任务出发，经过去重、context-demand 筛选与专家标注得到 1,136 个任务，在 file/block/line 三个粒度构建 compact-and-verified gold context；进一步用 trajectory 与 final-context declaration 区分 evidence acquisition 和 retention。它证明强模型与复杂 agent scaffold 仍存在明显 retrieval/precision 问题，但并未证明 extra context 因果地伤害 repair；对当前研究最关键的是借用其 evidence pipeline，再通过 matched controlled intervention 识别 plausible-but-non-decisive context 对 retention 与 attribution 的因果效应。
 
 ### 2026-09-24
 
@@ -117,7 +117,6 @@
   - DOI / 原文：[DOI:10.1145/3808131](https://doi.org/10.1145/3808131); [arXiv:2607.25996](https://arxiv.org/abs/2607.25996); [Code](https://github.com/DeepSoftwareAnalytics/RepoReasoner)
   - 主题：Repository-Level Reasoning、Long Context、Call Chain、Context Noise、Oracle Context
   - 一句话价值：用动态执行 trace 构造 Oracle context 与 call-chain ground truth，并比较 10k/30k retrieval context，显示完美相关文件并不能消除跨文件推理失败，更多 context 对不同模型还呈正负异质效应；对当前研究最关键的是把“relevant evidence 是否到场”和“模型能否利用 evidence”分开，并把 signal/noise、dependency depth 改造成可控 context intervention。
-
 - **Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?**
   - 简称：[AGENTS.md](https://38-76-161-31.sslip.io/daily-learning/?paper=260918-ThibaudGloaguen-AgentsMD)
   - Tags：`2026` `arXiv/Preprint` `ICLR Workshop` `上下文工程` `Coding Agent` `仓库级上下文` `AGENTS.md` `Agent行为` `推理成本` `Benchmark`
@@ -237,8 +236,7 @@
 
 - **Antares: Foundation Models for Agentic Vulnerability Localization**
   - 简称：[Antares / VLoc Bench](https://38-76-161-31.sslip.io/daily-learning/?paper=260906-SupritiVijay-AntaresVLocBench)
-  - Tags：`2026` `Technical Report` `漏洞定位` `Coding Agent` `仓库级搜索` `上下文工程` `VLoc Bench` `任务难度` `Signal Dilution` `Benchmark`  - 作者：Supriti Vijay; Aman Priyanshu; Didier Chapoteau; Arthur Goldblatt; Jianliang He; Kimia Majd; Fraser Burch; Baturay Saglam; Takahiro Matsumoto; Zhuoran Yang; Amin Karbasi
-  - Venue / 年份：Cisco Foundation AI Technical Report / 2026
+  - Tags：`2026` `Technical Report` `漏洞定位` `Coding Agent` `仓库级搜索` `上下文工程` `VLoc Bench` `任务难度` `Signal Dilution` `Benchmark`  - 作者：Supriti Vijay; Aman Priyanshu; Didier Chapoteau; Arthur Goldblatt; Jianliang He; Kimia Majd; Fraser Burch; Baturay Saglam; Takahiro Matsumoto; Zhuoran Yang; Amin Karbasi  - Venue / 年份：Cisco Foundation AI Technical Report / 2026
   - DOI / 原文：[VLoc Bench Technical Report](https://cisco-foundation-ai.github.io/vulnerability-localization-benchmark/technical-report.pdf)
   - 主题：漏洞定位、Agent、仓库级搜索、VLoc Bench、任务难度、signal dilution
   - 一句话价值：VLoc Bench 将漏洞定位建模为固定工具预算下的仓库探索任务；结果显示 repository structure、size 与多文件证据比 CVSS severity 更能解释难度，并将大仓库失败归因于 signal dilution。对 Causality for Code Review 的关键启发是把 relevant-evidence density、search strategy 与 repository structure 建模为机制和异质效应变量，而不是只证明 call graph 有用。

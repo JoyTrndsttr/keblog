@@ -1,6 +1,6 @@
 # 每日学习执行计划
 
-> 生效版本：2026-09-22（新增“顶层研究设计优先”精读组织规则）  
+> 生效版本：2026-09-25（恢复“教学式完整精读”协议，研究进度仅影响选题与最后的研究启发）  
 > 执行时间：每天 08:30（Asia/Shanghai）  
 > 内容仓库：`JoyTrndsttr/keblog` 的 `master` 分支
 > 发布地址：`https://38-76-161-31.sslip.io`
@@ -38,15 +38,6 @@
 
 随后再结合该进度选择“新论文雷达”和“每日精读”。推荐论文不能只按长期兴趣关键词匹配，而应优先补当前研究记录里最新暴露出的缺口，例如需要某种因果设计、context intervention、trajectory mediator、异质效应、benchmark/metric、相关 baseline 或反例证据时，优先寻找能直接帮助下一步实验或论文叙事的工作。仍需同时遵守 Paper Pool / Daily Learning 的永久去重规则和完整原文要求。
 
-## 研究进度对齐（选论文前必须执行）
-
-在开始当天的论文检索与推荐之前，先通过已连接的 GitHub 工具读取 `JoyTrndsttr/causal-review` 的 `master` 分支文件 `documents/研究记录.md`。该文件较长时无需每次从头精读，重点读取**文件后部/最近新增的研究记录**，必要时向前补读少量上下文，以掌握当前研究问题、最近实验发现、已放弃或降优先级的方向、正在验证的机制和下一步计划。
-
-读取后先做一个轻量的内部研究诊断：当前主线推进到了哪里、最近出现了什么新证据/瓶颈、当天最缺哪类外部论文证据。该分析主要用于指导选题，不要求每天在简报中单独写成长篇栏目；只有确实能帮助用户理解推荐理由时，才用 1–3 句话说明“为什么今天推荐这篇”。
-
-论文推荐应优先服务于**最新研究进度**，而不是机械沿用长期关键词。例如研究记录已经表明某条问题被证明过于显然、数据不支持或已转向新的机制问题，就降低旧方向论文的优先级；优先寻找能补充当前理论机制、Treatment/Outcome/Mediator/Effect Modifier、实验设计、反例、相关 baseline 或证据边界的论文。Paper Pool 与永久去重规则仍然必须遵守。
-
-若 `研究记录.md` 暂时无法读取，不得凭旧记忆假装已同步最新进度；可继续按 PLAN.md 与 Paper Pool 选题，但应在当天简报中简短注明“研究记录本次未同步”。
 
 ## 论文选择优先级
 
@@ -88,23 +79,189 @@ Paper Pool 改为“轻量入口 + 永久去重索引 + 月度详细记录”：
 
 每日精读完成后，正文 `content/daily-learning/<slug>/README.md`、精读索引 `content/daily-learning/README.md`、`paperpool_short.md` 和当前月份 `paperpool_YYYYMM.md` 应组成**一个原子 commit**。月度 Paper Pool 的标准写法就是：读取最新完整文件 → 插入当日条目 → 用新的完整内容创建 blob 覆盖同一路径。Git commit 本身保留旧版本，因此无需担心“覆盖历史”。通常不需要修改轻量入口 `paperpool.md`。流程：重新读取最新 master/目标文件 → 创建 4 个 blobs → 基于最新 master tree 创建包含 4 处修改的新 tree → 创建一个 commit → 一次性推进 master ref。提交消息固定为 `content(daily-learning): add YYYY-MM-DD paper reading`。只有 GitHub API/权限明确报错时才能报告未更新；文本较长、需要整文件重写、返回截断但可分段读取，都不属于失败理由。临时网络/API断连时至少重试一次，并在重试前重新读取 master head。
 
-## 每篇精读的最低要求
 
-> **Figure 展示规则（2026-09-18 更新）**：不再把 Figure 截图、图片上传或图片嵌入作为每日精读要求。模型仍需阅读原文图表并据此理解论文，但默认只在文字中解释关键结果；只有用户明确要求某张图时再单独展示。图片资产不再作为“已发布”的必要条件。
+## 每日论文精读协议（高优先级）
 
+> **核心目标不是压缩论文，而是把论文重新讲明白。** 精读应像一位真正理解该方向的老师坐在研究生旁边，顺着作者的研究逻辑一步一步解释：为什么做、以前为什么不行、作者怎样把问题 operationalize、方法或 benchmark 如何从输入走到输出、实验为什么这样设计、每个 RQ 到底验证什么、重要图表和公式说明什么、证据能支持多强的结论、哪些地方仍然没有被证明。
 
-- **顶层研究设计优先**：在展开任何 Dataset、Task、Module、Metric、RQ 或表格前，必须先讲清论文的整体证据链：**Research Gap → Research Object → Operationalization → Method / Experiment → Evidence → Claim**。后续每个组件都要解释“为什么会出现、它在整条链里解决哪个问题、与前后部分如何衔接”。不得把四类 Task、若干 Module、Metric 或 RQ 平铺成相互独立的知识点。
-- 对 benchmark / empirical paper，尤其要先说明：作者把哪个现实问题抽象成什么可测对象，再解释 dataset/task/metric 为什么是该抽象的 operationalization；对 method paper，则先说明核心 design choice 如何从 gap 推导出来，再展开模块细节。
-- 用 1–3 句话建立论文地图，并解释“过去 → 问题 → 解法”。
-- **缩写首次出现规则**：面向用户当前研究领域之外、或不应默认用户熟悉的专业缩写，第一次出现时必须写成“全称（缩写）”，并用一句短解释说明它在本文中的作用；后文再使用缩写。即使论文原文直接使用缩写，精读笔记也不得在首次出现时只写缩写。例如：No Operation（NOP，无操作指令）、Function Call Graph（FCG，函数调用图）。本领域常识性且已在当篇前文定义过的缩写无需重复展开。
-- 讲清 3–5 个必要概念、研究动机和 Research Gap 的证据等级。
-- 按输入、步骤、输出、必要性和移除后影响拆解方法。
-- 公式先讲直觉，再解释变量和数学意义。
-- 真正阅读论文中的重要图表并提取关键比较、异常和其他可能解释，但精读正文不再强制嵌入、截图或上传 Figure；以文字讲清楚即可，除非用户当天明确要求看某张图。
-- 每个 RQ 按“问题 → 设计 → 结果 → 含义”讲，交代实验单位、数据、模型、Baseline、Treatment、Metric 和配置。
-- 检查混杂、选择与测量偏差、任务难度、数据泄漏、预算公平、构念效度、外部有效性和异质效应。
-- 严格区分论文明确报告的事实、基于证据的推断和论文没有验证的内容。
-- 结尾分别说明作者证明了什么、没有证明什么、真正应该记住什么，以及有依据的后续研究机会。
+### 0. 研究进度的作用边界：只能影响选题和最后的研究启发
+
+每日运行仍需在选论文前同步 JoyTrndsttr/causal-review 的最新研究记录，但**研究进度只用于：①决定今天最值得读哪篇论文；②精读最后一节“对当前研究的启发”**。
+
+不得让用户当前 hypothesis 反过来主导论文主体讲解。论文主体必须先忠实重建作者自己的问题、设计和完整证据链。即使某个重要 Method、RQ、Figure、Table、Ablation、Negative Result 或 Limitation 与用户当前研究没有直接关系，也不得因此省略。
+
+尤其禁止把一篇论文写成“它对 plausible context / call graph / 当前实验有什么用”的 research note，而没有把论文本身讲完整。
+
+### 1. 写作定位与完整性
+
+- 每日论文精读必须是整份简报篇幅最长、信息密度最高的主体部分；资讯栏目保持简洁。
+- 不设置硬性字数上限。简单论文可以较短，复杂论文必须充分展开；不得为了控制篇幅压缩重要 Method、RQ、Figure/Table、Baseline、Ablation、Failure Case 或证据边界。
+- 不做普通摘要，不做逐节翻译，也不机械按 Abstract / Introduction / Related Work / Method / Experiment / Conclusion 顺序复述。应围绕“问题如何被提出、设计如何被推导、证据如何支持结论”重新组织。
+- 不能只写“作者做了 A / B / C”。必须解释：为什么要做 A、A 解决什么、为什么不能直接用 B、A 的输出怎样进入后续步骤、如果没有 A 会发生什么。
+- 通俗、适度口语化，但专业准确；不堆术语、不写论文腔、不像机器翻译。
+- 不假设用户已经理解论文，也不把用户当完全没有基础的初学者。目标是让第一次读这篇论文、但有软件工程/LLM基础的研究生真正学会它。
+- 不再输出速读导航表、最短阅读路径或“哪些章节可以跳过”。
+
+### 2. 开头先建立完整论文地图
+
+开头先完成三件事：
+
+1. 用 1–3 句话说明研究问题、核心方法或设计、最重要发现。
+2. 用“过去是什么情况 → 存在什么具体问题 → 作者为什么这样解决”讲清核心矛盾。
+3. 列出理解全文真正必要的 3–5 个概念。概念第一次出现时，用 2–5 句话解释到足够理解本文即可，不扩写成百科。
+
+在展开任何 Dataset、Task、Module、Metric、RQ 或表格之前，必须先讲清论文的顶层证据链：
+
+~~~text
+Research Gap
+    ↓
+Research Object
+    ↓
+Operationalization
+    ↓
+Method / Experiment
+    ↓
+Evidence
+    ↓
+Claim
+~~~
+
+对于 benchmark / empirical paper，尤其先说明：作者把哪个现实问题抽象成什么可测对象，再解释 dataset、task、gold label、metric 为什么是该抽象的 operationalization。对于 method paper，则先说明核心 design choice 如何从 research gap 推导出来，再进入模块细节。
+
+### 3. 把研究动机和 Research Gap 讲透
+
+至少回答：
+
+- 作者观察到什么现象或现实痛点？
+- 现有工作已经能做什么？
+- 具体哪一步解决不了？
+- 真正的 research gap 是什么？
+- 这个 gap 是已有实证证据支持的事实，还是作者提出的假设或担忧？
+- 不解决它会带来什么实际后果？
+- 作者从 A 推到 B 是否依赖尚未验证的前提？如果有，明确指出，不替作者补圆。
+
+Related Work 只在帮助理解 gap、baseline 或方法来源时讲，不做无意义文献罗列。
+
+### 4. 方法或 Benchmark 构建必须做到“读者能复述它怎么跑”
+
+先给整体文本流程图，再逐步展开。Method paper 通常按 Input → Step → Intermediate State → Output；Benchmark / Dataset paper 通常按 Raw Tasks → Filtering / Deduplication → Task Selection → Annotation / Ground Truth Construction → Validation / Quality Control → Evaluation Protocol → Metrics → Final Benchmark。
+
+每一个重要步骤都必须回答：
+
+- 输入是什么？
+- 具体做了什么？
+- 为什么必要？
+- 最好用一个小例子说明它如何运行。
+- 输出是什么？
+- 下游哪一步使用它？
+- 如果删掉或改变这一步，会影响什么？
+
+不能把“提出三个模块”或“经过三步构建 benchmark”当成方法讲解完成。
+
+### 5. 公式先讲直觉，再讲数学
+
+对于核心公式：
+
+1. 先说它想衡量或优化什么。
+2. 再解释每个变量。
+3. 解释变量增大或减小时结果如何变化。
+4. 最后说明数学意义以及它和实验结论之间的关系。
+
+非核心推导可以简化并明确说明，但不得歪曲。不要一上来堆公式。
+
+### 6. 实验设置必须先整体交代，再进入 RQ
+
+进入 RQ 前，先建立整个实验的“坐标系”，至少说明与解释结果有关的 Dataset / Split、实验单位和样本数、Models / Agent scaffolds、Baselines、Treatment / Control、Metrics，以及 prompt、token/context budget、工具权限、运行次数、温度、统计检验等会影响公平解释的关键配置。
+
+与结论无关的超参数可以省略，但任何影响 baseline 公平性、可复现性或结果解释的设置不能略。
+
+### 7. 每个重要 RQ 必须按“问题 → 设计 → 结果 → 含义”完整讲
+
+对每个 RQ：
+
+1. 问题：作者真正想问什么？为什么值得单独问？
+2. 设计：实验单位、Dataset、Models、Baselines、Treatment、Metrics、控制变量和关键配置是什么？
+3. 结果：给出可核验的关键数字；不要堆整表数字，但必须保留决定结论的比较。
+4. 图表阅读：告诉读者表或图的行列、横纵轴、颜色或线条分别是什么，应该先看哪里。
+5. 解释：作者怎样解释结果？还有没有其他合理解释？
+6. 证据强度：这组实验到底能支持“相关”“有帮助”“必要”“贡献最大”还是“因果导致”？不要越级。
+7. 最后给一句真正的 Takeaway。
+
+不得因为某个 RQ 与用户当前研究关系较弱就两句话带过；不得因为某个 RQ 恰好支持用户的 hypothesis 就给它不成比例的篇幅。
+
+### 8. 重要 Figure / Table 必须真正阅读
+
+对重要 Figure 说明横轴、纵轴、线、颜色、柱子、区域或节点的含义和阅读顺序；指出 2–4 个最有解释力的比较、趋势或异常；解释作者想证明什么、图本身是否足以支持这个 claim、是否存在其他解释。
+
+对重要 Table 先说明“这张表固定了什么、改变了什么”；不逐行念数字，但挑 2–4 个决定性比较；关注差距是否随模型、任务、数据集、难度、budget 或粒度变化。
+
+默认不截图或嵌入 Figure，但必须真正读图并用文字讲明白；用户明确要求某张图时再展示。
+
+### 9. Baseline、Ablation、Negative Result 和 Failure Case 要单独认真解释
+
+Baseline 要说明其代表什么方法范式、为什么是合理对照，以及模型、prompt、budget、工具权限和数据是否公平。
+
+Ablation 要说明到底删除或改变了什么变量、有没有同时改变别的东西、性能下降能够说明什么和不能说明什么。必须区分“必要”“有帮助”“贡献最大”“仅在特定场景有效”和“存在模块交互”。两个模块一起移除后的下降不能写成两个模块分别独立有效。
+
+Negative Result / Failure Case 不得只挑支持当前故事的案例。如果作者系统报告了失败类型、反例或异常，需要说明这些结果如何限制主结论。
+
+### 10. 主动审查证据，而不是只复述作者 Threats
+
+在原文证据允许时主动检查实验是否真正回答 RQ、baseline 公平性、confounding / omitted variables、selection / aggregation / measurement bias、task difficulty、treatment 是否与 token 数或 representation 等变量捆绑、metric construct validity、data leakage、benchmark contamination、judge 可靠性、模型规模、prompt、token/context budget、工具权限、correlation 与 causation 边界、external validity 和 heterogeneous effects。
+
+不要为了批判而批判；没有证据的问题不要硬凑。
+
+### 11. 严格区分三层证据
+
+全文必须区分：
+
+1. 论文明确报告的事实：直接陈述，并尽可能给关键数字以及 Figure / Table / Section 来源。
+2. 基于证据的合理解释：使用“从结果看可以推测……”“一种可能解释是……”。
+3. 论文没有验证的内容：明确写“论文没有进一步验证这一点”。
+
+不得替作者补实验，不得用常识把缺失证据自动补成已证明结论。
+
+### 12. 概念教学和缩写规则
+
+- 用户当前研究领域之外、或不应默认熟悉的专业缩写，第一次出现必须写成“全称（缩写）”，并用一句短解释其在本文中的作用。
+- 容易混淆的概念可以使用紧凑对比表解释，但不滥用表格。
+- 新概念教学以“足够理解当前论文”为度，不扩写成百科。
+
+### 13. 结尾必须给真正的 Takeaway
+
+在联系用户当前研究之前，先单独回答：
+
+- 作者证明了什么？列 3–5 点，有证据支撑。
+- 作者没有证明什么？明确结论边界，尤其区分相关性、机制解释和因果结论。
+- 读完真正应该记住什么？用 3–6 条简洁但有信息量的话总结，不能只是改写 Abstract。
+
+### 14. 最后才讨论“对当前研究的启发”
+
+只有完成论文本体精读之后，才允许联系最新 causal-review 研究记录。重点讨论哪些变量、指标、实验单位或设计可以直接借鉴；哪些问题仍未解决；哪些观察可以转成随机、配对、析因或因果实验；哪些结论可能只在当前 benchmark / model / agent 下成立；如何扩展到 repository-level / call graph / coding agent / code review；哪些论文只能作为 mechanism precedent，不能作为现实性证据。
+
+不强行制造创新点。只有真正相关时才联系当前研究，不再让当前 hypothesis 主导整篇论文。
+
+### 15. 禁止选择性精读
+
+不得因为某个重要 Method、RQ、Figure、Table、Baseline、Ablation、Negative Result、Failure Case 或 Limitation 与用户当前研究关系较弱而省略。
+
+“与当前研究的相关性”只能决定最后“研究启发”一节的篇幅，不能决定论文本体的覆盖范围。
+
+### 16. 发布前九问自检
+
+精读发布前必须自检：如果用户没有打开 PDF，只阅读这份笔记，能否较完整回答：
+
+1. 这篇论文为什么做？
+2. 以前的方法或 benchmark 具体为什么不够？
+3. 方法或 benchmark 从输入到输出怎样运行？
+4. 每个重要 RQ 是怎样设计和验证的？
+5. 主要 Figure / Table 应该怎样读？
+6. Baseline 为什么这样选，比较是否公平？
+7. Ablation 到底证明了什么、没有证明什么？
+8. 哪些结论证据充分，哪些只是解释或推测？
+9. 最重要的 limitation / failure mode 是什么？
+
+任一核心问题仍无法从笔记中回答，则认为精读未完成，不得发布。
 
 
 每篇完整精读使用目录 `YYMMDD-FirstAuthor-ShortName`，正文统一为 `README.md`。
