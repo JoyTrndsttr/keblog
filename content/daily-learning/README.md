@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**41 次精读**，覆盖 **2026-08-03—2026-09-25**。
+> 已归档：**42 次精读**，覆盖 **2026-08-03—2026-09-26**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-09-26 | [260926-ShaoqiuZhang-SWEExplore](./260926-ShaoqiuZhang-SWEExplore/README.md) | SWE-Explore: Benchmarking How Coding Agents Explore Repositories | Shaoqiu Zhang | arXiv / 2026 | 已精读（完整公开原文；教学式完整精读） |
 | 2026-09-25 | [260925-HanLi-ContextBench](./260925-HanLi-ContextBench/README.md) | ContextBench: A Benchmark for Context Retrieval in Coding Agents | Han Li | arXiv / 2026 | 已精读（完整原文；按教学式完整精读协议重写） |
 | 2026-09-24 | [260924-YunxiangZhang-RepoAtlas](./260924-YunxiangZhang-RepoAtlas/README.md) | RepoAtlas: Guiding Coding Agents via Evolving Multimodal Repository Views | Yunxiang Zhang | arXiv / 2026 | 已精读（完整 arXiv v1 HTML 原文） |
 | 2026-09-23 | [260923-HaojunWeng-StaleRepositoryContext](./260923-HaojunWeng-StaleRepositoryContext/README.md) | When Retrieval Hurts Code Completion: A Diagnostic Study of Stale Repository Context | Haojun Weng | arXiv / 2026 | 已精读（完整 arXiv v1 原文） |
