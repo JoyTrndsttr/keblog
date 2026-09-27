@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-09-27
+
+- **The Missing Complement: State-Conditioned Minimal Sufficient Evidence for Coding Agents**
+  - 简称：[The Missing Complement / SERBench](https://38-76-161-31.sslip.io/daily-learning/?paper=260927-ZhexiFeng-MissingComplement)
+  - Tags：`2026` `arXiv/Preprint` `Coding Agent` `Repository Context` `Evidence Retrieval` `Minimal Sufficient Evidence` `Set Retrieval` `State-conditioned` `Benchmark` `实验设计` `因果干预`
+  - 作者：Zhexi Feng; Ruiyi Zhang; Yongbo Yang; Pengtao Xie*
+  - Venue / 年份：arXiv / 2026
+  - DOI / 原文：[arXiv:2609.20050](https://arxiv.org/abs/2609.20050); [SERBench](https://github.com/LordTARN1SHED/SERBench)
+  - 主题：State-conditioned Retrieval、Grouped Sufficiency Certificate、Complete-MSS、Complement Acquisition、Drop-one-group Control
+  - 一句话价值：SERBench 将 Coding Agent 检索改写为“给定当前已见状态，恢复下一决策仍缺的充分证据组合”，用组内替代、组间合取的 certificate 评价 500 个 held-out states；MSS-Complement 在 Top-5 达到 73.0%，对比强 reranker 的 61.4%，而 matched drop-one-required-group 在两个 executor 上分别损失约 12.3 和 11.1 个百分点的定位精度。对当前研究最关键的是把 patch-aware Core 从节点并集升级为 decision-specific evidence groups，并先通过 core-only sufficiency 与 deletion test，再解释 plausible-vs-random 的归因干扰。
+
 ### 2026-09-26
 
 - **SWE-Explore: Benchmarking How Coding Agents Explore Repositories**

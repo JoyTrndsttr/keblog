@@ -44,3 +44,4 @@
 - RepoAtlas: Guiding Coding Agents via Evolving Multimodal Repository Views
 - ContextBench: A Benchmark for Context Retrieval in Coding Agents
 - SWE-Explore: Benchmarking How Coding Agents Explore Repositories
+- The Missing Complement: State-Conditioned Minimal Sufficient Evidence for Coding Agents
