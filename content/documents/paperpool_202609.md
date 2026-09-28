@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-09-28
+
+- **Skill Following: Evaluating Actual Skill Use in Retrieval-Enabled LLM Agents**
+  - 简称：[Skill Following](https://38-76-161-31.sslip.io/daily-learning/?paper=260928-SeonghyeonCho-SkillFollowing)
+  - Tags：`2026` `Findings of EMNLP` `LLM Agent` `Skill Retrieval` `Paired Execution` `Selection Bias` `Actual-Use Effect` `Coding Agent` `实验设计` `因果解释`
+  - 作者：Seonghyeon Cho; Chanjun Park*
+  - Venue / 年份：Findings of EMNLP / 2026
+  - DOI / 原文：[arXiv:2609.00549](https://arxiv.org/abs/2609.00549)
+  - 主题：Skill Following、Retrieval-enabled Agent、Overall Skill-Access Effect、Retrieval-Invoked Actual-Use Effect、配对转移
+  - 一句话价值：以同一任务的 skill-enabled / skill-disabled 配对执行揭示传统“检索组 vs. 未检索组”准确率差的选择偏差；多个模型出现 aggregate lift 为正而 RAE 为负的符号反转。对当前研究最直接的价值是预先固定样本并比较 core-only / plausible / random 的 helpful 与 harmful flips，同时把运行后“确实采用额外上下文”的子集降级为行为诊断而非主因果估计。
+
 ### 2026-09-27
 
 - **The Missing Complement: State-Conditioned Minimal Sufficient Evidence for Coding Agents**

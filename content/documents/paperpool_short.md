@@ -45,3 +45,4 @@
 - ContextBench: A Benchmark for Context Retrieval in Coding Agents
 - SWE-Explore: Benchmarking How Coding Agents Explore Repositories
 - The Missing Complement: State-Conditioned Minimal Sufficient Evidence for Coding Agents
+- Skill Following: Evaluating Actual Skill Use in Retrieval-Enabled LLM Agents
