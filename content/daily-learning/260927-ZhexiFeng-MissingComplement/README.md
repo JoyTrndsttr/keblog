@@ -1,38 +1,4 @@
-# 每日中文技术情报简报 · 2026-09-27
-
-## 今日最值得看
-
-今天最值得精读的是 **The Missing Complement: State-Conditioned Minimal Sufficient Evidence for Coding Agents**。它把代码 Agent 的检索目标从“找与 issue 最相似的片段”改成“在 Agent 已经看过一部分仓库后，补齐下一步决策仍缺少的最小充分证据组合”。这与当前 VLocBench 的 sufficient-core gate、Core / Optional / non-decisive 分层以及归因偏移实验几乎直接对接。
-
-## Gmail 只读整理
-
-过去一天没有检索到新邮件，因此没有新的需行动事项、科研投稿或合作邮件，也没有需要专门保留的技术资讯。
-
-## 中南大学通知
-
-研究生院公开通知页截至 9 月 27 日没有 9 月 23–27 日新增通知；当前最新仍是 9 月 22 日发布的“急救与心理技能”在线课程教学安排和工程案例征集拟推荐项目公示。计算机学院通知公告页最新仍是 9 月 21 日的兼职辅导员选聘通知，没有新增且与你博士新生事务直接相关的事项。
-
-OA 本次未覆盖（需要登录）。
-
-## 过去 24–72 小时新论文雷达
-
-- **SWE-Prometheus**（arXiv:2609.30120，9 月 25 日）：尝试把 Coding Agent 在固定仓库中完成更广泛工程工作的能力做成可测 benchmark，值得后续关注其任务构造是否超越单 issue repair。
-- **SWE-PolyVision**（arXiv:2609.29837，9 月 25 日）：面向 repository-level software engineering 的跨图像溯因推理 benchmark；与当前纯代码上下文干预不是同一主线，暂不抢占今日精读。
-- **Self-Evolving Coding Agents**（arXiv:2608.03392，新版本 9 月 25 日）：综述 Coding Agent 自进化中的 executable feedback、repository context、trajectory 与安全问题；更适合作为背景综述，不如今天的 SERBench 直接服务当前实验设计。
-
-## 工程与计算机新闻
-
-过去一天没有发现足以改变当前 Coding Agent 实验判断的重要产品或工程动态，今天不为凑栏目加入普通 AI 新闻。
-
-## 今日建议动作
-
-1. 把现有 `core-only` 检查正式写成 **decision-specific sufficiency gate**：先明确模型下一步要做的是机制判断、节点归因还是文件定位，再定义该决策需要哪些证据组。
-2. 在 `core + plausible` 与 `core + random` 之前加入一个 **drop-one-group** 对照：固定 token、文件数和其余证据，只删除一个必要证据组，验证当前“核心证据”标签是否真的具有决策价值。
-3. 不要把 patch node 的并集直接称为 minimal sufficient context；至少区分“候选 Core”“已验证 sufficient”“经删除检验显示必要”三种证据强度。
-
----
-
-# 每日论文精读：The Missing Complement: State-Conditioned Minimal Sufficient Evidence for Coding Agents
+# The Missing Complement: State-Conditioned Minimal Sufficient Evidence for Coding Agents
 
 论文由 Zhexi Feng、Ruiyi Zhang、Yongbo Yang 和 Pengtao Xie 完成，2026 年 9 月 17 日提交 arXiv，共 32 页。四位作者均来自 University of California San Diego 的 Electrical and Computer Engineering 系；论文脚注明确标注 Pengtao Xie 为通讯作者。
 
