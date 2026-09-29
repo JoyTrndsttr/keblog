@@ -46,3 +46,4 @@
 - SWE-Explore: Benchmarking How Coding Agents Explore Repositories
 - The Missing Complement: State-Conditioned Minimal Sufficient Evidence for Coding Agents
 - Skill Following: Evaluating Actual Skill Use in Retrieval-Enabled LLM Agents
+- SecureReviewer: Enhancing Large Language Models for Secure Code Review through Secure-aware Fine-tuning

@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-09-29
+
+- **SecureReviewer: Enhancing Large Language Models for Secure Code Review through Secure-aware Fine-tuning**
+  - 简称：[SecureReviewer](https://38-76-161-31.sslip.io/daily-learning/?paper=260929-FangLiu-SecureReviewer)
+  - Tags：`2026` `ICSE` `安全代码审查` `LLM Code Review` `Secure-aware Fine-tuning` `RAG` `SecureBLEU` `数据集构建` `消融实验` `构念效度`
+  - 作者：Fang Liu; Simiao Liu; Yinghao Zhu; Xiaoli Lian; Li Zhang*
+  - Venue / 年份：ICSE / 2026
+  - DOI / 原文：[10.1145/3744916.3773191](https://doi.org/10.1145/3744916.3773191); [arXiv:2510.26457](https://arxiv.org/abs/2510.26457); [Code](https://github.com/SIMIAO515/SecureReviewer)
+  - 主题：安全代码审查、结构化评论生成、安全感知损失、模板检索、领域评价指标
+  - 一句话价值：从 CodeReviewer 中构造 4,674 条八分类安全审查数据，以领域微调和安全关键 token 加权把三个 7B backbone 的 F1 提升到约 71.6–72.0；最重要的负结果是模板 RAG 对已微调模型没有稳定收益。它适合作为当前安全 review 的 diff-only baseline 与 outcome schema，但缺少 repository provenance，不能直接承担仓库级上下文因果实验。
+
 ### 2026-09-28
 
 - **Skill Following: Evaluating Actual Skill Use in Retrieval-Enabled LLM Agents**
