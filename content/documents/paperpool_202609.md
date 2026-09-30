@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-09-30
+
+- **GraphLocator: Graph-guided Causal Reasoning for Issue Localization**
+  - 简称：[GraphLocator](https://38-76-161-31.sslip.io/daily-learning/?paper=260930-WeiLiu-GraphLocator)
+  - Tags：`2026` `FSE` `Issue Localization` `Repository Graph` `RDFS` `Causal Issue Graph` `LLM Agent` `溯因推理` `SWE-bench` `构念效度`
+  - 作者：Wei Liu; Chao Peng*; Pengfei Gao; Aofan Liu; Wei Zhang; Haiyan Zhao; Zhi Jin
+  - Venue / 年份：FSE 2026 Research Papers
+  - DOI / 原文：[10.1145/3797079](https://doi.org/10.1145/3797079); [arXiv:2512.22469](https://arxiv.org/abs/2512.22469)
+  - 主题：软件问题定位、仓库异构图、症状到原因追踪、多实体定位、结构化推理
+  - 一句话价值：GraphLocator 以 RDFS 搜索症状节点，再用优先队列逐轮构造 CIG，在三套 Python/Java 数据上主要通过提高函数级 precision 改善定位；但 CIG 表示的是 LLM 假设的归因结构，边权不是经统计识别或校准的因果效应，补丁位置也不等同于唯一机制真值。
+
 ### 2026-09-29
 
 - **SecureReviewer: Enhancing Large Language Models for Secure Code Review through Secure-aware Fine-tuning**

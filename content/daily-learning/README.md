@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**45 次精读**，覆盖 **2026-08-03—2026-09-29**。
+> 已归档：**46 次精读**，覆盖 **2026-08-03—2026-09-30**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-09-30 | [260930-WeiLiu-GraphLocator](./260930-WeiLiu-GraphLocator/README.md) | GraphLocator: Graph-guided Causal Reasoning for Issue Localization | Wei Liu | FSE 2026 Research Papers | 已精读（完整公开原文；教学式完整精读） |
 | 2026-09-29 | [260929-FangLiu-SecureReviewer](./260929-FangLiu-SecureReviewer/README.md) | SecureReviewer: Enhancing Large Language Models for Secure Code Review through Secure-aware Fine-tuning | Fang Liu | ICSE / 2026 | 已精读（完整公开原文；教学式完整精读） |
 | 2026-09-28 | [260928-SeonghyeonCho-SkillFollowing](./260928-SeonghyeonCho-SkillFollowing/README.md) | Skill Following: Evaluating Actual Skill Use in Retrieval-Enabled LLM Agents | Seonghyeon Cho | Findings of EMNLP / 2026 | 已精读（完整公开原文；教学式完整精读） |
 | 2026-09-27 | [260927-ZhexiFeng-MissingComplement](./260927-ZhexiFeng-MissingComplement/README.md) | The Missing Complement: State-Conditioned Minimal Sufficient Evidence for Coding Agents | Zhexi Feng | arXiv / 2026 | 已精读（完整公开原文；教学式完整精读） |
