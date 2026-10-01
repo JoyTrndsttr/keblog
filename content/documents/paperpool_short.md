@@ -48,3 +48,4 @@
 - Skill Following: Evaluating Actual Skill Use in Retrieval-Enabled LLM Agents
 - SecureReviewer: Enhancing Large Language Models for Secure Code Review through Secure-aware Fine-tuning
 - GraphLocator: Graph-guided Causal Reasoning for Issue Localization
+- Do Context Files Help Coding Agents? A Two-Agent Ablation Study on Real Repositories
