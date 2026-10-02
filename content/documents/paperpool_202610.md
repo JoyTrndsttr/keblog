@@ -4,6 +4,18 @@
 
 ## 已精读论文
 
+### 2026-10-02
+
+- **CRJudgeBench: Can AI Detect Plausible but Invalid Code Reviews?**
+  - 简称：[CRJudgeBench](https://38-76-161-31.sslip.io/daily-learning/?paper=261002-YuePan-CRJudgeBench)
+  - Tags：`2026` `arXiv` `Code Review` `Repository Context` `Agentic Judge` `Plausible Error` `Benchmark` `Action-level Distillation`
+  - 作者：Yue Pan; Jiawei Li; Ziyuan Zhang; Xiangxin Zhao; He Ye*
+  - Venue / 年份：arXiv / 2026
+  - DOI / 原文：[arXiv:2609.37216](https://arxiv.org/abs/2609.37216); [HTML 全文](https://arxiv.org/html/2609.37216v1); [数据集](https://huggingface.co/datasets/dcloud347/CRJudgeBenchmark)
+  - 主题：评审评论技术可信性、真实 PR 与受控扰动负例、仓库证据搜索、privileged teacher 动作蒸馏
+  - 一句话价值：CRJudgeBench 以 1,199 个专家核验实例揭示模型普遍倾向接受看似合理的评审评论；Sentinel 将不可信评论召回从最强通用基线的 20.77% 提高到 37.69%，但 435 个负例中 370 个由否定、符号或位置扰动生成，现实外部效度仍需独立验证。
+
+
 ### 2026-10-01
 
 - **Do Context Files Help Coding Agents? A Two-Agent Ablation Study on Real Repositories**
