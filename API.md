@@ -19,7 +19,8 @@ GitHub 仓库中的 `content/` 是 Paper Pool、每日计划和论文精读的�
 | GET | `/api/v1/prompt` | `content/support/prompt.txt` |
 | GET | `/api/v1/bootstrap` | 兼容读取：论文池、计划、提示词和精读列表 |
 | GET | `/api/research/document` | VPS 私有研究仓库缓存中的《研究记录.md》 |
-| GET | `/research/workbench/` | VPS 私有研究仓库中当前 workbench 压缩包解压后的静态页面 |
+| GET | `/research/workbench/` | VPS 私有研究仓库中 workbench 根索引，导航到多个实验工作台 |
+| GET | `/research/workbench/{path}` | 根索引或对应压缩包解压后的静态页面、资源 |
 
 所有 `POST`、`PUT`、`PATCH` 和 `DELETE` 请求返回 `405 Method Not Allowed`。`/api/v2/*` 已移除。
 
@@ -35,3 +36,5 @@ GitHub 仓库中的 `content/` 是 Paper Pool、每日计划和论文精读的�
 6. GitHub Webhook 触发 VPS 的 `deploy/update.sh`，完成 pull、测试、构建和重启。
 
 Webhook 不携带文章正文，不解析 Markdown，也不写数据库。Git 历史提供版本记录与恢复能力。
+
+研究同步脚本会读取 causal-review 的 `workbench/index.html`、`catalog.json`、`manifest.json` 和所有 `*-latest.tar.gz`，将每个压缩包解压到其 `benchmark/process` 相对路径下。这样根索引中的多个链接可以直接访问，更新某一个工作台也不会覆盖其他工作台。

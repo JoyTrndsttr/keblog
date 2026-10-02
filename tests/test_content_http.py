@@ -33,6 +33,8 @@ class ContentHTTPTests(unittest.TestCase):
         workbench = content / "research" / "workbench"; workbench.mkdir(parents=True)
         (workbench / "index.html").write_text("<style>h1 { color: purple; }</style><h1>Workbench</h1><script>document.body.dataset.ready = 'yes'</script>")
         (workbench / "style.css").write_text("body { color: black; }")
+        nested = workbench / "vlocbench" / "context-expansion"; nested.mkdir(parents=True)
+        (nested / "index.html").write_text("<!doctype html><html><head><title>Nested</title></head><h1>Nested Workbench</h1></html>")
         cls.server = ThreadingHTTPServer(("127.0.0.1", 0), partial(QuietHandler, directory=static))
         cls.server.content_dir = content
         cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True); cls.thread.start()
@@ -74,6 +76,10 @@ class ContentHTTPTests(unittest.TestCase):
         self.assertIn(b'href="/research/"', body)
         self.assertNotIn("keblog-return", (Path(self.temp.name) / "content" / "research" / "workbench" / "index.html").read_text())
         self.assertEqual(self.raw_request("/research/workbench/style.css")[:2], (200, "text/css"))
+        nested_status, nested_type, nested_body = self.raw_request("/research/workbench/vlocbench/context-expansion/")
+        self.assertEqual((nested_status, nested_type), (200, "text/html"))
+        self.assertIn(b"Nested Workbench", nested_body)
+        self.assertIn(b'href="/research/"', nested_body)
         self.assertEqual(self.raw_request("/research/workbench/%2e%2e/index.html")[0], 404)
 
     def test_inline_code_stays_blocked_outside_workbench(self):

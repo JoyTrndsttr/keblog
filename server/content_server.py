@@ -79,11 +79,22 @@ class SiteHandler(SimpleHTTPRequestHandler):
         content_type = mimetypes.guess_type(candidate.name)[0] or "application/octet-stream"
         if content_type == "text/html":
             page = body.decode("utf-8")
-            shell = ('<link rel="stylesheet" href="/workbench-shell.css?v=20260916">'
-                     '<a class="keblog-return" href="/research/" aria-label="返回研究页">'
-                     '<span aria-hidden="true">←</span><b>返回研究</b></a>')
-            marker = page.lower().rfind("</body>")
-            page = page[:marker] + shell + page[marker:] if marker >= 0 else page + shell
+            shell_style = '<link rel="stylesheet" href="/workbench-shell.css?v=20261002">'
+            shell_link = ('<a class="keblog-return" href="/research/" aria-label="返回研究页">'
+                          '<span aria-hidden="true">←</span><b>返回研究</b></a>')
+            lower = page.lower()
+            head_marker = lower.find("</head>")
+            if head_marker >= 0:
+                page = page[:head_marker] + shell_style + page[head_marker:]
+            else:
+                page = shell_style + page
+            lower = page.lower()
+            body_marker = lower.rfind("</body>")
+            if body_marker >= 0:
+                page = page[:body_marker] + shell_link + page[body_marker:]
+            else:
+                html_marker = lower.rfind("</html>")
+                page = page[:html_marker] + shell_link + page[html_marker:] if html_marker >= 0 else page + shell_link
             body = page.encode("utf-8")
         self.send_response(HTTPStatus.OK)
         self.send_header("Content-Type", content_type)
