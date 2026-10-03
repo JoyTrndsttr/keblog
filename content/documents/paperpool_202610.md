@@ -4,6 +4,19 @@
 
 ## 已精读论文
 
+
+### 2026-10-03
+
+- **Harness Engineering for Agentic AI Coding Tools: An Exploratory Study**
+  - 简称：[Harness Engineering](https://38-76-161-31.sslip.io/daily-learning/?paper=261003-MatthiasGalster-HarnessEngineering)
+  - Tags：`2026` `AIware` `Agentic Coding` `Harness Engineering` `Context Files` `AGENTS.md` `Skills` `Subagents`
+  - 作者：Matthias Galster; Seyedmoein Mohsenimofidi; Jai Lal Lulla; Muhammad Auwal Abubakar; Christoph Treude; Sebastian Baltes
+  - Venue / 年份：AIware 2026 扩展版 / arXiv v5，2026
+  - DOI / 原文：[arXiv:2602.14690](https://arxiv.org/abs/2602.14690); [HTML 全文](https://arxiv.org/html/2602.14690v5); [会议版 DOI: 10.1145/3805760.3814887](https://doi.org/10.1145/3805760.3814887); [补充材料](https://doi.org/10.5281/zenodo.18625980)
+  - 主题：编码智能体 harness 配置机制、跨工具配置制品、AGENTS.md 互操作、Skills 与 Subagents 采用深度
+  - 一句话价值：在 2,853 个开源仓库中，90.6% 有 Context Files，而 Skills 与 Subagents 仅见于 158 和 131 个仓库；AGENTS.md 正成为跨工具入口，但该研究只证明采用与结构，不证明任何配置会提高 agent 成功率。
+
+
 ### 2026-10-02
 
 - **CRJudgeBench: Can AI Detect Plausible but Invalid Code Reviews?**

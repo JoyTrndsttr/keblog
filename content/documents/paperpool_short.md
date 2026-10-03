@@ -50,3 +50,4 @@
 - GraphLocator: Graph-guided Causal Reasoning for Issue Localization
 - Do Context Files Help Coding Agents? A Two-Agent Ablation Study on Real Repositories
 - CRJudgeBench: Can AI Detect Plausible but Invalid Code Reviews?
+- Harness Engineering for Agentic AI Coding Tools: An Exploratory Study
