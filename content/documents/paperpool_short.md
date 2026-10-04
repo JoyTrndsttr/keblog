@@ -51,3 +51,4 @@
 - Do Context Files Help Coding Agents? A Two-Agent Ablation Study on Real Repositories
 - CRJudgeBench: Can AI Detect Plausible but Invalid Code Reviews?
 - Harness Engineering for Agentic AI Coding Tools: An Exploratory Study
+- When and How Context Rot Appears in Coding Agents: A White-Box Study of Agent Skills in Code Auditing

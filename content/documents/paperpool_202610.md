@@ -5,6 +5,19 @@
 ## 已精读论文
 
 
+### 2026-10-04
+
+- **When and How Context Rot Appears in Coding Agents: A White-Box Study of Agent Skills in Code Auditing**
+  - 简称：[Context Rot](https://38-76-161-31.sslip.io/daily-learning/?paper=261004-YueXue-ContextRot)
+  - Tags：`2026` `arXiv` `Coding Agent` `Long Context` `Agent Skills` `Code Auditing` `Controlled Experiment` `Failure Analysis`
+  - 作者：Yue Xue
+  - Venue / 年份：arXiv cs.SE / 2026
+  - DOI / 原文：[arXiv:2607.17937](https://arxiv.org/abs/2607.17937); [PDF](https://arxiv.org/pdf/2607.17937)
+  - 主题：长上下文可靠性、Agent Skill、白盒代码审计、requirement retention、失败定位与 checklist mitigation
+  - 一句话价值：固定任务与 24 个检查后，clean 8/10，而等长 relevant-long 与 irrelevant-long 都为 3/10；结果提示长上下文可能造成稀疏关键遗漏，但并不支持“相关/plausible 上下文必然比随机无关上下文更危险”。
+
+
+
 ### 2026-10-03
 
 - **Harness Engineering for Agentic AI Coding Tools: An Exploratory Study**

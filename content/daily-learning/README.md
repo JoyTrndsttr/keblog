@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**49 次精读**，覆盖 **2026-08-03—2026-10-03**。
+> 已归档：**50 次精读**，覆盖 **2026-08-03—2026-10-04**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-10-04 | [261004-YueXue-ContextRot](./261004-YueXue-ContextRot/README.md) | When and How Context Rot Appears in Coding Agents: A White-Box Study of Agent Skills in Code Auditing | Yue Xue | arXiv cs.SE / 2026 | 已精读（完整公开原文；教学式完整精读） |
 | 2026-10-03 | [261003-MatthiasGalster-HarnessEngineering](./261003-MatthiasGalster-HarnessEngineering/README.md) | Harness Engineering for Agentic AI Coding Tools: An Exploratory Study | Matthias Galster | AIware 2026 扩展版 / arXiv v5 | 已精读（完整公开原文；教学式完整精读） |
 | 2026-10-02 | [261002-YuePan-CRJudgeBench](./261002-YuePan-CRJudgeBench/README.md) | CRJudgeBench: Can AI Detect Plausible but Invalid Code Reviews? | Yue Pan | arXiv / 2026 | 已精读（完整公开原文；教学式完整精读） |
 | 2026-10-01 | [261001-PrakharKhatri-ContextFiles](./261001-PrakharKhatri-ContextFiles/README.md) | Do Context Files Help Coding Agents? A Two-Agent Ablation Study on Real Repositories | Prakhar Khatri | arXiv / 2026 | 已精读（完整公开原文；教学式完整精读） |
