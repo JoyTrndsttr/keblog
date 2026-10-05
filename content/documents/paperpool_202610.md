@@ -5,6 +5,19 @@
 ## 已精读论文
 
 
+### 2026-10-05
+
+- **Learning When and How to Intervene: A Hindsight-Distilled Sentinel for Coding Agents**
+  - 简称：[HiSentinel](https://38-76-161-31.sslip.io/daily-learning/?paper=261005-JiangruiZhao-HiSentinel)
+  - Tags：`2026` `arXiv` `Coding Agent` `Trajectory` `Intervention` `Hindsight Distillation` `Human-in-the-loop` `SWE-bench`
+  - 作者：Jiangrui Zhao; Chenglong Li; Meng Zhang; Xiaoting Du*
+  - Venue / 年份：arXiv cs.SE / 2026
+  - DOI / 原文：[arXiv:2609.39957](https://arxiv.org/abs/2609.39957); [HTML 全文](https://arxiv.org/html/2609.39957); [PDF](https://arxiv.org/pdf/2609.39957)
+  - 主题：coding-agent 轨迹干预、pre-execution Sentinel、privileged hindsight distillation、错误传播与 human assistance
+  - 一句话价值：HiSentinel 在动作执行前选择 Allow/Redirect/Hard-Pause，并把 future-aware teacher 的 hindsight 蒸馏给 0.6B/1.7B Sentinel；1.7B 版本将 Qwen3-Coder 在 SWE-bench Verified Mini 的 solve rate 从 30% 提到 44%，同时揭示真正重要的是 intervention quality 而非 intervention frequency。
+
+
+
 ### 2026-10-04
 
 - **When and How Context Rot Appears in Coding Agents: A White-Box Study of Agent Skills in Code Auditing**
