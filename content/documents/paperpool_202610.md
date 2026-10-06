@@ -4,6 +4,18 @@
 
 ## 已精读论文
 
+### 2026-10-06
+
+- **From Verification Failures to Reusable Guidance for Coding Agents**
+  - 简称：[Verification Guidance](https://38-76-161-31.sslip.io/daily-learning/?paper=261006-YuqingZhai-VerificationGuidance)
+  - Tags：`2026` `arXiv` `Coding Agent` `Formal Verification` `K Framework` `Reusable Guidance` `Agent Skills` `Specification Adequacy`
+  - 作者：Yuqing Zhai; Xiaohong Chen; Lingming Zhang; Sriram Vishwanath; Grigore Rosu
+  - Venue / 年份：arXiv cs.SE / 2026
+  - DOI / 原文：[arXiv:2609.39022](https://arxiv.org/abs/2609.39022); [PDF](https://arxiv.org/pdf/2609.39022)
+  - 主题：coding-agent 形式验证、可执行语义、失败经验复用、规格充分性审计、K Framework 与验证指导
+  - 一句话价值：论文把验证失败沉淀为语义与 procedure kit，但最可信的冻结三臂实验在 Luna 上正向、DeepSeek 上负向且区间均跨 0，说明指导内容、模型行为与推理预算必须分开评估。
+
+
 
 ### 2026-10-05
 
