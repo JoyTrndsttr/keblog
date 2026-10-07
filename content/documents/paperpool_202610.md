@@ -4,6 +4,18 @@
 
 ## 已精读论文
 
+### 2026-10-07
+
+- **Rules to Tools: Executable Checks for LLM Agents in Scientific Computing**
+  - 简称：[Rules to Tools](https://38-76-161-31.sslip.io/daily-learning/?paper=261007-JingjieNing-RulesToTools)
+  - Tags：`2026` `arXiv` `Coding Agent` `Scientific Computing` `Executable Check` `Tool Use` `SciCode` `Verification`
+  - 作者：Jingjie Ning*; Guojiang Zhao; Chen Xu; Shanshan Zhong; Xiaochuan Li; Ji Zeng; Guolin Ke*
+  - Venue / 年份：arXiv cs.AI / 2026
+  - DOI / 原文：[arXiv:2610.00313](https://arxiv.org/abs/2610.00313); [PDF](https://arxiv.org/pdf/2610.00313)
+  - 主题：科学计算 coding-agent、公开规则可执行化、prepared checker、SciCode/PDE 修复、工具交付形式与资源成本
+  - 一句话价值：两个未绑定 task-ID 队列合计从文字组 26/30 提升到工具组 29/30，但原始队列优势集中于 task 77、共享定义队列持平，且工具常以更多 public CPU 换取更少模型输出；真正结论是可执行检查的收益高度任务相关。
+
+
 ### 2026-10-06
 
 - **From Verification Failures to Reusable Guidance for Coding Agents**

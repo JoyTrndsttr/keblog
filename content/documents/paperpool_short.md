@@ -54,3 +54,4 @@
 - When and How Context Rot Appears in Coding Agents: A White-Box Study of Agent Skills in Code Auditing
 - Learning When and How to Intervene: A Hindsight-Distilled Sentinel for Coding Agents
 - From Verification Failures to Reusable Guidance for Coding Agents
+- Rules to Tools: Executable Checks for LLM Agents in Scientific Computing
