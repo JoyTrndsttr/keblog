@@ -93,3 +93,14 @@
 ## 待精读论文
 
 - 暂无已指定待精读论文
+
+### 2026-10-08
+
+- **What Process Evaluation of Coding Agents Actually Measures: Action, Task, and Step Are Three Different Levels**
+  - 简称：[Process Evaluation](https://38-76-161-31.sslip.io/daily-learning/?paper=261008-JiaweiHe-ProcessEvaluation)
+  - Tags：`2026` `arXiv` `Coding Agent` `Causal Inference` `Process Evaluation` `Trajectory` `Collider Bias`
+  - 作者：Jiawei He; Mengyu Shi; Jie Jia; Xikai Yang*; Dong Sun*（*通讯作者）
+  - Venue / 年份：arXiv cs.AI / 2026
+  - DOI / 原文：[arXiv:2608.22960](https://arxiv.org/abs/2608.22960)
+  - 主题：Agent 过程评估与因果归因
+  - 一句话价值：同轨迹不同信息集导致评审者归因偏移，语义相关性不等于因果贡献。

@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**53 次精读**，覆盖 **2026-08-03—2026-10-07**。
+> 已归档：**54 次精读**，覆盖 **2026-08-03—2026-10-08**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-10-08 | [261008-JiaweiHe-ProcessEvaluation](./261008-JiaweiHe-ProcessEvaluation/README.md) | What Process Evaluation of Coding Agents Actually Measures: Action, Task, and Step Are Three Different Levels | Jiawei He | arXiv cs.AI / 2026 | 已精读（完整 HTML 原文；教学式精读） |
 | 2026-10-07 | [261007-JingjieNing-RulesToTools](./261007-JingjieNing-RulesToTools/README.md) | Rules to Tools: Executable Checks for LLM Agents in Scientific Computing | Jingjie Ning | arXiv cs.AI / 2026 | 已精读（完整公开原文；教学式完整精读） |
 | 2026-10-06 | [261006-YuqingZhai-VerificationGuidance](./261006-YuqingZhai-VerificationGuidance/README.md) | From Verification Failures to Reusable Guidance for Coding Agents | Yuqing Zhai | arXiv cs.SE / 2026 | 已精读（完整公开原文；教学式完整精读） |
 | 2026-10-05 | [261005-JiangruiZhao-HiSentinel](./261005-JiangruiZhao-HiSentinel/README.md) | Learning When and How to Intervene: A Hindsight-Distilled Sentinel for Coding Agents | Jiangrui Zhao | arXiv cs.SE / 2026 | 已精读（完整公开原文；教学式完整精读） |
