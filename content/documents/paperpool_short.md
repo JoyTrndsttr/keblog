@@ -56,3 +56,4 @@
 - From Verification Failures to Reusable Guidance for Coding Agents
 - Rules to Tools: Executable Checks for LLM Agents in Scientific Computing
 - What Process Evaluation of Coding Agents Actually Measures: Action, Task, and Step Are Three Different Levels
+- VulContextBench: A Benchmark for Security Context Retrieval in Coding Agents

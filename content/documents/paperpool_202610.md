@@ -4,6 +4,30 @@
 
 ## 已精读论文
 
+### 2026-10-09
+
+- **VulContextBench: A Benchmark for Security Context Retrieval in Coding Agents**
+  - 简称：[VulContextBench](https://38-76-161-31.sslip.io/daily-learning/?paper=261009-YikunLi-VulContextBench)
+  - Tags：`2026` `arXiv` `Security Code Review` `Coding Agent` `Context Retrieval` `Evidence Selection` `Benchmark` `Role Attribution`
+  - 作者：Yikun Li*; Jinfeng Jiang*; Yieh Yuheng; Ting Zhang; Yide Yin; Leow Wen Bin; Eng Lieh Ouh; Lwin Khin Shar; David Lo（*共同贡献；原文未标明通讯作者）
+  - Venue / 年份：arXiv cs.CR / 2026，v1
+  - DOI / 原文：[arXiv:2609.32601v1](https://arxiv.org/abs/2609.32601v1); [PDF](https://arxiv.org/pdf/2609.32601v1); [代码与数据](https://github.com/yikun-li/vul-context-bench)
+  - 主题：人工审计漏洞引入提交、两阶段安全证据检索、多粒度覆盖、四类证据角色与最终引用质量
+  - 一句话价值：111 个审计 VIC、464 个角色块揭示七模型探索到的 gold 与最终声明之间约 37—73pp 的块召回缺口；位置与角色错误可拆开，但覆盖评分不证明证据真实因果贡献，27.0%→75.1% 的总体 gold 验证也不认证每例最小充分。
+
+
+### 2026-10-08
+
+- **What Process Evaluation of Coding Agents Actually Measures: Action, Task, and Step Are Three Different Levels**
+  - 简称：[Process Evaluation](https://38-76-161-31.sslip.io/daily-learning/?paper=261008-JiaweiHe-ProcessEvaluation)
+  - Tags：`2026` `arXiv` `Coding Agent` `Causal Inference` `Process Evaluation` `Trajectory` `Collider Bias`
+  - 作者：Jiawei He; Mengyu Shi; Jie Jia; Xikai Yang*; Dong Sun*（*通讯作者）
+  - Venue / 年份：arXiv cs.AI / 2026
+  - DOI / 原文：[arXiv:2608.22960](https://arxiv.org/abs/2608.22960)
+  - 主题：Agent 过程评估与因果归因
+  - 一句话价值：同轨迹不同信息集导致评审者归因偏移，语义相关性不等于因果贡献。
+
+
 ### 2026-10-07
 
 - **Rules to Tools: Executable Checks for LLM Agents in Scientific Computing**
@@ -93,14 +117,3 @@
 ## 待精读论文
 
 - 暂无已指定待精读论文
-
-### 2026-10-08
-
-- **What Process Evaluation of Coding Agents Actually Measures: Action, Task, and Step Are Three Different Levels**
-  - 简称：[Process Evaluation](https://38-76-161-31.sslip.io/daily-learning/?paper=261008-JiaweiHe-ProcessEvaluation)
-  - Tags：`2026` `arXiv` `Coding Agent` `Causal Inference` `Process Evaluation` `Trajectory` `Collider Bias`
-  - 作者：Jiawei He; Mengyu Shi; Jie Jia; Xikai Yang*; Dong Sun*（*通讯作者）
-  - Venue / 年份：arXiv cs.AI / 2026
-  - DOI / 原文：[arXiv:2608.22960](https://arxiv.org/abs/2608.22960)
-  - 主题：Agent 过程评估与因果归因
-  - 一句话价值：同轨迹不同信息集导致评审者归因偏移，语义相关性不等于因果贡献。
