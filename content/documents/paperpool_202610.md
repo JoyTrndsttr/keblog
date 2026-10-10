@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-10
+
+- **Empowering Lightweight Language Models for Security Code Review via Context-Aware Distillation**
+  - 简称：[LSCR](https://38-76-161-31.sslip.io/daily-learning/?paper=261010-ZixiaoZhao-LSCR)
+  - Tags：`2026` `ISSTA` `Security Code Review` `Lightweight LLM` `Knowledge Distillation` `Repository Context` `Chain-of-Thought`
+  - 作者：Zixiao Zhao; Yanjie Jiang*; Hui Liu; Lu Zhang*（*通讯作者）
+  - Venue / 年份：ISSTA 2026 / Proceedings of the ACM on Software Engineering 3
+  - DOI / 原文：[10.1145/3832293](https://doi.org/10.1145/3832293); [复现包](https://github.com/caagc/LSCR)
+  - 主题：面向安全代码评审的仓库上下文检索、结构化推理轨迹蒸馏与轻量语言模型
+  - 一句话价值：LSCR 把“证据—静态分析式推理—结论”蒸馏给三个 6.7B/7B 学生；相对 SecureReviewer，人工评价中 instrumental 评论最高相对提升 52.6%、misleading 评论最高相对下降 22.6%，但大模型仅添加上下文并不稳定受益，推理轨迹也未被独立验证。
+
 ### 2026-10-09
 
 - **VulContextBench: A Benchmark for Security Context Retrieval in Coding Agents**
