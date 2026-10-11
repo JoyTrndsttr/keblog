@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-11
+
+- **Acquiring and Verifying Repository Norms for Coding Agents**
+  - 简称：[RepoNorm](https://38-76-161-31.sslip.io/daily-learning/?paper=261011-KaifengHe-RepoNorm)
+  - Tags：`2026` `arXiv` `Coding Agent` `Repository Norms` `Repository Context` `Instruction Files` `Specification Mining` `Compliance`
+  - 作者：Kaifeng He; Xiaojun Zhang; Zhenxi Chen; Christoph Treude; Mingwei Liu*（*通讯作者）
+  - Venue / 年份：arXiv cs.SE / 2026，v1
+  - DOI / 原文：[arXiv:2610.07757](https://arxiv.org/abs/2610.07757); [PDF](https://arxiv.org/pdf/2610.07757); [代码与数据](https://github.com/SYSUSELab/RepoNorm)
+  - 主题：仓库规范获取、显式与隐式规则、适用性验证、Coding Agent 规范遵从与功能正确性
+  - 一句话价值：RepoNorm 将规则、作用域、条件、例外和证据打包给 Agent，在 121 个任务上将总体规范遵从率相对提高 7.42%—10.77%、贡献规范遵从率提高 31.64%—45.44%；但功能成功差异经多重校正后不显著，默认高精度视图完整覆盖仅 21.88%，且编码 token 相对 Raw 增加 33.65%。
+
 ### 2026-10-10
 
 - **Empowering Lightweight Language Models for Security Code Review via Context-Aware Distillation**
