@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-12
+
+- **One Skill Too Many: How Co-Installed Skills Conflict in Coding Agents**
+  - 简称：[Skill Conflict](https://38-76-161-31.sslip.io/daily-learning/?paper=261012-ChaoliangYan-SkillConflict)
+  - Tags：`2026` `arXiv` `Coding Agent` `Agent Skills` `Skill Conflict` `Instruction Fidelity` `Controlled Experiment` `PreToolUse Hook`
+  - 作者：Chaoliang Yan; Zihao Xu; Yuekang Li; Shangzhi Xu; Yi Liu; Gelei Deng; Siqi Ma（原文未标明通讯作者）
+  - Venue / 年份：arXiv cs.SE / cs.AI / 2026，v1
+  - DOI / 原文：[arXiv:2610.11647](https://arxiv.org/abs/2610.11647); [PDF](https://arxiv.org/pdf/2610.11647); [复现包](https://github.com/ltroin/conflict)
+  - 主题：Agent Skill 共装冲突、独占核心功能、技能路由、安装 scope、首次读取干预与过程忠实度
+  - 一句话价值：在 312 对真实相似技能、6,368 次运行中，相似技能让目标技能使用率下降 19.9pp、独占核心功能忠实度下降 5.6pp，而任务完成率不降；首次读取 guard 可恢复忠实度，说明“任务成功”会系统漏掉指导替换。
+
 ### 2026-10-11
 
 - **Acquiring and Verifying Repository Norms for Coding Agents**

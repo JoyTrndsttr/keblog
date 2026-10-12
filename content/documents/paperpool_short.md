@@ -59,3 +59,4 @@
 - VulContextBench: A Benchmark for Security Context Retrieval in Coding Agents
 - Empowering Lightweight Language Models for Security Code Review via Context-Aware Distillation
 - Acquiring and Verifying Repository Norms for Coding Agents
+- One Skill Too Many: How Co-Installed Skills Conflict in Coding Agents
