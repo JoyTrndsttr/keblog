@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**58 次精读**，覆盖 **2026-08-03—2026-10-12**。
+> 已归档：**59 次精读**，覆盖 **2026-08-03—2026-10-13**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-10-13 | [261013-MinxingWang-Cadence](./261013-MinxingWang-Cadence/README.md) | Cadence: Strategic Guidance for Coding Agents | Minxing Wang | arXiv cs.SE / 2026 | 已精读（完整 v1 PDF；教学式完整精读） |
 | 2026-10-12 | [261012-ChaoliangYan-SkillConflict](./261012-ChaoliangYan-SkillConflict/README.md) | One Skill Too Many: How Co-Installed Skills Conflict in Coding Agents | Chaoliang Yan | arXiv cs.SE / cs.AI / 2026 | 已精读（完整 v1 PDF；教学式完整精读） |
 | 2026-10-11 | [261011-KaifengHe-RepoNorm](./261011-KaifengHe-RepoNorm/README.md) | Acquiring and Verifying Repository Norms for Coding Agents | Kaifeng He | arXiv cs.SE / 2026 | 已精读（完整 v1 PDF；教学式完整精读） |
 | 2026-10-10 | [261010-ZixiaoZhao-LSCR](./261010-ZixiaoZhao-LSCR/README.md) | Empowering Lightweight Language Models for Security Code Review via Context-Aware Distillation | Zixiao Zhao | ISSTA 2026 / Proc. ACM Softw. Eng. 3 | 已精读（完整 ACM PDF；教学式完整精读） |
@@ -88,3 +89,4 @@
 - 笔记必须区分论文报告的事实、基于证据的推断和仍待验证的判断。
 - 每次精读应覆盖动机、方法链路、研究问题、实验设计、重要图表、证据边界和后续研究机会。
 - 每次发布同时更新论文池、精读索引和精读正文，再 commit 并 push 到 `master`。
+

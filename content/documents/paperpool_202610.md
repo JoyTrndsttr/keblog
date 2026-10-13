@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-13
+
+- **Cadence: Strategic Guidance for Coding Agents**
+  - 简称：[Cadence](https://38-76-161-31.sslip.io/daily-learning/?paper=261013-MinxingWang-Cadence)
+  - Tags：`2026` `arXiv` `Coding Agent` `Runtime Monitor` `Trajectory` `Adaptive Scheduling` `Intervention` `SWE-bench Lite`
+  - 作者：Minxing Wang; He Ye; Earl T. Barr; Yintong Huo（原文未标明通讯作者）
+  - Venue / 年份：arXiv cs.SE / 2026，v1
+  - DOI / 原文：[arXiv:2610.12269](https://arxiv.org/abs/2610.12269); [PDF](https://arxiv.org/pdf/2610.12269); [代码与结果](https://github.com/LogAnalysisTech/Cadence)
+  - 主题：coding-agent 运行时监控、两级预执行干预、自适应检查调度、轨迹健康与 token efficiency
+  - 一句话价值：在 300 个 SWE-bench Lite 任务上，Cadence 将 mini-swe-agent / Moatless 相对 Vanilla 的解决率提高 25.33 / 15.67pp；相近 token 预算下动态调度比固定 7 步高 9pp，但状态代理未独立校准、单次运行与单一 Python benchmark 限制了因果和外部效度。
+
 ### 2026-10-12
 
 - **One Skill Too Many: How Co-Installed Skills Conflict in Coding Agents**
@@ -150,3 +161,4 @@
 ## 待精读论文
 
 - 暂无已指定待精读论文
+
