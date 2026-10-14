@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-14
+
+- **What Does a Harness Buy? Tokens, Mostly**
+  - 简称：[Harness Buy](https://38-76-161-31.sslip.io/daily-learning/?paper=261014-YangzeLiu-HarnessBuy)
+  - Tags：`2026` `arXiv` `Coding Agent` `Harness Engineering` `SWE-bench Verified` `Evaluation Noise` `Paired Experiment` `Cost`
+  - 作者：Yangze Liu; Zhongyi Han*（*通讯作者）
+  - Venue / 年份：arXiv cs.AI / cs.LG / cs.SE / 2026，v1
+  - DOI / 原文：[arXiv:2610.04433](https://arxiv.org/abs/2610.04433); [PDF](https://arxiv.org/pdf/2610.04433); [代码与数据](https://github.com/YangzeLiu/what-does-a-harness-buy)
+  - 主题：coding-agent harness 对照、任务级重跑噪声、配对等效性、统计功效、失败恢复与 token 成本分解
+  - 一句话价值：在 SWE-bench Verified 上，45 个最难任务中换 harness 与原配置重跑的中位任务翻转率同为 13%，而约 447 个配对任务才足以把 Claude Code 与 mini-SWE-agent 界定为 ±5pp 内等效；harness 仍会通过恢复和上下文策略改变失败路径，并让同模型账单相差最高约 3 倍。
+
 ### 2026-10-13
 
 - **Cadence: Strategic Guidance for Coding Agents**
@@ -161,4 +172,5 @@
 ## 待精读论文
 
 - 暂无已指定待精读论文
+
 
