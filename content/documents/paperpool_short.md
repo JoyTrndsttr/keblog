@@ -62,5 +62,7 @@
 - One Skill Too Many: How Co-Installed Skills Conflict in Coding Agents
 - Cadence: Strategic Guidance for Coding Agents
 - What Does a Harness Buy? Tokens, Mostly
+- Deep Agentic Search for Repository-Level Code Question Answering: An Empirical Study
+
 
 

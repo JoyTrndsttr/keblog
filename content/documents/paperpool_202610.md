@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-15
+
+- **Deep Agentic Search for Repository-Level Code Question Answering: An Empirical Study**
+  - 简称：[Deep Agentic Search](https://38-76-161-31.sslip.io/daily-learning/?paper=261015-AmirkiaRafieiOskooei-DeepAgenticSearch)
+  - Tags：`2026` `arXiv` `Repository-Level Code QA` `Semantic Search` `Deep Agentic Search` `Subagent` `Failure Taxonomy` `Context Engineering` `Cost`
+  - 作者：Amirkia Rafiei Oskooei; Bora Ilci; Alperen Kayim; Mehmet Egemen Uzun; Berat Can; Kaan Emre Kara; Ozan Orhan; Mehmet S. Aktas（原文未明确标注通讯作者）
+  - Venue / 年份：arXiv cs.SE / 2026，v1
+  - DOI / 原文：[arXiv:2608.01507](https://arxiv.org/abs/2608.01507); [PDF](https://arxiv.org/pdf/2608.01507); [HTML](https://arxiv.org/html/2608.01507v1)
+  - 主题：仓库级代码问答、语义检索、子 Agent 委派搜索、上下文交接、失败机制、成本—准确率权衡
+  - 一句话价值：在 SWE-QA 的 15 个 Python 仓库、4 个模型和每条件 720 个问题上，语义检索总体 Pass 为 65.2%、委派式 Deep Agentic 搜索为 46.2%，每个正确答案成本约 0.32 对 0.74 美元；Deep 失败中 41.8% 来自主 Agent 与子 Agent 协调断裂，且 91% 仍输出流畅答案，但系统 bundle、预算不匹配和单次运行限制了纯搜索策略因果结论。
+
 ### 2026-10-14
 
 - **What Does a Harness Buy? Tokens, Mostly**
@@ -172,5 +183,6 @@
 ## 待精读论文
 
 - 暂无已指定待精读论文
+
 
 
