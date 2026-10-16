@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**61 次精读**，覆盖 **2026-08-03—2026-10-15**。
+> 已归档：**62 次精读**，覆盖 **2026-08-03—2026-10-16**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-10-16 | [261016-ArmanBehnam-CausalMemoryPolicy](./261016-ArmanBehnam-CausalMemoryPolicy/README.md) | Causal Memory Policy: Making Memory Utility Identifiable by Intervening on Retrieval | Arman Behnam | arXiv cs.AI / 2026 | 已精读（完整 v3 HTML 原文及附录；教学式完整精读） |
 | 2026-10-15 | [261015-AmirkiaRafieiOskooei-DeepAgenticSearch](./261015-AmirkiaRafieiOskooei-DeepAgenticSearch/README.md) | Deep Agentic Search for Repository-Level Code Question Answering: An Empirical Study | Amirkia Rafiei Oskooei | arXiv cs.SE / 2026 | 已精读（完整 v1 PDF；教学式完整精读） |
 | 2026-10-14 | [261014-YangzeLiu-HarnessBuy](./261014-YangzeLiu-HarnessBuy/README.md) | What Does a Harness Buy? Tokens, Mostly | Yangze Liu | arXiv cs.AI / cs.LG / cs.SE / 2026 | 已精读（完整 v1 PDF；教学式完整精读） |
 | 2026-10-13 | [261013-MinxingWang-Cadence](./261013-MinxingWang-Cadence/README.md) | Cadence: Strategic Guidance for Coding Agents | Minxing Wang | arXiv cs.SE / 2026 | 已精读（完整 v1 PDF；教学式完整精读） |

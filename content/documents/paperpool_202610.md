@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-16
+
+- **Causal Memory Policy: Making Memory Utility Identifiable by Intervening on Retrieval**
+  - 简称：[Causal Memory Policy](https://38-76-161-31.sslip.io/daily-learning/?paper=261016-ArmanBehnam-CausalMemoryPolicy)
+  - Tags：`2026` `arXiv` `Causal Inference` `LLM Memory` `Retrieval` `Positivity` `Mediation` `Randomized Exposure` `Inverse Propensity Weighting` `Context Attribution`
+  - 作者：Arman Behnam; Binghui Wang（原文未明确标注通讯作者）
+  - Venue / 年份：arXiv cs.AI / 2026，v3
+  - DOI / 原文：[arXiv:2610.02070](https://arxiv.org/abs/2610.02070); [HTML](https://arxiv.org/html/2610.02070v3); [PDF](https://arxiv.org/pdf/2610.02070)
+  - 主题：LLM 长期记忆、检索中介、正值性、因果效用识别、平衡随机暴露、不可逆决策
+  - 一句话价值：论文指出只在存储层加入或删除记忆无法识别从未被检索的候选效用；CMP 以已知倾向概率随机暴露候选，把 LongMemEval 上必要/非必要记忆区分 AUC 从 0.542 提高到 0.664，但逐查询效用无法预测未来未知查询，因此解决的是测量识别而非长期保留策略。
+
 ### 2026-10-15
 
 - **Deep Agentic Search for Repository-Level Code Question Answering: An Empirical Study**
