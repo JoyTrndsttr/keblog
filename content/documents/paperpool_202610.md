@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-17
+
+- **SHERLOC: Structured Diagnostic Localization for Code Repair Agents**
+  - 简称：[SHERLOC](https://38-76-161-31.sslip.io/daily-learning/?paper=261017-HovhannesTamoyan-SHERLOC)
+  - Tags：`2026` `arXiv` `Code Localization` `Code Repair Agent` `Diagnostic Context` `Repository Exploration` `SWE-bench Verified` `Chunk Coverage` `Negative Transfer`
+  - 作者：Hovhannes Tamoyan; Sean Narenthiran; Erik Arakelyan; Mira Mezini; Boris Ginsburg（原文未明确标注通讯作者）
+  - Venue / 年份：arXiv cs.CL / EMNLP 2026，v2
+  - DOI / 原文：[arXiv:2606.24820](https://arxiv.org/abs/2606.24820); [HTML](https://arxiv.org/html/2606.24820v2); [PDF](https://arxiv.org/pdf/2606.24820); [代码与配方](https://github.com/NVIDIA-NeMo/Skills/tree/main/recipes/sherloc)
+  - 主题：仓库级故障定位、行块覆盖、结构化诊断、下游修复迁移、自恢复、负迁移与 token 成本
+  - 一句话价值：SHERLOC 把定位输出从文件名扩展为行块与五字段诊断，在 SWE-bench Verified 达到 81.27% file recall@1，并在多数 repair-agent 设置中提升修复率且平均减少 36.7% 定位 token；但正确文件内完整/不完整关键块覆盖仍对应 22.6pp 修复差距，错误 finding 还会让强模型下降 4–5pp。
+
 ### 2026-10-16
 
 - **Causal Memory Policy: Making Memory Utility Identifiable by Intervening on Retrieval**

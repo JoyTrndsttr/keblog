@@ -47,6 +47,7 @@
 - The Missing Complement: State-Conditioned Minimal Sufficient Evidence for Coding Agents
 - Skill Following: Evaluating Actual Skill Use in Retrieval-Enabled LLM Agents
 - SecureReviewer: Enhancing Large Language Models for Secure Code Review through Secure-aware Fine-tuning
+- SHERLOC: Structured Diagnostic Localization for Code Repair Agents
 - GraphLocator: Graph-guided Causal Reasoning for Issue Localization
 - Do Context Files Help Coding Agents? A Two-Agent Ablation Study on Real Repositories
 - CRJudgeBench: Can AI Detect Plausible but Invalid Code Reviews?
