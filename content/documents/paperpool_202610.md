@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-18
+
+- **Cost-Effective Repository Exploration for Agentic Issue Localization**
+  - 简称：[IssueLoc-Bench](https://38-76-161-31.sslip.io/daily-learning/?paper=261018-MohammadNourAlAwad-IssueLocBench)
+  - Tags：`2026` `AgenticDev` `Repository Exploration` `Issue Localization` `Coding Agent` `Handoff Contract` `Cost` `SWE-bench Verified`
+  - 作者：Mohammad Nour Al Awad*; Sergey Ivanov（*原文作者栏以信封符号标注通讯作者）
+  - Venue / 年份：AgenticDev 2026
+  - DOI / 原文：[10.1145/3843282.3844422](https://doi.org/10.1145/3843282.3844422); [arXiv:2608.29675](https://arxiv.org/abs/2608.29675); [PDF](https://arxiv.org/pdf/2608.29675); [代码与数据](https://github.com/mohammad-nour-alawad/IssueLoc-bench)
+  - 主题：修复前仓库探索、文件级问题定位、软/硬交接契约、质量—成本 Pareto、失败升级与仓库聚类不确定性
+  - 一句话价值：IssueLoc-Bench 将修复前探索拆成独立阶段；Qwen3-30B-A3B 在 SWE-bench 衍生任务上保留 GLM-4.7-Flash 约 89% Hit@3、92% F1，同时减少约 95% token，但论文未接固定 repairer 验证端到端效果，核心结论是先按可恢复候选或硬门禁定义 handoff contract，再选择指标与模型。
+
 ### 2026-10-17
 
 - **SHERLOC: Structured Diagnostic Localization for Code Repair Agents**
