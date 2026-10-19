@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-19
+
+- **Evaluating the Impact of Experimental Assumptions in Automated Fault Localization**
+  - 简称：[Debugging Assumptions](https://38-76-161-31.sslip.io/daily-learning/?paper=261019-EzekielSoremekun-DebuggingAssumptions)
+  - Tags：`2023` `ICSE` `Automated Fault Localization` `Ground Truth` `Construct Validity` `Automated Program Repair` `Developer Study`
+  - 作者：Ezekiel Soremekun; Lukas Kirschner; Marcel Böhme; Mike Papadakis（原文未明确标注通讯作者）
+  - Venue / 年份：ICSE 2023 Research Track
+  - DOI / 原文：[10.1109/ICSE48619.2023.00025](https://doi.org/10.1109/ICSE48619.2023.00025); [作者版 PDF](https://mboehme.github.io/paper/ICSE23-debug-assumptions.pdf); [复现材料](https://debugging-assumptions.github.io/)
+  - 主题：故障定位构念效度、补丁位置与根因、首命中假设、多位置诊断、AFL/APR 交接与开发者偏好
+  - 一句话价值：对 63 篇论文、352 个 C bug、19 种 AFL 配置、2 个 APR 工具和 76 名参与者的研究表明，首个故障位置、fix=root-cause 与单位置假设会把 AFL 测得有效性平均抬高约 13%、最高 38%，同时让 APR 的可修复数被低估；对当前研究的直接要求是把 mechanism gold、repair footprint 与 actionable entry 分开。
+
 ### 2026-10-18
 
 - **Cost-Effective Repository Exploration for Agentic Issue Localization**

@@ -49,6 +49,7 @@
 - SecureReviewer: Enhancing Large Language Models for Secure Code Review through Secure-aware Fine-tuning
 - SHERLOC: Structured Diagnostic Localization for Code Repair Agents
 - Cost-Effective Repository Exploration for Agentic Issue Localization
+- Evaluating the Impact of Experimental Assumptions in Automated Fault Localization
 - GraphLocator: Graph-guided Causal Reasoning for Issue Localization
 - Do Context Files Help Coding Agents? A Two-Agent Ablation Study on Real Repositories
 - CRJudgeBench: Can AI Detect Plausible but Invalid Code Reviews?

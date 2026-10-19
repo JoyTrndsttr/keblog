@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**64 次精读**，覆盖 **2026-08-03—2026-10-18**。
+> 已归档：**65 次精读**，覆盖 **2026-08-03—2026-10-19**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-10-19 | [261019-EzekielSoremekun-DebuggingAssumptions](./261019-EzekielSoremekun-DebuggingAssumptions/README.md) | Evaluating the Impact of Experimental Assumptions in Automated Fault Localization | Ezekiel Soremekun | ICSE 2023 Research Track | 已精读（完整作者版 PDF；教学式完整精读） |
 | 2026-10-18 | [261018-MohammadNourAlAwad-IssueLocBench](./261018-MohammadNourAlAwad-IssueLocBench/README.md) | Cost-Effective Repository Exploration for Agentic Issue Localization | Mohammad Nour Al Awad | AgenticDev 2026 | 已精读（完整 arXiv v1 PDF；教学式完整精读） |
 | 2026-10-17 | [261017-HovhannesTamoyan-SHERLOC](./261017-HovhannesTamoyan-SHERLOC/README.md) | SHERLOC: Structured Diagnostic Localization for Code Repair Agents | Hovhannes Tamoyan | arXiv cs.CL / EMNLP 2026 | 已精读（完整 v2 HTML 原文及附录；教学式完整精读） |
 | 2026-10-16 | [261016-ArmanBehnam-CausalMemoryPolicy](./261016-ArmanBehnam-CausalMemoryPolicy/README.md) | Causal Memory Policy: Making Memory Utility Identifiable by Intervening on Retrieval | Arman Behnam | arXiv cs.AI / 2026 | 已精读（完整 v3 HTML 原文及附录；教学式完整精读） |
