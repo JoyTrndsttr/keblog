@@ -4,7 +4,7 @@
 > 作者：Ezekiel Soremekun；Lukas Kirschner；Marcel Böhme；Mike Papadakis（原文未明确标注通讯作者）  
 > 论文机构：Royal Holloway, University of London；SnT, University of Luxembourg；Saarland University；Max Planck Institute for Security and Privacy；Monash University  
 > Venue：ICSE 2023 Research Track  
-> 原文：[DOI: 10.1109/ICSE48619.2023.00025](https://doi.org/10.1109/ICSE48619.2023.00025) · [作者版 PDF](https://mboehme.github.io/paper/ICSE23-debug-assumptions.pdf)  
+> 原文（CC BY 4.0）：[DOI: 10.1109/ICSE48619.2023.00025](https://doi.org/10.1109/ICSE48619.2023.00025) · [作者版 PDF](https://mboehme.github.io/paper/ICSE23-debug-assumptions.pdf)  
 > 复现材料：[Debugging Assumptions Artifact](https://debugging-assumptions.github.io/)  
 > Tags：`2023` `ICSE` `Automated Fault Localization` `Ground Truth` `Construct Validity` `Automated Program Repair` `Developer Study`
 
@@ -98,7 +98,7 @@ Table V 中共有 970 个 bug×assumption 判定单元，其中 471 个（49%）
 
 ### 结果
 
-Table VI 报告全部 19 种技术以及 Naish2、Kulczynski2、dynamic slicing 三个强配置。所有技术从“有假设”切换到“无假设”后，测得有效性都下降；三类假设平均夸大约 **13%**，单个配置最高 **38%**。按假设汇总，PBU 和 single-location 的平均差约为 **12%** 与 **16%**，fix-location 约为 **9%**。
+Table VI 报告全部 19 种技术以及 Naish1、Kulczynski2、dynamic slicing 三个强配置。所有技术从“有假设”切换到“无假设”后，测得有效性都下降；三类假设平均夸大约 **13%**，单个配置最高 **38%**。按假设汇总，PBU 和 single-location 的平均差约为 **12%** 与 **16%**，fix-location 约为 **9%**。
 
 38% 不是准确率下降 38 个百分点。它来自相对 wasted-effort 有效性变化，直觉是开发者为了找到完整目标，需要额外检查约五分之二的程序语句。论文的语言偶尔把相对差写成“effectiveness by 38%”，阅读时必须保留指标定义。
 
