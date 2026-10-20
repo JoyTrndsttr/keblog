@@ -1,14 +1,18 @@
-# keblog 只读内容接口
+# keblog 内容与社区接口
 
 Base URL：`https://38-76-161-31.sslip.io`。
 
-GitHub 仓库中的 `content/` 是 Paper Pool、每日计划和论文精读的唯一事实源。HTTP 服务只负责把当前 checkout 中的 Markdown 提供给网站，不接受内容写入，也不使用 SQLite。
+GitHub 仓库中的 `content/` 是 Paper Pool、每日计划和论文精读的唯一事实源。文章正文和公开阅读不需要登录；账户、阅读状态、评论和划线笔记保存在 VPS 独立的 SQLite 运行数据中，不进入 Git。
 
 ## 接口
 
 | Method | URL | 内容 |
 |---|---|---|
 | GET | `/api/health` | 服务状态与内容来源 |
+| GET | `/api/auth/me` | 当前登录用户；未登录时 `user` 为 `null` |
+| POST | `/api/auth/register` | 注册并登录，JSON：`username`、`password`、`displayName` |
+| POST | `/api/auth/login` | 登录，JSON：`username`、`password` |
+| POST | `/api/auth/logout` | 注销当前会话 |
 | GET | `/api/documents/paperpool.md` | `content/documents/paperpool.md` |
 | GET | `/api/documents/paperpool_YYYYMM.md` | 指定月份的 Paper Pool 详细记录 |
 | GET | `/api/documents/paperpool_short.md` | Paper Pool 永久去重标题索引 |
@@ -16,13 +20,17 @@ GitHub 仓库中的 `content/` 是 Paper Pool、每日计划和论文精读的�
 | GET | `/api/daily-learning/{slug}` | 指定精读的 Markdown |
 | GET | `/api/daily-learning/index` | `content/daily-learning/README.md` |
 | GET | `/api/daily-learning/plan` | `content/daily-learning/PLAN.md` |
+| GET | `/api/articles/{slug}/community` | 指定精读的公开评论、公开划线笔记，以及当前登录用户的阅读状态 |
+| POST | `/api/articles/{slug}/status` | 登录后设置 `unread`、`read` 或 `deeper` |
+| POST | `/api/articles/{slug}/comments` | 登录后发表评论，JSON：`content` |
+| POST | `/api/articles/{slug}/notes` | 登录后保存划线笔记，JSON：`quote`、`start`、`end`、`content` |
 | GET | `/api/v1/prompt` | `content/support/prompt.txt` |
 | GET | `/api/v1/bootstrap` | 兼容读取：论文池、计划、提示词和精读列表 |
 | GET | `/api/research/document` | VPS 私有研究仓库缓存中的《研究记录.md》 |
 | GET | `/research/workbench/` | VPS 私有研究仓库中 workbench 根索引，导航到多个实验工作台 |
 | GET | `/research/workbench/{path}` | 根索引或对应压缩包解压后的静态页面、资源 |
 
-所有 `POST`、`PUT`、`PATCH` 和 `DELETE` 请求返回 `405 Method Not Allowed`。`/api/v2/*` 已移除。
+除账户和文章社区接口外，其他 `POST`、`PUT`、`PATCH` 和 `DELETE` 请求返回 `405 Method Not Allowed`。社区写入接口需要登录；文章内容接口仍然只读。`/api/v2/*` 已移除。
 
 ## 发布流程
 

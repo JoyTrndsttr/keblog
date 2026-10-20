@@ -469,6 +469,409 @@ function updateReadingProgress() {
   bar.style.transform = `scaleX(${progress})`;
 }
 
+let currentUser = null;
+let activeCommunitySlug = '';
+let activeCommunity = null;
+let communityRequestId = 0;
+let pendingSelection = null;
+let authMode = 'login';
+
+function formatCommunityDate(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.valueOf())) return value || '';
+  return date.toLocaleString('zh-CN', { dateStyle: 'medium', timeStyle: 'short' });
+}
+
+function communityErrorMessage(payload, fallback = '操作暂时无法完成，请稍后重试。') {
+  return payload?.message || fallback;
+}
+
+function renderAccountWidget() {
+  const widget = document.querySelector('#account-widget');
+  if (!widget) return;
+  if (currentUser) {
+    widget.innerHTML = `<span class="account-user">${escapeHtml(currentUser.displayName)}</span><button type="button" class="account-logout" data-auth-action="logout">退出</button>`;
+  } else {
+    widget.innerHTML = '<button type="button" class="account-button" data-auth-action="login">登录</button>';
+  }
+}
+
+function setAuthMode(mode) {
+  authMode = mode === 'register' ? 'register' : 'login';
+  const register = authMode === 'register';
+  document.querySelectorAll('[data-auth-mode]').forEach((button) => button.setAttribute('aria-selected', String(button.dataset.authMode === authMode)));
+  const title = document.querySelector('#auth-dialog-title');
+  const submit = document.querySelector('#auth-submit');
+  const displayLabel = document.querySelector('#auth-display-label');
+  const password = document.querySelector('#auth-password');
+  if (title) title.textContent = register ? '注册后参与讨论' : '登录后参与讨论';
+  if (submit) submit.textContent = register ? '注册并登录' : '登录';
+  if (displayLabel) displayLabel.hidden = !register;
+  if (displayLabel) displayLabel.querySelector('input').required = register;
+  if (password) password.autocomplete = register ? 'new-password' : 'current-password';
+  const error = document.querySelector('#auth-error');
+  if (error) error.textContent = '';
+}
+
+function openAuth(mode = 'login') {
+  const dialog = document.querySelector('#auth-dialog');
+  if (!dialog) return;
+  setAuthMode(mode);
+  if (!dialog.open) dialog.showModal();
+  document.querySelector('#auth-username')?.focus();
+}
+
+async function fetchCurrentUser() {
+  try {
+    const response = await fetch('/api/auth/me', { cache: 'no-store', credentials: 'same-origin' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    currentUser = (await response.json()).user;
+  } catch (error) {
+    currentUser = null;
+  }
+  renderAccountWidget();
+}
+
+function statusLabel(status) {
+  return ({ unread: '待阅读', read: '已阅读', deeper: '待深入' })[status] || '待阅读';
+}
+
+function renderCommunity(payload) {
+  const community = document.querySelector('#reader-community');
+  if (!community) return;
+  activeCommunity = payload;
+  const selectedStatus = payload.status || 'unread';
+  const statusButtons = ['unread', 'read', 'deeper'].map((status) => `<button type="button" data-reading-status="${status}" aria-pressed="${selectedStatus === status}">${statusLabel(status)}</button>`).join('');
+  const noteCards = payload.notes.map((note) => `<article class="community-note-card" data-note-card="${note.id}"><p class="community-note-quote">${escapeHtml(note.quote)}</p><p class="community-note-content">${escapeHtml(note.content)}</p><div class="community-meta"><b>${escapeHtml(note.user.displayName)}</b><time>${escapeHtml(formatCommunityDate(note.createdAt))}</time></div></article>`).join('');
+  const commentCards = payload.comments.map((comment) => `<article class="community-comment-card"><p class="community-comment-content">${escapeHtml(comment.content)}</p><div class="community-meta"><b>${escapeHtml(comment.user.displayName)}</b><time>${escapeHtml(formatCommunityDate(comment.createdAt))}</time></div></article>`).join('');
+  const loginHint = '<button type="button" class="community-login-link" data-auth-action="login">登录后记录阅读状态</button>';
+  const noteHint = currentUser ? '选中正文中的一段文字，再点击出现的“添加笔记”按钮。' : '选中正文中的一段文字即可查看划线入口；保存笔记需要登录。';
+  const commentForm = currentUser
+    ? '<form id="community-comment-form" class="community-form"><label for="community-comment-text">发表评论</label><textarea id="community-comment-text" rows="4" maxlength="5000" placeholder="分享你的理解、问题或补充" required></textarea><p id="community-comment-error" class="community-error" role="alert"></p><button class="button primary" type="submit">发布评论</button></form>'
+    : '<p class="community-note-hint">文章公开阅读；<button type="button" class="community-login-link" data-auth-action="login">登录后发表评论</button></p>';
+  community.innerHTML = `
+    <section class="community-block community-status-block">
+      <div class="community-heading"><h3>阅读状态</h3><span>${currentUser ? `已登录 · ${escapeHtml(currentUser.displayName)}` : 'PUBLIC READING'}</span></div>
+      <div class="community-status-card"><p>${currentUser ? '为这篇精读设置你的下一步。当前：' + statusLabel(selectedStatus) : '正常阅读无需登录；登录后可以保存你的阅读进度。'}${currentUser ? '' : ` ${loginHint}`}</p><div class="community-status-actions">${statusButtons}</div></div>
+    </section>
+    <section class="community-block community-notes-block">
+      <div class="community-heading"><h3>划线笔记</h3><span>${payload.notes.length} 条 · 按时间</span></div>
+      <p class="community-note-hint">${noteHint}</p>
+      <div class="community-notes-list" id="community-notes-list">${noteCards || '<p class="community-empty">还没有公开笔记。选中正文开始记录第一条。</p>'}</div>
+    </section>
+    <section class="community-block community-comments-block">
+      <div class="community-heading"><h3>评论</h3><span>${payload.comments.length} 条 · 按时间</span></div>
+      <div class="community-comments-list">${commentCards || '<p class="community-empty">还没有评论。</p>'}</div>
+      ${commentForm}
+    </section>`;
+  community.hidden = false;
+}
+
+function textNodes(root) {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      return node.parentElement?.closest('script,style') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+    },
+  });
+  const nodes = [];
+  let node;
+  while ((node = walker.nextNode())) nodes.push(node);
+  return nodes;
+}
+
+function rangeAtOffsets(root, start, end) {
+  if (!Number.isInteger(start) || !Number.isInteger(end) || start < 0 || end <= start) return null;
+  let position = 0;
+  let startNode = null;
+  let endNode = null;
+  let startOffset = 0;
+  let endOffset = 0;
+  for (const node of textNodes(root)) {
+    const next = position + node.nodeValue.length;
+    if (!startNode && start >= position && start <= next) {
+      startNode = node;
+      startOffset = start - position;
+    }
+    if (end >= position && end <= next) {
+      endNode = node;
+      endOffset = end - position;
+      break;
+    }
+    position = next;
+  }
+  if (!startNode || !endNode) return null;
+  const range = document.createRange();
+  range.setStart(startNode, Math.max(0, startOffset));
+  range.setEnd(endNode, Math.max(0, endOffset));
+  return range;
+}
+
+function clearNoteHighlights() {
+  document.querySelectorAll('#learning-content mark.reading-note-highlight').forEach((mark) => {
+    mark.replaceWith(...mark.childNodes);
+  });
+}
+
+function applyNoteHighlights(notes) {
+  const content = document.querySelector('#learning-content');
+  if (!content) return;
+  clearNoteHighlights();
+  [...notes].sort((a, b) => b.start - a.start).forEach((note) => {
+    const range = rangeAtOffsets(content, note.start, note.end);
+    if (!range || range.collapsed) return;
+    const mark = document.createElement('mark');
+    mark.className = 'reading-note-highlight';
+    mark.dataset.noteId = String(note.id);
+    try {
+      mark.appendChild(range.extractContents());
+      range.insertNode(mark);
+    } catch (error) {
+      // A changed Markdown document can invalidate an old range; keep its note visible in the list.
+    }
+  });
+}
+
+function focusCommunityNote(noteId) {
+  const card = document.querySelector(`[data-note-card="${CSS.escape(String(noteId))}"]`);
+  if (!card) return;
+  card.classList.add('is-focused');
+  card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  window.setTimeout(() => card.classList.remove('is-focused'), 1800);
+}
+
+function selectionOffsets(root, range) {
+  const startRange = range.cloneRange();
+  startRange.selectNodeContents(root);
+  startRange.setEnd(range.startContainer, range.startOffset);
+  const endRange = range.cloneRange();
+  endRange.selectNodeContents(root);
+  endRange.setEnd(range.endContainer, range.endOffset);
+  return { start: startRange.toString().length, end: endRange.toString().length };
+}
+
+function selectionPopover() {
+  let popover = document.querySelector('#note-selection-popover');
+  if (!popover) {
+    popover = document.createElement('div');
+    popover.id = 'note-selection-popover';
+    popover.className = 'note-selection-popover';
+    popover.hidden = true;
+    popover.innerHTML = '<button type="button" data-note-action="open">添加笔记</button>';
+    document.body.append(popover);
+  }
+  return popover;
+}
+
+function captureSelection() {
+  const content = document.querySelector('#learning-content');
+  const selection = window.getSelection();
+  if (!content || !selection || selection.rangeCount === 0 || selection.isCollapsed) return;
+  const range = selection.getRangeAt(0);
+  if (!content.contains(range.commonAncestorContainer)) return;
+  const rawQuote = selection.toString();
+  const quote = rawQuote.trim();
+  if (!quote || quote.length > 2000) return;
+  const offsets = selectionOffsets(content, range);
+  const leading = rawQuote.length - rawQuote.trimStart().length;
+  pendingSelection = { quote, start: offsets.start + leading, end: offsets.start + leading + quote.length };
+  const popover = selectionPopover();
+  const rect = range.getBoundingClientRect();
+  popover.hidden = false;
+  popover.style.left = `${Math.max(12, Math.min(window.innerWidth - popover.offsetWidth - 12, rect.left + rect.width / 2 - popover.offsetWidth / 2))}px`;
+  popover.style.top = `${Math.max(12, rect.top - popover.offsetHeight - 8)}px`;
+}
+
+function openNoteDialog() {
+  if (!pendingSelection) return;
+  const popover = document.querySelector('#note-selection-popover');
+  if (popover) popover.hidden = true;
+  if (!currentUser) {
+    openAuth('login');
+    return;
+  }
+  const dialog = document.querySelector('#note-dialog');
+  document.querySelector('#note-selection-quote').textContent = pendingSelection.quote;
+  document.querySelector('#note-text').value = '';
+  document.querySelector('#note-error').textContent = '';
+  if (dialog && !dialog.open) dialog.showModal();
+  document.querySelector('#note-text')?.focus();
+}
+
+async function loadCommunity(slug) {
+  const community = document.querySelector('#reader-community');
+  if (!community) return;
+  activeCommunitySlug = slug || '';
+  const requestId = ++communityRequestId;
+  if (!learningEntries.some((entry) => entry.slug === slug)) {
+    activeCommunity = null;
+    community.hidden = true;
+    clearNoteHighlights();
+    return;
+  }
+  community.hidden = false;
+  community.innerHTML = '<p class="loading">正在读取评论和笔记…</p>';
+  try {
+    const response = await fetch(`/api/articles/${encodeURIComponent(slug)}/community`, { cache: 'no-store', credentials: 'same-origin' });
+    const payload = await response.json();
+    if (!response.ok) throw new Error(communityErrorMessage(payload));
+    if (requestId !== communityRequestId) return;
+    currentUser = payload.user;
+    renderAccountWidget();
+    renderCommunity(payload);
+    applyNoteHighlights(payload.notes || []);
+  } catch (error) {
+    if (requestId === communityRequestId) community.innerHTML = '<p class="error">互动内容暂时无法读取，正文仍可正常阅读。</p>';
+  }
+}
+
+async function submitCommunityComment(form) {
+  const error = document.querySelector('#community-comment-error');
+  const textarea = document.querySelector('#community-comment-text');
+  if (!textarea || !activeCommunitySlug) return;
+  error.textContent = '';
+  const button = form.querySelector('button[type="submit"]');
+  button.disabled = true;
+  try {
+    const response = await fetch(`/api/articles/${encodeURIComponent(activeCommunitySlug)}/comments`, {
+      method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: textarea.value }),
+    });
+    const payload = await response.json();
+    if (!response.ok) throw new Error(communityErrorMessage(payload));
+    form.reset();
+    await loadCommunity(activeCommunitySlug);
+  } catch (errorValue) {
+    error.textContent = errorValue.message;
+  } finally {
+    button.disabled = false;
+  }
+}
+
+async function saveReadingStatus(status) {
+  if (!currentUser) {
+    openAuth('login');
+    return;
+  }
+  try {
+    const response = await fetch(`/api/articles/${encodeURIComponent(activeCommunitySlug)}/status`, {
+      method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status }),
+    });
+    const payload = await response.json();
+    if (!response.ok) throw new Error(communityErrorMessage(payload));
+    if (activeCommunity) activeCommunity.status = status;
+    renderCommunity(activeCommunity);
+    applyNoteHighlights(activeCommunity.notes || []);
+  } catch (error) {
+    window.alert(error.message);
+  }
+}
+
+document.querySelector('#learning-content')?.addEventListener('mouseup', captureSelection);
+document.querySelector('#learning-content')?.addEventListener('keyup', captureSelection);
+document.querySelector('#learning-content')?.addEventListener('click', (event) => {
+  const mark = event.target.closest('.reading-note-highlight');
+  if (mark) focusCommunityNote(mark.dataset.noteId);
+});
+document.querySelector('#reader-community')?.addEventListener('click', (event) => {
+  const authAction = event.target.closest('[data-auth-action]')?.dataset.authAction;
+  if (authAction === 'login') openAuth('login');
+  if (authAction === 'logout') {
+    fetch('/api/auth/logout', { method: 'POST', credentials: 'same-origin' }).finally(() => {
+      currentUser = null;
+      renderAccountWidget();
+      if (activeCommunitySlug) loadCommunity(activeCommunitySlug);
+    });
+    return;
+  }
+  const statusButton = event.target.closest('[data-reading-status]');
+  if (statusButton) saveReadingStatus(statusButton.dataset.readingStatus);
+  const noteCard = event.target.closest('[data-note-card]');
+  if (noteCard) {
+    const mark = document.querySelector(`.reading-note-highlight[data-note-id="${CSS.escape(noteCard.dataset.noteCard)}"]`);
+    mark?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+document.querySelector('#reader-community')?.addEventListener('submit', (event) => {
+  if (event.target.id !== 'community-comment-form') return;
+  event.preventDefault();
+  submitCommunityComment(event.target);
+});
+document.addEventListener('click', (event) => {
+  if (event.target.closest('[data-note-action="open"]')) openNoteDialog();
+  const authAction = event.target.closest('#account-widget [data-auth-action]')?.dataset.authAction;
+  if (authAction === 'login') openAuth('login');
+  if (authAction === 'logout') {
+    fetch('/api/auth/logout', { method: 'POST', credentials: 'same-origin' }).finally(() => {
+      currentUser = null;
+      renderAccountWidget();
+      if (activeCommunitySlug) loadCommunity(activeCommunitySlug);
+    });
+  }
+});
+document.querySelectorAll('[data-auth-mode]').forEach((button) => button.addEventListener('click', () => setAuthMode(button.dataset.authMode)));
+document.querySelector('#auth-close')?.addEventListener('click', () => document.querySelector('#auth-dialog').close());
+document.querySelector('#note-close')?.addEventListener('click', () => document.querySelector('#note-dialog').close());
+document.querySelector('#auth-form')?.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const error = document.querySelector('#auth-error');
+  const button = document.querySelector('#auth-submit');
+  error.textContent = '';
+  button.disabled = true;
+  const payload = {
+    username: document.querySelector('#auth-username').value,
+    password: document.querySelector('#auth-password').value,
+    displayName: document.querySelector('#auth-display').value,
+  };
+  try {
+    const response = await fetch(`/api/auth/${authMode}`, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    const result = await response.json();
+    if (!response.ok) throw new Error(communityErrorMessage(result));
+    currentUser = result.user;
+    renderAccountWidget();
+    document.querySelector('#auth-dialog').close();
+    if (activeCommunitySlug) await loadCommunity(activeCommunitySlug);
+    if (pendingSelection && currentUser) openNoteDialog();
+  } catch (errorValue) {
+    error.textContent = errorValue.message;
+  } finally {
+    button.disabled = false;
+  }
+});
+document.querySelector('#note-form')?.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  if (!pendingSelection || !activeCommunitySlug) return;
+  const error = document.querySelector('#note-error');
+  const button = event.target.querySelector('button[type="submit"]');
+  error.textContent = '';
+  button.disabled = true;
+  try {
+    const response = await fetch(`/api/articles/${encodeURIComponent(activeCommunitySlug)}/notes`, {
+      method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...pendingSelection, content: document.querySelector('#note-text').value }),
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(communityErrorMessage(result));
+    document.querySelector('#note-dialog').close();
+    pendingSelection = null;
+    await loadCommunity(activeCommunitySlug);
+  } catch (errorValue) {
+    error.textContent = errorValue.message;
+  } finally {
+    button.disabled = false;
+  }
+});
+document.querySelector('#account-widget')?.addEventListener('click', (event) => {
+  const action = event.target.closest('[data-auth-action]')?.dataset.authAction;
+  if (action === 'login') openAuth('login');
+});
+window.addEventListener('scroll', () => {
+  const popover = document.querySelector('#note-selection-popover');
+  if (popover) popover.hidden = true;
+}, { passive: true });
+renderAccountWidget();
+if (page === 'daily-learning') fetchCurrentUser();
+
 async function openLearning(slug, push = true) {
   const content = document.querySelector('#learning-content');
   if (!content) return;
@@ -491,6 +894,12 @@ async function openLearning(slug, push = true) {
     if (!targetHash) window.scrollTo({ top: 0, behavior: 'instant' });
     else requestAnimationFrame(() => requestAnimationFrame(() => scrollToLearningHash(targetHash)));
     updateReadingProgress();
+    if (entry) loadCommunity(slug);
+    else {
+      activeCommunitySlug = '';
+      document.querySelector('#reader-community')?.setAttribute('hidden', '');
+      clearNoteHighlights();
+    }
   } catch (error) {
     content.innerHTML = '<p class="error">内容暂时无法读取，请稍后重试。</p>';
   }

@@ -6,17 +6,18 @@
 
 - `/opt/keblog`：`JoyTrndsttr/keblog` 的干净 Git checkout。
 - `content/`：Paper Pool、精读索引、每日计划和精读正文的唯一事实源。
-- `keblog.service`：提供静态页面和只读内容接口。
+- `keblog.service`：提供静态页面、只读 Git 内容接口和账户社区接口。
 - `keblog-webhook.service`：验证 GitHub HMAC、仓库名和 `master` 分支。
 - `keblog-update.service`：运行 `deploy/update.sh`。
 - `/etc/keblog-webhook.env`：GitHub Webhook Secret，权限 `600`，不进入 Git。
 - `/var/lib/wangke-site/research-source`：私有 `causal-review` 仓库的稀疏只读副本。
 - `/var/lib/wangke-site/research-cache/research-record.md`：Research 页面的稳定缓存。
 - `/var/lib/wangke-site/research-cache/workbench/`：安全解压并原子替换的当前实验工作台。
+- `/var/lib/wangke-site/keblog-data/community.sqlite3`：账户、会话、阅读状态、评论和划线笔记；不进入 Git。
 
 `keblog.service` 通过 `RESEARCH_DOCUMENT_FILE` 明确读取上述缓存，避免内容服务切换后回退到 checkout 内不存在的研究文档。
 
-旧 SQLite 文件可以作为历史备份保留，但服务不再读取或写入它。
+社区 SQLite 使用 `KEBLOG_DB_PATH` 指定，并通过 `ReadWritePaths` 仅开放该目录；文章正文仍不写入数据库。
 
 ## 自动更新
 
@@ -47,7 +48,7 @@ curl -f https://38-76-161-31.sslip.io/api/documents/paperpool.md
 
 ## Research 文档同步
 
-`keblog-research-sync.timer` 每 5 分钟使用仓库级只读 Deploy Key 更新私有 `causal-review` 的 `documents` 与 `workbench` 稀疏 checkout，再原子替换研究记录缓存。仅当 `workbench/workbench-latest.tar.gz` 的 SHA-256 变化时，脚本才校验归档路径与类型、安全解压并原子替换工作台。失败时保留上一次成功内容。应用公开固定的 `/api/research/document` 和只读的 `/research/workbench/` 静态目录。
+`keblog-research-sync.timer` 每 5 分钟使用仓库级只读 Deploy Key 更新私有 `causal-review` 的 `documents` 与 `workbench` 稀疏 checkout，再原子替换研究记录缓存。脚本读取 workbench 根索引和所有 `*-latest.tar.gz`，校验归档路径与类型、安全解压并原子替换工作台；失败时保留上一次成功内容。应用公开固定的 `/api/research/document` 和 `/research/workbench/` 静态目录。
 
 ```bash
 sudo systemctl start keblog-research-sync.service

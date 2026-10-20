@@ -58,14 +58,17 @@ if not archives:
     raise SystemExit("no workbench archives found")
 
 total_archive_bytes = 0
+total_uncompressed_bytes = 0
 for archive in archives:
     total_archive_bytes += archive.stat().st_size
     if archive.stat().st_size > 95_000_000:
         raise SystemExit(f"workbench archive is too large: {archive}")
     with tarfile.open(archive, "r:gz") as bundle:
         members = bundle.getmembers()
-        if len(members) > 5000 or sum(item.size for item in members) > 100 * 1024 * 1024:
+        uncompressed_bytes = sum(item.size for item in members)
+        if len(members) > 5000 or uncompressed_bytes > 256_000_000:
             raise SystemExit(f"workbench archive exceeds publication limits: {archive}")
+        total_uncompressed_bytes += uncompressed_bytes
         for item in members:
             path = PurePosixPath(item.name)
             if path.is_absolute() or not path.parts or path.parts[0] != "workbench" or ".." in path.parts:
@@ -75,7 +78,7 @@ for archive in archives:
             if not (item.isdir() or item.isfile()):
                 raise SystemExit(f"unsupported workbench entry: {item.name}")
         bundle.extractall(destination, members=members, filter="data")
-if total_archive_bytes > 100_000_000:
+if total_archive_bytes > 100_000_000 or total_uncompressed_bytes > 1_000_000_000:
     raise SystemExit("combined workbench archives exceed publication limits")
 PYEXTRACT
   [[ -f "$staging/workbench/index.html" ]]

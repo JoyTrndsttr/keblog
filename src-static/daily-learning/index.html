@@ -4,13 +4,14 @@
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="王柯的每日论文精读：从方法、实验与证据边界理解智能软件工程研究。">
   <meta name="theme-color" content="#15112d">
-  <title>每日学习｜王柯</title><link rel="stylesheet" href="/styles.css?v=20260920-pool-months1"><link rel="stylesheet" href="/vendor/katex/katex.min.css?v=0.18.7"><script defer src="/vendor/katex/katex.min.js?v=0.18.7"></script><script defer src="/vendor/katex/contrib/auto-render.min.js?v=0.18.7"></script><script defer src="/app.js?v=20260920-pool-months1"></script>
+  <title>每日学习｜王柯</title><link rel="stylesheet" href="/styles.css?v=20261020-community1"><link rel="stylesheet" href="/vendor/katex/katex.min.css?v=0.18.7"><script defer src="/vendor/katex/katex.min.js?v=0.18.7"></script><script defer src="/vendor/katex/contrib/auto-render.min.js?v=0.18.7"></script><script defer src="/app.js?v=20261020-community1"></script>
 </head>
 <body data-page="daily-learning">
   <header class="site-header">
     <a class="brand" href="/"><span class="brand-mark">WK</span><span><b>王柯</b><small>RESEARCH NOTES</small></span></a>
     <button class="nav-toggle" aria-label="展开导航" aria-expanded="false">菜单</button>
     <nav aria-label="主导航"><a data-nav="home" href="/">首页</a><a data-nav="research" href="/research/">研究</a><a data-nav="publications" href="/publications/">论文</a><a data-nav="daily-learning" href="/daily-learning/?v=20260916-sidebar4">每日学习</a></nav>
+    <div id="account-widget" class="account-widget" aria-live="polite"><button type="button" class="account-button" data-auth-action="login">登录</button></div>
   </header>
   <main class="learning-shell">
     <aside class="learning-sidebar">
@@ -54,12 +55,27 @@
         <div id="learning-content" class="markdown-body learning-markdown"><p class="loading">正在载入今天的学习记录…</p></div>
         <aside class="learning-toc" aria-label="本文目录"><p>本文目录</p><nav id="learning-toc"></nav></aside>
       </div>
+      <section id="reader-community" class="reader-community" hidden aria-label="文章互动"></section>
     </article>
     <dialog id="learning-all-dialog" class="learning-dialog" aria-labelledby="learning-all-title">
       <div class="learning-dialog-head"><div><p class="eyebrow">ALL READINGS</p><h2 id="learning-all-title">全部精读</h2></div><button id="learning-close-all" type="button" aria-label="关闭全部精读">×</button></div>
       <label class="visually-hidden" for="learning-dialog-search">搜索全部精读</label><input id="learning-dialog-search" type="search" placeholder="搜索简称、标题或标签" autocomplete="off">
       <p id="learning-dialog-count" class="learning-dialog-count"></p>
       <nav id="learning-dialog-list" class="learning-dialog-list" aria-label="全部精读简称"></nav>
+    </dialog>
+    <dialog id="note-dialog" class="community-dialog" aria-labelledby="note-dialog-title">
+      <div class="community-dialog-card">
+        <div class="community-dialog-head"><div><p class="eyebrow">READING NOTE</p><h2 id="note-dialog-title">给这段文字做笔记</h2></div><button id="note-close" type="button" class="dialog-close" aria-label="关闭笔记窗口">×</button></div>
+        <blockquote id="note-selection-quote" class="note-selection-quote"></blockquote>
+        <form id="note-form" class="community-form"><label for="note-text">笔记内容</label><textarea id="note-text" rows="5" maxlength="5000" placeholder="写下你的理解、疑问或证据线索" required></textarea><p id="note-error" class="community-error" role="alert"></p><button class="button primary" type="submit">保存笔记</button></form>
+      </div>
+    </dialog>
+    <dialog id="auth-dialog" class="community-dialog" aria-labelledby="auth-dialog-title">
+      <div class="community-dialog-card">
+        <div class="community-dialog-head"><div><p class="eyebrow">ACCOUNT</p><h2 id="auth-dialog-title">登录后参与讨论</h2><p id="auth-dialog-subtitle">阅读文章无需登录；登录后可记录状态、发表评论和添加笔记。</p></div><button id="auth-close" type="button" class="dialog-close" aria-label="关闭登录窗口">×</button></div>
+        <div class="auth-mode-tabs" role="tablist"><button type="button" data-auth-mode="login" aria-selected="true">登录</button><button type="button" data-auth-mode="register" aria-selected="false">注册</button></div>
+        <form id="auth-form" class="community-form"><label for="auth-username">用户名<input id="auth-username" name="username" autocomplete="username" minlength="3" maxlength="32" required></label><label id="auth-display-label" for="auth-display" hidden>显示名称<input id="auth-display" name="displayName" autocomplete="nickname" maxlength="48"></label><label for="auth-password">密码<input id="auth-password" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="256" required></label><p id="auth-error" class="community-error" role="alert"></p><button id="auth-submit" class="button primary" type="submit">登录</button></form>
+      </div>
     </dialog>
   </main>
   <footer class="site-footer"><div><b>王柯</b><p>Causality · Code Review · Software Intelligence</p></div><div><span>中南大学计算机学院</span><span>郁松 / 廖志芳</span></div><p>© 2026 Ke Wang</p></footer>

@@ -6,9 +6,12 @@ After=network.target
 Type=simple
 User=wangke-site
 Group=wangke-site
+UMask=007
 EnvironmentFile=/etc/keblog.env
 Environment=RESEARCH_DOCUMENT_FILE=/var/lib/wangke-site/research-cache/research-record.md
 Environment=RESEARCH_WORKBENCH_DIR=/var/lib/wangke-site/research-cache/workbench
+Environment=KEBLOG_DB_PATH=/var/lib/wangke-site/keblog-data/community.sqlite3
+Environment=KEBLOG_COOKIE_SECURE=1
 WorkingDirectory=/opt/keblog
 ExecStart=/usr/bin/python3 /opt/keblog/server/content_server.py
 Restart=on-failure
@@ -18,6 +21,7 @@ PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
 ReadOnlyPaths=/opt/keblog/content /var/lib/wangke-site/research-cache
+ReadWritePaths=/var/lib/wangke-site/keblog-data
 
 [Install]
 WantedBy=multi-user.target

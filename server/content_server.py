@@ -9,13 +9,19 @@ import mimetypes
 import os
 import re
 from datetime import datetime, timezone
+from email.utils import format_datetime
 from http import HTTPStatus
+from http.cookies import CookieError, SimpleCookie
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
+from community import CommunityError, CommunityStore
+
 LEARNING_SLUG = re.compile(r"^\d{6}-[A-Za-z][A-Za-z0-9]*-[A-Za-z0-9][A-Za-z0-9-]{0,95}$")
 RESEARCH_DOCUMENT = ("研究记录.md", "研究记录")
+SESSION_COOKIE = "keblog_session"
+MAX_JSON_BYTES = 128 * 1024
 
 
 def safe_learning_slug(raw: str) -> str:
@@ -60,6 +66,14 @@ class SiteHandler(SimpleHTTPRequestHandler):
     def research_workbench_dir(self) -> Path:
         default = self.content_dir / "research" / "workbench"
         return Path(os.environ.get("RESEARCH_WORKBENCH_DIR", default)).resolve()
+
+    @property
+    def community_store(self) -> CommunityStore:
+        return self.server.community_store
+
+    @property
+    def cookie_secure(self) -> bool:
+        return bool(getattr(self.server, "cookie_secure", False))
 
     def send_workbench_file(self, route: str) -> None:
         relative = route.removeprefix("/research/workbench/")
@@ -154,6 +168,151 @@ class SiteHandler(SimpleHTTPRequestHandler):
                     entries.append(learning_metadata(directory.name, path.read_text("utf-8"), file_modified(path)))
         return sorted(entries, key=lambda item: (item["date"], item["slug"]), reverse=True)
 
+    def _session_token(self) -> str | None:
+        cookies = SimpleCookie()
+        try:
+            cookies.load(self.headers.get("Cookie", ""))
+        except CookieError:
+            return None
+        morsel = cookies.get(SESSION_COOKIE)
+        return morsel.value if morsel else None
+
+    def _current_user(self) -> dict | None:
+        return self.community_store.user_for_session(self._session_token())
+
+    def _set_session_cookie(self, token: str, expires_at: int) -> str:
+        cookie = SimpleCookie()
+        cookie[SESSION_COOKIE] = token
+        morsel = cookie[SESSION_COOKIE]
+        morsel["path"] = "/"
+        morsel["httponly"] = True
+        morsel["samesite"] = "Lax"
+        morsel["max-age"] = str(max(0, expires_at - int(datetime.now(timezone.utc).timestamp())))
+        if self.cookie_secure:
+            morsel["secure"] = True
+        return morsel.OutputString()
+
+    def _clear_session_cookie(self) -> str:
+        cookie = SimpleCookie()
+        cookie[SESSION_COOKIE] = ""
+        morsel = cookie[SESSION_COOKIE]
+        morsel["path"] = "/"
+        morsel["httponly"] = True
+        morsel["samesite"] = "Lax"
+        morsel["max-age"] = "0"
+        morsel["expires"] = format_datetime(datetime.now(timezone.utc), usegmt=True)
+        if self.cookie_secure:
+            morsel["secure"] = True
+        return morsel.OutputString()
+
+    def _read_json(self) -> dict:
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+        except ValueError as error:
+            raise CommunityError(400, "invalid_body", "请求体长度无效。") from error
+        if length <= 0 or length > MAX_JSON_BYTES:
+            raise CommunityError(400, "invalid_body", "请求体为空或超过大小限制。")
+        try:
+            payload = json.loads(self.rfile.read(length).decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as error:
+            raise CommunityError(400, "invalid_json", "请求体必须是有效 JSON。") from error
+        if not isinstance(payload, dict):
+            raise CommunityError(400, "invalid_json", "请求体必须是 JSON 对象。")
+        return payload
+
+    def _send_community_error(self, error: CommunityError) -> None:
+        self.send_json(error.status, {"error": error.code, "message": error.message})
+
+    def _require_user(self) -> dict | None:
+        user = self._current_user()
+        if user is None:
+            self.send_json(HTTPStatus.UNAUTHORIZED, {"error": "login_required", "message": "请先登录后再进行此操作。"})
+        return user
+
+    def _article_slug(self, raw_slug: str) -> str | None:
+        try:
+            slug = safe_learning_slug(raw_slug)
+        except ValueError:
+            self.send_json(HTTPStatus.NOT_FOUND, {"error": "article_not_found", "message": "文章不存在。"})
+            return None
+        if not (self.learning_dir / slug / "README.md").is_file():
+            self.send_json(HTTPStatus.NOT_FOUND, {"error": "article_not_found", "message": "文章不存在。"})
+            return None
+        return slug
+
+    def _article_route(self, route: str) -> tuple[str, str] | None:
+        parts = route.split("/")
+        if len(parts) != 5 or parts[0] or parts[1] != "api" or parts[2] != "articles":
+            self.send_json(HTTPStatus.NOT_FOUND, {"error": "not_found"})
+            return None
+        return parts[3], parts[4]
+
+    def _handle_auth_post(self, route: str) -> None:
+        try:
+            if route == "/api/auth/logout":
+                self.community_store.logout(self._session_token())
+                self.send_json(HTTPStatus.OK, {"user": None}, {"Set-Cookie": self._clear_session_cookie()})
+                return
+            payload = self._read_json()
+            if route == "/api/auth/register":
+                user, token, expires_at = self.community_store.register(
+                    payload.get("username", ""), payload.get("password", ""), payload.get("displayName")
+                )
+            elif route == "/api/auth/login":
+                user, token, expires_at = self.community_store.login(payload.get("username", ""), payload.get("password", ""))
+            else:
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "not_found"})
+                return
+            self.send_json(HTTPStatus.OK, {"user": user}, {"Set-Cookie": self._set_session_cookie(token, expires_at)})
+        except CommunityError as error:
+            self._send_community_error(error)
+
+    def _handle_article_get(self, route: str) -> None:
+        parsed = self._article_route(route)
+        if parsed is None:
+            return
+        raw_slug, resource = parsed
+        if resource != "community":
+            self.send_json(HTTPStatus.NOT_FOUND, {"error": "not_found"})
+            return
+        slug = self._article_slug(raw_slug)
+        if slug is None:
+            return
+        user = self._current_user()
+        payload = self.community_store.article_community(slug, user["id"] if user else None)
+        payload["user"] = user
+        self.send_json(HTTPStatus.OK, payload)
+
+    def _handle_article_post(self, route: str) -> None:
+        parsed = self._article_route(route)
+        if parsed is None:
+            return
+        raw_slug, resource = parsed
+        slug = self._article_slug(raw_slug)
+        if slug is None:
+            return
+        user = self._require_user()
+        if user is None:
+            return
+        try:
+            payload = self._read_json()
+            if resource == "status":
+                updated_at = self.community_store.set_status(user["id"], slug, str(payload.get("status", "")))
+                self.send_json(HTTPStatus.OK, {"status": payload.get("status"), "updatedAt": updated_at})
+            elif resource == "comments":
+                self.send_json(HTTPStatus.CREATED, {"comment": self.community_store.add_comment(user["id"], slug, payload.get("content", ""))})
+            elif resource == "notes":
+                self.send_json(
+                    HTTPStatus.CREATED,
+                    {"note": self.community_store.add_note(
+                        user["id"], slug, payload.get("quote", ""), payload.get("start"), payload.get("end"), payload.get("content", "")
+                    )},
+                )
+            else:
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "not_found"})
+        except CommunityError as error:
+            self._send_community_error(error)
+
     def do_OPTIONS(self) -> None:
         self.send_response(HTTPStatus.NO_CONTENT)
         self.send_header("Content-Length", "0")
@@ -170,6 +329,10 @@ class SiteHandler(SimpleHTTPRequestHandler):
             self.send_workbench_file(route); return
         if route == "/api/health":
             self.send_json(200, {"status": "ok", "service": "keblog", "version": "3.0", "source": "git"}); return
+        if route == "/api/auth/me":
+            self.send_json(HTTPStatus.OK, {"user": self._current_user()}); return
+        if route.startswith("/api/articles/"):
+            self._handle_article_get(route); return
         if route == "/api/research/document":
             self.send_markdown_json(self.research_document_path, RESEARCH_DOCUMENT[1]); return
         if route in {"/api/documents/paperpool.md", "/api/v1/paper-pool"}:
@@ -203,10 +366,16 @@ class SiteHandler(SimpleHTTPRequestHandler):
             self.send_json(404, {"error": "read-only endpoint not found"}); return
         super().do_GET()
 
+    def do_POST(self) -> None:
+        route = unquote(urlparse(self.path).path)
+        if route in {"/api/auth/register", "/api/auth/login", "/api/auth/logout"}:
+            self._handle_auth_post(route); return
+        if route.startswith("/api/articles/"):
+            self._handle_article_post(route); return
+        self.reject_write()
+
     def reject_write(self) -> None:
         self.send_json(405, {"error": "keblog content is maintained through GitHub; commit content changes to the repository"}, {"Allow": "GET, HEAD, OPTIONS"})
-
-    do_POST = reject_write
     do_PUT = reject_write
     do_PATCH = reject_write
     do_DELETE = reject_write
@@ -217,10 +386,15 @@ def main() -> None:
     project = Path(__file__).resolve().parents[1]
     static_root = Path(os.environ.get("SITE_STATIC_DIR", project / ("src-static" if args.dev else "dist"))).resolve()
     content_root = Path(os.environ.get("SITE_CONTENT_DIR", project / "content")).resolve()
+    database_path = Path(os.environ.get("KEBLOG_DB_PATH", project / "runtime-data" / "community.sqlite3"))
     os.chdir(static_root)
     host, port = os.environ.get("SITE_HOST", "127.0.0.1"), int(os.environ.get("SITE_PORT", "8080"))
     print(f"Serving {static_root} with content from {content_root} on http://{host}:{port}", flush=True)
-    server = ThreadingHTTPServer((host, port), SiteHandler); server.content_dir = content_root; server.serve_forever()
+    server = ThreadingHTTPServer((host, port), SiteHandler)
+    server.content_dir = content_root
+    server.community_store = CommunityStore(database_path)
+    server.cookie_secure = os.environ.get("KEBLOG_COOKIE_SECURE", "0") == "1"
+    server.serve_forever()
 
 
 if __name__ == "__main__": main()

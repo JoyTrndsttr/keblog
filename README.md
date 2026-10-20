@@ -38,7 +38,7 @@ python3 server/content_server.py
 
 ```text
 src-static/     网站页面、样式与浏览器脚本
-server/         Python HTTP 服务与只读内容接口
+server/         Python HTTP 服务、内容接口与社区存储
 scripts/        静态构建脚本
 tests/          后端单元测试
 deploy/         Caddy 与 systemd 配置示例
@@ -47,7 +47,7 @@ content/        初始论文池、阅读笔记与计划
 dist/          构建产物（不提交）
 ```
 
-GitHub 仓库是公开内容的唯一事实源。计划任务同时维护 `content/documents/paperpool.md`、`content/daily-learning/README.md` 和当日精读正文，commit/push 后由 GitHub Webhook 通知 VPS 拉取、构建并重启。Research 页面继续使用 VPS 上私有研究仓库的只读缓存。
+GitHub 仓库是文章等公开内容的唯一事实源；账户、阅读状态、评论和划线笔记保存在 VPS 独立运行数据中。计划任务同时维护 `content/documents/paperpool.md`、`content/daily-learning/README.md` 和当日精读正文，commit/push 后由 GitHub Webhook 通知 VPS 拉取、构建并重启。Research 页面继续使用 VPS 上私有研究仓库的只读缓存。
 
 ## Git 与部署
 
