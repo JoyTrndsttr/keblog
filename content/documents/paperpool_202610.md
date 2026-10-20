@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-20
+
+- **An Empirical Study of Fault Localization in Python Programs**
+  - 简称：[Python Fault Localization](https://38-76-161-31.sslip.io/daily-learning/?paper=261020-MohammadRezaalipour-PythonFaultLocalization)
+  - Tags：`2024` `EMSE` `Fault Localization` `Python` `BugsInPy` `Ground Truth` `Granularity` `Empirical Study`
+  - 作者：Mohammad Rezaalipour; Carlo A. Furia（原文未明确标注通讯作者）
+  - Venue / 年份：Empirical Software Engineering 29, Article 92 / 2024
+  - DOI / 原文：[10.1007/s10664-024-10475-3](https://doi.org/10.1007/s10664-024-10475-3); [arXiv:2305.19834](https://arxiv.org/abs/2305.19834); [HTML](https://arxiv.org/html/2305.19834v3); [复现材料](https://doi.org/10.6084/m9.figshare.23254688)
+  - 主题：Python 故障定位、语句/函数/模块粒度、补丁 ground truth、适用子群、证据组合与成本—效果权衡
+  - 一句话价值：对 BugsInPy 的 135 个真实缺陷比较四类七种技术发现，SBFL 是最有效的通用单独家族，组合方法进一步提高 Top-k 但扩大候选与成本；SBFL 的 Top-1 从语句级 12% 升至函数级 37%、模块级 60%主要来自答案空间折叠，直接支持当前将函数节点作为交付单位但禁止与旧行分数横比。
+
 ### 2026-10-19
 
 - **Evaluating the Impact of Experimental Assumptions in Automated Fault Localization**
