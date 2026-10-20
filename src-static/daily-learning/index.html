@@ -4,7 +4,7 @@
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="王柯的每日论文精读：从方法、实验与证据边界理解智能软件工程研究。">
   <meta name="theme-color" content="#15112d">
-  <title>每日学习｜王柯</title><link rel="stylesheet" href="/styles.css?v=20261020-community1"><link rel="stylesheet" href="/vendor/katex/katex.min.css?v=0.18.7"><script defer src="/vendor/katex/katex.min.js?v=0.18.7"></script><script defer src="/vendor/katex/contrib/auto-render.min.js?v=0.18.7"></script><script defer src="/app.js?v=20261020-community1"></script>
+  <title>每日学习｜王柯</title><link rel="stylesheet" href="/styles.css?v=20261020-community2"><link rel="stylesheet" href="/vendor/katex/katex.min.css?v=0.18.7"><script defer src="/vendor/katex/katex.min.js?v=0.18.7"></script><script defer src="/vendor/katex/contrib/auto-render.min.js?v=0.18.7"></script><script defer src="/app.js?v=20261020-community2"></script>
 </head>
 <body data-page="daily-learning">
   <header class="site-header">
@@ -51,6 +51,7 @@
           <a id="learning-doi" class="button primary" href="#" target="_blank" rel="noreferrer" hidden>DOI ↗</a>
         </div>
       </header>
+      <section id="reader-status" class="reader-status" hidden aria-label="阅读状态"></section>
       <div class="learning-document-layout">
         <div id="learning-content" class="markdown-body learning-markdown"><p class="loading">正在载入今天的学习记录…</p></div>
         <aside class="learning-toc" aria-label="本文目录"><p>本文目录</p><nav id="learning-toc"></nav></aside>
@@ -60,6 +61,7 @@
     <dialog id="learning-all-dialog" class="learning-dialog" aria-labelledby="learning-all-title">
       <div class="learning-dialog-head"><div><p class="eyebrow">ALL READINGS</p><h2 id="learning-all-title">全部精读</h2></div><button id="learning-close-all" type="button" aria-label="关闭全部精读">×</button></div>
       <label class="visually-hidden" for="learning-dialog-search">搜索全部精读</label><input id="learning-dialog-search" type="search" placeholder="搜索简称、标题或标签" autocomplete="off">
+      <div id="learning-status-filters" class="learning-dialog-filters" role="group" aria-label="按阅读状态筛选"><span class="learning-dialog-filters-label">阅读状态</span><button type="button" data-learning-status-filter="all" aria-pressed="true">全部</button><button type="button" data-learning-status-filter="unread" aria-pressed="false">待阅读</button><button type="button" data-learning-status-filter="read" aria-pressed="false">已阅读</button><button type="button" data-learning-status-filter="deeper" aria-pressed="false">待深入</button></div>
       <p id="learning-dialog-count" class="learning-dialog-count"></p>
       <nav id="learning-dialog-list" class="learning-dialog-list" aria-label="全部精读简称"></nav>
     </dialog>

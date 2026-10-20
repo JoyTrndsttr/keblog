@@ -58,6 +58,8 @@ class CommunityHTTPTests(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assertIsNone(payload["user"])
         self.assertIsNone(payload["status"])
+        status, _, payload = self.request("/api/articles/statuses?slugs=260910-Test-Paper")
+        self.assertEqual((status, payload["statuses"]), (200, {"260910-Test-Paper": None}))
         self.assertEqual(self.request("/api/articles/260910-Test-Paper/comments", "POST", {"content": "blocked"})[0], 401)
 
     def test_register_status_note_comment_and_logout(self):
@@ -71,6 +73,8 @@ class CommunityHTTPTests(unittest.TestCase):
         status, _, payload = self.request("/api/articles/260910-Test-Paper/community")
         self.assertEqual((status, payload["status"]), (200, "unread"))
         self.assertEqual(self.request("/api/articles/260910-Test-Paper/status", "POST", {"status": "read"})[0], 200)
+        status, _, payload = self.request("/api/articles/statuses?slugs=260910-Test-Paper")
+        self.assertEqual((status, payload["statuses"]), (200, {"260910-Test-Paper": "read"}))
         note = self.request(
             "/api/articles/260910-Test-Paper/notes", "POST",
             {"quote": "A paragraph", "start": 9, "end": 21, "content": "记下证据。"},

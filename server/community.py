@@ -267,6 +267,20 @@ class CommunityStore:
             "createdAt": row["created_at"],
         }
 
+    def reading_statuses(self, user_id: int | None, slugs: list[str]) -> dict[str, str | None]:
+        if user_id is None:
+            return {slug: None for slug in slugs}
+        if not slugs:
+            return {}
+        placeholders = ','.join('?' for _ in slugs)
+        with self._connect() as db:
+            rows = db.execute(
+                f"SELECT slug, status FROM reading_status WHERE user_id = ? AND slug IN ({placeholders})",
+                (user_id, *slugs),
+            ).fetchall()
+        stored = {row['slug']: row['status'] for row in rows}
+        return {slug: stored.get(slug, 'unread') for slug in slugs}
+
     def article_community(self, slug: str, user_id: int | None = None) -> dict:
         with self._connect() as db:
             comments = db.execute(

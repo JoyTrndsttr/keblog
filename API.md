@@ -21,6 +21,7 @@ GitHub 仓库中的 `content/` 是 Paper Pool、每日计划和论文精读的�
 | GET | `/api/daily-learning/index` | `content/daily-learning/README.md` |
 | GET | `/api/daily-learning/plan` | `content/daily-learning/PLAN.md` |
 | GET | `/api/articles/{slug}/community` | 指定精读的公开评论、公开划线笔记，以及当前登录用户的阅读状态 |
+| GET | `/api/articles/statuses?slugs=...` | 一次读取当前登录用户对多篇精读的阅读状态；未登录时返回空状态 |
 | POST | `/api/articles/{slug}/status` | 登录后设置 `unread`、`read` 或 `deeper` |
 | POST | `/api/articles/{slug}/comments` | 登录后发表评论，JSON：`content` |
 | POST | `/api/articles/{slug}/notes` | 登录后保存划线笔记，JSON：`quote`、`start`、`end`、`content` |

@@ -309,6 +309,9 @@ if (document.querySelector('#publication-detail')) loadPublicationDetail();
 
 let learningEntries = [];
 const learningTags = new Set();
+const learningStatuses = new Map();
+let learningStatusFilter = 'all';
+let learningStatusesRequestId = 0;
 let learningSearchOpen = false;
 
 function parsePaperPoolIndex(markdown) {
@@ -334,6 +337,10 @@ function normalized(value) {
   return String(value).normalize('NFKC').toLocaleLowerCase().trim();
 }
 
+function learningStatusFor(entry) {
+  return learningStatuses.get(entry.slug) || 'unread';
+}
+
 function fuzzyScore(value, query) {
   const text = normalized(value);
   const wanted = normalized(query);
@@ -351,10 +358,11 @@ function fuzzyScore(value, query) {
   return 30 - Math.min(gaps, 25);
 }
 
-function findLearningEntries(query = '', tags = learningTags) {
+function findLearningEntries(query = '', tags = learningTags, statusFilter = 'all') {
   const terms = normalized(query).split(/\s+/).filter(Boolean);
   return learningEntries
     .filter((entry) => [...tags].every((tag) => entry.tags.includes(tag)))
+    .filter((entry) => statusFilter === 'all' || learningStatusFor(entry) === statusFilter)
     .map((entry) => {
       let score = 0;
       for (const term of terms) {
@@ -380,9 +388,10 @@ function findLearningEntries(query = '', tags = learningTags) {
 }
 
 function learningResultLink(entry, compact = false) {
+  const status = learningStatusFor(entry);
   return `<a href="/daily-learning/?paper=${encodeURIComponent(entry.slug)}" data-learning-slug="${entry.slug}">
     <span><b>${escapeHtml(entry.displayName)}</b>${compact ? '' : `<small>${escapeHtml(entry.title)}</small>`}</span>
-    <time>${escapeHtml(entry.date)}</time>
+    <span class="learning-result-meta"><time>${escapeHtml(entry.date)}</time><em class="learning-status-badge" data-reading-status="${status}">${statusLabel(status)}</em></span>
   </a>`;
 }
 
@@ -402,8 +411,11 @@ function renderLearningDialog() {
   const input = document.querySelector('#learning-dialog-search');
   const list = document.querySelector('#learning-dialog-list');
   if (!input || !list) return;
-  const matches = findLearningEntries(input.value);
-  document.querySelector('#learning-dialog-count').textContent = `${matches.length} / ${learningEntries.length} 篇`;
+  const matches = findLearningEntries(input.value, learningTags, learningStatusFilter);
+  document.querySelectorAll('[data-learning-status-filter]').forEach((button) => {
+    button.setAttribute('aria-pressed', String(button.dataset.learningStatusFilter === learningStatusFilter));
+  });
+  document.querySelector('#learning-dialog-count').textContent = `${matches.length} / ${learningEntries.length} 篇${currentUser ? '' : ' · 登录后同步个人状态'}`;
   list.innerHTML = matches.map((entry) => learningResultLink(entry)).join('') || '<p class="learning-empty">没有匹配的论文</p>';
 }
 
@@ -435,6 +447,25 @@ async function fetchLearning(slug) {
   const response = await fetch(`/api/daily-learning/${encodeURIComponent(slug)}`, { cache: 'no-store' });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   return response.json();
+}
+
+async function loadLearningStatuses() {
+  if (!learningEntries.length) return;
+  const requestId = ++learningStatusesRequestId;
+  const slugs = encodeURIComponent(learningEntries.map((entry) => entry.slug).join(','));
+  try {
+    const response = await fetch(`/api/articles/statuses?slugs=${slugs}`, { cache: 'no-store', credentials: 'same-origin' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = await response.json();
+    if (requestId !== learningStatusesRequestId) return;
+    learningStatuses.clear();
+    Object.entries(payload.statuses || {}).forEach(([slug, status]) => learningStatuses.set(slug, status));
+  } catch (error) {
+    if (requestId !== learningStatusesRequestId) return;
+    learningStatuses.clear();
+  }
+  renderLearningSearch();
+  renderLearningDialog();
 }
 
 function selectLearningLink(slug) {
@@ -530,6 +561,7 @@ async function fetchCurrentUser() {
     currentUser = null;
   }
   renderAccountWidget();
+  if (page === 'daily-learning' && learningEntries.length) loadLearningStatuses();
 }
 
 function statusLabel(status) {
@@ -537,8 +569,9 @@ function statusLabel(status) {
 }
 
 function renderCommunity(payload) {
+  const statusPanel = document.querySelector('#reader-status');
   const community = document.querySelector('#reader-community');
-  if (!community) return;
+  if (!statusPanel && !community) return;
   activeCommunity = payload;
   const selectedStatus = payload.status || 'unread';
   const statusButtons = ['unread', 'read', 'deeper'].map((status) => `<button type="button" data-reading-status="${status}" aria-pressed="${selectedStatus === status}">${statusLabel(status)}</button>`).join('');
@@ -549,22 +582,28 @@ function renderCommunity(payload) {
   const commentForm = currentUser
     ? '<form id="community-comment-form" class="community-form"><label for="community-comment-text">发表评论</label><textarea id="community-comment-text" rows="4" maxlength="5000" placeholder="分享你的理解、问题或补充" required></textarea><p id="community-comment-error" class="community-error" role="alert"></p><button class="button primary" type="submit">发布评论</button></form>'
     : '<p class="community-note-hint">文章公开阅读；<button type="button" class="community-login-link" data-auth-action="login">登录后发表评论</button></p>';
-  community.innerHTML = `
-    <section class="community-block community-status-block">
-      <div class="community-heading"><h3>阅读状态</h3><span>${currentUser ? `已登录 · ${escapeHtml(currentUser.displayName)}` : 'PUBLIC READING'}</span></div>
-      <div class="community-status-card"><p>${currentUser ? '为这篇精读设置你的下一步。当前：' + statusLabel(selectedStatus) : '正常阅读无需登录；登录后可以保存你的阅读进度。'}${currentUser ? '' : ` ${loginHint}`}</p><div class="community-status-actions">${statusButtons}</div></div>
-    </section>
-    <section class="community-block community-notes-block">
-      <div class="community-heading"><h3>划线笔记</h3><span>${payload.notes.length} 条 · 按时间</span></div>
-      <p class="community-note-hint">${noteHint}</p>
-      <div class="community-notes-list" id="community-notes-list">${noteCards || '<p class="community-empty">还没有公开笔记。选中正文开始记录第一条。</p>'}</div>
-    </section>
-    <section class="community-block community-comments-block">
-      <div class="community-heading"><h3>评论</h3><span>${payload.comments.length} 条 · 按时间</span></div>
-      <div class="community-comments-list">${commentCards || '<p class="community-empty">还没有评论。</p>'}</div>
-      ${commentForm}
-    </section>`;
-  community.hidden = false;
+  if (statusPanel) {
+    statusPanel.innerHTML = `
+      <section class="community-block community-status-block">
+        <div class="community-heading"><h3>阅读状态</h3><span>${currentUser ? `已登录 · ${escapeHtml(currentUser.displayName)}` : 'PUBLIC READING'}</span></div>
+        <div class="community-status-card"><p>${currentUser ? '为这篇精读设置你的下一步。当前：' + statusLabel(selectedStatus) : '正常阅读无需登录；登录后可以保存你的阅读进度。'}${currentUser ? '' : ` ${loginHint}`}</p><div class="community-status-actions">${statusButtons}</div></div>
+      </section>`;
+    statusPanel.hidden = false;
+  }
+  if (community) {
+    community.innerHTML = `
+      <section class="community-block community-notes-block">
+        <div class="community-heading"><h3>划线笔记</h3><span>${payload.notes.length} 条 · 按时间</span></div>
+        <p class="community-note-hint">${noteHint}</p>
+        <div class="community-notes-list" id="community-notes-list">${noteCards || '<p class="community-empty">还没有公开笔记。选中正文开始记录第一条。</p>'}</div>
+      </section>
+      <section class="community-block community-comments-block">
+        <div class="community-heading"><h3>评论</h3><span>${payload.comments.length} 条 · 按时间</span></div>
+        <div class="community-comments-list">${commentCards || '<p class="community-empty">还没有评论。</p>'}</div>
+        ${commentForm}
+      </section>`;
+    community.hidden = false;
+  }
 }
 
 function textNodes(root) {
@@ -698,18 +737,23 @@ function openNoteDialog() {
 }
 
 async function loadCommunity(slug) {
+  const statusPanel = document.querySelector('#reader-status');
   const community = document.querySelector('#reader-community');
-  if (!community) return;
+  if (!statusPanel && !community) return;
   activeCommunitySlug = slug || '';
   const requestId = ++communityRequestId;
   if (!learningEntries.some((entry) => entry.slug === slug)) {
     activeCommunity = null;
-    community.hidden = true;
+    statusPanel?.setAttribute('hidden', '');
+    community?.setAttribute('hidden', '');
     clearNoteHighlights();
     return;
   }
-  community.hidden = false;
-  community.innerHTML = '<p class="loading">正在读取评论和笔记…</p>';
+  statusPanel?.setAttribute('hidden', '');
+  if (community) {
+    community.hidden = false;
+    community.innerHTML = '<p class="loading">正在读取评论和笔记…</p>';
+  }
   try {
     const response = await fetch(`/api/articles/${encodeURIComponent(slug)}/community`, { cache: 'no-store', credentials: 'same-origin' });
     const payload = await response.json();
@@ -717,10 +761,14 @@ async function loadCommunity(slug) {
     if (requestId !== communityRequestId) return;
     currentUser = payload.user;
     renderAccountWidget();
+    loadLearningStatuses();
     renderCommunity(payload);
     applyNoteHighlights(payload.notes || []);
   } catch (error) {
-    if (requestId === communityRequestId) community.innerHTML = '<p class="error">互动内容暂时无法读取，正文仍可正常阅读。</p>';
+    if (requestId === communityRequestId) {
+      statusPanel?.setAttribute('hidden', '');
+      if (community) community.innerHTML = '<p class="error">互动内容暂时无法读取，正文仍可正常阅读。</p>';
+    }
   }
 }
 
@@ -760,6 +808,8 @@ async function saveReadingStatus(status) {
     const payload = await response.json();
     if (!response.ok) throw new Error(communityErrorMessage(payload));
     if (activeCommunity) activeCommunity.status = status;
+    learningStatuses.set(activeCommunitySlug, status);
+    renderLearningDialog();
     renderCommunity(activeCommunity);
     applyNoteHighlights(activeCommunity.notes || []);
   } catch (error) {
@@ -773,7 +823,7 @@ document.querySelector('#learning-content')?.addEventListener('click', (event) =
   const mark = event.target.closest('.reading-note-highlight');
   if (mark) focusCommunityNote(mark.dataset.noteId);
 });
-document.querySelector('#reader-community')?.addEventListener('click', (event) => {
+document.querySelector('.learning-reader')?.addEventListener('click', (event) => {
   const authAction = event.target.closest('[data-auth-action]')?.dataset.authAction;
   if (authAction === 'login') openAuth('login');
   if (authAction === 'logout') {
@@ -781,6 +831,7 @@ document.querySelector('#reader-community')?.addEventListener('click', (event) =
       currentUser = null;
       renderAccountWidget();
       if (activeCommunitySlug) loadCommunity(activeCommunitySlug);
+      else loadLearningStatuses();
     });
     return;
   }
@@ -806,6 +857,7 @@ document.addEventListener('click', (event) => {
       currentUser = null;
       renderAccountWidget();
       if (activeCommunitySlug) loadCommunity(activeCommunitySlug);
+      else loadLearningStatuses();
     });
   }
 });
@@ -831,6 +883,7 @@ document.querySelector('#auth-form')?.addEventListener('submit', async (event) =
     renderAccountWidget();
     document.querySelector('#auth-dialog').close();
     if (activeCommunitySlug) await loadCommunity(activeCommunitySlug);
+    else loadLearningStatuses();
     if (pendingSelection && currentUser) openNoteDialog();
   } catch (errorValue) {
     error.textContent = errorValue.message;
@@ -897,6 +950,7 @@ async function openLearning(slug, push = true) {
     if (entry) loadCommunity(slug);
     else {
       activeCommunitySlug = '';
+      document.querySelector('#reader-status')?.setAttribute('hidden', '');
       document.querySelector('#reader-community')?.setAttribute('hidden', '');
       clearNoteHighlights();
     }
@@ -921,6 +975,7 @@ async function loadDailyLearning() {
       tags: details.get(entry.slug)?.tags || [],
     }));
     renderLearningNavigation();
+    loadLearningStatuses();
     const selected = new URLSearchParams(location.search).get('paper');
     const initial = ['index', 'plan', 'pool'].includes(selected) || learningEntries.some((entry) => entry.slug === selected)
       ? selected
@@ -941,6 +996,12 @@ document.querySelector('#learning-search-results')?.addEventListener('click', (e
 document.querySelector('#learning-show-all')?.addEventListener('click', showAllLearning);
 document.querySelector('#learning-close-all')?.addEventListener('click', () => document.querySelector('#learning-all-dialog').close());
 document.querySelector('#learning-dialog-search')?.addEventListener('input', renderLearningDialog);
+document.querySelector('#learning-status-filters')?.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-learning-status-filter]');
+  if (!button) return;
+  learningStatusFilter = button.dataset.learningStatusFilter || 'all';
+  renderLearningDialog();
+});
 document.querySelector('#learning-tags')?.addEventListener('click', (event) => {
   const button = event.target.closest('[data-learning-tag]');
   if (!button) return;

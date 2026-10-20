@@ -14,7 +14,7 @@ from http import HTTPStatus
 from http.cookies import CookieError, SimpleCookie
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from urllib.parse import parse_qs, unquote, urlparse
 
 from community import CommunityError, CommunityStore
 
@@ -267,6 +267,27 @@ class SiteHandler(SimpleHTTPRequestHandler):
         except CommunityError as error:
             self._send_community_error(error)
 
+    def _handle_statuses_get(self, query: str) -> None:
+        params = parse_qs(query, keep_blank_values=False)
+        raw_slugs = params.get('slugs', [''])[0]
+        requested = []
+        for raw_slug in raw_slugs.split(','):
+            if not raw_slug:
+                continue
+            try:
+                slug = safe_learning_slug(raw_slug)
+            except ValueError:
+                continue
+            if slug not in requested:
+                requested.append(slug)
+        if len(requested) > 100:
+            self.send_json(HTTPStatus.BAD_REQUEST, {'error': 'too_many_articles', 'message': '一次最多查询 100 篇文章。'})
+            return
+        available = {entry['slug'] for entry in self.learning_entries()}
+        slugs = [slug for slug in requested if slug in available]
+        user = self._current_user()
+        self.send_json(HTTPStatus.OK, {'statuses': self.community_store.reading_statuses(user['id'] if user else None, slugs)})
+
     def _handle_article_get(self, route: str) -> None:
         parsed = self._article_route(route)
         if parsed is None:
@@ -331,6 +352,8 @@ class SiteHandler(SimpleHTTPRequestHandler):
             self.send_json(200, {"status": "ok", "service": "keblog", "version": "3.0", "source": "git"}); return
         if route == "/api/auth/me":
             self.send_json(HTTPStatus.OK, {"user": self._current_user()}); return
+        if route == "/api/articles/statuses":
+            self._handle_statuses_get(urlparse(self.path).query); return
         if route.startswith("/api/articles/"):
             self._handle_article_get(route); return
         if route == "/api/research/document":
