@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-21
+
+- **Large Language Models Can Be Easily Distracted by Irrelevant Context**
+  - 简称：[Irrelevant Context](https://38-76-161-31.sslip.io/daily-learning/?paper=261021-FredaShi-IrrelevantContext)
+  - Tags：`2023` `ICML` `LLM` `Irrelevant Context` `Robustness` `Prompting` `Controlled Intervention`
+  - 作者：Freda Shi; Xinyun Chen; Kanishka Misra; Nathan Scales; David Dohan; Ed H. Chi; Nathanael Schärli; Denny Zhou（原文明确列出 Freda Shi、Xinyun Chen、Denny Zhou 为 correspondence contacts；前两位等贡献）
+  - Venue / 年份：ICML 2023 / PMLR 202
+  - DOI / 原文：[PMLR](https://proceedings.mlr.press/v202/shi23a.html); [arXiv:2302.00093](https://arxiv.org/abs/2302.00093); [完整 HTML](https://arxiv.org/html/2302.00093v3); [数据集](https://github.com/google-research-datasets/GSM-IC)
+  - 主题：大模型无关上下文鲁棒性、配对输入干预、micro/macro 一致性、prompting、Self-Consistency
+  - 一句话价值：作者固定 100 道模型至少能用一种方法解出的 GSM8K 题，只改变一条不影响答案的干扰句；4,000 个派生样本显示所有 prompting 方法都会退化，且“同主题+实体重叠”的伪相关干扰最危险，为当前 C/P/I 配对干预、clean-success 条件估计和跨变体稳定性指标提供了干净机制先例，但不能替代真实仓库证据。
+
 ### 2026-10-20
 
 - **An Empirical Study of Fault Localization in Python Programs**
