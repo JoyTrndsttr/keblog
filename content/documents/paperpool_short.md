@@ -69,3 +69,4 @@
 - Deep Agentic Search for Repository-Level Code Question Answering: An Empirical Study
 - Causal Memory Policy: Making Memory Utility Identifiable by Intervening on Retrieval
 - Large Language Models Can Be Easily Distracted by Irrelevant Context
+- A Study on the Impact of Fault Localization Granularity for Repository-Scale Code Repair Tasks

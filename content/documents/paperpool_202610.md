@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-22
+
+- **A Study on the Impact of Fault Localization Granularity for Repository-Scale Code Repair Tasks**
+  - 简称：[Fault Localization Granularity](https://38-76-161-31.sslip.io/daily-learning/?paper=261022-JosephTownsend-FaultLocalizationGranularity)
+  - Tags：`2026` `arXiv` `Fault Localization` `Automated Program Repair` `Granularity` `Perfect Localization` `SWE-bench` `Qwen3-Coder`
+  - 作者：Joseph Townsend*; Chandresh Pravin*; Kwun Ho Ngan*; Matthieu Parizy（*原文标注共同贡献；原文未明确标注通讯作者）
+  - Venue / 年份：arXiv cs.SE 预印本 / 2026，v1
+  - DOI / 原文：[arXiv:2604.00167](https://arxiv.org/abs/2604.00167); [HTML](https://arxiv.org/html/2604.00167v1); [PDF](https://arxiv.org/pdf/2604.00167)
+  - 主题：仓库级故障定位粒度、oracle / perfect localization、定位—修复交接、上下文呈现、任务异质性
+  - 一句话价值：在 SWE-bench Mini 50 题上固定 Qwen3-Coder 与修复提示，只改变由真实补丁构造的行/函数/文件级上下文，函数级平均解决率为 45.6%，略高于行级 43.6% 与文件级 42.6%；更重要的是最高仍不足一半且分难度排序变化，为当前“语义对象 GT—呈现 envelope—下游成功”拆分和预算匹配干预提供了 proof of concept，而非函数级普遍最优的证据。
+
 ### 2026-10-21
 
 - **Large Language Models Can Be Easily Distracted by Irrelevant Context**
