@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**68 次精读**，覆盖 **2026-08-03—2026-10-22**。
+> 已归档：**69 次精读**，覆盖 **2026-08-03—2026-10-23**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-10-23 | [261023-YingxinJia-ExperienceMemoryControls](./261023-YingxinJia-ExperienceMemoryControls/README.md) | When Does Experience Memory Help Closed-Loop LLM Driving Agents? A Controlled Evaluation with Resampled Warmup Pools, Token-Matched Fillers, and Audited Baselines | Yingxin Jia | ACML 2026 / PMLR 353 | 已精读（完整 arXiv v1 HTML/PDF；教学式完整精读） |
 | 2026-10-22 | [261022-JosephTownsend-FaultLocalizationGranularity](./261022-JosephTownsend-FaultLocalizationGranularity/README.md) | A Study on the Impact of Fault Localization Granularity for Repository-Scale Code Repair Tasks | Joseph Townsend | arXiv cs.SE / 2026 | 已精读（完整 arXiv v1 HTML/PDF 及附录；教学式完整精读） |
 | 2026-10-21 | [261021-FredaShi-IrrelevantContext](./261021-FredaShi-IrrelevantContext/README.md) | Large Language Models Can Be Easily Distracted by Irrelevant Context | Freda Shi | ICML 2023 / PMLR 202 | 已精读（完整 arXiv v3 HTML 原文及附录；教学式完整精读） |
 | 2026-10-20 | [261020-MohammadRezaalipour-PythonFaultLocalization](./261020-MohammadRezaalipour-PythonFaultLocalization/README.md) | An Empirical Study of Fault Localization in Python Programs | Mohammad Rezaalipour | Empirical Software Engineering 29 / 2024 | 已精读（完整 arXiv v3 HTML 原文；教学式完整精读） |

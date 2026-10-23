@@ -70,3 +70,4 @@
 - Causal Memory Policy: Making Memory Utility Identifiable by Intervening on Retrieval
 - Large Language Models Can Be Easily Distracted by Irrelevant Context
 - A Study on the Impact of Fault Localization Granularity for Repository-Scale Code Repair Tasks
+- When Does Experience Memory Help Closed-Loop LLM Driving Agents? A Controlled Evaluation with Resampled Warmup Pools, Token-Matched Fillers, and Audited Baselines

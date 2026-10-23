@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-23
+
+- **When Does Experience Memory Help Closed-Loop LLM Driving Agents? A Controlled Evaluation with Resampled Warmup Pools, Token-Matched Fillers, and Audited Baselines**
+  - 简称：[Experience Memory Controls](https://38-76-161-31.sslip.io/daily-learning/?paper=261023-YingxinJia-ExperienceMemoryControls)
+  - Tags：`2026` `ACML` `LLM Agent` `Experience Memory` `Closed-loop Driving` `Controlled Evaluation` `Warmup Pool` `Token-matched Filler`
+  - 作者：Yingxin Jia; Xuanyi Li（独立研究者；原文未明确标注通讯作者）
+  - Venue / 年份：ACML 2026 / Proceedings of Machine Learning Research 353
+  - DOI / 原文：[arXiv:2610.27714](https://arxiv.org/abs/2610.27714); [完整 HTML](https://arxiv.org/html/2610.27714v1); [PDF](https://arxiv.org/pdf/2610.27714)
+  - 主题：闭环 LLM 驾驶代理经验记忆、热身池重采样、等 token 无关填充、谨慎行为定价、基线移植审计
+  - 一句话价值：在固定规划器的 HighwayEnv 测试台上，两种检索记忆仅在 10 个热身池中的 1 个胜过无记忆，十池平均效应约为 −0.20；1,037-token 无关填充反而达到 0.80，且 15-token 谨慎指令即可达到 0.98，说明池抽样、提示组成与行为倾向足以反转“记忆有效”的单池结论，为当前共享 donor、固定总长度和 oracle-context 实验提供直接的机制鉴别先例。
+
 ### 2026-10-22
 
 - **A Study on the Impact of Fault Localization Granularity for Repository-Scale Code Repair Tasks**
