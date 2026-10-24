@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-24
+
+- **Where Should a Stuck Agent Spend Its Next Tokens? Causal Attribution of Inference-Time Resources**
+  - 简称：[Inference-Time Resources](https://38-76-161-31.sslip.io/daily-learning/?paper=261024-SaiyueLyu-InferenceTimeResources)
+  - Tags：`2026` `arXiv` `Coding Agent` `Inference-time Resources` `Causal Attribution` `Full Factorial` `Banzhaf Value` `SWE-bench Verified`
+  - 作者：Saiyue Lyu（通讯作者）; Jerrold Huang; Yunbei Zhang; Janet Wang; Zhenting Wang; Yingqiang Ge; Haibo Zhang
+  - Venue / 年份：Long-Context Foundation Models workshop / arXiv cs.SE 预印本，2026
+  - DOI / 原文：[arXiv:2610.28834](https://arxiv.org/abs/2610.28834); [完整 HTML](https://arxiv.org/html/2610.28834v1); [PDF](https://arxiv.org/pdf/2610.28834)
+  - 主题：代码代理推理时资源、冻结失败检查点、完整析因设计、Banzhaf 归因、仓库上下文、资源分配
+  - 一句话价值：在 194 个函数级与 126 个 SWE-bench Verified 冻结失败上穷举计算/信息/反馈的 8 种组合后，参考修复导出的任务规格仍带来 0.05–0.14 的稳定收益，而公开测试反馈与五段 BM25 代码近零；这为当前 P/I 实验提供了“location × behaviour”拆分、固定状态归因及漏报/过度定位双结局的直接方法模板。
+
 ### 2026-10-23
 
 - **When Does Experience Memory Help Closed-Loop LLM Driving Agents? A Controlled Evaluation with Resampled Warmup Pools, Token-Matched Fillers, and Audited Baselines**

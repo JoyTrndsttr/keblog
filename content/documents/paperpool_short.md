@@ -71,3 +71,4 @@
 - Large Language Models Can Be Easily Distracted by Irrelevant Context
 - A Study on the Impact of Fault Localization Granularity for Repository-Scale Code Repair Tasks
 - When Does Experience Memory Help Closed-Loop LLM Driving Agents? A Controlled Evaluation with Resampled Warmup Pools, Token-Matched Fillers, and Audited Baselines
+- Where Should a Stuck Agent Spend Its Next Tokens? Causal Attribution of Inference-Time Resources
