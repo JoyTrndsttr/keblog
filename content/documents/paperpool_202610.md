@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-25
+
+- **Stale Instruction Files Override the Code in Coding Agents: A One-Sentence Fix**
+  - 简称：[Stale Instruction Files](https://38-76-161-31.sslip.io/daily-learning/?paper=261025-XiaonanXu-StaleInstructionFiles)
+  - Tags：`2026` `arXiv` `Coding Agent` `Instruction Files` `AGENTS.md` `CLAUDE.md` `Context Conflict` `Instruction Hierarchy`
+  - 作者：Xiaonan Xu; Wenjing Wu（原文未明确标注通讯作者）
+  - Venue / 年份：arXiv cs.SE v1 / 投稿至 SN Computer Science，2026
+  - DOI / 原文：[arXiv:2610.30571](https://arxiv.org/abs/2610.30571); [完整 HTML](https://arxiv.org/html/2610.30571v1); [PDF](https://arxiv.org/pdf/2610.30571); [数据与代码](https://github.com/WenJing95/stale-docs-data)
+  - 主题：编码代理说明文件、过期上下文、指令层级、代码惯例冲突、旧代码重写、上下文权威
+  - 一句话价值：在 40 个合成 Python 项目、Claude Code 与 Codex CLI 的 320 次运行中，代理无干预时 90.1% 的具体选择服从过期说明；一条“文档与代码冲突时以现有代码为准”的用户级规则把代码一致选择提升到 91.4%，并让 Codex 的旧代码重写从 20 次降至 0，提示当前 P/I 实验除相关性与覆盖率外还必须控制上下文的注入层级与权威。
+
 ### 2026-10-24
 
 - **Where Should a Stuck Agent Spend Its Next Tokens? Causal Attribution of Inference-Time Resources**
