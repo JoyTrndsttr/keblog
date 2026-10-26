@@ -73,3 +73,4 @@
 - When Does Experience Memory Help Closed-Loop LLM Driving Agents? A Controlled Evaluation with Resampled Warmup Pools, Token-Matched Fillers, and Audited Baselines
 - Where Should a Stuck Agent Spend Its Next Tokens? Causal Attribution of Inference-Time Resources
 - Stale Instruction Files Override the Code in Coding Agents: A One-Sentence Fix
+- What Context Does a Coding Agent Actually Need to Act?

@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-26
+
+- **What Context Does a Coding Agent Actually Need to Act?**
+  - 简称：[Act Context](https://38-76-161-31.sslip.io/daily-learning/?paper=261026-BrianSamBodden-ActContext)
+  - Tags：`2026` `arXiv` `Coding Agent` `Repository Context` `Find/Act Boundary` `Context Compression` `SWE-bench Verified` `Pre-registration`
+  - 作者：Brian Sam-Bodden（Integrallis Software；单作者；原文未单独标注通讯作者，并提供作者邮箱）
+  - Venue / 年份：arXiv cs.SE v1，2026
+  - DOI / 原文：[arXiv:2607.09691](https://arxiv.org/abs/2607.09691); [完整 HTML](https://arxiv.org/html/2607.09691v1); [PDF](https://arxiv.org/pdf/2607.09691); [代码与数据](https://github.com/integrallis/act-context)
+  - 主题：编码代理仓库上下文、Find/Act 边界、oracle 定位、代码表示、上下文压缩、可编辑性审计、运行噪声
+  - 一句话价值：在固定 gold 文件和可编辑位置的 70 个多文件 SWE-bench Verified 任务中，保留目标正文并删除外围代码以约 6.9k 平均 token 解决 25/70，结构摘要臂以约 8.6k token 解决 23/70，二者无显著差异；相同 temperature 0 输入重跑仍有 6/70 翻转，直接提示当前 P/I 研究必须把候选扩张与参考正文拆开，并先审计各臂可答性与相同输入噪声底。
+
 ### 2026-10-25
 
 - **Stale Instruction Files Override the Code in Coding Agents: A One-Sentence Fix**
