@@ -74,3 +74,4 @@
 - Where Should a Stuck Agent Spend Its Next Tokens? Causal Attribution of Inference-Time Resources
 - Stale Instruction Files Override the Code in Coding Agents: A One-Sentence Fix
 - What Context Does a Coding Agent Actually Need to Act?
+- Sufficient Context: A New Lens on Retrieval Augmented Generation Systems

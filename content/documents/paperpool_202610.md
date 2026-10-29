@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-29
+
+- **Sufficient Context: A New Lens on Retrieval Augmented Generation Systems**
+  - 简称：[Sufficient Context](https://38-76-161-31.sslip.io/daily-learning/?paper=261029-HaileyJoren-SufficientContext)
+  - Tags：`ICLR 2025` `RAG` `Context Sufficiency` `AutoRater` `Hallucination` `Abstention` `Selective Generation` `Evidence Utility`
+  - 作者：Hailey Joren; Jianyi Zhang; Chun-Sung Ferng; Da-Cheng Juan; Ankur Taly; Cyrus Rashtchian（UC San Diego、Duke University、Google；原文与 OpenReview 均未单独标注通讯作者）
+  - Venue / 年份：ICLR 2025
+  - DOI / 原文：[arXiv:2411.06037](https://arxiv.org/abs/2411.06037); [Google Research](https://research.google/pubs/sufficient-context-a-new-lens-on-retrieval-augmented-generation-systems-2/); [完整 HTML](https://arxiv.org/html/2411.06037v2); [PDF](https://arxiv.org/pdf/2411.06037); [OpenReview](https://openreview.net/forum?id=Jjr2Odj8DJ)
+  - 主题：RAG 上下文充分性、人工标注与 AutoRater、分层错误分析、拒答与幻觉、选择性生成、上下文增量价值
+  - 一句话价值：论文把“检索内容是否相关”推进到“上下文是否足以回答”，并在 FreshQA、Musique、HotpotQA 上按充分性拆解正确、拒答与幻觉；结果显示长上下文提升充分率但存在收益饱和，不充分上下文仍可能因预训练记忆或局部证据答对，而充分性标签配合模型自信能提高选择性生成准确率，直接提示当前成功/失败轨迹审计应把上下文充分性、增量信息价值与模型决策效应分层记录。
+
 ### 2026-10-26
 
 - **What Context Does a Coding Agent Actually Need to Act?**

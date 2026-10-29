@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**72 次精读**，覆盖 **2026-08-03—2026-10-26**。
+> 已归档：**73 次精读**，覆盖 **2026-08-03—2026-10-29**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-10-29 | [261029-HaileyJoren-SufficientContext](./261029-HaileyJoren-SufficientContext/README.md) | Sufficient Context: A New Lens on Retrieval Augmented Generation Systems | Hailey Joren | ICLR / 2025 | 已精读（完整 arXiv HTML/PDF、OpenReview 与附录；教学式完整精读） |
 | 2026-10-26 | [261026-BrianSamBodden-ActContext](./261026-BrianSamBodden-ActContext/README.md) | What Context Does a Coding Agent Actually Need to Act? | Brian Sam-Bodden | arXiv cs.SE / 2026 | 已精读（完整 arXiv v1 HTML/PDF、附录与代码数据；教学式完整精读） |
 | 2026-10-25 | [261025-XiaonanXu-StaleInstructionFiles](./261025-XiaonanXu-StaleInstructionFiles/README.md) | Stale Instruction Files Override the Code in Coding Agents: A One-Sentence Fix | Xiaonan Xu | arXiv cs.SE / 投稿至 SN Computer Science，2026 | 已精读（完整 arXiv v1 HTML/PDF 及附录；教学式完整精读） |
 | 2026-10-24 | [261024-SaiyueLyu-InferenceTimeResources](./261024-SaiyueLyu-InferenceTimeResources/README.md) | Where Should a Stuck Agent Spend Its Next Tokens? Causal Attribution of Inference-Time Resources | Saiyue Lyu | Long-Context Foundation Models workshop / arXiv 2026 | 已精读（完整 arXiv v1 HTML/PDF 及附录；教学式完整精读） |
