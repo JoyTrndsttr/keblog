@@ -75,3 +75,4 @@
 - Stale Instruction Files Override the Code in Coding Agents: A One-Sentence Fix
 - What Context Does a Coding Agent Actually Need to Act?
 - Sufficient Context: A New Lens on Retrieval Augmented Generation Systems
+- Context Is a Pipeline, Not a Window: Information Attrition in LLM Agent Harnesses

@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-10-30
+
+- **Context Is a Pipeline, Not a Window: Information Attrition in LLM Agent Harnesses**
+  - 简称：[Context Pipeline](https://38-76-161-31.sslip.io/daily-learning/?paper=261030-YuvrajSehgal-ContextPipeline)
+  - Tags：`2026` `arXiv` `Agent Harness` `Context Pipeline` `Tool Output` `Truncation` `Observability` `Root Cause Analysis` `Compensation Tax` `Causal Experiment`
+  - 作者：Yuvraj Sehgal; Mahsa Panahandeh; Naser Ezzati-Jivan（Brock University、University of Ottawa；原文未单独标注通讯作者）
+  - Venue / 年份：arXiv cs.SE / cs.AI v1，2026
+  - DOI / 原文：[arXiv:2610.36114](https://arxiv.org/abs/2610.36114); [完整 HTML](https://arxiv.org/html/2610.36114v1); [PDF](https://arxiv.org/pdf/2610.36114); [复现包](https://doi.org/10.5281/zenodo.23614755)
+  - 主题：Agent Harness、上下文交付管线、工具输出截断、结构感知裁剪、可观测性、根因诊断、补偿成本
+  - 一句话价值：作者把上下文拆成产生、交付、行动、保留、交接与持久化边界，在720次运行和864次回放中发现窗口远未装满时仍有34%工具结果被前缀切片破坏；受控实验没有证明普遍准确率下降，却显示工具调用最高增加43%、计算近乎翻倍、yield从0.61降至0.31，提示当前轨迹审计必须区分“构造了什么、实际交付什么、讨论什么、最终提交什么”。
+
 ### 2026-10-29
 
 - **Sufficient Context: A New Lens on Retrieval Augmented Generation Systems**
