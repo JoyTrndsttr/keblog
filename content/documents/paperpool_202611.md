@@ -1,8 +1,19 @@
 # Paper Pool · 2026-11
 
-> 2026 年 11 月精读记录。此篇为用户指定的计划外精读，不改变每日任务计划。
+> 2026 年 11 月精读记录。11 月 1 日为用户指定的计划外精读；其余条目按每日计划归档。
 
 ## 已精读论文
+
+### 2026-11-04
+
+- **Lost in the Middle: How Language Models Use Long Contexts**
+  - 简称：[Lost in the Middle](https://38-76-161-31.sslip.io/daily-learning/?paper=261104-NelsonFLiu-LostInTheMiddle)
+  - Tags：`2024` `TACL` `Long Context` `RAG` `Position Bias` `Controlled Evaluation`
+  - 作者：Nelson F. Liu; Kevin Lin; John Hewitt; Ashwin Paranjape; Michele Bevilacqua; Fabio Petroni; Percy Liang（Stanford University、Samaya AI；原文未明确指定通讯作者）
+  - Venue / 年份：Transactions of the Association for Computational Linguistics 12:157–173, 2024
+  - DOI / 原文：[正式全文](https://aclanthology.org/2024.tacl-1.9.pdf)；[书目信息](https://aclanthology.org/2024.tacl-1.9/)；[代码与数据](https://github.com/nelson-liu/lost-in-the-middle)
+  - 主题：多文档问答与随机键值检索中的证据位置效应、上下文长度、干扰类型和查询感知提示；完整覆盖附录 A–E。
+  - 一句话价值：以正确证据始终在场的受控实验区分“能容纳”与“会利用”上下文；为位置匹配的 P/I 对照提供设计参照，但不证明仓库任务中的 P 必然比 I 更有害。
 
 ### 2026-11-01
 
