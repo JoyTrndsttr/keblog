@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-05
+
+- **Making Retrieval-Augmented Language Models Robust to Irrelevant Context**
+  - 简称：[Retrieval Robustness](https://38-76-161-31.sslip.io/daily-learning/?paper=261105-OriYoran-RetrievalRobustness)
+  - Tags：`2024` `ICLR` `RAG` `Irrelevant Context` `NLI` `Multi-hop Reasoning` `Robustness`
+  - 作者：Ori Yoran; Tomer Wolfson; Ori Ram; Jonathan Berant（Tel Aviv University、Allen Institute for AI；原文未明确指定通讯作者）
+  - Venue / 年份：ICLR 2024
+  - DOI / 原文：[arXiv:2310.01558v2](https://arxiv.org/abs/2310.01558v2)；[完整 HTML](https://arxiv.org/html/2310.01558v2)；[代码、数据与模型](https://github.com/oriyor/ret-robust)
+  - 主题：五类问答任务中的检索干扰、NLI回退与混合噪声微调；覆盖附录中的跨任务泛化、错误分析及提示配置。
+  - 一句话价值：把“检索看起来相关”“能直接推出答案”和“实际上帮助回答”分开；小规模混合训练增强鲁棒性，但不能据此认证仓库Core充分或断言P普遍有害。
+
 ### 2026-11-04
 
 - **Lost in the Middle: How Language Models Use Long Contexts**
