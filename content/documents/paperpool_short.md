@@ -79,3 +79,4 @@
 - The Agent in the Middle: A Security and Privacy Analysis of Android AppFunctions
 - Lost in the Middle: How Language Models Use Long Contexts
 - Making Retrieval-Augmented Language Models Robust to Irrelevant Context
+- The Powerless Noise: How Experimental Settings Shape the Reported Power of Noise

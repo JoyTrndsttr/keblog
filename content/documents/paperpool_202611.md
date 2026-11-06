@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-06
+
+- **The Powerless Noise: How Experimental Settings Shape the Reported Power of Noise**
+  - 简称：[Powerless Noise](https://38-76-161-31.sslip.io/daily-learning/?paper=261106-MichalMazuryk-PowerlessNoise)
+  - Tags：`2026` `SIGIR` `Reproducibility` `RAG` `Noise` `Prompting` `Evaluation`
+  - 作者：Michał Mazuryk; Fleur Dolmans; Louis Gehringer; Ina Klaric; Jia-Huei Ju; Mohammad Aliannejadi（University of Amsterdam；原文未明确指定通讯作者）
+  - Venue / 年份：SIGIR 2026 Reproducibility Track
+  - DOI / 原文：[10.1145/3805712.3808556](https://doi.org/10.1145/3805712.3808556)；[arXiv:2607.03615v2](https://arxiv.org/abs/2607.03615v2)；[完整 HTML](https://arxiv.org/html/2607.03615v2)；[复现代码](https://github.com/ina0105/The-Power-of-Noise-Reproduction)
+  - 主题：复现随机检索噪声收益，分离量化、模型、聊天模板、输出上限与任务指令的影响；覆盖附录输出错误及跨表报告不一致。
+  - 一句话价值：先核查短输出截断和评分协议，再解释上下文干扰曲线；噪声收益对配置敏感，但不能据此断言随机上下文永远无用。
+
 ### 2026-11-05
 
 - **Making Retrieval-Augmented Language Models Robust to Irrelevant Context**
