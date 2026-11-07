@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-07
+
+- **Right for the Wrong Reasons: Diagnosing Syntactic Heuristics in Natural Language Inference**
+  - 简称：[HANS](https://38-76-161-31.sslip.io/daily-learning/?paper=261107-RThomasMcCoy-HANS)
+  - Tags：`2019` `ACL` `Controlled Evaluation` `NLI` `Shortcut Learning` `Generalization`
+  - 作者：R. Thomas McCoy; Ellie Pavlick; Tal Linzen（Johns Hopkins University、Brown University；原文未明确标注通讯作者）
+  - Venue / 年份：ACL 2019，3428–3448
+  - DOI / 原文：[10.18653/v1/P19-1334](https://doi.org/10.18653/v1/P19-1334)；[正式21页PDF](https://aclanthology.org/P19-1334.pdf)；[数据与代码](https://github.com/tommccoy1/hans)
+  - 主题：三种句法捷径的受控挑战、正反例、人类检验、训练增强、五组类别留出与外部迁移。
+  - 一句话价值：用能区分替代解释的对照审查高分，避免把模板记忆或新捷径当作鲁棒理解；为盲化输入与答案空间控制提供方法论参照，不直接证明代码上下文的因果效应。
+
 ### 2026-11-06
 
 - **The Powerless Noise: How Experimental Settings Shape the Reported Power of Noise**

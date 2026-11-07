@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**78 次精读**，覆盖 **2026-08-03—2026-11-06**。
+> 已归档：**79 次精读**，覆盖 **2026-08-03—2026-11-07**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-11-07 | [261107-RThomasMcCoy-HANS](./261107-RThomasMcCoy-HANS/README.md) | Right for the Wrong Reasons: Diagnosing Syntactic Heuristics in Natural Language Inference | R. Thomas McCoy | ACL 2019 | 已精读（21页正式全文、图1–3、表1–14及附录A–F；教学式完整精读） |
 | 2026-11-06 | [261106-MichalMazuryk-PowerlessNoise](./261106-MichalMazuryk-PowerlessNoise/README.md) | The Powerless Noise: How Experimental Settings Shape the Reported Power of Noise | Michał Mazuryk | SIGIR 2026 Repro | 已精读（10页v2全文、图1–2、表1–7及附录A–B；教学式完整精读） |
 | 2026-11-05 | [261105-OriYoran-RetrievalRobustness](./261105-OriYoran-RetrievalRobustness/README.md) | Making Retrieval-Augmented Language Models Robust to Irrelevant Context | Ori Yoran | ICLR 2024 | 已精读（22页v2全文、图1–10、表1–8及附录A.1–A.5；教学式完整精读） |
 | 2026-11-04 | [261104-NelsonFLiu-LostInTheMiddle](./261104-NelsonFLiu-LostInTheMiddle/README.md) | Lost in the Middle: How Language Models Use Long Contexts | Nelson F. Liu | TACL 2024 | 已精读（正式17页全文、图1–16、表1及附录A–E；教学式完整精读） |
