@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-08
+
+- **Separating Semantic Competition from Context Length in RAG Reading**
+  - 简称：[Semantic Competition](https://38-76-161-31.sslip.io/daily-learning/?paper=261108-VyzantinosRepantis-SemanticCompetition)
+  - Tags：`2026` `arXiv` `RAG` `Controlled Evaluation` `Semantic Competition` `Matched Context`
+  - 作者：Vyzantinos Repantis; Ameya Gawde; Harshvardhan Singh; Rohit Alekar; Cien Zhang; Svetlana Karslioglu; Akash Vishwakarma（Meta Platforms；原文未明确标注通讯作者）
+  - Venue / 年份：arXiv cs.CL / cs.IR，2026；未核实正式发表 venue
+  - DOI / 原文：[arXiv:2605.27294v1](https://arxiv.org/abs/2605.27294v1)；[完整 PDF](https://arxiv.org/pdf/2605.27294v1)；[作者实验工件](https://github.com/repantis-ai/rag-semantic-competition)
+  - 主题：固定二十片段与近似平均输入长度，用真实远排名材料替换高排名负例；覆盖保留率、右删失半衰点、配对统计、片段设置敏感性及公开工件审计。
+  - 一句话价值：给 token 与材料数量分离提供直接对照先例；工件揭示 gold 位置未配对固定、跨长度解码与评分变化，不能夸为纯语义竞争的完整因果识别。
+
 ### 2026-11-07
 
 - **Right for the Wrong Reasons: Diagnosing Syntactic Heuristics in Natural Language Inference**

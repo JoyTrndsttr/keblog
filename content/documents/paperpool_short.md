@@ -81,3 +81,4 @@
 - Making Retrieval-Augmented Language Models Robust to Irrelevant Context
 - The Powerless Noise: How Experimental Settings Shape the Reported Power of Noise
 - Right for the Wrong Reasons: Diagnosing Syntactic Heuristics in Natural Language Inference
+- Separating Semantic Competition from Context Length in RAG Reading
