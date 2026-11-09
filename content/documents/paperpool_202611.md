@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-09
+
+- **Attributing Agent Failures to Their History Needs an Executed Counterfactual: Toward a Reporting Standard**
+  - 简称：[Executed Counterfactual](https://38-76-161-31.sslip.io/daily-learning/?paper=261109-EgorPakhomov-ExecutedCounterfactual)
+  - Tags：`2026` `IAB Workshop` `Causal Attribution` `Counterfactual Replay` `History Intervention` `Measurement Validity`
+  - 作者：Egor Pakhomov; Erik Nijkamp（Salesforce AI Research；原文未明确标注通讯作者）
+  - Venue / 年份：NeurIPS 2026 Interpreting Agent Behavior（IAB）Workshop，非归档
+  - DOI / 原文：[arXiv:2611.05650v1](https://arxiv.org/abs/2611.05650v1)；[完整20页PDF](https://arxiv.org/pdf/2611.05650v1)；[完整HTML](https://arxiv.org/html/2611.05650v1)
+  - 主题：历史因果归因的回放验证标准；载体分类混杂、快照遗漏随机流、原运行对照、TRACE复现、未执行八臂设计与二手文献编码边界。
+  - 一句话价值：把“分支彼此一致”与“恢复忠实于原轨迹”分开，为GraphLocator同状态决策分叉提供前置验证依据；模型无关警示测量不证明真实Agent历史污染的效应。
+
 ### 2026-11-08
 
 - **Separating Semantic Competition from Context Length in RAG Reading**

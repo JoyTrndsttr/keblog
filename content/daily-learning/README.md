@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**80 次精读**，覆盖 **2026-08-03—2026-11-08**。
+> 已归档：**81 次精读**，覆盖 **2026-08-03—2026-11-09**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-11-09 | [261109-EgorPakhomov-ExecutedCounterfactual](./261109-EgorPakhomov-ExecutedCounterfactual/README.md) | Attributing Agent Failures to Their History Needs an Executed Counterfactual: Toward a Reporting Standard | Egor Pakhomov | NeurIPS 2026 IAB Workshop（非归档） | 已精读（20页v1全文、图1、表1–14及附录A–F；教学式完整精读） |
 | 2026-11-08 | [261108-VyzantinosRepantis-SemanticCompetition](./261108-VyzantinosRepantis-SemanticCompetition/README.md) | Separating Semantic Competition from Context Length in RAG Reading | Vyzantinos Repantis | arXiv / 2026 | 已精读（5页v1全文、式1、图1、表1–2及作者实验工件；教学式完整精读） |
 | 2026-11-07 | [261107-RThomasMcCoy-HANS](./261107-RThomasMcCoy-HANS/README.md) | Right for the Wrong Reasons: Diagnosing Syntactic Heuristics in Natural Language Inference | R. Thomas McCoy | ACL 2019 | 已精读（21页正式全文、图1–3、表1–14及附录A–F；教学式完整精读） |
 | 2026-11-06 | [261106-MichalMazuryk-PowerlessNoise](./261106-MichalMazuryk-PowerlessNoise/README.md) | The Powerless Noise: How Experimental Settings Shape the Reported Power of Noise | Michał Mazuryk | SIGIR 2026 Repro | 已精读（10页v2全文、图1–2、表1–7及附录A–B；教学式完整精读） |

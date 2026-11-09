@@ -82,3 +82,4 @@
 - The Powerless Noise: How Experimental Settings Shape the Reported Power of Noise
 - Right for the Wrong Reasons: Diagnosing Syntactic Heuristics in Natural Language Inference
 - Separating Semantic Competition from Context Length in RAG Reading
+- Attributing Agent Failures to Their History Needs an Executed Counterfactual: Toward a Reporting Standard
