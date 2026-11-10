@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-10
+
+- **Causal Agent Replay: Counterfactual Attribution for LLM-Agent Failures**
+  - 简称：[Causal Agent Replay](https://38-76-161-31.sslip.io/daily-learning/?paper=261110-JaineetShah-CausalAgentReplay)
+  - Tags：`2026` `arXiv` `Causal Attribution` `Counterfactual Replay` `Shapley Value` `Stochastic Policy`
+  - 作者：Jaineet Shah（唯一作者；原文机构与通讯作者均未明确标注）
+  - Venue / 年份：arXiv cs.LG / cs.AI，2026；未核实正式发表 venue
+  - DOI / 原文：[arXiv:2606.08275v1](https://arxiv.org/abs/2606.08275v1)；[完整5页PDF](https://arxiv.org/pdf/2606.08275v1)；[固定版本工件](https://github.com/jaineet17/causal-agent-replay/tree/db90fa28b97164c35e7c524e4597b8cbdb3035af)
+  - 主题：五类Agent步骤干预、同策略重采样、最后可救援点、Monte Carlo Shapley交互分配、合成验证与回放/语义对齐边界。
+  - 一句话价值：为GraphLocator同状态分叉区分救援位置、内容处理效应与交互归因；合成机制的0.91总效果不证明真实Agent唯一根因，绝对步骤对齐也不保证状态一致。
+
 ### 2026-11-09
 
 - **Attributing Agent Failures to Their History Needs an Executed Counterfactual: Toward a Reporting Standard**
