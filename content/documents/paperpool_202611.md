@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-11
+
+- **Issue Localization via LLM-Driven Iterative Code Graph Searching**
+  - 简称：[CoSIL](https://38-76-161-31.sslip.io/daily-learning/?paper=261111-ZhonghaoJiang-CoSIL)
+  - Tags：`2025` `ASE` `Issue Localization` `Code Graph` `Iterative Search` `Context Pruning`
+  - 作者：Zhonghao Jiang; Xiaoxue Ren; Meng Yan; Wei Jiang; Yong Li; Zhongxin Liu（明确通讯作者：Zhongxin Liu）
+  - Venue / 年份：ASE 2025 Research Papers，3034–3045
+  - DOI / 原文：[10.1109/ASE63991.2025.00249](https://doi.org/10.1109/ASE63991.2025.00249)；[arXiv:2503.22424v3](https://arxiv.org/abs/2503.22424v3)；[完整17页PDF含补充材料](https://arxiv.org/pdf/2503.22424v3)；[论文工件](https://github.com/ZJU-CTAG/CoSIL)
+  - 主题：文件导入关系扩展、函数级迭代搜索、相关性裁剪与短上下文反思；四个RQ、修复与定位指标分离、跨模型成本及新旧实现核对。
+  - 一句话价值：32B函数Top-1比最强基线高18.6/12.0个百分点，消融以迭代搜索贡献最大；为搜索中上下文管理提供直接近邻，并将可恢复证据状态与方向提示、正文过滤区分开。
+
 ### 2026-11-10
 
 - **Causal Agent Replay: Counterfactual Attribution for LLM-Agent Failures**

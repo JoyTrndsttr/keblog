@@ -84,3 +84,4 @@
 - Separating Semantic Competition from Context Length in RAG Reading
 - Attributing Agent Failures to Their History Needs an Executed Counterfactual: Toward a Reporting Standard
 - Causal Agent Replay: Counterfactual Attribution for LLM-Agent Failures
+- Issue Localization via LLM-Driven Iterative Code Graph Searching
