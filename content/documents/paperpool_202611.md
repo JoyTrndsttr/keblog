@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-12
+
+- **OrcaLoca: An LLM Agent Framework for Software Issue Localization**
+  - 简称：[OrcaLoca](https://38-76-161-31.sslip.io/daily-learning/?paper=261112-ZhongmingYu-OrcaLoca)
+  - Tags：`2025` `ICML` `Issue Localization` `Code Graph` `Action Scheduling` `Context Pruning`
+  - 作者：Zhongming Yu; Hejia Zhang; Yujie Zhao; Hanxian Huang; Matrix Yao; Ke Ding; Jishen Zhao（Zhongming Yu 与 Hejia Zhang 共同一作；明确通讯作者：Jishen Zhao）
+  - Venue / 年份：ICML 2025，PMLR 267:73416–73436
+  - DOI / 原文：[PMLR正式发表页](https://proceedings.mlr.press/v267/yu25x.html)；[arXiv:2502.00350v2](https://arxiv.org/abs/2502.00350v2)；[完整20页PDF](https://arxiv.org/pdf/2502.00350v2)；[代码](https://github.com/fishmingyu/OrcaLoca)
+  - 主题：动态搜索优先级、实体去重、类/文件与歧义分解、代码图距离上下文裁剪、辅助复现器；定位/修复指标分离、93题消融与成本证据。
+  - 一句话价值：同模型及修复后端下解决率由34.67%升至41.00%，搜索安排与上下文管理已有直接先例；对当前文件级定位更重要的缺口是范围证据、竞争机制和最终选择之间的传递。
+
 ### 2026-11-11
 
 - **Issue Localization via LLM-Driven Iterative Code Graph Searching**

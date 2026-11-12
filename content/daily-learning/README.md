@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**83 次精读**，覆盖 **2026-08-03—2026-11-11**。
+> 已归档：**84 次精读**，覆盖 **2026-08-03—2026-11-12**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-11-12 | [261112-ZhongmingYu-OrcaLoca](./261112-ZhongmingYu-OrcaLoca/README.md) | OrcaLoca: An LLM Agent Framework for Software Issue Localization | Zhongming Yu（与 Hejia Zhang 共同一作） | ICML 2025 | 已精读（完整20页v2、图1–5、表1–5、算法1及附录A–G；核对正式发表版与作者背景，教学式完整精读） |
 | 2026-11-11 | [261111-ZhonghaoJiang-CoSIL](./261111-ZhonghaoJiang-CoSIL/README.md) | Issue Localization via LLM-Driven Iterative Code Graph Searching | Zhonghao Jiang | ASE 2025 | 已精读（完整17页v3、图1–12、表I–X、附录A–E及新旧工件核对；教学式完整精读） |
 | 2026-11-10 | [261110-JaineetShah-CausalAgentReplay](./261110-JaineetShah-CausalAgentReplay/README.md) | Causal Agent Replay: Counterfactual Attribution for LLM-Agent Failures | Jaineet Shah | arXiv / 2026 | 已精读（完整5页v1、式1、图1、两组合成验证及固定版本公开工件；教学式完整精读） |
 | 2026-11-09 | [261109-EgorPakhomov-ExecutedCounterfactual](./261109-EgorPakhomov-ExecutedCounterfactual/README.md) | Attributing Agent Failures to Their History Needs an Executed Counterfactual: Toward a Reporting Standard | Egor Pakhomov | NeurIPS 2026 IAB Workshop（非归档） | 已精读（20页v1全文、图1、表1–14及附录A–F；教学式完整精读） |
