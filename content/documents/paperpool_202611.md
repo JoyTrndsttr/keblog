@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-13
+
+- **Demystifying LLM-Based Software Engineering Agents**
+  - 简称：[Agentless](https://38-76-161-31.sslip.io/daily-learning/?paper=261113-ChunqiuStevenXia-Agentless)
+  - Tags：`2025` `FSE` `Hierarchical Localization` `Context Representation` `Patch Selection` `Benchmark Validity`
+  - 作者：Chunqiu Steven Xia; Yinlin Deng; Soren Dunn; Lingming Zhang（前两位同等贡献；正式论文未明确标注通讯作者）
+  - Venue / 年份：FSE 2025，Proceedings of the ACM on Software Engineering 2(FSE)，Article FSE037，24页
+  - DOI / 原文：[10.1145/3715754](https://doi.org/10.1145/3715754)；[正式PDF](https://lingming.cs.illinois.edu/publications/fse2025.pdf)；[arXiv:2407.01489](https://arxiv.org/abs/2407.01489)（预印本题名：Agentless: Demystifying LLM-based Software Engineering Agents）；[代码](https://github.com/OpenAutoCoder/Agentless)
+  - 主题：固定三阶段流水线、目录与向量检索结合、文件骨架、分支修复、复现/回归测试选择、SWE-bench Lite-S与Verified。
+  - 一句话价值：骨架表示保留率56.67%→62%；同40补丁下独立分支修好96题、先合并上下文85题，揭示表示时机与候选汇合方式比单纯增删上下文更值得研究。
+
 ### 2026-11-12
 
 - **OrcaLoca: An LLM Agent Framework for Software Issue Localization**
