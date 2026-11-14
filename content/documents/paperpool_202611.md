@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-14
+
+- **SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering**
+  - 简称：[SWE-agent](https://38-76-161-31.sslip.io/daily-learning/?paper=261114-JohnYang-SWEAgent)
+  - Tags：software engineering agents; agent-computer interface; tool feedback; context management
+  - 作者：John Yang、Carlos E. Jimenez（共同一作、明确通讯联系人）、Alexander Wettig、Kilian Lieret、Shunyu Yao、Karthik Narasimhan、Ofir Press
+  - Venue / 年份：NeurIPS 2024
+  - DOI / 原文：10.52202/079017-1601；arXiv:2405.15793；https://proceedings.neurips.cc/paper_files/paper/2024/file/5a7c947568c1b1328ccc5230172e1e7c-Paper-Conference.pdf
+  - 主题：以专用搜索、行范围编辑、错误恢复和历史管理改善语言模型的软件工程操作接口。
+  - 一句话价值：同一 GPT-4 Turbo 在 SWE-bench Lite 上由 Shell-only 11% 提高到18%；逐条搜索反而只有12%，说明接口应帮助证据收敛而不是增加操作。
+
 ### 2026-11-13
 
 - **Demystifying LLM-Based Software Engineering Agents**
