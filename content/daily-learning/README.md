@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**86 次精读**，覆盖 **2026-08-03—2026-11-14**。
+> 已归档：**87 次精读**，覆盖 **2026-08-03—2026-11-15**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-11-15 | [261115-FrancescoSovrano-LostInTheEnd](./261115-FrancescoSovrano-LostInTheEnd/README.md) | Large Language Models for In-File Vulnerability Localization Can Be “Lost in the End” | Francesco Sovrano | FSE 2025 | 已精读（完整24页v1、图1–5、表1–4、三项RQ及评分/显著性核验；教学式自包含讲解） |
 | 2026-11-14 | [261114-JohnYang-SWEAgent](./261114-JohnYang-SWEAgent/README.md) | SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering | John Yang、Carlos E. Jimenez（共同一作） | NeurIPS 2024 | 已完成 |
 | 2026-11-13 | [261113-ChunqiuStevenXia-Agentless](./261113-ChunqiuStevenXia-Agentless/README.md) | Demystifying LLM-Based Software Engineering Agents（Agentless） | Chunqiu Steven Xia（与 Yinlin Deng 共同一作） | FSE 2025 | 已精读（正式24页全文、图1–9、表1–6；分层定位、独立分支、测试选择与基准审计，手机自包含讲解） |
 | 2026-11-12 | [261112-ZhongmingYu-OrcaLoca](./261112-ZhongmingYu-OrcaLoca/README.md) | OrcaLoca: An LLM Agent Framework for Software Issue Localization | Zhongming Yu（与 Hejia Zhang 共同一作） | ICML 2025 | 已精读（完整20页v2、图1–5、表1–5、算法1及附录A–G；核对正式发表版与作者背景，教学式完整精读） |

@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-15
+
+- **Large Language Models for In-File Vulnerability Localization Can Be “Lost in the End”**
+  - 简称：[Lost in the End](https://38-76-161-31.sslip.io/daily-learning/?paper=261115-FrancescoSovrano-LostInTheEnd)
+  - Tags：`2025` `FSE` `Vulnerability Localization` `Position Effect` `Context Length` `Controlled Evaluation`
+  - 作者：Francesco Sovrano; Adam Bauer; Alberto Bacchelli（ETH Zurich Collegium Helveticum、University of Zurich；原文未明确标注通讯作者）
+  - Venue / 年份：FSE 2025
+  - DOI / 原文：[arXiv:2502.06898v1](https://arxiv.org/abs/2502.06898v1)；[完整24页PDF](https://arxiv.org/pdf/2502.06898)；[实验工件](https://doi.org/10.5281/zenodo.14840519)
+  - 主题：794个漏洞的文件级定位、相同漏洞的位置与长度变体、切块召回与误报权衡、评分及统计范围审查。
+  - 一句话价值：长代码后部未必出现端部优势；切块平均相对召回提升超过37%但增加误报，为区分筛选内容效应与位置、长度效应提供任务内依据。
+
 ### 2026-11-14
 
 - **SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering**
