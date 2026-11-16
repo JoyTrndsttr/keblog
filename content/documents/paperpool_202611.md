@@ -6,6 +6,15 @@
 
 ### 2026-11-17
 
+- **NINJA: A Navigator–Inspector Joint Architecture for Context-Efficient Issue Localization**
+  - 简称：[NINJA](https://38-76-161-31.sslip.io/daily-learning/?paper=261117-WenkaiFang-NINJA)
+  - Tags：`2026` `arXiv` `Issue Localization` `Multi-Agent` `Context Isolation` `Support Locations`
+  - 作者：Wenkai Fang、Shunyu Liu、Wei Luo、Zihao Wu、Yang Zhou、Tongya Zheng、Wotao Yin、Jialie Shen、Leszek Rutkowski、Mingli Song、Dacheng Tao（PDF明确通讯作者：Shunyu Liu）
+  - Venue / 年份：arXiv 2026；PDF的会议页脚不作为录用确认
+  - DOI / 原文：[arXiv:2611.10027v1](https://arxiv.org/abs/2611.10027v1)；[PDF](https://arxiv.org/pdf/2611.10027)；[代码](https://github.com/wantbook-book/NINJA)
+  - 主题：全局导航与独立局部检查、多轮调度和状态账本、分角色后训练、等预算定位及oracle支持位置的修复效用。
+  - 一句话价值：相近token下函数覆盖仍有优势但并非各指标全胜，gold支持位置带来4.6个百分点修复收益，适合对照Seer的证据管理与真实支持预测缺口（用户要求加急精读）。
+
 - **CORE-Bench: A Comprehensive Benchmark for Code Retrieval in the Era of Agentic Coding**
   - 简称：[CORE-Bench](https://38-76-161-31.sslip.io/daily-learning/?paper=261117-FuweiZhang-COREBench)
   - Tags：`2026` `EMNLP` `Code Retrieval` `Repository Context` `Relevance Annotation` `Agentic Coding`

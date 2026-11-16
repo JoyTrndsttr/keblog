@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**89 次精读**，覆盖 **2026-08-03—2026-11-17**。
+> 已归档：**90 次精读**，覆盖 **2026-08-03—2026-11-17**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-11-17 | [261117-WenkaiFang-NINJA](./261117-WenkaiFang-NINJA/README.md) | NINJA: A Navigator–Inspector Joint Architecture for Context-Efficient Issue Localization | Wenkai Fang | arXiv 2026 | 已精读（加急；完整v1、架构/训练、预算匹配、消融、支持位置与修复实验；会议状态未独立确认） |
 | 2026-11-17 | [261117-FuweiZhang-COREBench](./261117-FuweiZhang-COREBench/README.md) | CORE-Bench: A Comprehensive Benchmark for Code Retrieval in the Era of Agentic Coding | Fuwei Zhang | EMNLP 2026 | 已精读（加急；完整29页、三层基准、轨迹标注、文件白名单验证、SFT及CPI对照） |
 | 2026-11-16 | [261116-AntonisAntoniades-SWESearch](./261116-AntonisAntoniades-SWESearch/README.md) | SWE-Search: Enhancing Software Agents with Monte Carlo Tree Search and Iterative Refinement | Antonis Antoniades、Albert Örwall（共同一作、明确通讯联系人） | ICLR 2025 | 已精读（完整31页v6、图1–8、表1–4及附录A–L；状态反馈、回退、候选选择与算力公平性） |
 | 2026-11-15 | [261115-FrancescoSovrano-LostInTheEnd](./261115-FrancescoSovrano-LostInTheEnd/README.md) | Large Language Models for In-File Vulnerability Localization Can Be “Lost in the End” | Francesco Sovrano | FSE 2025 | 已精读（完整24页v1、图1–5、表1–4、三项RQ及评分/显著性核验；教学式自包含讲解） |
