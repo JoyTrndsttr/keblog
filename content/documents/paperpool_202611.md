@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-16
+
+- **SWE-Search: Enhancing Software Agents with Monte Carlo Tree Search and Iterative Refinement**
+  - 简称：[SWE-Search](https://38-76-161-31.sslip.io/daily-learning/?paper=261116-AntonisAntoniades-SWESearch)
+  - Tags：`2025` `ICLR` `Software Agents` `MCTS` `State Feedback` `Inference-time Compute` `Patch Selection`
+  - 作者：Antonis Antoniades、Albert Örwall（共同一作、原文明示通讯联系人）、Kexun Zhang、Yuxi Xie、Anirudh Goyal、William Wang
+  - Venue / 年份：ICLR 2025
+  - DOI / 原文：[arXiv:2410.20285v6](https://arxiv.org/abs/2410.20285v6)；[完整31页PDF](https://arxiv.org/pdf/2410.20285v6)；[代码](https://github.com/aorwall/moatless-tree-search)
+  - 主题：代码状态回退、阶段专用价值反馈、树搜索和候选补丁裁决；五模型SWE-bench Lite评估及五次基线对照。
+  - 一句话价值：搜索对一次基线均有提高，但额外成本约5–14倍，五次重试后DeepSeek/Llama候选覆盖差距仅1.3/0.6个百分点，适合学习有证据的回访而非机械增加讨论。
+
 ### 2026-11-15
 
 - **Large Language Models for In-File Vulnerability Localization Can Be “Lost in the End”**

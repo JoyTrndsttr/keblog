@@ -89,3 +89,4 @@
 - Demystifying LLM-Based Software Engineering Agents（预印本题名：Agentless: Demystifying LLM-based Software Engineering Agents）
 - SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering
 - Large Language Models for In-File Vulnerability Localization Can Be “Lost in the End”
+- SWE-Search: Enhancing Software Agents with Monte Carlo Tree Search and Iterative Refinement
