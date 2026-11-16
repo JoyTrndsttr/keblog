@@ -1,8 +1,19 @@
 # Paper Pool · 2026-11
 
-> 2026 年 11 月精读记录。11 月 1 日为用户指定的计划外精读；其余条目按每日计划归档。
+> 2026 年 11 月精读记录。11 月 1 日为用户指定的计划外精读；其余条目按每日计划或用户加急要求归档。
 
 ## 已精读论文
+
+### 2026-11-17
+
+- **CORE-Bench: A Comprehensive Benchmark for Code Retrieval in the Era of Agentic Coding**
+  - 简称：[CORE-Bench](https://38-76-161-31.sslip.io/daily-learning/?paper=261117-FuweiZhang-COREBench)
+  - Tags：`2026` `EMNLP` `Code Retrieval` `Repository Context` `Relevance Annotation` `Agentic Coding`
+  - 作者：Fuwei Zhang、Yanzhao Zhang、Mingxin Li、Dingkun Long、Lexiang Hu、Pengjun Xie、Fuzhen Zhuang、Zhao Zhang（通讯作者：Fuzhen Zhuang、Zhao Zhang）
+  - Venue / 年份：EMNLP 2026
+  - DOI / 原文：[正式29页论文](https://aclanthology.org/2026.emnlp-main.1604.pdf)；arXiv:2606.11864；[评测代码](https://github.com/zhangfw123/CORE-Bench-Eval)
+  - 主题：仓库版本内的编辑位置与支持上下文检索、轨迹候选和模型裁决、文件级白名单验证、领域微调及请求改写。
+  - 一句话价值：将检索目标扩至补丁之外，提供上下文集合效用证据，同时留下等预算单块干扰与因果必要性问题，可用于校准CPI研究定位（用户要求加急精读）。
 
 ### 2026-11-16
 
