@@ -93,3 +93,4 @@
 - CORE-Bench: A Comprehensive Benchmark for Code Retrieval in the Era of Agentic Coding
 - NINJA: A Navigator–Inspector Joint Architecture for Context-Efficient Issue Localization
 - LocAgent: Graph-Guided LLM Agents for Code Localization
+- GraphScent: Calibrating Directional Relevance Signals for Bounded-Context Code Localization

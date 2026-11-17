@@ -6,6 +6,15 @@
 
 ### 2026-11-17
 
+- **GraphScent: Calibrating Directional Relevance Signals for Bounded-Context Code Localization**
+  - 简称：[GraphScent](https://38-76-161-31.sslip.io/daily-learning/?paper=261117-RameshArvindNaagarajan-GraphScent)
+  - Tags：`2026` `arXiv` `Code Localization` `Directional Graph` `Calibration` `Bounded Context`
+  - 作者：Ramesh Arvind Naagarajan（单作者；开姆尼茨工业大学；原文未另行标注通讯作者）
+  - Venue / 年份：arXiv 2026；Gemma 4 Developer Agent Paper Track 投稿，非已确认录用
+  - DOI / 原文：[arXiv:2611.17527v1](https://arxiv.org/abs/2611.17527v1)；[完整18页PDF](https://arxiv.org/pdf/2611.17527v1)；[作者工件](https://www.kaggle.com/datasets/rameshln/graphscent-bench-gemma4)
+  - 主题：结构方向的相关性诊断、关系条件校准、有界无状态图搜索、六候选终选、遗漏参考文件提示及工件一致性审查。
+  - 一句话价值：31B词面困难集实体命中12.8%→23.4%，总体41.7%→43.6%；方向信号强于复杂组件的普遍必要性证据，适合借鉴曝光—保留—终选漏斗与配对方向诊断（加急精读）。
+
 - **LocAgent: Graph-Guided LLM Agents for Code Localization**
   - 简称：[LocAgent](https://38-76-161-31.sslip.io/daily-learning/?paper=261117-ZhaolingChen-LocAgent)
   - Tags：`2025` `ACL` `Code Localization` `Heterogeneous Graph` `Agent Tools` `Context Representation`

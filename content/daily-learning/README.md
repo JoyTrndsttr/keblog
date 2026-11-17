@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**91 次精读**，覆盖 **2026-08-03—2026-11-17**。
+> 已归档：**92 次精读**，覆盖 **2026-08-03—2026-11-17**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-11-17 | [261117-RameshArvindNaagarajan-GraphScent](./261117-RameshArvindNaagarajan-GraphScent/README.md) | GraphScent: Calibrating Directional Relevance Signals for Bounded-Context Code Localization | Ramesh Arvind Naagarajan | arXiv 2026（竞赛论文轨投稿） | 已精读（加急；完整18页v1、图1–4、表1–12、附录A–F；方向校准、定位漏斗、负面消融与公开工件核算） |
 | 2026-11-17 | [261117-ZhaolingChen-LocAgent](./261117-ZhaolingChen-LocAgent/README.md) | LocAgent: Graph-Guided LLM Agents for Code Localization | Zhaoling Chen（前三位共同一作；通讯作者 Xiangru Tang） | ACL 2025 | 已精读（完整17页正式PDF、图1–8、表1–11及附录A–C；导航/可见性、训练、消融、跨任务与修复传导） |
 | 2026-11-17 | [261117-WenkaiFang-NINJA](./261117-WenkaiFang-NINJA/README.md) | NINJA: A Navigator–Inspector Joint Architecture for Context-Efficient Issue Localization | Wenkai Fang | arXiv 2026 | 已精读（加急；完整v1、架构/训练、预算匹配、消融、支持位置与修复实验；会议状态未独立确认） |
 | 2026-11-17 | [261117-FuweiZhang-COREBench](./261117-FuweiZhang-COREBench/README.md) | CORE-Bench: A Comprehensive Benchmark for Code Retrieval in the Era of Agentic Coding | Fuwei Zhang | EMNLP 2026 | 已精读（加急；完整29页、三层基准、轨迹标注、文件白名单验证、SFT及CPI对照） |
