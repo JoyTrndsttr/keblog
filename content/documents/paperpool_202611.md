@@ -6,6 +6,15 @@
 
 ### 2026-11-17
 
+- **LocAgent: Graph-Guided LLM Agents for Code Localization**
+  - 简称：[LocAgent](https://38-76-161-31.sslip.io/daily-learning/?paper=261117-ZhaolingChen-LocAgent)
+  - Tags：`2025` `ACL` `Code Localization` `Heterogeneous Graph` `Agent Tools` `Context Representation`
+  - 作者：Zhaoling Chen、Xiangru Tang、Gangda Deng、Fang Wu、Jialong Wu、Zhiwei Jiang、Viktor Prasanna、Arman Cohan、Xingyao Wang（前三位共同一作；PDF明确通讯作者：Xiangru Tang）
+  - Venue / 年份：ACL 2025 Long Papers
+  - DOI / 原文：[10.18653/v1/2025.acl-long.426](https://doi.org/10.18653/v1/2025.acl-long.426)；[完整17页正式PDF](https://aclanthology.org/2025.acl-long.426.pdf)；[代码](https://github.com/gersteinlab/LocAgent)
+  - 主题：异构代码图、四层稀疏索引、三工具与分级可见性、成功轨迹微调、Loc-Bench及定位到修复的传导。
+  - 一句话价值：同Claude下函数Acc@10为77.37%对70.07%，下游Pass@10增加4.01个百分点；为区分发现身份、源码曝光和筛选提供直接基线，原文格式/训练计数差异已核对。
+
 - **NINJA: A Navigator–Inspector Joint Architecture for Context-Efficient Issue Localization**
   - 简称：[NINJA](https://38-76-161-31.sslip.io/daily-learning/?paper=261117-WenkaiFang-NINJA)
   - Tags：`2026` `arXiv` `Issue Localization` `Multi-Agent` `Context Isolation` `Support Locations`
