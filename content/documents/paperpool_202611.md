@@ -6,6 +6,15 @@
 
 ### 2026-11-18
 
+- **Vulnerability Localization Benchmark: Measuring Agentic Security Analysis at Repository Scale**
+  - 简称：[VLoc Bench](https://38-76-161-31.sslip.io/daily-learning/?paper=261118-AmanPriyanshu-VLocBench)
+  - Tags：`2026` `arXiv` `Vulnerability Localization` `Benchmark Validity` `Patch Labels` `Agent Evaluation`
+  - 作者：Aman Priyanshu、Supriti Vijay、Kimia Majd（前三位共同一作及明确通讯作者），Xuhong He、Fraser Burch、Takahiro Matsumoto、Jianliang He、Baturay Saglam、Arthur Goldblatt、Zhuoran Yang、Amin Karbasi
+  - Venue / 年份：Foundation AI Technical Report 002；arXiv 2026，未核实正式会议录用
+  - DOI / 原文：[arXiv:2609.15939v1](https://arxiv.org/abs/2609.15939v1)；[完整29页PDF](https://arxiv.org/pdf/2609.15939v1)；[官方代码及manifest](https://github.com/cisco-foundation-ai/vulnerability-localization-benchmark)
+  - 主题：500条CWE-only仓库任务、修复前定位与修复后阴性判断、27模型和4静态工具、仓库结构回归、终态失败分类及评分审计。
+  - 一句话价值：最强文件F1为0.229，但高阴性率可能包含未提交失败；公开数据19条空CWE、输入签名469组，与Antares共享基准而非独立验证，为CPI的标签、独立任务与证据传递提供直接边界。
+
 - **SweRank: Software Issue Localization with Code Ranking**
   - 简称：[SweRank](https://38-76-161-31.sslip.io/daily-learning/?paper=261118-RevanthGangiReddy-SweRank)
   - Tags：`2026` `ICLR` `Issue Localization` `Retrieve and Rerank` `Hard Negatives` `Cost Evaluation`
