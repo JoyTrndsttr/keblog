@@ -94,3 +94,4 @@
 - NINJA: A Navigator–Inspector Joint Architecture for Context-Efficient Issue Localization
 - LocAgent: Graph-Guided LLM Agents for Code Localization
 - GraphScent: Calibrating Directional Relevance Signals for Bounded-Context Code Localization
+- SweRank: Software Issue Localization with Code Ranking

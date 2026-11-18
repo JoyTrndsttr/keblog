@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-18
+
+- **SweRank: Software Issue Localization with Code Ranking**
+  - 简称：[SweRank](https://38-76-161-31.sslip.io/daily-learning/?paper=261118-RevanthGangiReddy-SweRank)
+  - Tags：`2026` `ICLR` `Issue Localization` `Retrieve and Rerank` `Hard Negatives` `Cost Evaluation`
+  - 作者：Revanth Gangi Reddy、Tarun Suresh、JaeHyeok Doo、Ye Liu、Xuan Phi Nguyen、Yingbo Zhou、Semih Yavuz、Caiming Xiong、Heng Ji、Shafiq Joty（前三位共同一作；原文未明确指定通讯作者）
+  - Venue / 年份：ICLR 2026
+  - DOI / 原文：[arXiv:2505.07849v2](https://arxiv.org/abs/2505.07849v2)；[完整20页PDF](https://arxiv.org/pdf/2505.07849v2)；[ICLR正式记录](https://proceedings.iclr.cc/paper_files/paper/2026/hash/7f6901ebab786e43b21530328fc989ca-Abstract-Conference.html)；[代码](https://github.com/SalesforceAIResearch/SweRank)
+  - 主题：真实PR定位监督、一致性过滤、困难负例、首位编号训练、滑窗重排、全目标覆盖与端到端费用边界。
+  - 一句话价值：274例Lite上大检索器/32B重排函数Acc@10为82.12%/88.69%，提供强低交互定位基线；未改函数负例不能直接当CPI无关上下文，候选上限、粒度和累计开销须分开。
+
 ### 2026-11-17
 
 - **GraphScent: Calibrating Directional Relevance Signals for Bounded-Context Code Localization**
