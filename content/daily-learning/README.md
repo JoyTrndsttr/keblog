@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**94 次精读**，覆盖 **2026-08-03—2026-11-18**。
+> 已归档：**95 次精读**，覆盖 **2026-08-03—2026-11-19**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-11-19 | [261119-LuisWiedmann-AgentSystems](./261119-LuisWiedmann-AgentSystems/README.md) | Agents Are Systems, Not Models: Rethinking Agentic Evaluation | Luis Wiedmann（原文未单独标注通讯作者） | arXiv 2026 | 已精读（完整28页v1、图1–8、表1–24及附录A.1–A.18；重复方差、信息×预算、验证oracle、模型交互与缓存成本核查） |
 | 2026-11-18 | [261118-AmanPriyanshu-VLocBench](./261118-AmanPriyanshu-VLocBench/README.md) | Vulnerability Localization Benchmark: Measuring Agentic Security Analysis at Repository Scale | Aman Priyanshu、Supriti Vijay、Kimia Majd（共同一作及通讯作者） | arXiv 2026，Foundation AI技术报告 | 已精读（加急；完整29页v1、图1–6、表1–9、附录A–E；前后修复协议、失败阴性、补丁标签、回归与官方manifest核查） |
 | 2026-11-18 | [261118-RevanthGangiReddy-SweRank](./261118-RevanthGangiReddy-SweRank/README.md) | SweRank: Software Issue Localization with Code Ranking | Revanth Gangi Reddy、Tarun Suresh、JaeHyeok Doo（共同一作） | ICLR 2026 | 已精读（完整20页v2、图1–11、表1–13、附录A–I；定位监督、困难负例、候选上限、滑窗成本与固定版本代码核查） |
 | 2026-11-17 | [261117-RameshArvindNaagarajan-GraphScent](./261117-RameshArvindNaagarajan-GraphScent/README.md) | GraphScent: Calibrating Directional Relevance Signals for Bounded-Context Code Localization | Ramesh Arvind Naagarajan | arXiv 2026（竞赛论文轨投稿） | 已精读（加急；完整18页v1、图1–4、表1–12、附录A–F；方向校准、定位漏斗、负面消融与公开工件核算） |

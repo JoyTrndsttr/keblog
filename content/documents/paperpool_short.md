@@ -96,3 +96,4 @@
 - GraphScent: Calibrating Directional Relevance Signals for Bounded-Context Code Localization
 - SweRank: Software Issue Localization with Code Ranking
 - Vulnerability Localization Benchmark: Measuring Agentic Security Analysis at Repository Scale
+- Agents Are Systems, Not Models: Rethinking Agentic Evaluation

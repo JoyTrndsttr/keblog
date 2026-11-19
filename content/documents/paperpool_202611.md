@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-19
+
+- **Agents Are Systems, Not Models: Rethinking Agentic Evaluation**
+  - 简称：[Agent Systems](https://38-76-161-31.sslip.io/daily-learning/?paper=261119-LuisWiedmann-AgentSystems)
+  - Tags：`2026` `arXiv` `Agent Evaluation` `Factorial Design` `Run Variance` `Verification`
+  - 作者：Luis Wiedmann、Leander Girrbach、Cordelia Schmid、Zeynep Akata（原文未单独标注通讯作者）
+  - Venue / 年份：arXiv 2026，未确认正式会议录用
+  - DOI / 原文：[arXiv:2610.01618v1](https://arxiv.org/abs/2610.01618v1)；[完整28页PDF](https://arxiv.org/pdf/2610.01618v1)；[官方代码](https://github.com/lusxvr/rethinking-agent-evaluation)
+  - 主题：五轴析因、每配置五次重复、完成率与条件质量、信息和时间交互、弱工具拒绝、验证工具、自动轨迹分类及成本口径。
+  - 一句话价值：三个正向任务跨门槛后的配置内方差占53.9%，信息在Qwen主实验最强但Claude预算更重要；真实标签oracle改变检查行为，提醒固定曝光、重复噪声与缓存费用须分别评估。
+
 ### 2026-11-18
 
 - **Vulnerability Localization Benchmark: Measuring Agentic Security Analysis at Repository Scale**
