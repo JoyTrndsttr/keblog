@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-20
+
+- **Context Has a Price: Adding and Removing Context for LLM Coding Agents under Prefix Caching**
+  - 简称：[Context Price](https://38-76-161-31.sslip.io/daily-learning/?paper=261120-ZeruiYang-ContextPrice)
+  - Tags：`2026` `arXiv` `Prefix Caching` `Context Management` `Agent Cost` `Evaluation Validity`
+  - 作者：Zerui Yang、Miaomiao Dong、Quan Xue、Chaorui Zhang、Xuanyu Zheng、Xiyuan Wang、Haolin Ruan、Xueyan Niu、Guangcheng Song、Weixi Zhang、Wei Han、Bo Bai；通讯作者 Zerui Yang、Chaorui Zhang；Huawei Technologies Ltd.
+  - Venue / 年份：arXiv 2026，未确认正式会议录用
+  - DOI / 原文：[arXiv:2611.22238v1](https://arxiv.org/abs/2611.22238v1)；[完整25页PDF](https://arxiv.org/pdf/2611.22238v1)
+  - 主题：检索证据生命周期、前缀缓存回本、滚动/批量/摘要、固定动作核算与在线行为、成本蒸馏、质量补丁抽取及并发缓存偏差。
+  - 一句话价值：缓存一折时滚动删除在两模型涨价116%/87%，无折扣时省19%/25%；检索少搜未建立修复增益，提示全链路费用、真实曝光与动态行为必须分开，且质量评分仍有工作区补丁抽取局限。
+
 ### 2026-11-19
 
 - **Agents Are Systems, Not Models: Rethinking Agentic Evaluation**

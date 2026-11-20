@@ -4,6 +4,7 @@
 
 ## 已精读论文标题
 
+- Context Has a Price: Adding and Removing Context for LLM Coding Agents under Prefix Caching
 - 3100 Opinions on Code Review in an AI World: Building Causal Theory from Practitioner Discourse
 - A Causal Learning Framework for Enhancing Robustness of Source Code Models
 - AACR-Bench: Evaluating Automatic Code Review with Holistic Repository-Level Context
