@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-21
+
+- **Done, But Still Working: Anytime Evaluation of When Coding Agents Should Stop**
+  - 简称：[Anytime Stopping](https://38-76-161-31.sslip.io/daily-learning/?paper=261121-ZeruiYang-AnytimeStopping)
+  - Tags：`2026` `arXiv` `Coding Agents` `Anytime Evaluation` `Early Stopping` `Patch Validity`
+  - 作者：Zerui Yang、Quan Xue、Miaomiao Dong、Chaorui Zhang、Xuanyu Zheng、Xiyuan Wang、Haolin Ruan、Xueyan Niu、Guangcheng Song、Weixi Zhang、Wei Han、Bo Bai；通讯作者 Zerui Yang、Chaorui Zhang；Huawei Technologies Ltd.
+  - Venue / 年份：arXiv 2026，未确认正式会议录用
+  - DOI / 原文：[arXiv:2611.22901v1](https://arxiv.org/abs/2611.22901v1)；[完整22页PDF](https://arxiv.org/pdf/2611.22901v1)
+  - 主题：可观察前缀、停止与补丁回选、固定轨迹配对、触发与净修复分解、停止蒸馏、补丁抽取及评分敏感性。
+  - 一句话价值：同一补丁两次自测通过即停，386条确认运行省22.8%，但补丁评分修正后质量差−1.0点且未确立非劣；只在不改变前缀时才能复用原轨迹估计策略效果。
+
 ### 2026-11-20
 
 - **Context Has a Price: Adding and Removing Context for LLM Coding Agents under Prefix Caching**

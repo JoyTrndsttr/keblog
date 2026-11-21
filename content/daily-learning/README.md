@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**96 次精读**，覆盖 **2026-08-03—2026-11-20**。
+> 已归档：**97 次精读**，覆盖 **2026-08-03—2026-11-21**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-11-21 | [261121-ZeruiYang-AnytimeStopping](./261121-ZeruiYang-AnytimeStopping/README.md) | Done, But Still Working: Anytime Evaluation of When Coding Agents Should Stop | Zerui Yang（与 Chaorui Zhang 为通讯作者） | arXiv 2026 | 已精读（完整22页v1、图1–6、表1–8及附录A–T；停止与回选、配对重放、补丁评分审计及蒸馏的质量边界） |
 | 2026-11-20 | [261120-ZeruiYang-ContextPrice](./261120-ZeruiYang-ContextPrice/README.md) | Context Has a Price: Adding and Removing Context for LLM Coding Agents under Prefix Caching | Zerui Yang（与 Chaorui Zhang 为通讯作者） | arXiv 2026 | 已精读（完整25页v1、图1–10、表1–7及附录A–R；前缀缓存、行为补偿、价格反转、质量评分缺陷与原始研究记录核查） |
 | 2026-11-19 | [261119-LuisWiedmann-AgentSystems](./261119-LuisWiedmann-AgentSystems/README.md) | Agents Are Systems, Not Models: Rethinking Agentic Evaluation | Luis Wiedmann（原文未单独标注通讯作者） | arXiv 2026 | 已精读（完整28页v1、图1–8、表1–24及附录A.1–A.18；重复方差、信息×预算、验证oracle、模型交互与缓存成本核查） |
 | 2026-11-18 | [261118-AmanPriyanshu-VLocBench](./261118-AmanPriyanshu-VLocBench/README.md) | Vulnerability Localization Benchmark: Measuring Agentic Security Analysis at Repository Scale | Aman Priyanshu、Supriti Vijay、Kimia Majd（共同一作及通讯作者） | arXiv 2026，Foundation AI技术报告 | 已精读（加急；完整29页v1、图1–6、表1–9、附录A–E；前后修复协议、失败阴性、补丁标签、回归与官方manifest核查） |

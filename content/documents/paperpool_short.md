@@ -98,3 +98,4 @@
 - SweRank: Software Issue Localization with Code Ranking
 - Vulnerability Localization Benchmark: Measuring Agentic Security Analysis at Repository Scale
 - Agents Are Systems, Not Models: Rethinking Agentic Evaluation
+- Done, But Still Working: Anytime Evaluation of When Coding Agents Should Stop
