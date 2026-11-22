@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-22
+
+- **Talking to Itself While Coding: What Makes Comments Help Code Generation?**
+  - 简称：[Comment Content](https://38-76-161-31.sslip.io/daily-learning/?paper=261122-DangfengPan-CommentContent)
+  - Tags：`2026` `EMNLP Findings` `Code Generation` `Context Intervention` `Prompting` `Experimental Design`
+  - 作者：Dangfeng Pan、Zhensu Sun（通讯作者）、Cenyuan Zhang、David Lo、Xiaoning Du；Monash University、Singapore Management University
+  - Venue / 年份：Findings of EMNLP 2026
+  - DOI / 原文：[10.18653/2026.findings-emnlp.916](https://aclanthology.org/2026.findings-emnlp.916/)；[完整25页PDF](https://aclanthology.org/2026.findings-emnlp.916.pdf)；[官方数据和代码](https://github.com/pdfCN/What-Makes-Comments-Help-Code-Generation)
+  - 主题：注释形态与意图的观察分析、强源前缀、同题最小语义改写、错题及等长噪声、仓库级类生成、模型自拟注释。
+  - 一句话价值：在源成功匹配题上正确注释平均提高17.2个百分点，最小改错使四个模型的增益消失；同题表面对照可作为语义效应诊断，不将后见之明的优质前缀等同可部署策略。
+
 ### 2026-11-21
 
 - **Done, But Still Working: Anytime Evaluation of When Coding Agents Should Stop**
