@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-23
+
+- **Provenance Before Prose: Claim-Locked Reporting for Statistical Text Generation**
+  - 简称：[Claim-Locked Reporting](https://38-76-161-31.sslip.io/daily-learning/?paper=261123-XiaoFan-ClaimLockedReporting)
+  - Tags：`2026` `EMNLP` `Provenance` `Reproducibility` `Claim Governance` `Statistical Reporting`
+  - 作者：Xiao Fan、Jingyuan Li（通讯作者）、Hongbin Guo、Yubo Han、Yi Zhang（通讯作者）；西安电子科技大学
+  - Venue / 年份：EMNLP 2026 主会
+  - DOI / 原文：[10.18653/2026.emnlp-main.357](https://aclanthology.org/2026.emnlp-main.357/)；[完整15页PDF](https://aclanthology.org/2026.emnlp-main.357.pdf)；[公开参考实现](https://github.com/XiuFan719/Claim-Locked-Reporting)
+  - 主题：统计结论账本、单向措辞治理、确定性数值和方向、跨种子复现、盲审和数字告警校准。
+  - 一句话价值：锁定结论替代模型选槽，影像和试验数值复现率分别提高37.4和20.5个百分点，但数字的稳定性不等于证据真实，且告警须核查其危害。
+
 ### 2026-11-22
 
 - **Talking to Itself While Coding: What Makes Comments Help Code Generation?**
