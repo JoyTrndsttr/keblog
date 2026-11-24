@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-24
+
+- **Echoes of AI: Investigating the downstream effects of AI assistants on software maintainability**
+  - 简称：[Echoes of AI](https://38-76-161-31.sslip.io/daily-learning/?paper=261124-MarkusBorg-EchoesOfAI)
+  - Tags：`2026` `EMSE` `AI-assisted Development` `Maintainability` `Causal DAG` `Randomized Experiment`
+  - 作者：Markus Borg（一作、通讯）、Dave Hewett、Nadim Hagatulah、Noric Couderc、Emma Söderberg、Donald Graham、Uttam Kini、Dave Farley；CodeScene、隆德大学、Equal Experts、Continuous Delivery
+  - Venue / 年份：Empirical Software Engineering 31:161，2026
+  - DOI / 原文：[10.1007/s10664-026-10889-1](https://doi.org/10.1007/s10664-026-10889-1)；[正式刊版PDF](https://link.springer.com/content/pdf/10.1007/s10664-026-10889-1.pdf)；[分析代码](https://github.com/codescene-research/echoes-of-ai-emse-2025)
+  - 主题：前阶段 AI 使用观察、后阶段随机分配代码来源、短期可维护性、DAGitty、贝叶斯先验敏感性。
+  - 一句话价值：把生成者与接手者分开，第一轮观察到更快，第二轮未发现明确的平均效率和质量差异；分配图与DAG分别交代随机化和效应路径。
+
 ### 2026-11-23
 
 - **Provenance Before Prose: Claim-Locked Reporting for Statistical Text Generation**

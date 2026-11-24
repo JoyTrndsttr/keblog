@@ -101,3 +101,4 @@
 - Done, But Still Working: Anytime Evaluation of When Coding Agents Should Stop
 - Talking to Itself While Coding: What Makes Comments Help Code Generation?
 - Provenance Before Prose: Claim-Locked Reporting for Statistical Text Generation
+- Echoes of AI: Investigating the downstream effects of AI assistants on software maintainability
