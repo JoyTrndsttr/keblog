@@ -102,3 +102,4 @@
 - Talking to Itself While Coding: What Makes Comments Help Code Generation?
 - Provenance Before Prose: Claim-Locked Reporting for Statistical Text Generation
 - Echoes of AI: Investigating the downstream effects of AI assistants on software maintainability
+- sudo L7: Can Coding Agents Act Like Staff Engineers?

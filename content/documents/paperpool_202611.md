@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-25
+
+- **sudo L7: Can Coding Agents Act Like Staff Engineers?**
+  - 简称：[sudo L7](https://38-76-161-31.sslip.io/daily-learning/?paper=261125-NickHeiner-SudoL7)
+  - Tags：`2026` `Coding Agents` `Benchmark` `Rubric` `Construct Validity`
+  - 作者：Nick Heiner（一作）、Ian Niebres、Suhaas Garre、Sushant Mehta、Edwin Chen；Surge AI，原文只列团队联系邮箱。
+  - Venue / 年份：NeurIPS 2026 Workshop on Interpreting Agent Behavior（arXiv v1）
+  - DOI / 原文：[arXiv:2611.30517](https://arxiv.org/abs/2611.30517)；[论文全文](https://arxiv.org/html/2611.30517v1)；[榜单](https://surgehq.ai/benchmarks/sudo-l7)
+  - 主题：专家写题与原子规则、工程判断、严格通过口径、按任务重复、判分人与模型一致性。
+  - 一句话价值：可执行测试只提供一类证据；60个任务的严格门槛可区分功能完成、对上下文的判断和如实报告，正式裁判未公开与复标直接对照。
+
 ### 2026-11-24
 
 - **Echoes of AI: Investigating the downstream effects of AI assistants on software maintainability**

@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**100 次精读**，覆盖 **2026-08-03—2026-11-24**。
+> 已归档：**101 次精读**，覆盖 **2026-08-03—2026-11-25**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-11-25 | [261125-NickHeiner-SudoL7](./261125-NickHeiner-SudoL7/README.md) | sudo L7: Can Coding Agents Act Like Staff Engineers? | Nick Heiner（原文仅列团队邮箱） | NeurIPS 2026 IAB Workshop | 已精读（完整12页v1、图1、表1–5及附录A–C；评分门槛、重复尝试、失败案例及裁判效度） |
 | 2026-11-24 | [261124-MarkusBorg-EchoesOfAI](./261124-MarkusBorg-EchoesOfAI/README.md) | Echoes of AI: Investigating the downstream effects of AI assistants on software maintainability | Markus Borg（一作、通讯） | Empirical Software Engineering 2026 | 已精读（正式刊版78页；两阶段随机设计与DAG、效率及质量四指标、贝叶斯敏感性和证据边界） |
 | 2026-11-23 | [261123-XiaoFan-ClaimLockedReporting](./261123-XiaoFan-ClaimLockedReporting/README.md) | Provenance Before Prose: Claim-Locked Reporting for Statistical Text Generation | Xiao Fan（通讯作者 Jingyuan Li、Yi Zhang） | EMNLP 2026 主会 | 已精读（完整15页、图1–2、表1–6/A1–A5及附录A–F；结论锁定、方向人审、数字告警校准与工件范围） |
 | 2026-11-22 | [261122-DangfengPan-CommentContent](./261122-DangfengPan-CommentContent/README.md) | Talking to Itself While Coding: What Makes Comments Help Code Generation? | Dangfeng Pan（通讯作者 Zhensu Sun） | Findings of EMNLP 2026 | 已精读（完整25页、图1–2、表1–19及附录A–D；最小语义改写、等长噪声、仓库级复现与提示异质性） |
