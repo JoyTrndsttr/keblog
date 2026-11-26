@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-26
+
+- **Edit-Induced Dependency Mismatch: Propagation Omissions, Recovery, and Evaluation Blind Spots in Coding Agents**
+  - 简称：[Dependency Mismatch](https://38-76-161-31.sslip.io/daily-learning/?paper=261126-FeiDing-DependencyMismatch)
+  - Tags：`2026` `Coding Agents` `Change Impact` `Trajectory Audit` `Evaluation`
+  - 作者：Fei Ding（独立作者、通讯；Alibaba Group）
+  - Venue / 年份：arXiv 预印本，2026
+  - DOI / 原文：[arXiv:2611.29242](https://arxiv.org/abs/2611.29242)；[完整 v1](https://arxiv.org/html/2611.29242v1)
+  - 主题：编辑后的消费者义务、盲审与范围争议、轨迹内恢复、固定补丁重放、定向复核对照。
+  - 一句话价值：测试全过也能伴随下游语义缺失；同一轨迹既可能恢复一个依赖，又留下另一个终态遗漏，须分别计量。
+
 ### 2026-11-25
 
 - **sudo L7: Can Coding Agents Act Like Staff Engineers?**
