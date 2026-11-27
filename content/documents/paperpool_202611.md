@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-27
+
+- **RepoEviAgent: Scalable Synthesis of Evidence-Grounded Repository-Level Question Answering Tasks**
+  - 简称：[RepoEviAgent](https://38-76-161-31.sslip.io/daily-learning/?paper=261127-AoqiHu-RepoEviAgent)
+  - Tags：`2026` `Repository Understanding` `Evidence` `Benchmark` `Coding Agents`
+  - 作者：Aoqi Hu（新加坡国立大学）、Yueao Xing（北京邮电大学）
+  - Venue / 年份：arXiv 预印本，2026
+  - DOI / 原文：[arXiv:2611.31873](https://arxiv.org/abs/2611.31873)；[完整 v1](https://arxiv.org/html/2611.31873v1)
+  - 主题：基于真实 PR 的可执行仓库问答合成、事实级评分和训练轨迹蒸馏。
+  - 一句话价值：用逐项必需证据衡量仓库理解；可借鉴评分粒度，但不能据此推断额外上下文的因果作用。
+
 ### 2026-11-26
 
 - **Edit-Induced Dependency Mismatch: Propagation Omissions, Recovery, and Evaluation Blind Spots in Coding Agents**

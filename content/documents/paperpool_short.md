@@ -104,3 +104,4 @@
 - Echoes of AI: Investigating the downstream effects of AI assistants on software maintainability
 - sudo L7: Can Coding Agents Act Like Staff Engineers?
 - Edit-Induced Dependency Mismatch: Propagation Omissions, Recovery, and Evaluation Blind Spots in Coding Agents
+- RepoEviAgent: Scalable Synthesis of Evidence-Grounded Repository-Level Question Answering Tasks
