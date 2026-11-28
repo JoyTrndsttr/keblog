@@ -2,7 +2,7 @@
 
 这里是论文精读归档的 Markdown 索引。每次完整精读使用独立目录，目录名固定为 `YYMMDD-第一作者英文名-论文简称`。
 
-> 已归档：**103 次精读**，覆盖 **2026-08-03—2026-11-27**。
+> 已归档：**104 次精读**，覆盖 **2026-08-03—2026-11-28**。
 > 去重说明：`Quality Gatekeepers` 在 2026-08-19 与 2026-09-01 各有一次精读，为忠实保留学习历史而分别归档；选新论文时仍按同一 DOI 永久去重。
 
 ## 固定执行计划
@@ -15,6 +15,7 @@
 
 | 精读日期 | 目录 | 论文 | 第一作者 | Venue / 年份 | 状态 |
 |---|---|---|---|---|---|
+| 2026-11-28 | [261128-AakashGoel-OverEdit](./261128-AakashGoel-OverEdit/README.md) | How Much Do Coding Agents Over-Edit, and Why? An Empirical Study of Unneeded Edits in Repository-Level Agent Patches | Aakash Goel、Benjamin Steenhoek（共同一作） | arXiv 2026 | 已精读（v1；图 1–3、五个 RQ、主要附录对照） |
 | 2026-11-27 | [261127-AoqiHu-RepoEviAgent](./261127-AoqiHu-RepoEviAgent/README.md) | RepoEviAgent: Scalable Synthesis of Evidence-Grounded Repository-Level Question Answering Tasks | Aoqi Hu | arXiv 2026 | 已精读（完整 v1 10 页，图 1–6、表 1–2） |
 | 2026-11-26 | [261126-FeiDing-DependencyMismatch](./261126-FeiDing-DependencyMismatch/README.md) | Edit-Induced Dependency Mismatch: Propagation Omissions, Recovery, and Evaluation Blind Spots in Coding Agents | Fei Ding（一作、通讯） | arXiv 2026 | 已精读（完整43页 v1：图1–3、表1–24与附录A–J；终态/恢复、局部重放与提示词对照） |
 | 2026-11-25 | [261125-NickHeiner-SudoL7](./261125-NickHeiner-SudoL7/README.md) | sudo L7: Can Coding Agents Act Like Staff Engineers? | Nick Heiner（原文仅列团队邮箱） | NeurIPS 2026 IAB Workshop | 已精读（完整12页v1、图1、表1–5及附录A–C；评分门槛、重复尝试、失败案例及裁判效度） |

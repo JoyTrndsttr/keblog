@@ -105,3 +105,4 @@
 - sudo L7: Can Coding Agents Act Like Staff Engineers?
 - Edit-Induced Dependency Mismatch: Propagation Omissions, Recovery, and Evaluation Blind Spots in Coding Agents
 - RepoEviAgent: Scalable Synthesis of Evidence-Grounded Repository-Level Question Answering Tasks
+- How Much Do Coding Agents Over-Edit, and Why? An Empirical Study of Unneeded Edits in Repository-Level Agent Patches

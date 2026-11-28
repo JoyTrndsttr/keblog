@@ -4,6 +4,17 @@
 
 ## 已精读论文
 
+### 2026-11-28
+
+- **How Much Do Coding Agents Over-Edit, and Why? An Empirical Study of Unneeded Edits in Repository-Level Agent Patches**
+  - 简称：[OverEdit](https://38-76-161-31.sslip.io/daily-learning/?paper=261128-AakashGoel-OverEdit)
+  - Tags：`2026` `Coding Agents` `Empirical SE` `Patch Necessity` `Trajectory`
+  - 作者：Aakash Goel、Benjamin Steenhoek（共同一作）、Yu Hu（Microsoft；原文未单列通讯作者）
+  - Venue / 年份：arXiv 预印本，2026
+  - arXiv / 原文：[2611.34875](https://arxiv.org/abs/2611.34875)
+  - 主题：仓库级补丁逐块撤回、轨迹归因、任务测试与行为判据、补丁裁剪
+  - 一句话价值：补丁更长不代表代码更冗余；必要性取决于显式判据，换一种判据会改变人机对比的方向。
+
 ### 2026-11-27
 
 - **RepoEviAgent: Scalable Synthesis of Evidence-Grounded Repository-Level Question Answering Tasks**
